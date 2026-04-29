@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <title>Dashboard de Gestão Acadêmica · UNIPAR Cianorte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -318,32 +318,452 @@ button{font:inherit;cursor:pointer}
   .cpa-kpi-row{grid-template-columns:1fr 1fr}
   .cpa-qualitative{grid-template-columns:1fr}
 }
-@media(max-width:760px){
-  .header{padding:.8rem 1rem .65rem}
-  .main-nav{padding:0 .85rem}
-  .main{padding:1rem .85rem 3.5rem}
+/* ═══ TABLET 1024px ═══ */
+@media(max-width:1024px){
   .hero{grid-template-columns:1fr}
-  .swot-labels,.swot-grid{grid-template-columns:1fr}
-  .gut-row{grid-template-columns:32px 1fr 32px 32px 32px 50px 72px}
-  .gut-row>div{font-size:.65rem;padding:.5rem .28rem}
-  .cpa-kpi-row{grid-template-columns:1fr 1fr}
-  .classes-grid{grid-template-columns:1fr 1fr}
-  .nps-zones{grid-template-columns:1fr 1fr}
-  .eisen-grid{grid-template-columns:1fr}
-  .fields{grid-template-columns:1fr 1fr}
-  .w2h-board{grid-template-columns:repeat(3,minmax(140px,1fr))}
-  .fish{min-width:680px}
-  .tab{font-size:.72rem;padding:.85rem .9rem}
+  .north-box{max-width:100%}
+  .gut-layout{grid-template-columns:1fr}
+  .cpa-charts-row{grid-template-columns:1fr}
+  .cpa-qualitative{grid-template-columns:1fr}
+  .w2h-board{grid-template-columns:repeat(4,minmax(150px,1fr))}
 }
-@media(max-width:520px){
+
+/* ═══ MOBILE 768px ═══ */
+@media(max-width:768px){
+  /* Header mobile */
+  .header{padding:.65rem .9rem .5rem;border-bottom-width:3px}
+  .header-inner{margin-bottom:.6rem;gap:.6rem}
+  .header-logo img{height:30px}
+  .header-sep{height:32px}
+  .header-title{font-size:1.05rem;letter-spacing:-.01em}
+  .header-sub{font-size:.55rem;letter-spacing:.15em}
+  .header-meta{font-size:.58rem;display:none}
+
+  /* Nav tabs — horizontal scroll, larger touch targets */
+  .main-nav{padding:0 .75rem;top:68px}
+  .tabs{gap:0;padding-bottom:0}
+  .tab{font-size:.7rem;padding:.85rem .8rem;letter-spacing:.06em;white-space:nowrap}
+
+  /* Main content */
+  .main{padding:.85rem .75rem 5rem}
+
+  /* Hero */
+  .hero{grid-template-columns:1fr;gap:1rem;padding-bottom:1.2rem;margin-bottom:1.2rem}
+  .course-name{font-size:clamp(1.6rem,7vw,2.4rem)}
+  .north-box{padding:1rem 1.1rem}
+
+  /* Section header */
+  .sec-header{flex-direction:column;align-items:flex-start;gap:.4rem;margin-bottom:1rem}
+  .sec-desc{text-align:left;max-width:100%}
+  .sec-title{font-size:1.5rem}
+
+  /* SWOT — single column */
+  .swot-labels{grid-template-columns:1fr;gap:.4rem}
+  .swot-grid{grid-template-columns:1fr;gap:.7rem}
+  .swot-q{min-height:auto;padding:1rem 1.1rem}
+  .q-letter{font-size:2rem}
+
+  /* GUT */
+  .gut-layout{grid-template-columns:1fr;gap:.8rem}
+  .bar-row{grid-template-columns:1fr 1fr 44px;gap:.5rem}
+  .bar-label{font-size:.78rem}
+  .gut-table{overflow-x:auto}
+  .gut-row{grid-template-columns:28px 1fr 30px 30px 30px 46px 68px;min-width:400px}
+  .gut-row>div{padding:.55rem .3rem;font-size:.72rem}
+  .radar-box{padding:1rem}
+
+  /* W2H board — horizontal scroll */
+  .w2h-board{grid-template-columns:repeat(7,minmax(140px,1fr));gap:.5rem;padding-bottom:.5rem}
+  .w-col{min-width:140px}
+  .w-code{font-size:1.2rem}
+  .w-body{padding:.5rem;gap:.4rem}
+  .sticky-card{font-size:.74rem;padding:.5rem}
+  .w2h-list{gap:.7rem}
+  .action-card{padding:1rem 1.1rem}
+  .fields{grid-template-columns:1fr 1fr;gap:.5rem}
+
+  /* Management cards */
+  .mgmt-grid{gap:1rem}
+  .mg-card{padding:1.1rem 1.2rem}
+
+  /* CPA KPIs — 2 cols */
+  .cpa-kpi-row{grid-template-columns:1fr 1fr;gap:.7rem}
+  .kpi-value{font-size:1.8rem}
+  .kpi-card{padding:1rem 1.1rem}
+
+  /* CPA Charts */
+  .cpa-charts-row{grid-template-columns:1fr;gap:.8rem}
+  .cpa-qualitative{grid-template-columns:1fr;gap:.8rem}
+  .chart-wrap{padding:1rem 1.1rem}
+  .classes-grid{grid-template-columns:1fr 1fr;gap:.6rem}
+  .nps-zones{grid-template-columns:1fr 1fr;gap:.5rem}
+
+  /* CPA sub-tabs — scroll horizontally */
+  #cpaTabBar{gap:.4rem;padding:.6rem 0 .7rem}
+  .cpa-tab{padding:.5rem .8rem;font-size:.7rem;letter-spacing:.05em}
+
+  /* Eisenhower */
+  .eisen-grid{grid-template-columns:1fr;gap:.7rem}
+  .eisen-wrap{padding:.8rem}
+  .e-card{padding:1rem;min-height:auto}
+
+  /* Fishbone — scroll */
+  .fish-wrap{padding:.8rem}
+  .fish{min-width:760px}
+
+  /* Insight */
+  .insight{padding:1.2rem 1.3rem;margin-top:2rem}
+  .insight-text{font-size:1rem}
+
+  /* Editor panel */
+  .edit-btn{bottom:1rem;right:.85rem;padding:.65rem 1.1rem;font-size:.68rem}
+  .editor-panel{width:100vw}
+
+  /* Footer */
+  .footer{font-size:.58rem;padding:1.4rem .9rem;letter-spacing:.08em}
+}
+
+/* ═══ SMALL MOBILE 480px ═══ */
+@media(max-width:480px){
+  /* Header */
+  .header{padding:.55rem .75rem .45rem}
+  .header-logo img{height:26px}
+  .header-title{font-size:.92rem}
+  .header-sub{display:none}
+  .header-sep{height:28px}
+
+  /* Nav */
+  .main-nav{top:62px}
+  .tab{font-size:.62rem;padding:.75rem .65rem;letter-spacing:.04em}
+
+  /* Main */
+  .main{padding:.7rem .65rem 5rem}
+
+  /* Course name */
+  .course-name{font-size:clamp(1.4rem,8vw,2rem)}
+
+  /* CPA KPIs — single column on very small screens */
   .cpa-kpi-row{grid-template-columns:1fr}
-  .header-title{font-size:1.15rem}
-  .tab{font-size:.65rem;padding:.75rem .7rem}
+  .kpi-card{padding:.9rem 1rem}
+  .kpi-value{font-size:2rem}
+
+  /* CPA sub-tabs */
+  .cpa-tab{padding:.45rem .65rem;font-size:.65rem}
+
+  /* Classes CHD */
+  .classes-grid{grid-template-columns:1fr}
+
+  /* NPS Zones */
+  .nps-zones{grid-template-columns:1fr 1fr}
+
+  /* Tips grid */
+  div[style*="grid-template-columns:repeat(3,1fr)"]{
+    display:grid!important;
+    grid-template-columns:1fr!important
+  }
+  div[style*="grid-template-columns:1fr 1fr"]{
+    display:grid!important;
+    grid-template-columns:1fr!important
+  }
+
+  /* SWOT */
+  .swot-grid{grid-template-columns:1fr}
+  .swot-labels{display:none}
+
+  /* GUT row — compact */
+  .gut-row{grid-template-columns:24px 1fr 28px 28px 28px 40px 60px}
+  .gut-row>div{font-size:.65rem;padding:.45rem .22rem}
+
+  /* W2H */
+  .fields{grid-template-columns:1fr}
+
+  /* Eisenhower */
+  .eisen-grid{grid-template-columns:1fr}
+
+  /* Section */
+  .sec-title{font-size:1.3rem}
+
+  /* Pills course bar */
+  .pill{font-size:.68rem;padding:.45rem .75rem}
+
+  /* Insight */
+  .insight{padding:1rem 1.1rem}
+  .insight-text{font-size:.92rem}
+}
+
+/* ═══ TOUCH IMPROVEMENTS ═══ */
+@media(hover:none) and (pointer:coarse){
+  .pill,.tab,.cpa-tab,.edit-btn,.ep-apply,.ep-reset{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation
+  }
+  /* Larger touch targets */
+  .tab{min-height:44px}
+  .cpa-tab{min-height:40px}
+  .pill{min-height:38px}
+  /* Remove hover transforms on touch */
+  .pill:hover{transform:none}
+  .cpa-tab:hover{transform:none}
+  .card:hover{box-shadow:var(--shadow2)}
 }
 @media print{
   .header,.main-nav,.edit-btn{position:static}
   .section{display:block!important;break-inside:avoid;margin-bottom:2rem}
   .card{box-shadow:none}
+}
+
+/* ═══ MOBILE SCROLL IMPROVEMENTS ═══ */
+.tabs,.course-bar,#cpaTabBar,.w2h-board,.gut-table,.fish-wrap{
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  overscroll-behavior-x:contain
+}
+.tabs::-webkit-scrollbar,.course-bar::-webkit-scrollbar,
+#cpaTabBar::-webkit-scrollbar,.w2h-board::-webkit-scrollbar,
+.gut-table::-webkit-scrollbar,.fish-wrap::-webkit-scrollbar{display:none}
+
+/* Scroll indicators for horizontal scroll containers */
+.w2h-board,.fish-wrap{
+  background:linear-gradient(90deg,transparent 96%,rgba(0,32,96,.07)) no-repeat right,
+             linear-gradient(270deg,transparent 96%,rgba(0,32,96,.07)) no-repeat left;
+  background-size:40px 100%,40px 100%
+}
+
+/* ═══ MOBILE BOTTOM NAV ═══ */
+.mobile-bottom-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:#fff;
+  border-top:2px solid var(--g4);
+  padding:.3rem .2rem max(.4rem,env(safe-area-inset-bottom));
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  box-shadow:0 -4px 20px rgba(0,32,96,.1);
+  gap:0
+}
+.mobile-bottom-nav::-webkit-scrollbar{display:none}
+.mbn-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.15rem;padding:.4rem .5rem;min-width:52px;flex:0 0 auto;
+  background:transparent;border:none;cursor:pointer;
+  border-radius:8px;transition:.15s ease;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation
+}
+.mbn-btn:active{background:var(--courseLight);transform:scale(.95)}
+.mbn-icon{font-size:1.1rem;line-height:1;display:block}
+.mbn-label{font-family:monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.06em;color:var(--g1);font-weight:600;white-space:nowrap}
+.mbn-active .mbn-icon{filter:drop-shadow(0 0 4px rgba(0,32,96,.3))}
+.mbn-active .mbn-label{color:var(--course);font-weight:800}
+.mbn-active{background:var(--courseLight)}
+
+@media(max-width:768px){
+  .mobile-bottom-nav{display:flex}
+  .main{padding-bottom:4.5rem}
+  .edit-btn{bottom:4.8rem}
+  /* Hide top tab bar on mobile — replaced by bottom nav */
+  .main-nav{display:none}
+}
+
+/* ═══ AGENDA ═══ */
+.agenda-view-btn{border:2px solid var(--g3);background:#fff;color:var(--g1);padding:.45rem .9rem;border-radius:6px;font-family:monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:.15s}
+.agenda-view-btn:hover{border-color:var(--course);color:var(--course)}
+.agenda-view-active{background:var(--course);color:#fff!important;border-color:var(--course)}
+
+/* Event card */
+.ev-card{background:#fff;border:1px solid var(--g4);border-radius:10px;padding:1rem 1.2rem;border-left:5px solid var(--course);box-shadow:0 2px 8px rgba(0,32,96,.06);transition:.18s;cursor:pointer;position:relative}
+.ev-card:hover{box-shadow:0 6px 18px rgba(0,32,96,.12);transform:translateY(-1px)}
+.ev-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.6rem;margin-bottom:.4rem}
+.ev-title{font-weight:700;font-size:.95rem;line-height:1.3;flex:1}
+.ev-badges{display:flex;gap:.3rem;flex-wrap:wrap;flex-shrink:0}
+.ev-badge{font-family:monospace;font-size:.57rem;padding:.18rem .45rem;border-radius:999px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.ev-badge-type{background:var(--courseLight);color:var(--course)}
+.ev-badge-status-planejado{background:#e8edf6;color:#002060}
+.ev-badge-status-confirmado{background:#dcf5ea;color:#0E7C4A}
+.ev-badge-status-realizado{background:#e8f5e9;color:#1b5e20}
+.ev-badge-status-cancelado{background:#fde8e8;color:#E30613}
+.ev-badge-pri-alta{background:#fff3e0;color:#E67E22}
+.ev-badge-pri-urgente{background:#fde8e8;color:#E30613}
+.ev-meta{display:flex;gap:.9rem;flex-wrap:wrap;font-family:monospace;font-size:.64rem;color:var(--g1);margin-top:.3rem}
+.ev-meta span{display:flex;align-items:center;gap:.25rem}
+.ev-desc{font-size:.82rem;color:var(--g1);margin-top:.5rem;line-height:1.45;border-top:1px solid var(--g5);padding-top:.5rem}
+.ev-actions{position:absolute;top:.7rem;right:.8rem;display:flex;gap:.3rem;opacity:0;transition:.15s}
+.ev-card:hover .ev-actions{opacity:1}
+.ev-action-btn{background:var(--g5);border:1px solid var(--g4);border-radius:5px;width:26px;height:26px;cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center;transition:.12s}
+.ev-action-btn:hover{background:var(--courseLight);border-color:var(--course)}
+
+/* List view */
+.agenda-list{display:grid;gap:.65rem}
+.agenda-month-group{margin-bottom:1.5rem}
+.agenda-month-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:2px solid var(--courseLight)}
+.agenda-month-name{font-family:serif;font-size:1.15rem;font-weight:700;color:var(--course)}
+.agenda-month-count{font-family:monospace;font-size:.62rem;background:var(--courseLight);color:var(--course);padding:.2rem .55rem;border-radius:999px;font-weight:700}
+
+/* Calendar view */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-top:.5rem}
+.cal-header{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:2px}
+.cal-day-name{text-align:center;font-family:monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);padding:.4rem 0}
+.cal-day{min-height:72px;background:#fff;border:1px solid var(--g4);border-radius:5px;padding:.35rem .4rem;font-size:.7rem;cursor:pointer;transition:.12s;overflow:hidden}
+.cal-day:hover{border-color:var(--course);background:var(--courseLight)}
+.cal-day-num{font-family:monospace;font-size:.72rem;font-weight:700;margin-bottom:.25rem;color:var(--g1)}
+.cal-day.today .cal-day-num{background:var(--red);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem}
+.cal-day.other-month{background:var(--g5);opacity:.5}
+.cal-ev-dot{font-size:.65rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:.1rem .3rem;border-radius:3px;margin-bottom:2px;line-height:1.3}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+.cal-nav-btn{border:2px solid var(--g3);background:#fff;padding:.4rem .8rem;border-radius:6px;cursor:pointer;font-family:monospace;font-size:.72rem;font-weight:700;transition:.12s}
+.cal-nav-btn:hover{border-color:var(--course);color:var(--course)}
+.cal-nav-month{font-family:serif;font-size:1.2rem;font-weight:700;color:var(--course)}
+
+/* Kanban view */
+.kanban-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.kanban-col{background:var(--g5);border-radius:10px;padding:.9rem;min-height:200px}
+.kanban-col-header{font-family:monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin-bottom:.7rem;display:flex;justify-content:space-between;align-items:center;padding-bottom:.5rem;border-bottom:2px solid var(--g4)}
+.kanban-ev{background:#fff;border:1px solid var(--g4);border-radius:7px;padding:.7rem .8rem;margin-bottom:.5rem;cursor:pointer;transition:.15s;border-left:4px solid var(--course)}
+.kanban-ev:hover{box-shadow:0 3px 10px rgba(0,32,96,.1);transform:translateY(-1px)}
+.kanban-ev-title{font-size:.83rem;font-weight:700;margin-bottom:.3rem;line-height:1.3}
+.kanban-ev-meta{font-family:monospace;font-size:.6rem;color:var(--g1)}
+
+/* Empty state */
+.agenda-empty{text-align:center;padding:3rem 1rem;color:var(--g1)}
+.agenda-empty-icon{font-size:3rem;margin-bottom:.8rem;opacity:.4}
+.agenda-empty-text{font-size:.95rem;margin-bottom:.4rem;font-weight:600}
+.agenda-empty-sub{font-size:.82rem;font-style:italic}
+
+/* Stat cards */
+.agenda-stat{background:#fff;border:1px solid var(--g4);border-radius:8px;padding:.9rem 1rem;border-top:4px solid var(--course)}
+.agenda-stat-num{font-family:serif;font-size:1.8rem;color:var(--course);font-weight:700;line-height:1}
+.agenda-stat-label{font-family:monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:var(--g1);margin-top:.2rem}
+
+/* Modal */
+.event-overlay{position:fixed;inset:0;background:rgba(0,32,96,.5);z-index:500;opacity:0;pointer-events:none;transition:.2s;backdrop-filter:blur(3px)}
+.event-overlay.open{opacity:1;pointer-events:all}
+.event-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-60%);width:min(600px,95vw);max-height:90vh;background:#fff;z-index:600;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,32,96,.25);opacity:0;pointer-events:none;transition:.25s cubic-bezier(.4,0,.2,1)}
+.event-modal.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%)}
+.event-modal-header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--red);flex-shrink:0}
+.event-modal-header h3{font-family:serif;font-size:1.15rem;font-weight:700}
+.event-modal-header p{font-family:monospace;font-size:.62rem;color:rgba(255,255,255,.6);margin-top:.15rem;letter-spacing:.1em;text-transform:uppercase}
+.event-modal-body{padding:1.2rem 1.4rem;overflow-y:auto;flex:1;display:grid;gap:.8rem}
+.ev-row{display:grid;gap:.8rem}
+.ev-field{display:grid;gap:.28rem}
+.ev-label{font-family:monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:var(--g1);font-weight:700}
+.ev-input{border:2px solid var(--g3);border-radius:7px;padding:.55rem .75rem;font-size:.88rem;font-family:inherit;color:var(--ink);background:#fff;transition:.15s;width:100%;resize:none}
+.ev-input:focus{outline:none;border-color:var(--course);box-shadow:0 0 0 3px rgba(0,32,96,.1)}
+.ev-input[type="date"]{font-family:monospace}
+.event-modal-footer{padding:1rem 1.4rem;border-top:1px solid var(--g4);background:var(--bone);display:flex;gap:.6rem;flex-shrink:0}
+.ev-save{flex:1;background:var(--course);color:#fff;border:none;border-radius:7px;padding:.7rem;font-family:monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:.15s}
+.ev-save:hover{opacity:.88}
+.ev-delete{background:#fde8e8;color:var(--red);border:2px solid var(--red);border-radius:7px;padding:.7rem .9rem;font-family:monospace;font-size:.68rem;font-weight:700;text-transform:uppercase;cursor:pointer;transition:.15s}
+.ev-delete:hover{background:var(--red);color:#fff}
+.ev-cancel{background:transparent;color:var(--g1);border:2px solid var(--g3);border-radius:7px;padding:.7rem .9rem;font-family:monospace;font-size:.68rem;font-weight:700;text-transform:uppercase;cursor:pointer;transition:.15s}
+.ev-cancel:hover{border-color:var(--g2);color:var(--ink)}
+
+@media(max-width:768px){
+  .kanban-grid{grid-template-columns:1fr}
+  .cal-grid,.cal-header{grid-template-columns:repeat(7,1fr)}
+  .cal-day{min-height:50px;padding:.25rem}
+  .cal-day-num{font-size:.65rem}
+  .cal-ev-dot{display:none}
+  .agenda-stat-num{font-size:1.5rem}
+  .event-modal{width:100vw;height:100vh;max-height:100vh;top:0;left:0;transform:none;border-radius:0}
+  .event-modal.open{transform:none}
+  .agendaStats{grid-template-columns:1fr 1fr}
+}
+
+/* ═══ LINKS ═══ */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+
+.link-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.25rem 1.35rem;border-radius:12px;
+  text-decoration:none;color:inherit;
+  border:2px solid transparent;
+  position:relative;overflow:hidden;
+  transition:.22s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 3px 12px rgba(0,0,0,.07)
+}
+.link-card:before{
+  content:"";position:absolute;inset:0;
+  background:rgba(255,255,255,0);
+  transition:.22s
+}
+.link-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(0,0,0,.15);
+  border-color:rgba(255,255,255,.4)
+}
+.link-card:hover:before{background:rgba(255,255,255,.07)}
+.link-card:active{transform:translateY(-1px)}
+
+.lc-blue  {background:linear-gradient(135deg,#1565C0,#0d47a1)}
+.lc-navy  {background:linear-gradient(135deg,#002060,#001040)}
+.lc-teal  {background:linear-gradient(135deg,#007A87,#005a63)}
+.lc-purple{background:linear-gradient(135deg,#6B2D8B,#4a1f62)}
+.lc-pink  {background:linear-gradient(135deg,#7B1FA2,#4a148c)}
+.lc-green {background:linear-gradient(135deg,#1B5E20,#0E7C4A)}
+.lc-orange{background:linear-gradient(135deg,#E65100,#c0620d)}
+
+.lc-icon{
+  font-size:1.9rem;line-height:1;flex-shrink:0;
+  width:48px;height:48px;border-radius:10px;
+  background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  transition:.22s
+}
+.link-card:hover .lc-icon{background:rgba(255,255,255,.25);transform:scale(1.1)}
+
+.lc-body{flex:1;min-width:0;position:relative;z-index:1}
+.lc-title{
+  font-size:.97rem;font-weight:800;color:#fff;
+  margin-bottom:.3rem;line-height:1.25;letter-spacing:-.01em
+}
+.lc-desc{
+  font-size:.78rem;color:rgba(255,255,255,.72);
+  line-height:1.5;margin-bottom:.5rem
+}
+.lc-url{
+  font-family:monospace;font-size:.62rem;
+  color:rgba(255,255,255,.45);
+  letter-spacing:.04em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+
+.lc-arrow{
+  font-size:1.3rem;color:rgba(255,255,255,.35);
+  flex-shrink:0;align-self:flex-start;margin-top:.15rem;
+  transition:.22s;font-weight:300;line-height:1
+}
+.link-card:hover .lc-arrow{color:rgba(255,255,255,.9);transform:translate(3px,-3px)}
+
+/* Quick links */
+.quick-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.55rem 1rem;border-radius:999px;
+  background:#fff;border:2px solid var(--g3);
+  color:var(--ink);text-decoration:none;
+  font-family:monospace;font-size:.74rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  transition:.18s;white-space:nowrap;
+  box-shadow:0 2px 6px rgba(0,32,96,.07)
+}
+.quick-link:hover{
+  background:var(--course);color:#fff;
+  border-color:var(--course);
+  transform:translateY(-2px);
+  box-shadow:0 5px 14px rgba(0,32,96,.2)
+}
+.quick-link:active{transform:translateY(0)}
+
+@media(max-width:768px){
+  .links-grid{grid-template-columns:1fr}
+  .link-card{padding:1rem 1.1rem}
+  .lc-icon{width:40px;height:40px;font-size:1.5rem}
+  .lc-title{font-size:.9rem}
+  .lc-desc{font-size:.75rem}
+  .quick-link{font-size:.68rem;padding:.5rem .85rem}
+}
+@media(max-width:480px){
+  .lc-arrow{display:none}
+  .lc-url{display:none}
 }
 </style>
 </head>
@@ -375,6 +795,8 @@ button{font:inherit;cursor:pointer}
     <button class="tab" data-tab="gestão">04 Gestão</button>
     <button class="tab" data-tab="ishikawa">05 Ishikawa</button>
     <button class="tab" data-tab="eisenhower">06 Eisenhower</button>
+    <button class="tab" data-tab="agenda">📅 Agenda</button>
+    <button class="tab" data-tab="links">🔗 Links</button>
   </div>
 </nav>
 
@@ -869,6 +1291,317 @@ button{font:inherit;cursor:pointer}
     <div class="eisen-wrap card"><div class="eisen-grid" id="eisenGrid"></div></div>
   </section>
 
+  <!-- ══ AGENDA ══ -->
+  <section id="agenda" class="section">
+    <div class="sec-header">
+      <h2 class="sec-title">Agenda de Eventos</h2>
+      <p class="sec-desc">Eventos por curso · Editáveis · Salvos localmente no navegador</p>
+    </div>
+
+    <!-- AGENDA HEADER BAR -->
+    <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem">
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:.65rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--g1);margin-bottom:.3rem">Filtrar por curso</div>
+        <select id="agendaCourseFilter" onchange="renderAgenda()" style="width:100%;border:2px solid var(--g3);border-radius:8px;padding:.55rem .8rem;font-size:.85rem;font-family:inherit;color:var(--ink);background:#fff;cursor:pointer;outline:none">
+          <option value="all">Todos os cursos</option>
+          <option value="adm">Administração</option>
+          <option value="ads">ADS</option>
+          <option value="bio">Biomedicina</option>
+          <option value="cont">Ciências Contábeis</option>
+          <option value="dir">Direito</option>
+          <option value="ef">Educação Física</option>
+          <option value="enf">Enfermagem</option>
+          <option value="psi">Psicologia</option>
+          <option value="ead">EAD</option>
+          <option value="geral">Unidade (Geral)</option>
+        </select>
+      </div>
+      <div style="flex:1;min-width:160px">
+        <div style="font-size:.65rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--g1);margin-bottom:.3rem">Filtrar por mês</div>
+        <select id="agendaMonthFilter" onchange="renderAgenda()" style="width:100%;border:2px solid var(--g3);border-radius:8px;padding:.55rem .8rem;font-size:.85rem;font-family:inherit;color:var(--ink);background:#fff;cursor:pointer;outline:none">
+          <option value="all">Todos os meses</option>
+          <option value="0">Janeiro</option>
+          <option value="1">Fevereiro</option>
+          <option value="2">Março</option>
+          <option value="3">Abril</option>
+          <option value="4">Maio</option>
+          <option value="5">Junho</option>
+          <option value="6">Julho</option>
+          <option value="7">Agosto</option>
+          <option value="8">Setembro</option>
+          <option value="9">Outubro</option>
+          <option value="10">Novembro</option>
+          <option value="11">Dezembro</option>
+        </select>
+      </div>
+      <div style="flex:1;min-width:160px">
+        <div style="font-size:.65rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--g1);margin-bottom:.3rem">Filtrar por tipo</div>
+        <select id="agendaTypeFilter" onchange="renderAgenda()" style="width:100%;border:2px solid var(--g3);border-radius:8px;padding:.55rem .8rem;font-size:.85rem;font-family:inherit;color:var(--ink);background:#fff;cursor:pointer;outline:none">
+          <option value="all">Todos os tipos</option>
+          <option value="academico">Acadêmico</option>
+          <option value="palestra">Palestra / Evento</option>
+          <option value="avaliacao">Avaliação / Prova</option>
+          <option value="estagio">Estágio / Prática</option>
+          <option value="reuniao">Reunião</option>
+          <option value="captacao">Captação</option>
+          <option value="institucional">Institucional</option>
+          <option value="prazo">Prazo / Deadline</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;flex-shrink:0">
+        <button onclick="openAddEvent()" style="background:var(--course);color:#fff;border:none;border-radius:8px;padding:.6rem 1.2rem;font-family:monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;display:flex;align-items:center;gap:.4rem;white-space:nowrap;box-shadow:0 3px 10px rgba(0,32,96,.2)">
+          <span style="font-size:1rem">+</span> Novo Evento
+        </button>
+        <button onclick="exportAgenda()" style="background:transparent;color:var(--g1);border:2px solid var(--g3);border-radius:8px;padding:.45rem .9rem;font-family:monospace;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;white-space:nowrap">
+          ↓ Exportar
+        </button>
+      </div>
+    </div>
+
+    <!-- CALENDAR VIEW TOGGLE -->
+    <div style="display:flex;gap:.5rem;margin-bottom:1rem;border-bottom:2px solid var(--g4);padding-bottom:.8rem">
+      <button class="agenda-view-btn agenda-view-active" id="viewList" onclick="setAgendaView('list',this)">☰ Lista</button>
+      <button class="agenda-view-btn" id="viewCalendar" onclick="setAgendaView('calendar',this)">▦ Calendário</button>
+      <button class="agenda-view-btn" id="viewKanban" onclick="setAgendaView('kanban',this)">⊞ Por Curso</button>
+    </div>
+
+    <!-- AGENDA CONTENT AREA -->
+    <div id="agendaContent"></div>
+
+    <!-- MINI STATS -->
+    <div id="agendaStats" style="margin-top:1.2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem"></div>
+
+  </section>
+
+  <!-- ══ EVENT MODAL ══ -->
+  <div class="event-overlay" id="eventOverlay" onclick="closeEventModal()"></div>
+  <div class="event-modal" id="eventModal">
+    <div class="event-modal-header">
+      <div>
+        <h3 id="eventModalTitle">Novo Evento</h3>
+        <p id="eventModalSub">Preencha os dados do evento</p>
+      </div>
+      <button onclick="closeEventModal()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">✕</button>
+    </div>
+    <div class="event-modal-body">
+      <input type="hidden" id="evId">
+      <div class="ev-row">
+        <div class="ev-field">
+          <label class="ev-label">Título do evento *</label>
+          <input class="ev-input" id="evTitle" type="text" placeholder="Ex: Semana Acadêmica de Direito">
+        </div>
+      </div>
+      <div class="ev-row" style="grid-template-columns:1fr 1fr">
+        <div class="ev-field">
+          <label class="ev-label">Data início *</label>
+          <input class="ev-input" id="evDateStart" type="date">
+        </div>
+        <div class="ev-field">
+          <label class="ev-label">Data fim</label>
+          <input class="ev-input" id="evDateEnd" type="date">
+        </div>
+      </div>
+      <div class="ev-row" style="grid-template-columns:1fr 1fr">
+        <div class="ev-field">
+          <label class="ev-label">Horário</label>
+          <input class="ev-input" id="evTime" type="text" placeholder="Ex: 19h00 – 22h00">
+        </div>
+        <div class="ev-field">
+          <label class="ev-label">Local</label>
+          <input class="ev-input" id="evLocal" type="text" placeholder="Ex: Auditório Bloco A">
+        </div>
+      </div>
+      <div class="ev-row" style="grid-template-columns:1fr 1fr">
+        <div class="ev-field">
+          <label class="ev-label">Curso *</label>
+          <select class="ev-input" id="evCourse">
+            <option value="geral">Unidade (Geral)</option>
+            <option value="adm">Administração</option>
+            <option value="ads">ADS</option>
+            <option value="bio">Biomedicina</option>
+            <option value="cont">Ciências Contábeis</option>
+            <option value="dir">Direito</option>
+            <option value="ef">Educação Física</option>
+            <option value="enf">Enfermagem</option>
+            <option value="psi">Psicologia</option>
+            <option value="ead">EAD</option>
+          </select>
+        </div>
+        <div class="ev-field">
+          <label class="ev-label">Tipo</label>
+          <select class="ev-input" id="evType">
+            <option value="academico">Acadêmico</option>
+            <option value="palestra">Palestra / Evento</option>
+            <option value="avaliacao">Avaliação / Prova</option>
+            <option value="estagio">Estágio / Prática</option>
+            <option value="reuniao">Reunião</option>
+            <option value="captacao">Captação</option>
+            <option value="institucional">Institucional</option>
+            <option value="prazo">Prazo / Deadline</option>
+          </select>
+        </div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-field">
+          <label class="ev-label">Responsável</label>
+          <input class="ev-input" id="evResponsavel" type="text" placeholder="Ex: Coordenação de Direito">
+        </div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-field">
+          <label class="ev-label">Descrição / Observações</label>
+          <textarea class="ev-input" id="evDesc" rows="3" placeholder="Detalhes, link de inscrição, público-alvo..."></textarea>
+        </div>
+      </div>
+      <div class="ev-row" style="grid-template-columns:1fr 1fr">
+        <div class="ev-field">
+          <label class="ev-label">Prioridade</label>
+          <select class="ev-input" id="evPriority">
+            <option value="normal">Normal</option>
+            <option value="alta">Alta</option>
+            <option value="urgente">Urgente</option>
+          </select>
+        </div>
+        <div class="ev-field">
+          <label class="ev-label">Status</label>
+          <select class="ev-input" id="evStatus">
+            <option value="planejado">Planejado</option>
+            <option value="confirmado">Confirmado</option>
+            <option value="realizado">Realizado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="event-modal-footer">
+      <button onclick="saveEvent()" class="ev-save">✓ Salvar Evento</button>
+      <button onclick="deleteEvent()" id="evDeleteBtn" class="ev-delete" style="display:none">🗑 Excluir</button>
+      <button onclick="closeEventModal()" class="ev-cancel">Cancelar</button>
+    </div>
+  </div>
+
+
+  <!-- ══ LINKS ══ -->
+  <section id="links" class="section">
+
+    <div style="background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:12px;padding:1.8rem 2rem;margin-bottom:2rem;border-left:6px solid #E30613;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.04)"></div>
+      <div style="position:absolute;right:80px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.025)"></div>
+      <div style="font-size:.65rem;font-family:monospace;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem;position:relative;z-index:1">Acesso Rápido · Coordenador</div>
+      <div style="font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.3rem;position:relative;z-index:1">Links do Coordenador</div>
+      <p style="font-size:.9rem;color:rgba(255,255,255,.65);position:relative;z-index:1">Todos os sistemas e plataformas em um só lugar. Clique para abrir em nova aba.</p>
+    </div>
+
+    <!-- SISTEMAS LYCEUM -->
+    <div style="margin-bottom:2rem">
+      <div style="font-size:.65rem;font-family:monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem"><span style="width:24px;height:2px;background:var(--red);display:inline-block"></span>Sistemas Lyceum</div>
+      <div class="links-grid">
+
+        <a href="https://unipar.lyceum.com.br/DOnline" target="_blank" rel="noopener" class="link-card lc-blue">
+          <div class="lc-icon">🎓</div>
+          <div class="lc-body">
+            <div class="lc-title">Portal Docente</div>
+            <div class="lc-desc">Lançamento de notas, frequência, planos de ensino e diários de classe. Acesso para professores da unidade.</div>
+            <div class="lc-url">unipar.lyceum.com.br/DOnline</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+        <a href="https://unipar.lyceum.com.br/Secretaria/" target="_blank" rel="noopener" class="link-card lc-navy">
+          <div class="lc-icon">🏢</div>
+          <div class="lc-body">
+            <div class="lc-title">Portal da Secretaria</div>
+            <div class="lc-desc">Gestão acadêmica administrativa: matrículas, documentos, históricos, requerimentos e registros de alunos.</div>
+            <div class="lc-url">unipar.lyceum.com.br/Secretaria</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+        <a href="https://unipar.lyceum.com.br/aluno" target="_blank" rel="noopener" class="link-card lc-teal">
+          <div class="lc-icon">📱</div>
+          <div class="lc-body">
+            <div class="lc-title">Portal do Aluno Responsivo</div>
+            <div class="lc-desc">Versão mobile-friendly do sistema acadêmico para alunos: notas, frequência, financeiro e CPA.</div>
+            <div class="lc-url">unipar.lyceum.com.br/aluno</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- PLATAFORMAS EXTERNAS -->
+    <div style="margin-bottom:2rem">
+      <div style="font-size:.65rem;font-family:monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem"><span style="width:24px;height:2px;background:var(--red);display:inline-block"></span>Plataformas Externas</div>
+      <div class="links-grid">
+
+        <a href="https://platform.senior.com.br/" target="_blank" rel="noopener" class="link-card lc-purple">
+          <div class="lc-icon">⚡</div>
+          <div class="lc-body">
+            <div class="lc-title">Sênior Platform</div>
+            <div class="lc-desc">Plataforma de gestão corporativa Senior: RH, folha de pagamento, benefícios e processos administrativos.</div>
+            <div class="lc-url">platform.senior.com.br</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+        <a href="https://forms.clickup.com/9013966573/f/8cmcdqd-93/6HIJQ5GAEXKDCJGB2P" target="_blank" rel="noopener" class="link-card lc-pink">
+          <div class="lc-icon">📣</div>
+          <div class="lc-body">
+            <div class="lc-title">Briefing para Marketing</div>
+            <div class="lc-desc">Formulário ClickUp para solicitação de peças e campanhas de marketing para eventos, captação e comunicação da unidade.</div>
+            <div class="lc-url">forms.clickup.com · Briefing UNIPAR</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- CALENDÁRIOS -->
+    <div style="margin-bottom:2rem">
+      <div style="font-size:.65rem;font-family:monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem"><span style="width:24px;height:2px;background:var(--red);display:inline-block"></span>Calendários Acadêmicos</div>
+      <div class="links-grid">
+
+        <a href="https://drive.google.com/file/d/1ogscD3xFqxTT_wUY23eNEdRJw9bw32Or/view" target="_blank" rel="noopener" class="link-card lc-green">
+          <div class="lc-icon">📅</div>
+          <div class="lc-body">
+            <div class="lc-title">Calendário Acadêmico Presencial</div>
+            <div class="lc-desc">Calendário completo do ano letivo para cursos presenciais: datas de aula, provas, feriados e eventos institucionais.</div>
+            <div class="lc-url">Google Drive · Calendário Presencial</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+        <a href="https://drive.google.com/file/d/1mKexGivmIIMO3_7vQ-Qb191jdw1W37zg/view" target="_blank" rel="noopener" class="link-card lc-orange">
+          <div class="lc-icon">📆</div>
+          <div class="lc-body">
+            <div class="lc-title">Calendário Adm. e Docente</div>
+            <div class="lc-desc">Calendário específico para coordenadores, professores e equipe administrativa: prazos, reuniões e atividades institucionais.</div>
+            <div class="lc-url">Google Drive · Calendário Adm/Docente</div>
+          </div>
+          <div class="lc-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ACESSO RÁPIDO MOBILE -->
+    <div style="background:var(--g5);border-radius:12px;padding:1.3rem 1.5rem;border:1px solid var(--g4)">
+      <div style="font-size:.65rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.8rem">⚡ Acesso Ultra-Rápido</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <a href="https://unipar.lyceum.com.br/DOnline" target="_blank" rel="noopener" class="quick-link">🎓 Docente</a>
+        <a href="https://unipar.lyceum.com.br/Secretaria/" target="_blank" rel="noopener" class="quick-link">🏢 Secretaria</a>
+        <a href="https://unipar.lyceum.com.br/aluno" target="_blank" rel="noopener" class="quick-link">📱 Aluno</a>
+        <a href="https://platform.senior.com.br/" target="_blank" rel="noopener" class="quick-link">⚡ Sênior</a>
+        <a href="https://forms.clickup.com/9013966573/f/8cmcdqd-93/6HIJQ5GAEXKDCJGB2P" target="_blank" rel="noopener" class="quick-link">📣 Marketing</a>
+        <a href="https://drive.google.com/file/d/1ogscD3xFqxTT_wUY23eNEdRJw9bw32Or/view" target="_blank" rel="noopener" class="quick-link">📅 Cal. Presencial</a>
+        <a href="https://drive.google.com/file/d/1mKexGivmIIMO3_7vQ-Qb191jdw1W37zg/view" target="_blank" rel="noopener" class="quick-link">📆 Cal. Adm/Doc</a>
+      </div>
+    </div>
+
+  </section>
+
   <aside class="insight"><div class="insight-label">💡 Síntese do Consultor</div><p class="insight-text" id="insightText"></p></aside>
 </main>
 
@@ -1119,7 +1852,48 @@ button{font:inherit;cursor:pointer}
         <div>
           <div style="font-family:monospace;color:#ffc954;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Síntese Estratégica · Diretor Bruno Guilherme</div>
           <p style="font-size:1rem;line-height:1.6;color:rgba(255,255,255,.92);margin-bottom:.8rem">A CPA 2025 entregou um diagnóstico preciso: o problema de Cianorte <strong>não é o ensino — é o hardware</strong>. Os professores (4,2 e em evolução) são o maior ativo. A queda do NPS para -2 em 2024 foi causada por frustrações operacionais acumuladas — banheiro, carteira, coordenação, calendário — não por falhas pedagógicas. Isso é uma <strong>excelente notícia</strong>: problemas operacionais têm solução mais rápida e barata do que problemas acadêmicos.</p>
-          <p style="font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.78)">Use as ferramentas nesta sequência: <strong style="color:#ffc954">GUT → Ishikawa → 5W2H → PDCA → North Star</strong>. O Eisenhower protege seu tempo. A SWOT orienta o posicionamento. Se você resolver os 4 alertas até outubro de 2026, o NPS 51+ é alcançável — e Cianorte entra na Zona de Qualidade.</p>
+          <p style="font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.78)">Use as ferramentas nesta sequência: <s
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav">
+  <button class="mbn-btn mbn-active" onclick="switchMainTab('cpa',this)" data-tab="cpa">
+    <span class="mbn-icon">📊</span>
+    <span class="mbn-label">CPA</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('swot',this)" data-tab="swot">
+    <span class="mbn-icon">🧭</span>
+    <span class="mbn-label">SWOT</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('gut',this)" data-tab="gut">
+    <span class="mbn-icon">⚖️</span>
+    <span class="mbn-label">GUT</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('w2h',this)" data-tab="w2h">
+    <span class="mbn-icon">📋</span>
+    <span class="mbn-label">5W2H</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('gestao',this)" data-tab="gestao">
+    <span class="mbn-icon">🎯</span>
+    <span class="mbn-label">Gestão</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('ishikawa',this)" data-tab="ishikawa">
+    <span class="mbn-icon">🐟</span>
+    <span class="mbn-label">Ishikawa</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('eisenhower',this)" data-tab="eisenhower">
+    <span class="mbn-icon">✦</span>
+    <span class="mbn-label">Eisen.</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('agenda',this)" data-tab="agenda">
+    <span class="mbn-icon">📅</span>
+    <span class="mbn-label">Agenda</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('links',this)" data-tab="links">
+    <span class="mbn-icon">🔗</span>
+    <span class="mbn-label">Links</span>
+  </button>
+</nav>
+
+trong style="color:#ffc954">GUT → Ishikawa → 5W2H → PDCA → North Star</strong>. O Eisenhower protege seu tempo. A SWOT orienta o posicionamento. Se você resolver os 4 alertas até outubro de 2026, o NPS 51+ é alcançável — e Cianorte entra na Zona de Qualidade.</p>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
             <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-family:monospace">NPS atual: 36</span>
             <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-family:monospace">Meta: 51+ em out/2026</span>
@@ -1275,7 +2049,7 @@ const COURSES=[
 {id:'cont',name:'Ciências Contábeis',short:'CON',color:'#6B2D8B',light:'#F0E6F5',meta:'Curso com tradição · gestão precisa de instrumentação',north:'Alunos aprovados ou em preparação ativa para o Exame de Suficiência do CFC',swot:{s:['Profissão regulamentada','Tradição na unidade','Aluno trabalha cedo na área'],w:['Sem núcleo CFC','Distância entre conteúdo e exigências do CFC','Pouca mensuração de egressos'],o:['Empreendedorismo demanda contadores','Reforma tributária exigé atualização','Expansão da contabilidade digital'],t:['Automação de tarefas operacionais','EAD barato','Risco sé aprovação CFC for baixa']},gut:[['Sem núcleo de preparação CFC',5,5,5],['Sem mensuração dé aprovação',4,4,4],['Defasagem digital e tributária',4,4,5],['Pouca conexão com escritórios',3,3,3],['Falta de escritório-modelo',4,3,4]],actions:[['Criar núcleo CFC','Indicador de qualidade profissional','Coordenação','Próximo semestre','Coordenação + docentes','Simulados e grupos de estudo','Baixo'],['Medir aprovação dos egressos','Sem dado não há gestão','Coordenação','Imediato','Coordenação + secretaria','Pesquisa é acompanhamento','Zero'],['Parceria com escritórios','Prática e colocação','Região','90 dias','Coordenação + Carreiras','Convênios formais','Baixo']],insight:'Aprovação no CFC precisa virar indicador de gestão, não assunto informal.'},
 {id:'dir',name:'Direito',short:'DIR',color:'#0D1B3E',light:'#D4DCE8',meta:'Maior curso da unidade · 12 saídas em 2026',north:'Alunos com horas de prática jurídica real acumuladas',swot:{s:['Maior curso da unidade','Sem concorrente direto em Cianorte','Prestígio regional'],w:['Carteiras inadequadas ao Vade Mecum','Aulas teóricas demais','NPJ subutilizado'],o:['Reposicionar NPJ','Parceria com OAB Cianorte','Especialização em áreas regionais'],t:['Mercado saturado','Baixa aprovação nacional na OAB','Risco de queda na percepção de qualidade']},gut:[['12 saídas em 2026',5,5,5],['Carteiras inadequadas',4,5,4],['NPJ subutilizado',5,4,5],['Aulas teóricas demais',4,4,5],['Sem preparação estruturada OAB',4,3,5]],actions:[['Substituir carteiras','Dor diária apontada pela CPA','Salas de Direito','90 dias','Direção + patrimônio','Cotação e troca gradual','Médio/Alto'],['Reposicionar NPJ','Retenção e diferencial local','NPJ','Próximo semestre','Coordenação + supervisores','Atendimentos e casos reais','Baixo'],['Preparação OAB com OAB local','Reputação e empregabilidade','Auditório','7º período','Coordenação + OAB','Simulados e workshops','Baixo']],insight:'Direito tem massa e vantagem local. Carteiras + NPJ ativo é pacote dé alto impacto.'},
 {id:'ef',name:'Educação Física',short:'EFI',color:'#1A7A4A',light:'#E8F5EC',meta:'Complexo esportivo é o maior ativo físico da unidade',north:'Alunos com intervenção prática supervisionada realizada',swot:{s:['Complexo esportivo forte','Curso prático por natureza','Mercado regional aquecido'],w:['Complexo subutilizado em extensão','Poucos convênios com escolas','Sem programa comunitário permanente'],o:['Bem-estar e longevidade em alta','Demanda por personal trainer','Ausência dé oferta consolidada regional'],t:['Cursos técnicos concorrentes','Aluno quer formação rápida','Diferencial físico pode não ser percebido']},gut:[['Complexo subutilizado',4,4,5],['Falta de convênios com escolas',4,3,4],['Sem programa comunitário',3,3,4],['Pouca visibilidade do curso',3,3,4],['Poucas avaliações funcionais',4,3,4]],actions:[['Avaliação funcional comunitária','Laboratório vivo para alunos','Complexo esportivo','Próximo semestre','Coordenação + docentes','Edital e relatórios','Baixo'],['Convênio com escolas','Campo de estágio formal','Escolas públicas','60 dias','Coordenação + Carreiras','Visitas e termos','Zero'],['Festival dé atividade física','Visibilidade e prática','Campus','Semestral','Coordenação + alunos','Programação aberta','Baixo']],insight:'O complexo esportivo precisa aparecer em prática, extensão e marketing.'},
-{id:'enf',name:'Enfermagem',short:'ENF',color:'#E67E22',light:'#FCEFE0',meta:'CPA 2025: pedido por coordenação com formação clínica',north:'Alunos com estágio supervisionado em ambiente hospitalar acima do mínimo',swot:{s:['Demanda elevada por enfermagem','Profissão essencial','Hospitais e UBS na região'],w:['Pedido CPA por perfil clínico na coordenação','Déficit de simuladores','Convênios limitam prática'],o:['Envelhecimento populacional','Crescimento de clínicas','Pós em UTI, oncologia e geriatria'],t:['IES com hospital-escola','Custo de laboratórios','Sobrecarga profissional afasta candidatos']},gut:[['Coordenação sem perfil clínico',5,5,5],['Déficit de simulador',4,4,4],['Convênios hospitalares limitados',4,4,4],['Carga prática abaixo do potencial',5,4,4],['Poucas simulações de emergência',4,3,4]],actions:[['Avaliar coordenação clínica','Responder demanda formal da CPA','Direção + RH','Imediato','Direção','Avaliação e seleção se necessário','Médio'],['Simulador de paciente','Treino seguro antes do real','Laboratório','Próximo semestre','Coordenação + Direção','Cotação compra/locação','Alto/Médio'],['Ampliar convênios hospitalares','Garantir vagas de estágio','Região','90 dias','Coordenação + Direção','Visitas institucionais','Baixo']],insight:'A demanda da CPA por perfil clínico é prioridade política, acadêmica e reputacional.'},
+{id:'enf',name:'Enfermagem',short:'ENF',color:'#E67E22',light:'#FCEFE0',meta:'CPA 2025: pedido por melhoria no relacionamento com alunos',north:'Alunos com estágio supervisionado em ambiente hospitalar acima do mínimo',swot:{s:['Demanda elevada por enfermagem','Profissão essencial','Hospitais e UBS na região'],w:['Pedido CPA por melhoria no relacionamento com alunos','Déficit de simuladores','Convênios limitam prática'],o:['Envelhecimento populacional','Crescimento de clínicas','Pós em UTI, oncologia e geriatria'],t:['IES com hospital-escola','Custo de laboratórios','Sobrecarga profissional afasta candidatos']},gut:[['Relacionamento coordenação-aluno frágil',5,5,5],['Déficit de simulador',4,4,4],['Convênios hospitalares limitados',4,4,4],['Carga prática abaixo do potencial',5,4,4],['Poucas simulações de emergência',4,3,4]],actions:[['Programa de relacionamento coordenação-aluno','Responder demanda CPA por melhor comunicação','Coordenação','30 dias','Coordenação + Direção','Reuniões mensais e canal direto','Baixo'],['Simulador de paciente','Treino seguro antes do real','Laboratório','Próximo semestre','Coordenação + Direção','Cotação compra/locação','Alto/Médio'],['Ampliar convênios hospitalares','Garantir vagas de estágio','Região','90 dias','Coordenação + Direção','Visitas institucionais','Baixo']],insight:'Melhorar o relacionamento coordenação-aluno em Enfermagem é o caminho mais rápido para reduzir detratores e subir o NPS do curso.'},
 {id:'psi',name:'Psicologia',short:'PSI',color:'#7B2D8B',light:'#F1E6F4',meta:'Segundo maior curso da unidade · 9 saídas em 2026',north:'Alunos com horas dé atendimento supervisionado realizadas',swot:{s:['Segundo maior curso','Sem concorrente direto local','Saúde mental em alta'],w:['NPP subutilizado','Pouca diversidade de estágios','Início muito teórico'],o:['Saúde mental como pauta nacional','Parcerias com escolas e UBS','TCC e neuropsicologia'],t:['Plataformas online de psicoterapia','Saturação do mercado','Risco se prática for insuficiente']},gut:[['NPP subutilizado',5,4,5],['9 saídas em 2026',5,5,4],['Pouca diversidade de estágios',4,3,4],['Início do curso muito teórico',4,4,4],['Pouca produção científica visível',3,2,4]],actions:[['Expandir NPP à comunidade','Prática, impacto e marketing','NPP','Próximo semestre','Coordenação + supervisores','Edital dé atendimento','Baixo'],['Trilhas de estágio','Diferenciar formação','Parceiros','90 dias','Coordenação','Mapeamento e termos','Baixo'],['Retenção no 1º período','Atacar evasão precoce','Sala dé aula','Imediato','Coordenação + tutores','Rodas quinzenais','Baixo']],insight:'NPP comunitário gera prática, marca e diferenciação regional.'},
 {id:'ead',name:'EAD / Semipresencial',short:'EAD',color:'#2C3E50',light:'#DDE3E9',meta:'CPA 2025: indicadores digitais como NSA · sem instrumentação',north:'Alunos ativos com progresso semanal comprovado no AVA',swot:{s:['Baixo custo e escala','Mensalidade competitiva','Flexibilidadé ao adulto-trabalhador'],w:['Indicadores digitais sem medição','Tutoria sem protocolo claro','Baixo pertencimento à unidade'],o:['Crescimento do EAD','Captação em cidades sem oferta','IA para personalização'],t:['Concorrentes com escala superior','Regulação em revisão','Percepção de qualidade inferior']},gut:[['Sem indicadores digitais',5,5,5],['Tutoria sem protocolo',5,5,4],['Aluno sem pertencimento',4,3,5],['Baixa adesão a aulas ao vivo',4,4,4],['Sem alerta de risco',5,4,5]],actions:[['Instrumentar indicadores no AVA','Sem dado não há gestão','Núcleo EAD + TI','90 dias','Coordenação EAD','Relatórios automáticos','Baixo'],['Tutoria ativa em 48h','EAD perdé aluno no silêncio','Núcleo EAD','Imediato','Tutores','Alerta + script + registro','Baixo'],['Aulas gravadas em 24h','Aluno trabalha e precisa de flexibilidade','Plataforma','Próximo semestre','Professores','Padronizar gravação','Zero']],insight:'No EAD, a prioridade zero é medir. Sem indicador digital, toda gestão é cega.'}
 ];
@@ -1514,10 +2288,9 @@ function showCpaTab(id, btn){
   }, 40);
 }
 function setupTabs(){
-  document.querySelectorAll(".tab").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b===btn));
-      document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===btn.dataset.tab));
+  document.querySelectorAll(".tab").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      switchMainTab(btn.dataset.tab, null);
     });
   });
 }
@@ -1562,6 +2335,415 @@ function applyEdits(){
 function resetCourse(){const idx=COURSES.findIndex(x=>x.id===current);if(idx<0)return;populateEditor(current);}
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
+
+function switchMainTab(tabId, mobileBtn){
+  // Update sections
+  document.querySelectorAll('.section').forEach(function(s){
+    s.classList.toggle('active', s.id === tabId);
+  });
+  // Update desktop tabs
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.tab === tabId);
+  });
+  // Update mobile bottom nav
+  document.querySelectorAll('.mbn-btn').forEach(function(b){
+    b.classList.remove('mbn-active');
+  });
+  if(mobileBtn){ mobileBtn.classList.add('mbn-active'); }
+  else {
+    var btn = document.querySelector('.mbn-btn[data-tab="'+tabId+'"]');
+    if(btn) btn.classList.add('mbn-active');
+  }
+  // Re-init CPA charts if switching to CPA
+  if(tabId === 'cpa'){
+    setTimeout(function(){ initCPACharts(); }, 40);
+  }
+  // Scroll to top
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+
+// ─── AGENDA MODULE ────────────────────────────────────────────────────────────
+var AGENDA_KEY = 'unipar_cianorte_agenda_v2';
+var agendaView = 'list';
+var calCurrentMonth = new Date().getMonth();
+var calCurrentYear = new Date().getFullYear();
+
+var COURSE_NAMES = {
+  geral:'Unidade (Geral)',adm:'Administração',ads:'ADS',bio:'Biomedicina',
+  cont:'Ciências Contábeis',dir:'Direito',ef:'Educação Física',
+  enf:'Enfermagem',psi:'Psicologia',ead:'EAD'
+};
+
+var TYPE_CONFIG = {
+  academico:  {label:'Acadêmico',   color:'#002060', bg:'#e8edf6'},
+  palestra:   {label:'Palestra',    color:'#6B2D8B', bg:'#f3e5f5'},
+  avaliacao:  {label:'Avaliação',   color:'#E30613', bg:'#fde8e8'},
+  estagio:    {label:'Estágio',     color:'#0E7C4A', bg:'#dcf5ea'},
+  reuniao:    {label:'Reunião',     color:'#007A87', bg:'#e0f4f6'},
+  captacao:   {label:'Captação',    color:'#F5A623', bg:'#fff3cd'},
+  institucional:{label:'Institucional',color:'#1565C0',bg:'#e3f2fd'},
+  prazo:      {label:'Prazo',       color:'#E67E22', bg:'#fff3e0'}
+};
+
+var STATUS_CONFIG = {
+  planejado:   {label:'Planejado',   cls:'ev-badge-status-planejado'},
+  confirmado:  {label:'Confirmado',  cls:'ev-badge-status-confirmado'},
+  realizado:   {label:'Realizado',   cls:'ev-badge-status-realizado'},
+  cancelado:   {label:'Cancelado',   cls:'ev-badge-status-cancelado'}
+};
+
+var COURSE_COLORS = {
+  geral:'#002060',adm:'#1565C0',ads:'#007A87',bio:'#C0392B',
+  cont:'#6B2D8B',dir:'#0D1B3E',ef:'#1A7A4A',enf:'#E67E22',psi:'#7B2D8B',ead:'#2C3E50'
+};
+
+var MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+var WEEKDAYS_PT = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+// Default events
+var DEFAULT_EVENTS = [
+  {id:'ev001',title:'Semana Acadêmica de Direito',dateStart:'2026-05-11',dateEnd:'2026-05-15',time:'19h00 – 22h30',local:'Auditório Principal',course:'dir',type:'palestra',status:'confirmado',priority:'alta',responsavel:'Coordenação de Direito',desc:'Palestras com advogados da região, simulado OAB e workshop de redação jurídica.'},
+  {id:'ev002',title:'Feira de Profissões UNIPAR Cianorte',dateStart:'2026-05-22',dateEnd:'2026-05-22',time:'14h00 – 18h00',local:'Pátio Central',course:'geral',type:'captacao',status:'confirmado',priority:'alta',responsavel:'Direção de Unidade',desc:'Evento aberto à comunidade. Todos os cursos com stands. Foco em captação de vestibulandos.'},
+  {id:'ev003',title:'Reunião CPA — Análise de Resultados',dateStart:'2026-05-08',dateEnd:'2026-05-08',time:'08h30 – 10h00',local:'Sala de Reuniões',course:'geral',type:'reuniao',status:'planejado',priority:'alta',responsavel:'Prof. Bruno Guilherme',desc:'Análise dos dados da CPA 2025 e definição do plano de ação para o 2º semestre.'},
+  {id:'ev004',title:'Workshop de Metodologias Ativas',dateStart:'2026-05-28',dateEnd:'2026-05-29',time:'08h00 – 12h00',local:'Bloco B – Sala 12',course:'geral',type:'institucional',status:'planejado',priority:'normal',responsavel:'Coordenação Pedagógica',desc:'Capacitação docente em metodologias ativas: sala invertida, PBL e gamificação.'},
+  {id:'ev005',title:'Simulado OAB — 1ª Fase',dateStart:'2026-06-06',dateEnd:'2026-06-06',time:'08h00 – 12h30',local:'Salas de Aula — Bloco A',course:'dir',type:'avaliacao',status:'planejado',priority:'alta',responsavel:'Coordenação de Direito',desc:'Simulado completo com 80 questões. Gabarito comentado na semana seguinte.'},
+  {id:'ev006',title:'Semana de Biomedicina: Diagnósticos do Futuro',dateStart:'2026-06-15',dateEnd:'2026-06-19',time:'18h30 – 22h00',local:'Laboratórios + Auditório',course:'bio',type:'palestra',status:'planejado',priority:'normal',responsavel:'Coordenação de Biomedicina',desc:'Palestras com biomédicos, visita técnica a laboratório clínico parceiro e workshop de análises.'},
+  {id:'ev007',title:'Prazo: Entrega de Planos de Ensino 2º Sem.',dateStart:'2026-07-18',dateEnd:'2026-07-18',time:'Até 23h59',local:'Sistema Lyceum',course:'geral',type:'prazo',status:'planejado',priority:'urgente',responsavel:'Direção Acadêmica',desc:'Todos os professores devem registrar o plano de ensino do 2º semestre no Lyceum.'},
+  {id:'ev008',title:'Colação de Grau — Turmas de Julho',dateStart:'2026-07-25',dateEnd:'2026-07-25',time:'19h30',local:'Teatro Municipal de Cianorte',course:'geral',type:'institucional',status:'planejado',priority:'alta',responsavel:'Secretaria Acadêmica',desc:'Cerimônia de colação para as turmas que concluíram no 1º semestre de 2026.'},
+  {id:'ev009',title:'I Hackathon de Inovação — ADS + ADM',dateStart:'2026-08-14',dateEnd:'2026-08-15',time:'08h00 – 18h00',local:'Laboratórios de Informática',course:'ads',type:'academico',status:'planejado',priority:'alta',responsavel:'Coordenação de ADS',desc:'48h de desenvolvimento de soluções tecnológicas para problemas reais de empresas parceiras. Premiação em R$500, R$300 e R$200.'},
+  {id:'ev010',title:'Semana da Saúde — EFI, Enf. e Bio.',dateStart:'2026-08-24',dateEnd:'2026-08-28',time:'08h00 – 22h00',local:'Complexo Esportivo + Clínicas',course:'ef',type:'palestra',status:'planejado',priority:'normal',responsavel:'Coordenações de Saúde',desc:'Avaliações físicas gratuitas, vacinação, palestras sobre bem-estar. Evento aberto à comunidade.'},
+  {id:'ev011',title:'Café com a Direção — 2º Semestre',dateStart:'2026-08-07',dateEnd:'2026-08-07',time:'10h00 – 11h30',local:'Espaço de Convivência',course:'geral',type:'institucional',status:'planejado',priority:'normal',responsavel:'Prof. Bruno Guilherme',desc:'Encontro informal entre Direção e representantes de turmas para ouvir demandas e apresentar ações.'},
+  {id:'ev012',title:'Avaliação CPA — Coleta 2025/2 (2ª etapa)',dateStart:'2026-09-01',dateEnd:'2026-11-30',time:'Período aberto',local:'Plataforma Aluno On-line',course:'geral',type:'avaliacao',status:'planejado',priority:'urgente',responsavel:'CPA Cianorte — Prof. Bruno Guilherme',desc:'Período de resposta ao questionário de autoavaliação institucional. Meta: superar 717 respondentes de 2025.'},
+  {id:'ev013',title:'Congresso de Psicologia do Noroeste PR',dateStart:'2026-09-18',dateEnd:'2026-09-19',time:'08h30 – 18h00',local:'Auditório Principal',course:'psi',type:'palestra',status:'planejado',priority:'normal',responsavel:'Coordenação de Psicologia',desc:'Evento regional com palestrantes de referência. Certificação de 16h para participantes.'},
+  {id:'ev014',title:'Visita Técnica — Contábeis + Escritórios CRC',dateStart:'2026-09-25',dateEnd:'2026-09-25',time:'13h30 – 17h00',local:'Escritórios parceiros — Cianorte',course:'cont',type:'estagio',status:'planejado',priority:'normal',responsavel:'Coordenação de Contábeis',desc:'Visita técnica a escritórios contábeis e à delegacia do CRC. Preparação para estágio.'},
+  {id:'ev015',title:'Avaliação Institucional — Reunião de Resultados',dateStart:'2026-12-05',dateEnd:'2026-12-05',time:'09h00 – 11h30',local:'Sala de Reuniões',course:'geral',type:'reuniao',status:'planejado',priority:'alta',responsavel:'Prof. Bruno Guilherme + CPA',desc:'Apresentação dos resultados da CPA 2026 para toda a equipe. Definição de metas para 2027.'}
+];
+
+function loadEvents() {
+  try {
+    var raw = localStorage.getItem(AGENDA_KEY);
+    return raw ? JSON.parse(raw) : DEFAULT_EVENTS.slice();
+  } catch(e) { return DEFAULT_EVENTS.slice(); }
+}
+
+function saveEvents(events) {
+  try { localStorage.setItem(AGENDA_KEY, JSON.stringify(events)); } catch(e) {}
+}
+
+function getFilteredEvents() {
+  var events = loadEvents();
+  var course = document.getElementById('agendaCourseFilter') ? document.getElementById('agendaCourseFilter').value : 'all';
+  var month = document.getElementById('agendaMonthFilter') ? document.getElementById('agendaMonthFilter').value : 'all';
+  var type = document.getElementById('agendaTypeFilter') ? document.getElementById('agendaTypeFilter').value : 'all';
+  return events.filter(function(ev) {
+    if (course !== 'all' && ev.course !== course) return false;
+    if (type !== 'all' && ev.type !== type) return false;
+    if (month !== 'all') {
+      var d = new Date(ev.dateStart + 'T12:00:00');
+      if (d.getMonth() !== parseInt(month)) return false;
+    }
+    return true;
+  }).sort(function(a,b){ return a.dateStart.localeCompare(b.dateStart); });
+}
+
+function setAgendaView(view, btn) {
+  agendaView = view;
+  document.querySelectorAll('.agenda-view-btn').forEach(function(b){ b.classList.remove('agenda-view-active'); });
+  if(btn) btn.classList.add('agenda-view-active');
+  renderAgenda();
+}
+
+function renderAgenda() {
+  var content = document.getElementById('agendaContent');
+  if (!content) return;
+  var events = getFilteredEvents();
+  if (agendaView === 'list') content.innerHTML = renderListView(events);
+  else if (agendaView === 'calendar') content.innerHTML = renderCalendarView(events);
+  else content.innerHTML = renderKanbanView(events);
+  renderStats();
+}
+
+function fmtDate(ds) {
+  if (!ds) return '';
+  var d = new Date(ds + 'T12:00:00');
+  return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+}
+
+function fmtDateRange(ds, de) {
+  if (!de || de === ds) return fmtDate(ds);
+  var d1 = new Date(ds+'T12:00:00'), d2 = new Date(de+'T12:00:00');
+  if (d1.getMonth() === d2.getMonth()) return d1.getDate() + ' a ' + d2.getDate() + '/' + (d1.getMonth()+1) + '/' + d1.getFullYear();
+  return fmtDate(ds) + ' – ' + fmtDate(de);
+}
+
+function evCardHTML(ev, compact) {
+  var tc = TYPE_CONFIG[ev.type] || TYPE_CONFIG.academico;
+  var sc = STATUS_CONFIG[ev.status] || STATUS_CONFIG.planejado;
+  var courseColor = COURSE_COLORS[ev.course] || '#002060';
+  var isCanceled = ev.status === 'cancelado';
+  return '<div class="ev-card" onclick="openEditEvent(\''+ev.id+'\')" style="border-left-color:'+courseColor+';opacity:'+(isCanceled?'.55':'1')+'">'
+    + '<div class="ev-actions">'
+    + '<button class="ev-action-btn" onclick="event.stopPropagation();openEditEvent(\''+ev.id+'\')" title="Editar">✏</button>'
+    + '<button class="ev-action-btn" onclick="event.stopPropagation();confirmDeleteEvent(\''+ev.id+'\')" title="Excluir" style="color:var(--red)">🗑</button>'
+    + '</div>'
+    + '<div class="ev-card-top">'
+    + '<div class="ev-title"'+(isCanceled?' style="text-decoration:line-through"':'')+'>'+esc(ev.title)+'</div>'
+    + '<div class="ev-badges">'
+    + '<span class="ev-badge ev-badge-type" style="background:'+tc.bg+';color:'+tc.color+'">'+tc.label+'</span>'
+    + '<span class="ev-badge '+sc.cls+'">'+sc.label+'</span>'
+    + (ev.priority==='urgente'?'<span class="ev-badge ev-badge-pri-urgente">Urgente</span>':'')
+    + (ev.priority==='alta'?'<span class="ev-badge ev-badge-pri-alta">Alta</span>':'')
+    + '</div></div>'
+    + '<div class="ev-meta">'
+    + '<span>📅 '+fmtDateRange(ev.dateStart,ev.dateEnd)+'</span>'
+    + (ev.time?'<span>🕐 '+esc(ev.time)+'</span>':'')
+    + (ev.local?'<span>📍 '+esc(ev.local)+'</span>':'')
+    + '<span style="color:'+courseColor+';font-weight:700">● '+esc(COURSE_NAMES[ev.course]||ev.course)+'</span>'
+    + (ev.responsavel?'<span>👤 '+esc(ev.responsavel)+'</span>':'')
+    + '</div>'
+    + (ev.desc&&!compact?'<div class="ev-desc">'+esc(ev.desc)+'</div>':'')
+    + '</div>';
+}
+
+function renderListView(events) {
+  if (!events.length) return emptyState();
+  var grouped = {};
+  events.forEach(function(ev) {
+    var d = new Date(ev.dateStart+'T12:00:00');
+    var key = d.getFullYear()+'-'+String(d.getMonth()).padStart(2,'0');
+    var label = MONTHS_PT[d.getMonth()] + ' ' + d.getFullYear();
+    if (!grouped[key]) grouped[key] = {label:label, events:[]};
+    grouped[key].events.push(ev);
+  });
+  var keys = Object.keys(grouped).sort();
+  return keys.map(function(k) {
+    var g = grouped[k];
+    return '<div class="agenda-month-group">'
+      + '<div class="agenda-month-header"><span class="agenda-month-name">'+g.label+'</span><span class="agenda-month-count">'+g.events.length+' evento'+(g.events.length>1?'s':'')+'</span></div>'
+      + '<div class="agenda-list">'+g.events.map(function(ev){return evCardHTML(ev,false);}).join('')+'</div>'
+      + '</div>';
+  }).join('');
+}
+
+function renderCalendarView(events) {
+  var year = calCurrentYear, month = calCurrentMonth;
+  var firstDay = new Date(year, month, 1).getDay();
+  var daysInMonth = new Date(year, month+1, 0).getDate();
+  var today = new Date();
+  var eventMap = {};
+  events.forEach(function(ev) {
+    var d = new Date(ev.dateStart+'T12:00:00');
+    if (d.getFullYear()===year && d.getMonth()===month) {
+      var key = d.getDate();
+      if (!eventMap[key]) eventMap[key] = [];
+      eventMap[key].push(ev);
+    }
+  });
+  var html = '<div class="cal-nav">'
+    + '<button class="cal-nav-btn" onclick="calPrev()">‹ Anterior</button>'
+    + '<div class="cal-nav-month">'+MONTHS_PT[month]+' '+year+'</div>'
+    + '<button class="cal-nav-btn" onclick="calNext()">Próximo ›</button>'
+    + '</div>'
+    + '<div class="cal-header">'+WEEKDAYS_PT.map(function(d){return '<div class="cal-day-name">'+d+'</div>';}).join('')+'</div>'
+    + '<div class="cal-grid">';
+  for (var i=0; i<firstDay; i++) html += '<div class="cal-day other-month"></div>';
+  for (var d=1; d<=daysInMonth; d++) {
+    var isToday = d===today.getDate() && month===today.getMonth() && year===today.getFullYear();
+    var evs = eventMap[d] || [];
+    html += '<div class="cal-day'+(isToday?' today':'')+'" onclick="calDayClick('+d+')">'
+      + '<div class="cal-day-num">'+d+'</div>'
+      + evs.slice(0,3).map(function(ev){
+          var tc = TYPE_CONFIG[ev.type]||TYPE_CONFIG.academico;
+          return '<div class="cal-ev-dot" style="background:'+tc.bg+';color:'+tc.color+'">'+esc(ev.title)+'</div>';
+        }).join('')
+      + (evs.length>3?'<div style="font-size:.58rem;color:var(--g2);font-family:monospace">+' + (evs.length-3)+'</div>':'')
+      + '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderKanbanView(events) {
+  var byCourse = {};
+  events.forEach(function(ev) {
+    if (!byCourse[ev.course]) byCourse[ev.course] = [];
+    byCourse[ev.course].push(ev);
+  });
+  var courseOrder = ['geral','adm','ads','bio','cont','dir','ef','enf','psi','ead'];
+  var activeCourses = courseOrder.filter(function(c){return byCourse[c]&&byCourse[c].length;});
+  if (!activeCourses.length) return emptyState();
+  return '<div class="kanban-grid">'
+    + activeCourses.map(function(c) {
+        var evs = byCourse[c];
+        var color = COURSE_COLORS[c]||'#002060';
+        return '<div class="kanban-col">'
+          + '<div class="kanban-col-header" style="color:'+color+'"><span>'+esc(COURSE_NAMES[c])+'</span><span style="background:'+color+'1a;padding:.18rem .5rem;border-radius:999px;font-size:.6rem">'+evs.length+'</span></div>'
+          + evs.map(function(ev){
+              var tc = TYPE_CONFIG[ev.type]||TYPE_CONFIG.academico;
+              return '<div class="kanban-ev" style="border-left-color:'+color+'" onclick="openEditEvent(\''+ev.id+'\')">'
+                + '<div class="kanban-ev-title">'+esc(ev.title)+'</div>'
+                + '<div class="kanban-ev-meta">📅 '+fmtDate(ev.dateStart)+' · <span style="color:'+tc.color+'">'+tc.label+'</span></div>'
+                + '</div>';
+            }).join('')
+          + '</div>';
+      }).join('')
+    + '</div>';
+}
+
+function renderStats() {
+  var el = document.getElementById('agendaStats');
+  if (!el) return;
+  var all = loadEvents();
+  var upcoming = all.filter(function(e){return new Date(e.dateStart+'T12:00:00')>=new Date()&&e.status!=='cancelado';}).length;
+  var urgent = all.filter(function(e){return e.priority==='urgente'&&e.status!=='realizado'&&e.status!=='cancelado';}).length;
+  var thisMonth = all.filter(function(e){
+    var d=new Date(e.dateStart+'T12:00:00');
+    return d.getMonth()===new Date().getMonth()&&d.getFullYear()===new Date().getFullYear();
+  }).length;
+  el.innerHTML = [
+    {n:all.length,      l:'Total de Eventos',   c:'var(--navy)'},
+    {n:upcoming,        l:'Próximos Eventos',   c:'var(--green)'},
+    {n:thisMonth,       l:'Este Mês',           c:'var(--teal)'},
+    {n:urgent,          l:'Prioridade Urgente', c:'var(--red)'}
+  ].map(function(s){
+    return '<div class="agenda-stat" style="border-top-color:'+s.c+'"><div class="agenda-stat-num" style="color:'+s.c+'">'+s.n+'</div><div class="agenda-stat-label">'+s.l+'</div></div>';
+  }).join('');
+}
+
+function emptyState() {
+  return '<div class="agenda-empty"><div class="agenda-empty-icon">📅</div><div class="agenda-empty-text">Nenhum evento encontrado</div><div class="agenda-empty-sub">Clique em "Novo Evento" para adicionar ou ajuste os filtros.</div></div>';
+}
+
+function calPrev() { calCurrentMonth--; if(calCurrentMonth<0){calCurrentMonth=11;calCurrentYear--;} renderAgenda(); }
+function calNext() { calCurrentMonth++; if(calCurrentMonth>11){calCurrentMonth=0;calCurrentYear++;} renderAgenda(); }
+function calDayClick(d) { openAddEvent(calCurrentYear+'-'+String(calCurrentMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0')); }
+
+// Modal
+function openAddEvent(preDate) {
+  document.getElementById('eventModalTitle').textContent = 'Novo Evento';
+  document.getElementById('eventModalSub').textContent = 'Preencha os dados do evento';
+  document.getElementById('evDeleteBtn').style.display = 'none';
+  document.getElementById('evId').value = '';
+  document.getElementById('evTitle').value = '';
+  document.getElementById('evDateStart').value = preDate || '';
+  document.getElementById('evDateEnd').value = preDate || '';
+  document.getElementById('evTime').value = '';
+  document.getElementById('evLocal').value = '';
+  document.getElementById('evDesc').value = '';
+  document.getElementById('evResponsavel').value = '';
+  document.getElementById('evCourse').value = current || 'geral';
+  document.getElementById('evType').value = 'academico';
+  document.getElementById('evPriority').value = 'normal';
+  document.getElementById('evStatus').value = 'planejado';
+  document.getElementById('eventOverlay').classList.add('open');
+  document.getElementById('eventModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ document.getElementById('evTitle').focus(); }, 200);
+}
+
+function openEditEvent(id) {
+  var events = loadEvents();
+  var ev = events.find(function(e){return e.id===id;});
+  if (!ev) return;
+  document.getElementById('eventModalTitle').textContent = 'Editar Evento';
+  document.getElementById('eventModalSub').textContent = esc(ev.title);
+  document.getElementById('evDeleteBtn').style.display = 'inline-flex';
+  document.getElementById('evId').value = ev.id;
+  document.getElementById('evTitle').value = ev.title || '';
+  document.getElementById('evDateStart').value = ev.dateStart || '';
+  document.getElementById('evDateEnd').value = ev.dateEnd || '';
+  document.getElementById('evTime').value = ev.time || '';
+  document.getElementById('evLocal').value = ev.local || '';
+  document.getElementById('evDesc').value = ev.desc || '';
+  document.getElementById('evResponsavel').value = ev.responsavel || '';
+  document.getElementById('evCourse').value = ev.course || 'geral';
+  document.getElementById('evType').value = ev.type || 'academico';
+  document.getElementById('evPriority').value = ev.priority || 'normal';
+  document.getElementById('evStatus').value = ev.status || 'planejado';
+  document.getElementById('eventOverlay').classList.add('open');
+  document.getElementById('eventModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEventModal() {
+  document.getElementById('eventOverlay').classList.remove('open');
+  document.getElementById('eventModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function saveEvent() {
+  var title = document.getElementById('evTitle').value.trim();
+  var dateStart = document.getElementById('evDateStart').value;
+  if (!title || !dateStart) { alert('Preencha o título e a data de início.'); return; }
+  var events = loadEvents();
+  var id = document.getElementById('evId').value;
+  var ev = {
+    id: id || 'ev_' + Date.now(),
+    title: title,
+    dateStart: dateStart,
+    dateEnd: document.getElementById('evDateEnd').value || dateStart,
+    time: document.getElementById('evTime').value.trim(),
+    local: document.getElementById('evLocal').value.trim(),
+    course: document.getElementById('evCourse').value,
+    type: document.getElementById('evType').value,
+    priority: document.getElementById('evPriority').value,
+    status: document.getElementById('evStatus').value,
+    responsavel: document.getElementById('evResponsavel').value.trim(),
+    desc: document.getElementById('evDesc').value.trim()
+  };
+  if (id) {
+    var idx = events.findIndex(function(e){return e.id===id;});
+    if (idx>=0) events[idx] = ev; else events.push(ev);
+  } else {
+    events.push(ev);
+  }
+  saveEvents(events);
+  closeEventModal();
+  renderAgenda();
+}
+
+function deleteEvent() {
+  var id = document.getElementById('evId').value;
+  if (!id) return;
+  confirmDeleteEvent(id);
+}
+
+function confirmDeleteEvent(id) {
+  var events = loadEvents();
+  var ev = events.find(function(e){return e.id===id;});
+  if (!ev) return;
+  if (confirm('Excluir o evento "' + ev.title + '"?')) {
+    saveEvents(events.filter(function(e){return e.id!==id;}));
+    closeEventModal();
+    renderAgenda();
+  }
+}
+
+function exportAgenda() {
+  var events = loadEvents().sort(function(a,b){return a.dateStart.localeCompare(b.dateStart);});
+  var lines = ['AGENDA UNIPAR CIANORTE — Exportação em '+new Date().toLocaleDateString('pt-BR'),''];
+  events.forEach(function(ev){
+    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    lines.push('📌 '+ev.title);
+    lines.push('📅 '+fmtDateRange(ev.dateStart,ev.dateEnd)+(ev.time?' | '+ev.time:''));
+    if(ev.local) lines.push('📍 '+ev.local);
+    lines.push('🎓 '+( COURSE_NAMES[ev.course]||ev.course)+' | Tipo: '+(TYPE_CONFIG[ev.type]||{label:ev.type}).label);
+    lines.push('Status: '+(STATUS_CONFIG[ev.status]||{label:ev.status}).label+' | Prioridade: '+ev.priority);
+    if(ev.responsavel) lines.push('👤 '+ev.responsavel);
+    if(ev.desc) lines.push('ℹ '+ev.desc);
+    lines.push('');
+  });
+  var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'agenda_unipar_cianorte_'+new Date().toISOString().slice(0,10)+'.txt';
+  a.click();
+}
+
+
 function init(){
   renderCourseBar();setupTabs();selectCourse(current);
   // Init CPA charts after a short delay so visible canvases render correctly
