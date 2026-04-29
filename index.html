@@ -68,6 +68,11 @@ button{font:inherit;cursor:pointer}
 }
 .tab:hover{color:var(--ink);background:var(--g5)}
 .tab.active{color:var(--navy);border-bottom-color:var(--red);background:rgba(0,32,96,.04);font-weight:700}
+.cpa-tab{border:2px solid var(--g3);background:#fff;color:var(--g1);padding:.6rem 1.1rem;border-radius:8px;font-size:.8rem;font-family:monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;transition:.15s ease;cursor:pointer;white-space:nowrap}
+.cpa-tab:hover{background:var(--courseLight);color:var(--course);border-color:var(--course);transform:translateY(-1px)}
+.cpa-tab-active{background:var(--course);color:#fff !important;border-color:var(--course);box-shadow:0 4px 12px rgba(0,32,96,.25);transform:translateY(-1px)}
+.cpa-panel{animation:fadeUp .22s ease}
+
 
 /* ═══ CONTENT ═══ */
 .main{max-width:1440px;margin:auto;padding:2rem 2rem 5rem}
@@ -166,37 +171,6 @@ button{font:inherit;cursor:pointer}
 .mg-tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--course);font-weight:700;background:var(--courseLight);padding:.3rem .65rem;border-radius:999px;margin-bottom:.4rem}
 .mg-title{font-family:"DM Serif Display",serif;font-size:1.25rem;font-weight:400;line-height:1.2}
 .mg-sub{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g1);margin-top:.28rem}
-
-
-/* ═══ NORTH STAR METODOLOGIA ═══ */
-.north-method-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;margin-bottom:1.2rem}
-.ns-panel{padding:1.35rem 1.5rem;position:relative;overflow:hidden}
-.ns-panel:after{content:"";position:absolute;right:-40px;top:-40px;width:110px;height:110px;background:var(--courseLight);border-radius:50%;opacity:.55}
-.ns-kicker{font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--course);font-weight:700;margin-bottom:.45rem}
-.ns-title{font-family:"DM Serif Display",serif;font-size:1.65rem;line-height:1.12;margin-bottom:.55rem;position:relative;z-index:1}
-.ns-copy{font-size:.91rem;color:var(--g1);line-height:1.62;position:relative;z-index:1}
-.ns-star-box{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--radius);padding:1.35rem 1.5rem;border-left:6px solid var(--gold);position:relative;z-index:1}
-.ns-star-label{font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:.45rem}
-.ns-star-value{font-family:"DM Serif Display",serif;font-size:1.45rem;line-height:1.22;font-style:italic;color:#fff}
-.ns-formula{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin:1rem 0}
-.ns-input-card{background:var(--g5);border:1px solid var(--g4);border-top:4px solid var(--course);border-radius:8px;padding:.85rem;min-height:130px}
-.ns-input-card strong{display:block;font-family:"JetBrains Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--course);margin-bottom:.35rem}
-.ns-input-card span{font-size:.82rem;line-height:1.38;color:var(--ink)}
-.ns-flow{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:center;gap:.5rem;margin:1rem 0}
-.ns-flow-box{background:#fff;border:1px solid var(--g4);border-radius:8px;padding:.9rem;text-align:center;box-shadow:var(--shadow2)}
-.ns-flow-box b{display:block;font-family:"DM Serif Display",serif;color:var(--course);font-size:1.05rem;margin-bottom:.2rem}
-.ns-flow-box span{font-size:.76rem;color:var(--g1)}
-.ns-arrow{text-align:center;color:var(--course);font-family:"JetBrains Mono",monospace;font-weight:800}
-.ns-table{overflow:hidden;margin-top:1rem}
-.ns-row{display:grid;grid-template-columns:150px 1.15fr 1.6fr 1.2fr;border-bottom:1px solid var(--g4);align-items:stretch}
-.ns-row:last-child{border-bottom:0}
-.ns-row>div{padding:.75rem .85rem;font-size:.82rem;line-height:1.38}
-.ns-head-row{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.1em;font-size:.6rem}
-.ns-course-badge{font-family:"JetBrains Mono",monospace;font-size:.65rem;font-weight:700;color:var(--course)}
-.ns-chip{display:inline-block;background:var(--courseLight);color:var(--course);border-radius:999px;padding:.18rem .48rem;margin:.12rem;font-family:"JetBrains Mono",monospace;font-size:.57rem;text-transform:uppercase;letter-spacing:.08em}
-.ns-test-list{display:grid;gap:.55rem;margin-top:.8rem}
-.ns-test-item{background:var(--g5);border-left:4px solid var(--course);padding:.7rem .8rem;border-radius:5px;font-size:.84rem}
-@media(max-width:1000px){.north-method-grid{grid-template-columns:1fr}.ns-formula{grid-template-columns:1fr 1fr}.ns-row{grid-template-columns:1fr}.ns-head-row{display:none}.ns-flow{grid-template-columns:1fr}.ns-arrow{transform:rotate(90deg)}}
 
 /* ═══ CPA DASHBOARD ═══ */
 .cpa-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
@@ -395,11 +369,10 @@ button{font:inherit;cursor:pointer}
 <nav class="main-nav">
   <div class="tabs" id="tabs">
     <button class="tab active" data-tab="cpa">📊 CPA 2025</button>
-    <button class="tab" data-tab="northmethod">⭐ North Star</button>
     <button class="tab" data-tab="swot">01 SWOT</button>
     <button class="tab" data-tab="gut">02 GUT</button>
     <button class="tab" data-tab="w2h">03 5W2H</button>
-    <button class="tab" data-tab="gestao">04 Gestão</button>
+    <button class="tab" data-tab="gestão">04 Gestão</button>
     <button class="tab" data-tab="ishikawa">05 Ishikawa</button>
     <button class="tab" data-tab="eisenhower">06 Eisenhower</button>
   </div>
@@ -421,216 +394,437 @@ button{font:inherit;cursor:pointer}
 
   <!-- ══ CPA 2025 ══ -->
   <section id="cpa" class="section active">
-    <div class="sec-header">
-      <h2 class="sec-title">Relatório CPA 2025</h2>
-      <p class="sec-desc">Ciclo 2024–2026 · Autoavaliação Institucional · Unidade Cianorte · 717 respondentes</p>
-    </div>
 
-    <!-- KPI CARDS -->
-    <div class="cpa-kpi-row">
-      <div class="kpi-card card">
-        <div class="kpi-label">NPS Geral 2025</div>
-        <div class="kpi-value" style="color:var(--gold)">36</div>
-        <div class="kpi-sub">Zona de Aperfeiçoamento</div>
-        <span class="kpi-badge kpi-up">▲ Recuperação de Zona Crítica</span>
-      </div>
-      <div class="kpi-card card" style="border-top-color:var(--green)">
-        <div class="kpi-label">Respondentes 2025</div>
-        <div class="kpi-value" style="color:var(--green)">717</div>
-        <div class="kpi-sub">vs 386 em 2024</div>
-        <span class="kpi-badge kpi-up">▲ +85,8% no engajamento</span>
-      </div>
-      <div class="kpi-card card" style="border-top-color:var(--red)">
-        <div class="kpi-label">Maior Alerta</div>
-        <div class="kpi-value" style="color:var(--red);font-size:1.6rem">Coordenador</div>
-        <div class="kpi-sub">Nota 3,9 · Satisfeito</div>
-        <span class="kpi-badge kpi-down">▼ -5,8% médio YoY</span>
-      </div>
-      <div class="kpi-card card" style="border-top-color:var(--teal)">
-        <div class="kpi-label">Melhor Evolução</div>
-        <div class="kpi-value" style="color:var(--teal);font-size:1.6rem">Professores</div>
-        <div class="kpi-sub">Nota 4,2 · Satisfeito</div>
-        <span class="kpi-badge kpi-up">▲ +2,8% médio YoY</span>
+    <div style="background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:12px;padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:6px solid #F5A623;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04)"></div>
+      <div style="font-size:.68rem;font-family:monospace;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.5rem">CPA · Comissão Própria de Avaliação · Ciclo 2024–2026</div>
+      <div style="font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.4rem">Relatório Parcial de Autoavaliação Institucional</div>
+      <div style="font-size:.95rem;color:rgba(255,255,255,.7);margin-bottom:1.2rem">Unidade Cianorte · 2ª etapa · Set–Nov 2025 · <strong style="color:#ffc954">717 respondentes</strong></div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:.3rem .7rem;border-radius:999px;font-size:.72rem;font-family:monospace">Lei 10.861/2004 · SINAES</span>
+        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:.3rem .7rem;border-radius:999px;font-size:.72rem;font-family:monospace">RU 38-2024 · Regimento CPA</span>
+        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:.3rem .7rem;border-radius:999px;font-size:.72rem;font-family:monospace">Bardin 2016 · CHD · Similitude</span>
+        <span style="background:rgba(245,166,35,.25);border:1px solid #ffc954;padding:.3rem .7rem;border-radius:999px;font-size:.72rem;font-family:monospace;color:#ffc954">Lyceum · Aluno On-line</span>
       </div>
     </div>
 
-    <!-- NPS EVOLUTION -->
-    <div class="nps-timeline card" id="npsSection">
-      <div class="chart-title">Evolução do NPS · Cianorte 2023–2025</div>
-      <div class="chart-sub">Net Promoter Score · escala de -100 a 100</div>
-      <div class="nps-zones">
-        <div class="nps-zone nz-crit"><div class="nz-label">Zona Crítica</div><div class="nz-range">≤ 0</div><div class="nz-desc">Insatisfação alta</div></div>
-        <div class="nps-zone nz-aper"><div class="nz-label">Aperfeiçoamento</div><div class="nz-range">1–50</div><div class="nz-desc">Potencial de crescimento</div></div>
-        <div class="nps-zone nz-qual"><div class="nz-label">Qualidade</div><div class="nz-range">51–75</div><div class="nz-desc">Mais promotores</div></div>
-        <div class="nps-zone nz-excel"><div class="nz-label">Excelência</div><div class="nz-range">&gt; 75</div><div class="nz-desc">Promotores ativos</div></div>
+    <div style="display:flex;gap:.5rem;flex-wrap:nowrap;overflow-x:auto;margin-bottom:1.5rem;padding:.8rem 0 .9rem;border-bottom:3px solid var(--g4);scrollbar-width:none;-webkit-overflow-scrolling:touch" id="cpaTabBar">
+      <button class="cpa-tab cpa-tab-active" onclick="showCpaTab('kpis',this)">📈 Painel Geral</button>
+      <button class="cpa-tab" onclick="showCpaTab('nps',this)">⭐ NPS Explicado</button>
+      <button class="cpa-tab" onclick="showCpaTab('Acadêmico',this)">🎓 Bloco Acadêmico</button>
+      <button class="cpa-tab" onclick="showCpaTab('serviços',this)">🏢 Bloco Serviços</button>
+      <button class="cpa-tab" onclick="showCpaTab('qualitativa',this)">🔍 Análise Qualitativa</button>
+      <button class="cpa-tab" onclick="showCpaTab('chd',this)">📊 CHD · Classes</button>
+      <button class="cpa-tab" onclick="showCpaTab('plano',this)">🎯 Plano de Ação</button>
+    </div>
+
+    <!-- PAINEL GERAL -->
+    <div id="cpa-kpis" class="cpa-panel">
+      <div class="cpa-kpi-row">
+        <div class="kpi-card card">
+          <div class="kpi-label">NPS 2025</div>
+          <div class="kpi-value" style="color:#F5A623">36</div>
+          <div class="kpi-sub">Zona de Aperfeiçoamento (1–50)</div>
+          <span class="kpi-badge kpi-up">De -2 para +36 em 2025</span>
+          <div style="margin-top:.7rem;font-size:.78rem;color:var(--g1);line-height:1.4">Após colapso em 2024 (Zona Crítica), a recuperação indica qué as ações de contingência surtiram efeito. Ainda há 15 pontos para atingir a Zona de Qualidade (51+).</div>
+        </div>
+        <div class="kpi-card card" style="border-top-color:#0E7C4A">
+          <div class="kpi-label">Engajamento 2025</div>
+          <div class="kpi-value" style="color:#0E7C4A">717</div>
+          <div class="kpi-sub">vs 386 em 2024</div>
+          <span class="kpi-badge kpi-up">+85,8% — crescimento histórico</span>
+          <div style="margin-top:.7rem;font-size:.78rem;color:var(--g1);line-height:1.4">Alta participação confere robustez estatística. Evidencia o interessé ativo dos alunos na instituição e legitima os dados coletados.</div>
+        </div>
+        <div class="kpi-card card" style="border-top-color:#E30613">
+          <div class="kpi-label">Categorias em Alerta</div>
+          <div class="kpi-value" style="color:#E30613">4</div>
+          <div class="kpi-sub">Coordenador · Biblioteca · Labs · Secretaria</div>
+          <span class="kpi-badge kpi-down">Queda acumulada contínua</span>
+          <div style="margin-top:.7rem;font-size:.78rem;color:var(--g1);line-height:1.4">Alerta = queda acumulada acima de 1,0%. Coordenador lidera a retração com -5,8% médio nos 3 ciclos.</div>
+        </div>
+        <div class="kpi-card card" style="border-top-color:#007A87">
+          <div class="kpi-label">Categorias em Evolução</div>
+          <div class="kpi-value" style="color:#007A87">4</div>
+          <div class="kpi-sub">Professores · Sala · Atendimento · Financeiro</div>
+          <span class="kpi-badge kpi-up">Tendencia positiva YoY</span>
+          <div style="margin-top:.7rem;font-size:.78rem;color:var(--g1);line-height:1.4">Professores lideram com nota 4,2 e +2,8%. O corpo docente é o principal ativo percebido é o hub central da rede semântica de satisfação.</div>
+        </div>
       </div>
-      <div style="position:relative;height:180px"><canvas id="chartNPS"></canvas></div>
-      <div class="nps-current" style="margin-top:1rem">
-        <div class="nps-big">36</div>
-        <div class="nps-info">
-          <strong style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.2rem">Zona de Aperfeiçoamento</strong>
-          <p>Recuperação de -2 (Zona Crítica em 2024) para 36 em 2025. Crescimento de 897,3% no período.</p>
+      <div class="cpa-charts-row" style="margin-top:1.2rem">
+        <div class="chart-wrap card">
+          <div class="chart-title">Radar de Desempenho 2025 vs 2023</div>
+          <div class="chart-sub">Escala Likert 1–5 · Linha dourada = 2025 · Linha azul = 2023 · Areas recuadas = retrocesso</div>
+          <div style="position:relative;height:300px"><canvas id="chartRadar"></canvas></div>
+        </div>
+        <div class="chart-wrap card">
+          <div class="chart-title">Engajamento · Participação 2023–2025</div>
+          <div class="chart-sub">Numero de respostas por ciclo avaliativo · coleta Set–Nov</div>
+          <div style="position:relative;height:300px"><canvas id="chartEngajamento"></canvas></div>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem">
+        <div class="chart-wrap card">
+          <div class="chart-title">Variação YoY por Categoria · Δ% Médio 2023–2025</div>
+          <div class="chart-sub">Verde = evolução · Vermelho = alerta · Quanto maior a barra vermelha, maior a urgência de intervenção</div>
+          <div style="position:relative;height:320px"><canvas id="chartYoY"></canvas></div>
         </div>
       </div>
     </div>
 
-    <!-- CHARTS ROW -->
-    <div class="cpa-charts-row">
-      <div class="chart-wrap card">
+    <!-- NPS EXPLICADO -->
+    <div id="cpa-nps" class="cpa-panel" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem">
+        <div class="card" style="padding:1.5rem">
+          <div style="font-size:.68rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--g1);margin-bottom:.5rem">O que é o NPS</div>
+          <div style="font-size:1.1rem;font-weight:700;margin-bottom:.8rem">Net Promoter Score · Como funciona</div>
+          <p style="font-size:.87rem;line-height:1.6;color:var(--g1);margin-bottom:.8rem">O NPS pergunta: <em>"Em uma escala de 0 a 10, quanto você recomendaria a UNIPAR para um amigo ou familiar?"</em> — e classifica as respostas em 3 grupos:</p>
+          <div style="display:grid;gap:.6rem">
+            <div style="background:#dcf5ea;border-left:4px solid #0E7C4A;padding:.7rem .9rem;border-radius:6px">
+              <strong style="color:#0E7C4A;font-size:.74rem;font-family:monospace;text-transform:uppercase;letter-spacing:.1em">Promotores · Notas 9 e 10</strong>
+              <p style="font-size:.82rem;margin-top:.3rem">Alunos muito satisfeitos, propensos a recomendar e com baixo risco de evasão. São embaixadores ativos da marca UNIPAR.</p>
+            </div>
+            <div style="background:#fff8e1;border-left:4px solid #F5A623;padding:.7rem .9rem;border-radius:6px">
+              <strong style="color:#b07d00;font-size:.74rem;font-family:monospace;text-transform:uppercase;letter-spacing:.1em">Neutros · Notas 7 e 8</strong>
+              <p style="font-size:.82rem;margin-top:.3rem">Relativamente satisfeitos, mas vulneráveis à concorrência. Podem evadir por preço, nova oferta ou insatisfação pontual.</p>
+            </div>
+            <div style="background:#fde8e8;border-left:4px solid #E30613;padding:.7rem .9rem;border-radius:6px">
+              <strong style="color:#E30613;font-size:.74rem;font-family:monospace;text-transform:uppercase;letter-spacing:.1em">Detratores · Notas 0 a 6</strong>
+              <p style="font-size:.82rem;margin-top:.3rem">Insatisfeitos com alto risco de evasão e tendência a compartilhar experiências negativas. Cada detrator impacta a captação orgânica.</p>
+            </div>
+          </div>
+          <div style="background:var(--g5);border-radius:8px;padding:.9rem;margin-top:.9rem">
+            <strong style="font-size:.78rem">Formula:</strong>
+            <div style="font-family:monospace;font-size:.9rem;color:#002060;margin-top:.3rem">NPS = % Promotores menos % Detratores</div>
+            <div style="font-size:.78rem;color:var(--g1);margin-top:.3rem">Varia de -100 a +100. Quanto maior, melhor a lealdade.</div>
+          </div>
+        </div>
+        <div class="card" style="padding:1.5rem">
+          <div style="font-size:.68rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--g1);margin-bottom:.5rem">Jornada NPS Cianorte</div>
+          <div style="font-size:1.1rem;font-weight:700;margin-bottom:1rem">Evolução 2023 — 2024 — 2025</div>
+          <div style="position:relative;height:200px;margin-bottom:1rem"><canvas id="chartNPS"></canvas></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-top:.5rem">
+            <div style="text-align:center;padding:.7rem;background:#e8f5e9;border-radius:8px;border:2px solid #0E7C4A"><div style="font-size:1.5rem;font-weight:800;color:#0E7C4A">37</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;color:#0E7C4A">2023</div><div style="font-size:.72rem;color:var(--g1);margin-top:.2rem">Aperfeicoamento</div></div>
+            <div style="text-align:center;padding:.7rem;background:#fde8e8;border-radius:8px;border:2px solid #E30613"><div style="font-size:1.5rem;font-weight:800;color:#E30613">-2</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;color:#E30613">2024</div><div style="font-size:.72rem;color:var(--g1);margin-top:.2rem">Zona Crítica</div></div>
+            <div style="text-align:center;padding:.7rem;background:#fff8e1;border-radius:8px;border:2px solid #F5A623"><div style="font-size:1.5rem;font-weight:800;color:#F5A623">36</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;color:#F5A623">2025</div><div style="font-size:.72rem;color:var(--g1);margin-top:.2rem">Aperfeicoamento</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--g1);margin-bottom:.8rem">Zonas NPS · O que significa cada uma para a gestão</div>
+        <div class="nps-zones" style="margin-bottom:1.2rem">
+          <div class="nps-zone nz-crit"><div class="nz-label">Zona Crítica</div><div class="nz-range">0 ou menos</div><div class="nz-desc">Cianorte em 2024: NPS = -2. Mais detratores que promotores. Risco de evasão e dano reputacional.</div></div>
+          <div class="nps-zone nz-aper" style="border-width:3px"><div class="nz-label">Aperfeicoamento</div><div class="nz-range">1 a 50</div><div class="nz-desc" style="font-weight:600">Cianorte 2025: NPS = 36. Nível atual. Base de promotores crescendo, mas detratores ainda relevantes.</div></div>
+          <div class="nps-zone nz-qual"><div class="nz-label">Qualidade</div><div class="nz-range">51 a 75</div><div class="nz-desc">Meta de curto prazo. Requer resolver os 4 alertas: Coordenador, Biblioteca, Labs, Secretaria.</div></div>
+          <div class="nps-zone nz-excel"><div class="nz-label">Excelencia</div><div class="nz-range">acima de 75</div><div class="nz-desc">Meta estratégica 3 anos. Alunos como promotores ativos — captação organica e retenção elevada.</div></div>
+        </div>
+        <div style="background:#fff8e1;border:2px solid #F5A623;border-radius:8px;padding:1rem 1.2rem">
+          <strong style="color:#b07d00">Análise estratégica:</strong>
+          <p style="font-size:.88rem;margin-top:.4rem;line-height:1.55">O NPS de 2024 (-2) foi um alerta severo. A retomada para 36 em 2025 é positiva, mas ainda 15 pontos abaixo da Zona de Qualidade. Para chegar a 51+, a equacao é simples: resolver os 4 alertas quantitativos e converter os neutros (notas 7 e 8) em promotores (9 e 10). Cada atrito eliminado — banheiro consertado, carteira trocada, coordenação mais responsiva — mové o indicador.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO ACADEMICO -->
+    <div id="cpa-Acadêmico" class="cpa-panel" style="display:none">
+      <div class="chart-wrap card" style="margin-bottom:1.2rem">
         <div class="chart-title">Bloco Acadêmico · Evolução 2023–2025</div>
-        <div class="chart-sub">Escala Likert 1–5 · médias por categoria</div>
-        <div style="position:relative;height:260px"><canvas id="chartAcademico"></canvas></div>
+        <div class="chart-sub">Medias Likert 1–5 por categoria · Azul=2023 · Vermelho=2024 · Verde=2025</div>
+        <div style="background:var(--g5);border-radius:8px;padding:.8rem;margin-bottom:.8rem;font-size:.82rem;color:var(--g1)"><strong style="color:var(--ink)">Escala Likert:</strong> 1=Muito Insatisfeito · 2=Insatisfeito · 3=Regular (2,61–3,40) · 4=Satisfeito (3,41–4,20) · 5=Muito Satisfeito (4,21+). Nenhuma categoria atingiu "Muito Satisfeito" em 2025.</div>
+        <div style="position:relative;height:280px"><canvas id="chartAcadêmico"></canvas></div>
       </div>
-      <div class="chart-wrap card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div style="display:grid;gap:.8rem">
+          <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #E30613">
+            <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#E30613;font-weight:700;margin-bottom:.3rem">ALERTA MAXIMO · -5,8% YoY</div>
+            <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Coordenação de Curso</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#0E7C4A">4,4</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#F5A623">4,2</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+              <div style="text-align:center;background:#fde8e8;padding:.4rem;border-radius:5px;border:2px solid #E30613"><div style="font-size:1rem;font-weight:700;color:#E30613">3,9</div><div style="font-size:.6rem;font-family:monospace;color:#E30613">2025</div></div>
+            </div>
+            <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Queda consecutiva por 3 ciclos: 4,4 — 4,2 — 3,9. Alunos relatam comunicação deficiente, respostas demoradas e desorganização. Em Enfermagem, pedido explicito por coordenador com formação clinica. <strong style="color:var(--ink)">Ação imediata requerida.</strong></p>
+          </div>
+          <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #E30613">
+            <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#E30613;font-weight:700;margin-bottom:.3rem">ALERTA · -3,5% YoY · Perdeu "Muito Satisfeito"</div>
+            <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Biblioteca</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+              <div style="text-align:center;background:#dcf5ea;padding:.4rem;border-radius:5px;border:2px solid #0E7C4A"><div style="font-size:1rem;font-weight:700;color:#0E7C4A">4,3</div><div style="font-size:.6rem;font-family:monospace;color:#0E7C4A">2023 ★</div></div>
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#F5A623">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+              <div style="text-align:center;background:#fde8e8;padding:.4rem;border-radius:5px;border:2px solid #E30613"><div style="font-size:1rem;font-weight:700;color:#E30613">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+            </div>
+            <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Era a unica categoria com "Muito Satisfeito" em 2023 (4,3). Perdeu esse status e estabilizou em 4,0. Alunos pedem atualização do acervo fisico e retomada do serviço de impressão (xerox) no campus.</p>
+          </div>
+          <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #E67E22">
+            <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#E67E22;font-weight:700;margin-bottom:.3rem">ALERTA · -1,3% YoY</div>
+            <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Laboratorios</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#002060">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#F5A623">3,9</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+              <div style="text-align:center;background:#fff3e0;padding:.4rem;border-radius:5px;border:2px solid #E67E22"><div style="font-size:1rem;font-weight:700;color:#E67E22">3,9</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+            </div>
+            <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Computadores lentos, travamentos, maquinas que desligam sozinhas, projetores com mau contato. Para ADS, Biomedicina e Enfermagem, a qualidade dos laboratorios e fator decisivo de permanencia.</p>
+          </div>
+        </div>
+        <div style="display:grid;gap:.8rem">
+          <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #0E7C4A">
+            <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#0E7C4A;font-weight:700;margin-bottom:.3rem">EVOLUCAO · +2,8% YoY · Melhor desempenho</div>
+            <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Professores</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#002060">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+              <div style="text-align:center;background:#fde8e8;padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#E30613">3,8</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+              <div style="text-align:center;background:#dcf5ea;padding:.4rem;border-radius:5px;border:2px solid #0E7C4A"><div style="font-size:1rem;font-weight:700;color:#0E7C4A">4,2</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+            </div>
+            <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Recuperacao expressiva apos queda em 2024. O corpo docente é o principal ativo percebido — o no central da rede semantica de satisfação na análise de similitude. Mestres e doutores com vivencia de mercado são os mais elogiados.</p>
+          </div>
+          <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #0E7C4A">
+            <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#0E7C4A;font-weight:700;margin-bottom:.3rem">EVOLUCAO ESTAVEL · 0,0% YoY</div>
+            <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Sala de Aula</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#002060">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+              <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#F5A623">3,9</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+              <div style="text-align:center;background:#dcf5ea;padding:.4rem;border-radius:5px;border:2px solid #0E7C4A"><div style="font-size:1rem;font-weight:700;color:#0E7C4A">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+            </div>
+            <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Recuperou a nota de 2023. Atenção: a análise qualitativa revela carteiras como foco de insatisfação. A nota pode mascarar uma irritacao específica — quando resolvida, pode elevar substancialmenté o indicador.</p>
+          </div>
+          <div style="background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:10px;padding:1.2rem 1.4rem">
+            <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#ffc954;margin-bottom:.4rem">Visão do Diretor</div>
+            <p style="font-size:.85rem;line-height:1.55;color:rgba(255,255,255,.85)">O paradoxo do bloco Acadêmico e qué o maior ativo (professores) é o maior problema (coordenação) coexistem. Os alunos distinguem claramente: elogiam os docentes, mas criticam a gestão de curso. Resolver a coordenação sem tocar nos professores é a equacao correta — não confunda os papeis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO SERVICOS -->
+    <div id="cpa-serviços" class="cpa-panel" style="display:none">
+      <div class="chart-wrap card" style="margin-bottom:1.2rem">
         <div class="chart-title">Bloco Serviços · Evolução 2023–2025</div>
-        <div class="chart-sub">Escala Likert 1–5 · médias por categoria</div>
-        <div style="position:relative;height:260px"><canvas id="chartServicos"></canvas></div>
+        <div class="chart-sub">Medias Likert 1–5 · Atendimento · Secretaria · Financeiro · azul=2023 · vermelho=2024 · verde=2025</div>
+        <div style="position:relative;height:280px"><canvas id="chartServicos"></canvas></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #E30613">
+          <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#E30613;font-weight:700;margin-bottom:.3rem">ALERTA · -1,1% YoY</div>
+          <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Secretaria</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+            <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#002060">4,2</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+            <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#F5A623">4,0</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+            <div style="text-align:center;background:#fde8e8;padding:.4rem;border-radius:5px;border:2px solid #E30613"><div style="font-size:1rem;font-weight:700;color:#E30613">4,1</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+          </div>
+          <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Recuperacao parcial (4,0 para 4,1) mas abaixo de 2023. Alunos cobram agilidade e resolutividade. A nota 4,1 pode mascarar frustracoes especificas com demoras e falta de retorno citadas na análise qualitativa.</p>
+        </div>
+        <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #0E7C4A">
+          <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#0E7C4A;font-weight:700;margin-bottom:.3rem">EVOLUCAO · +1,4% YoY</div>
+          <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Setor Financeiro</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+            <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#002060">3,7</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+            <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#F5A623">3,8</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+            <div style="text-align:center;background:#dcf5ea;padding:.4rem;border-radius:5px;border:2px solid #0E7C4A"><div style="font-size:1rem;font-weight:700;color:#0E7C4A">3,8</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+          </div>
+          <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Crescimento lento mas consistente. Nota mais baixa do bloco (3,8). Os alunos correlacionam o valor da mensalidade com a infraestrutura entregue — percepção de custo-beneficio é a chave para este indicador.</p>
+        </div>
+        <div class="card" style="padding:1.1rem 1.3rem;border-left:5px solid #0E7C4A">
+          <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#0E7C4A;font-weight:700;margin-bottom:.3rem">EVOLUCAO · +0,1% YoY</div>
+          <div style="font-size:1.05rem;font-weight:700;margin-bottom:.4rem">Atendimento Geral</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin-bottom:.6rem">
+            <div style="text-align:center;background:var(--g5);padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#002060">4,1</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2023</div></div>
+            <div style="text-align:center;background:#fde8e8;padding:.4rem;border-radius:5px"><div style="font-size:1rem;font-weight:700;color:#E30613">3,9</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2024</div></div>
+            <div style="text-align:center;background:#dcf5ea;padding:.4rem;border-radius:5px;border:2px solid #0E7C4A"><div style="font-size:1rem;font-weight:700;color:#0E7C4A">4,1</div><div style="font-size:.6rem;font-family:monospace;color:var(--g1)">2025</div></div>
+          </div>
+          <p style="font-size:.82rem;line-height:1.5;color:var(--g1)">Recuperou totalmenté a nota de 2023. O acolhimento da equipé administrativa, a empatia é o "Cafe com a Direção" são mencionados positivamente. O atendimento humano é um diferencial percebido e valorizado pelos alunos.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:1.2rem 1.5rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--g1);margin-bottom:.5rem">Bloco Digital · NSA — Não se Aplica</div>
+        <div style="font-size:1rem;font-weight:700;margin-bottom:.6rem">AVA · Material Didatico · Tutor · Aula ao Vivo</div>
+        <div style="background:#fff3e0;border-left:4px solid #E67E22;border-radius:6px;padding:.9rem 1.1rem">
+          <p style="font-size:.85rem;line-height:1.55;color:var(--ink)">Todas as categorias digitais permaneceram como <strong>NSA (Não se Aplica)</strong> nos tres ciclos. Isso ocorre porqué a Unidade Cianorté atende exclusivamenté a modalidade <strong>presencial</strong>. Plataformas como AVA, tutoria EAD é aulas ao vivo não fazem parte da experiencia dos alunos desta unidade. Para gestão de EAD ou semipresencial, esses indicadores precisariam ser instrumentalizados separadamente.</p>
+        </div>
       </div>
     </div>
 
-    <!-- RADAR + ENGAJAMENTO -->
-    <div class="cpa-charts-row">
-      <div class="chart-wrap card">
-        <div class="chart-title">Diagnóstico Geral 2025 · Radar</div>
-        <div class="chart-sub">Todas as categorias avaliadas (Likert 1–5)</div>
-        <div style="position:relative;height:300px"><canvas id="chartRadar"></canvas></div>
-      </div>
-      <div class="chart-wrap card">
-        <div class="chart-title">Engajamento · Participação 2023–2025</div>
-        <div class="chart-sub">Número de respostas por ciclo avaliativo</div>
-        <div style="position:relative;height:300px"><canvas id="chartEngajamento"></canvas></div>
-      </div>
-    </div>
-
-    <!-- TENDÊNCIAS YOY FULL -->
-    <div class="cpa-chart-full">
-      <div class="chart-wrap card">
-        <div class="chart-title">Variação YoY por Categoria · Δ% Médio</div>
-        <div class="chart-sub">Positivo = melhoria · Negativo = alerta · vermelho indica nível de alerta</div>
-        <div style="position:relative;height:320px"><canvas id="chartYoY"></canvas></div>
-      </div>
-    </div>
-
-    <!-- QUALITATIVE -->
-    <div class="cpa-qualitative">
-      <div class="qual-card card">
-        <div class="qual-title">✅ Fortalezas · O que os alunos mais gostam</div>
-        <div class="qual-sub">Análise de similitude 2025 · Bardin</div>
-        <div class="qual-item">
-          <div class="qual-icon qi-green">👨‍🏫</div>
-          <div class="qual-text"><strong>Corpo Docente</strong>Professores qualificados (mestres/doutores), didáticos, acessíveis e com vivência real de mercado. Maior nó semântico da rede.</div>
-        </div>
-        <div class="qual-item">
-          <div class="qual-icon qi-green">🏟️</div>
-          <div class="qual-text"><strong>Estrutura Física</strong>Complexo esportivo amplo, laboratórios bem equipados, acervo da biblioteca, cantina e salas de convivência.</div>
-        </div>
-        <div class="qual-item">
-          <div class="qual-icon qi-green">🔬</div>
-          <div class="qual-text"><strong>Metodologia Prática</strong>Forte foco em aulas práticas, projetos, estágios e conexão direta da teoria com o cotidiano profissional.</div>
-        </div>
-        <div class="qual-item">
-          <div class="qual-icon qi-green">🤝</div>
-          <div class="qual-text"><strong>Ambiente Institucional</strong>Espaço acolhedor, limpo, seguro. Direção aberta ("Café com a Direção"). Sentimento de família e pertencimento.</div>
+    <!-- ANALISE QUALITATIVA -->
+    <div id="cpa-qualitativa" class="cpa-panel" style="display:none">
+      <div style="background:var(--g5);border:1px solid var(--g4);border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:1.2rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:#002060;font-weight:700;margin-bottom:.5rem">Metodologia · Como os dados qualitativos foram analisados</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+          <div><strong style="font-size:.82rem;display:block;margin-bottom:.3rem">Instrumento</strong><p style="font-size:.8rem;color:var(--g1);line-height:1.45">Questoes abertas 19 e 20: "O que voce mais gosta na UNIPAR?" e "Como a UNIPAR pode melhorar?" — aplicadas via Lyceum/Aluno On-line, com anonimato garantido e sem duplicidade.</p></div>
+          <div><strong style="font-size:.82rem;display:block;margin-bottom:.3rem">Técnica · Bardin (2016)</strong><p style="font-size:.8rem;color:var(--g1);line-height:1.45">Análise de Conteudo em 3 fases: pre-análise (leitura flutuante), exploracao do material (codificacao e categorizacao por analogia) e tratamento/inferencia (interpretacao das contradicoes institucionais).</p></div>
+          <div><strong style="font-size:.82rem;display:block;margin-bottom:.3rem">Complementares</strong><p style="font-size:.8rem;color:var(--g1);line-height:1.45">Análise de Similitude (Teoria dos Grafos — revela coocorrencia de palavras e hubs semanticos) + CHD Classificacao Hierarquica Descendente (agrupa textos por qui-quadrado em dendrograma).</p></div>
         </div>
       </div>
-      <div class="qual-card card">
-        <div class="qual-title">⚠️ Melhorias · O que precisa evoluir</div>
-        <div class="qual-sub">CHD + Análise de similitude 2025 · Bardin</div>
-        <div class="qual-item">
-          <div class="qual-icon qi-red">🚿</div>
-          <div class="qual-text"><strong>Infraestrutura Sanitária (23,3%)</strong>Banheiros com vazamentos, portas defeituosas no Bloco D feminino, falta de higiene básica. Prioridade máxima.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div class="card" style="padding:1.3rem 1.5rem">
+          <div style="font-size:.68rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:#0E7C4A;font-weight:700;margin-bottom:.6rem">O qué os alunos mais gostam · Similitude</div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:.3rem">Hub central: "PROFESSOR"</div>
+          <p style="font-size:.8rem;color:var(--g1);margin-bottom:.9rem;font-style:italic">A palavra mais frequente e conectada na rede semantica positiva — ligada diretamenté a ensino, aula, ambiente, estrutura, coordenação e qualidade.</p>
+          <div style="display:grid;gap:.55rem">
+            <div class="qual-item"><div class="qual-icon qi-green">👨‍🏫</div><div class="qual-text"><strong>Corpo Docente</strong>Professores mestres e doutores, didaticos, acessiveis, com vivencia real de mercado. Capacidade de explicar de forma objetiva, dominio da turma é abertura ao dialogo.</div></div>
+            <div class="qual-item"><div class="qual-icon qi-green">🏟️</div><div class="qual-text"><strong>Estrutura Fisica</strong>Complexo esportivo amplo, laboratorios bem equipados para saude e EFI, acervo da biblioteca, cantina e salas de convivencia e descanso.</div></div>
+            <div class="qual-item"><div class="qual-icon qi-green">🔬</div><div class="qual-text"><strong>Metodologia Prática</strong>Aulas práticas, projetos, simulacoes, estagios e eventos Acadêmicos que simulam a realidade profissional. Teoria unida a prática é o principal motivador de permanencia.</div></div>
+            <div class="qual-item"><div class="qual-icon qi-green">🤝</div><div class="qual-text"><strong>Ambiente e Pertencimento</strong>Espaco acolhedor, limpo, organizado. "Cafe com a Direção" elogiado. Alunos usam linguagem de "familia" e "casa" para descrever o ambiente institucional.</div></div>
+          </div>
         </div>
-        <div class="qual-item">
-          <div class="qual-icon qi-red">💰</div>
-          <div class="qual-text"><strong>Custo-Benefício e Gestão (33,3%)</strong>Correlação entre mensalidade alta e laboratórios/coordenação defasados. Maior classe semântica.</div>
+        <div class="card" style="padding:1.3rem 1.5rem">
+          <div style="font-size:.68rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:#E30613;font-weight:700;margin-bottom:.6rem">Como melhorar · Similitude · 3 eixos</div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:.3rem">Hubs: "SALA" · "AULA" · "ALUNO" · "MELHORAR"</div>
+          <p style="font-size:.8rem;color:var(--g1);margin-bottom:.9rem;font-style:italic">3 eixos principais: infraestrutura fisica, metodologia de ensino é organização institucional.</p>
+          <div style="display:grid;gap:.55rem">
+            <div class="qual-item"><div class="qual-icon qi-red">🚿</div><div class="qual-text"><strong>Infraestrutura Predial</strong>Banheiros com vazamentos qué alagam o chao; portas com trincos defeituosos no Bloco D feminino (risco de seguranca); falta de papel higienico. Ponto de maior irritabilidade discente.</div></div>
+            <div class="qual-item"><div class="qual-icon qi-red">🪑</div><div class="qual-text"><strong>Mobiliario e Equipamentos</strong>Carteiras pequenas, antigas, desconfortaveis — crítico para Direito (Vade Mecum). Computadores lentos e projetores com mau contato nos laboratorios.</div></div>
+            <div class="qual-item"><div class="qual-icon qi-red">📖</div><div class="qual-text"><strong>Metodologia Docente</strong>Dependencia de slides por alguns professores torna aulas monotanas e "dispensaveis". Demanda por mais práticas, casos reais, visitas tecnicas é alinhamento com mercado.</div></div>
+            <div class="qual-item"><div class="qual-icon qi-red">📅</div><div class="qual-text"><strong>Calendario e Gestão</strong>Palestras e eventos em horario dé aula — especialmente em semestres curtos — prejudicam o conteudo. Aluno sente que paga mensalidadé alta para perder aulas regulares.</div></div>
+          </div>
         </div>
-        <div class="qual-item">
-          <div class="qual-icon qi-red">📅</div>
-          <div class="qual-text"><strong>Planejamento Acadêmico (20%)</strong>Eventos e palestras em horários de aula prejudicam conteúdo, especialmente em semestres curtos.</div>
+      </div>
+      <div class="card" style="padding:1.3rem 1.5rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:#002060;font-weight:700;margin-bottom:.8rem">Sintese Bardin · Quadro Comparativo por Eixo</div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+            <thead><tr style="background:linear-gradient(135deg,#002060,#003299);color:#fff"><th style="padding:.6rem .8rem;text-align:left;border-radius:6px 0 0 0">Eixo</th><th style="padding:.6rem .8rem;text-align:left;color:#9effc7">Consolida a marca</th><th style="padding:.6rem .8rem;text-align:left;color:#ffaaaa;border-radius:0 6px 0 0">Fragiliza a experiencia</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.6rem .8rem;font-weight:700">Infraestrutura</td><td style="padding:.6rem .8rem;color:var(--g1)">Complexo esportivo; labs estruturados; espacos de convivencia agradaveis</td><td style="padding:.6rem .8rem;color:var(--g1)">Banheiros com vazamentos; carteiras desconfortaveis; computadores lentos</td></tr>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.6rem .8rem;font-weight:700">Ensino e Docencia</td><td style="padding:.6rem .8rem;color:var(--g1)">Professores com bagagem de mercado, didaticos, foco em aulas práticas</td><td style="padding:.6rem .8rem;color:var(--g1)">Aulas baseadas em leitura de slides; falta de vivencia prática em certas disciplinas</td></tr>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.6rem .8rem;font-weight:700">Serviços</td><td style="padding:.6rem .8rem;color:var(--g1)">Limpeza geral; biblioteca é atendimento empatico</td><td style="padding:.6rem .8rem;color:var(--g1)">Precos altos na cantina; falta de xerox; micro-ondas quebrados gerando filas</td></tr>
+              <tr><td style="padding:.6rem .8rem;font-weight:700">Organização e Gestão</td><td style="padding:.6rem .8rem;color:var(--g1)">Acolhimento da equipe; direção aberta ao dialogo; resolutividade de coordenadores</td><td style="padding:.6rem .8rem;color:var(--g1)">Eventos que tomam horario dé aula; falhas de comunicação em coordenacoes especificas</td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="qual-item">
-          <div class="qual-icon qi-red">🪑</div>
-          <div class="qual-text"><strong>Mobiliário (23,3%)</strong>Carteiras pequenas, antigas e desconfortáveis. Computadores lentos nos laboratórios. Substituição urgente.</div>
+        <div style="margin-top:1rem;background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:8px;padding:1rem 1.2rem">
+          <strong style="color:#ffc954;font-size:.78rem;font-family:monospace;text-transform:uppercase">Conclusão Bardin</strong>
+          <p style="font-size:.85rem;margin-top:.4rem;line-height:1.5">A Unipar Cianorte possui um <strong>"software" excelente</strong> — capital humano, professores qualificados, acolhimento — mas esta sofrendo desgastes com seu <strong>"hardware"</strong> — manutenção predial, mobiliario envelhecido, equipamentos defasados — e com falhas de planejamento de calendario. O paradoxo: os alunos admiram os professores mas criticam o ambienté onde eles ensinam.</p>
         </div>
       </div>
     </div>
 
     <!-- CHD CLASSES -->
-    <div class="card" style="padding:1.4rem 1.5rem;margin-bottom:1.5rem">
-      <div class="chart-title">Classificação Hierárquica Descendente · CHD</div>
-      <div class="chart-sub">Pergunta: "Como a UNIPAR pode melhorar?" · 717 respondentes</div>
-      <div class="classes-grid">
-        <div class="class-card cc1">
-          <div class="class-pct" style="color:var(--red)">23,3%</div>
-          <div class="class-theme" style="color:var(--red)">Classe 1 · Manutenção Urgente</div>
-          <div class="class-words">banheiro, água, bloco, trocar, porta, vazar, precisar, problema, antigo, feminino</div>
+    <div id="cpa-chd" class="cpa-panel" style="display:none">
+      <div style="background:var(--g5);border:1px solid var(--g4);border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:1.2rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.18em;text-transform:uppercase;color:#002060;font-weight:700;margin-bottom:.4rem">O que é a CHD · Classificacao Hierarquica Descendente</div>
+        <p style="font-size:.85rem;line-height:1.55;color:var(--g1)">A CHD é um procedimento estatístico qué agrupa o corpus textual em classes de palavras com base na frequencia e na correlacao (teste qui-quadrado). O resultado é um dendrograma com as principais tematicas do discurso dos <strong>717 alunos</strong> que responderam a pergunta <em>"Como a UNIPAR pode melhorar?"</em></p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div class="card" style="padding:1.3rem 1.5rem;border-top:5px solid #E30613">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">
+            <div><div style="font-size:2.2rem;font-weight:800;color:#E30613;line-height:1">23,3%</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#E30613;margin-top:.2rem">Classe 1 · Vermelha · URGENTE</div></div>
+          </div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:.5rem">Manutenção de Instalacoes — Banheiros</div>
+          <p style="font-size:.83rem;line-height:1.5;color:var(--g1);margin-bottom:.7rem">Esta classe se separou de forma isolada na primeira ramificacao do dendrograma — é uma dor independente e urgente, distanciada das questoes academicas mais amplas.</p>
+          <div style="background:var(--g5);border-radius:6px;padding:.6rem .8rem;margin-bottom:.6rem;font-size:.8rem;font-family:monospace;color:#E30613">banheiro · agua · bloco · trocar · porta · vazar · precisar · problema · antigo · feminino</div>
+          <ul style="list-style:none;display:grid;gap:.4rem;font-size:.82rem;color:var(--g1)">
+            <li>• Vazamentos constantes qué alagam o chao</li>
+            <li>• Portas com trincos defeituosos Bloco D feminino</li>
+            <li>• Bebedouros quebrados e falta de higiene basica</li>
+          </ul>
         </div>
-        <div class="class-card cc2">
-          <div class="class-pct" style="color:var(--green)">33,3%</div>
-          <div class="class-theme" style="color:var(--green)">Classe 2 · Custo-Benefício e Gestão</div>
-          <div class="class-words">profissional, laboratório, mensalidade, material, cantina, coordenação, investir, projeto</div>
+        <div class="card" style="padding:1.3rem 1.5rem;border-top:5px solid #0E7C4A">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">
+            <div><div style="font-size:2.2rem;font-weight:800;color:#0E7C4A;line-height:1">33,3%</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#0E7C4A;margin-top:.2rem">Classe 2 · Verde · MAIOR CLASSE</div></div>
+          </div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:.5rem">Custo-Beneficio · Infraestrutura · Coordenação</div>
+          <p style="font-size:.83rem;line-height:1.5;color:var(--g1);margin-bottom:.7rem">A maior classe. Mensalidadé alta versus laboratorios desatualizados e coordenação ineficiente. Percepção de retorno sobré o investimento financeiro.</p>
+          <div style="background:var(--g5);border-radius:6px;padding:.6rem .8rem;margin-bottom:.6rem;font-size:.8rem;font-family:monospace;color:#0E7C4A">profissional · laboratorio · mensalidade · material · cantina · coordenação · investir · projeto</div>
+          <ul style="list-style:none;display:grid;gap:.4rem;font-size:.82rem;color:var(--g1)">
+            <li>• Precos abusivos da cantina; acervo desatualizado</li>
+            <li>• Coordenação mais resolutiva e comunicativa</li>
+            <li>• Investimento em labs alinhado a mensalidade paga</li>
+          </ul>
         </div>
-        <div class="class-card cc3">
-          <div class="class-pct" style="color:#1565C0">20,0%</div>
-          <div class="class-theme" style="color:#1565C0">Classe 3 · Cronograma e Eventos</div>
-          <div class="class-words">acabar, atrapalhar, dia, horário, aula, professor, conteúdo, palestra, matéria, evento</div>
+        <div class="card" style="padding:1.3rem 1.5rem;border-top:5px solid #1565C0">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">
+            <div><div style="font-size:2.2rem;font-weight:800;color:#1565C0;line-height:1">20,0%</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#1565C0;margin-top:.2rem">Classe 3 · Ciano · PLANEJAMENTO</div></div>
+          </div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:.5rem">Cronograma Acadêmico e Eventos</div>
+          <p style="font-size:.83rem;line-height:1.5;color:var(--g1);margin-bottom:.7rem">Intimamente conectada a Classe 2 no dendrograma. O aluno liga a desorganização do calendario a sua insatisfação com o retorno financeiro da mensalidade.</p>
+          <div style="background:var(--g5);border-radius:6px;padding:.6rem .8rem;margin-bottom:.6rem;font-size:.8rem;font-family:monospace;color:#1565C0">acabar · atrapalhar · dia · horario · aula · professor · conteudo · palestra · materia · evento</div>
+          <ul style="list-style:none;display:grid;gap:.4rem;font-size:.82rem;color:var(--g1)">
+            <li>• Eventos em horario dé aula em semestres curtos</li>
+            <li>• Professor não consegue cumprir o conteudo</li>
+            <li>• Aluno sente perda de dias letivos essenciais</li>
+          </ul>
         </div>
-        <div class="class-card cc4">
-          <div class="class-pct" style="color:var(--purple)">23,3%</div>
-          <div class="class-theme" style="color:var(--purple)">Classe 4 · Conforto de Sala</div>
-          <div class="class-words">cadeira, faculdade, desconfortável, sala, espaço, estrutura, carteira, novo</div>
+        <div class="card" style="padding:1.3rem 1.5rem;border-top:5px solid #6B2D8B">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">
+            <div><div style="font-size:2.2rem;font-weight:800;color:#6B2D8B;line-height:1">23,3%</div><div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.12em;color:#6B2D8B;margin-top:.2rem">Classe 4 · Roxa · CONFORTO</div></div>
+          </div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:.5rem">Conforto e Mobiliario de Sala de Aula</div>
+          <p style="font-size:.83rem;line-height:1.5;color:var(--g1);margin-bottom:.7rem">Galho proprio no dendrograma. Carteiras antigas, pequenas e desconfortaveis como tema central do desconforto diario dé aprendizado.</p>
+          <div style="background:var(--g5);border-radius:6px;padding:.6rem .8rem;margin-bottom:.6rem;font-size:.8rem;font-family:monospace;color:#6B2D8B">cadeira · faculdade · desconfortavel · sala · espaco · estrutura · carteira · novo · aula</div>
+          <ul style="list-style:none;display:grid;gap:.4rem;font-size:.82rem;color:var(--g1)">
+            <li>• Carteiras pequenas é antigas — crítico para Direito</li>
+            <li>• Prejudica alunos maiores e uso de Vade Mecum</li>
+            <li>• Solicitacao de moveis novos e espacosos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="padding:1.2rem 1.5rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:#002060;font-weight:700;margin-bottom:.6rem">Interpretação Topologica do Dendrograma</div>
+        <p style="font-size:.85rem;line-height:1.55;color:var(--g1)">A <strong>Classe 1 (manutenção)</strong> se separa na primeira divisão — é uma dor independente e urgente. Ja as <strong>Classes 2, 3 e 4</strong> estao no mesmo subgalho — o aluno percebe mensalidadé alta, labs desatualizados, calendario desorganizado e carteiras ruins como uma frustracao unica e interligada. <strong>Prioridade dé acao:</strong> banheiros — carteiras — calendario — labs — coordenação.</p>
+      </div>
+    </div>
+
+    <!-- PLANO DE ACAO -->
+    <div id="cpa-plano" class="cpa-panel" style="display:none">
+      <div style="background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:12px;padding:1.5rem 1.8rem;margin-bottom:1.2rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.2em;text-transform:uppercase;color:#ffc954;margin-bottom:.4rem">Objetivo estratégico</div>
+        <div style="font-size:1.3rem;font-weight:800;margin-bottom:.3rem">Elevar o NPS de 36 para 51+ (Zona de Qualidade) no ciclo 2026</div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.5">Cada item foi extraido diretamente do Relatório CPA 2025. Ordenacao por impacto no NPS e urgencia apontada pelos 717 respondentes.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div class="card" style="padding:1.2rem;border-top:5px solid #E30613">
+          <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.14em;color:#E30613;font-weight:700;margin-bottom:.6rem">CURTO PRAZO · 0–30 dias</div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:.6rem">Eliminar atritos dé alta irritabilidade</div>
+          <div style="display:grid;gap:.5rem">
+            <div style="background:var(--g5);border-left:3px solid #E30613;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>1.</strong> Reforma hidráulica banheiros Bloco D — portas e trincos</div>
+            <div style="background:var(--g5);border-left:3px solid #E30613;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>2.</strong> Reparo dos micro-ondas da area de convivencia</div>
+            <div style="background:var(--g5);border-left:3px solid #E30613;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>3.</strong> Abastecimento contínuo de itens de higiene basica</div>
+            <div style="background:var(--g5);border-left:3px solid #E30613;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>4.</strong> Protocolo de resposta em ate 48h na secretaria</div>
+          </div>
+          <div style="margin-top:.8rem;background:#fde8e8;border-radius:6px;padding:.6rem .8rem;font-size:.78rem;color:#E30613">Impacto: redução de detratores. Elimina Classes 1 e parte da Classe 4 do CHD como temas recorrentes.</div>
+        </div>
+        <div class="card" style="padding:1.2rem;border-top:5px solid #F5A623">
+          <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.14em;color:#b07d00;font-weight:700;margin-bottom:.6rem">MEDIO PRAZO · 30–180 dias</div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:.6rem">Modernizacao e planejamento</div>
+          <div style="display:grid;gap:.5rem">
+            <div style="background:var(--g5);border-left:3px solid #F5A623;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>5.</strong> Substituição gradativa de carteiras ergonomicas</div>
+            <div style="background:var(--g5);border-left:3px solid #F5A623;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>6.</strong> Retomada do serviço de impressão/xerox na biblioteca</div>
+            <div style="background:var(--g5);border-left:3px solid #F5A623;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>7.</strong> Revisão do calendario Acadêmico para proteger carga horaria</div>
+            <div style="background:var(--g5);border-left:3px solid #F5A623;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>8.</strong> Avaliação das coordenacoes em estado dé alerta</div>
+          </div>
+          <div style="margin-top:.8rem;background:#fff8e1;border-radius:6px;padding:.6rem .8rem;font-size:.78rem;color:#b07d00">Impacto: conversão de neutros em promotores. Ataqué as Classes 2, 3 e 4. Alvo: NPS próximo de 45.</div>
+        </div>
+        <div class="card" style="padding:1.2rem;border-top:5px solid #0E7C4A">
+          <div style="font-size:.65rem;font-family:monospace;text-transform:uppercase;letter-spacing:.14em;color:#0E7C4A;font-weight:700;margin-bottom:.6rem">LONGO PRAZO · 180+ dias</div>
+          <div style="font-size:.9rem;font-weight:700;margin-bottom:.6rem">Excelencia e consolidacao</div>
+          <div style="display:grid;gap:.5rem">
+            <div style="background:var(--g5);border-left:3px solid #0E7C4A;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>9.</strong> Modernização do parque tecnológico dos laboratorios</div>
+            <div style="background:var(--g5);border-left:3px solid #0E7C4A;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>10.</strong> Atualização do acervo bibliográfico fisico e digital</div>
+            <div style="background:var(--g5);border-left:3px solid #0E7C4A;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>11.</strong> Programa de formação docente em metodologias ativas</div>
+            <div style="background:var(--g5);border-left:3px solid #0E7C4A;padding:.55rem .7rem;border-radius:4px;font-size:.82rem"><strong>12.</strong> Painel NPS por curso monitorado mensalmente</div>
+          </div>
+          <div style="margin-top:.8rem;background:#dcf5ea;border-radius:6px;padding:.6rem .8rem;font-size:.78rem;color:#0E7C4A">Impacto: consolidar Zona de Qualidade (51+). Professores 4,2 — elevar para 4,5+ é o caminho para Excelencia.</div>
+        </div>
+      </div>
+      <div class="card" style="padding:1.3rem 1.5rem">
+        <div style="font-size:.68rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:#002060;font-weight:700;margin-bottom:.8rem">RACI Simplificado · Responsabilidades</div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:.81rem">
+            <thead><tr style="background:linear-gradient(135deg,#002060,#003299);color:#fff"><th style="padding:.55rem .7rem;text-align:left">Acao</th><th style="padding:.55rem .7rem;text-align:center">Prazo</th><th style="padding:.55rem .7rem;text-align:center">Responsável (R)</th><th style="padding:.55rem .7rem;text-align:center">Accountable (A)</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--g4);background:#fde8e8"><td style="padding:.5rem .7rem">Reforma banheiros Bloco D + portas</td><td style="padding:.5rem .7rem;text-align:center;color:#E30613;font-weight:700">0–30d</td><td style="padding:.5rem .7rem;text-align:center">Patrimonio/Manutenção</td><td style="padding:.5rem .7rem;text-align:center">Direção</td></tr>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.5rem .7rem">Reparo micro-ondas + higiene basica</td><td style="padding:.5rem .7rem;text-align:center;color:#E30613;font-weight:700">0–15d</td><td style="padding:.5rem .7rem;text-align:center">Apoio operacional</td><td style="padding:.5rem .7rem;text-align:center">Direção</td></tr>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.5rem .7rem">Substituicao de carteiras (prioridade Direito)</td><td style="padding:.5rem .7rem;text-align:center;color:#b07d00;font-weight:700">90d</td><td style="padding:.5rem .7rem;text-align:center">Patrimonio</td><td style="padding:.5rem .7rem;text-align:center">Direção</td></tr>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.5rem .7rem">Revisão calendario Acadêmico 2026</td><td style="padding:.5rem .7rem;text-align:center;color:#b07d00;font-weight:700">60d</td><td style="padding:.5rem .7rem;text-align:center">Coordenações</td><td style="padding:.5rem .7rem;text-align:center">Direção Acad.</td></tr>
+              <tr style="border-bottom:1px solid var(--g4)"><td style="padding:.5rem .7rem">Avaliação das coordenacoes em alerta</td><td style="padding:.5rem .7rem;text-align:center;color:#b07d00;font-weight:700">45d</td><td style="padding:.5rem .7rem;text-align:center">Direção</td><td style="padding:.5rem .7rem;text-align:center">Mantenedora</td></tr>
+              <tr><td style="padding:.5rem .7rem">Modernizacao laboratorios e parque tecnológico</td><td style="padding:.5rem .7rem;text-align:center;color:#0E7C4A;font-weight:700">180–360d</td><td style="padding:.5rem .7rem;text-align:center">TI + Coordenações</td><td style="padding:.5rem .7rem;text-align:center">Direção</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
-    <!-- PLANO DE AÇÃO CPA -->
-    <div class="card" style="padding:1.4rem 1.5rem">
-      <div class="chart-title">Plano de Ação Estratégico · CPA Cianorte 2025</div>
-      <div class="chart-sub">Recomendações da CPA para elevar NPS à Zona de Qualidade (51+)</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:1rem">
-        <div style="padding:1rem;border-top:4px solid var(--red);background:var(--g5);border-radius:8px">
-          <div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.5rem">🔴 Curto Prazo · Imediato</div>
-          <ul style="list-style:none;display:grid;gap:.5rem;font-size:.85rem">
-            <li>• Reforma hidráulica banheiros Bloco D</li>
-            <li>• Reparo das portas e fechaduras</li>
-            <li>• Conserto dos micro-ondas</li>
-            <li>• Agilidade secretaria e financeiro</li>
-          </ul>
-        </div>
-        <div style="padding:1rem;border-top:4px solid var(--gold);background:var(--g5);border-radius:8px">
-          <div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.5rem">🟡 Médio Prazo · 90–180 dias</div>
-          <ul style="list-style:none;display:grid;gap:.5rem;font-size:.85rem">
-            <li>• Substituição de carteiras ergonômicas</li>
-            <li>• Modernização computadores labs</li>
-            <li>• Retomada serviço xerox/impressão</li>
-            <li>• Revisão calendário acadêmico</li>
-          </ul>
-        </div>
-        <div style="padding:1rem;border-top:4px solid var(--green);background:var(--g5);border-radius:8px">
-          <div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.5rem">🟢 Longo Prazo · Estratégico</div>
-          <ul style="list-style:none;display:grid;gap:.5rem;font-size:.85rem">
-            <li>• Modernização parque tecnológico</li>
-            <li>• Atualização acervo bibliográfico</li>
-            <li>• Programa de formação docente</li>
-            <li>• Gestão NPS por curso / mensal</li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ══ SWOT ══ -->
-
-  <section id="northmethod" class="section">
-    <div class="sec-header"><h2 class="sec-title">Metodologia North Star</h2><p class="sec-desc">Uma aba dedicada para transformar a métrica central de cada curso em foco, inputs e rotina de gestão.</p></div>
-    <div class="north-method-grid">
-      <article class="ns-panel card" id="northMethodMain"></article>
-      <article class="ns-panel card" id="northMethodChecklist"></article>
-    </div>
-    <div class="card ns-panel" id="northMethodInputs"></div>
-    <div class="card ns-panel" id="northMethodAll"></div>
-  </section>
-
   <section id="swot" class="section">
     <div class="sec-header"><h2 class="sec-title">Análise SWOT</h2><p class="sec-desc">Matriz 2×2 para leitura do ambiente interno e externo do curso.</p></div>
     <div class="swot-labels"><div class="swot-label">Ambiente Interno</div><div class="swot-label">Ambiente Externo</div></div>
@@ -657,7 +851,7 @@ button{font:inherit;cursor:pointer}
   </section>
 
   <!-- ══ GESTÃO ══ -->
-  <section id="gestao" class="section">
+  <section id="gestão" class="section">
     <div class="sec-header"><h2 class="sec-title">Dicas de Gestão</h2><p class="sec-desc">PDCA, DMAIC, A3, 8D, RACI, Negociação e North Star aplicados ao curso.</p></div>
     <div class="mgmt-grid" id="managementGraphics"></div>
     <div class="alert-bar" id="managementAlert"></div>
@@ -677,6 +871,267 @@ button{font:inherit;cursor:pointer}
 
   <aside class="insight"><div class="insight-label">💡 Síntese do Consultor</div><p class="insight-text" id="insightText"></p></aside>
 </main>
+
+
+<!-- ══ NPS TIPS SECTION ══ -->
+<div style="max-width:1440px;margin:0 auto 0;padding:0 2rem 3rem">
+  <div style="border-top:3px solid var(--g4);padding-top:2.5rem;margin-top:1rem">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.8rem">
+      <div>
+        <div style="font-family:monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--g1);margin-bottom:.4rem">Guia Estratégico · Diretor de Unidade</div>
+        <h2 style="font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.3rem">Como usar as ferramentas de gestão para elevar o NPS</h2>
+        <p style="font-size:.95rem;color:var(--g1);font-style:italic">Cada metodologia tem um papel específico na jornada de Zona de Aperfeiçoamento (36) para Zona de Qualidade (51+)</p>
+      </div>
+      <div style="background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:.8rem 1.3rem;border-radius:8px;text-align:center;flex-shrink:0">
+        <div style="font-size:.62rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.2rem">Meta 2026</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#ffc954;line-height:1">51+</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.7)">Zona de Qualidade</div>
+      </div>
+    </div>
+
+    <!-- GRID DE DICAS -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.2rem">
+
+      <!-- GUT -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#002060,#003299);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">⚖️</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">Matriz GUT</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#ffc954;letter-spacing:.12em;text-transform:uppercase">Gravidade · Urgência · Tendência</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">Use o GUT <strong style="color:var(--navy)">antes de qualquer reunião de pauta</strong>. Os 4 alertas da CPA (Coordenador -5,8%, Biblioteca -3,5%, Labs -1,3%, Secretaria -1,1%) já têm score implícito — formalize-os em uma sessão de 30 minutos com sua equipe.</p>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Aplicação prática</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:var(--navy)">→</span>Monte a tabela GUT mensal com os 5 principais problemas levantados pela equipe</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:var(--navy)">→</span>Score acima de 75: ação imediata. Entre 50-74: próxima reunião. Abaixo: monitorar</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:var(--navy)">→</span>Nunca entre em uma reunião de priorização sem a tabela GUT preenchida</li>
+            </ul>
+          </div>
+          <div style="margin-top:.7rem;background:#e8edf6;border-left:3px solid var(--navy);padding:.5rem .7rem;border-radius:4px;font-size:.78rem;color:var(--navy)"><strong>Impacto no NPS:</strong> GUT bem aplicado elimina dispersão de energia — o time resolve o que realmente move o indicador.</div>
+        </div>
+      </div>
+
+      <!-- PDCA -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#0E7C4A,#0a5c37);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🔄</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">PDCA</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#9effc7;letter-spacing:.12em;text-transform:uppercase">Planejar · Fazer · Checar · Agir</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">O PDCA é a <strong style="color:#0E7C4A">espinha dorsal da melhoria do NPS</strong>. Para cada problema priorizado pelo GUT, abra um ciclo PDCA formal com meta, prazo e responsável (RACI). Sem medir, o ciclo não fecha.</p>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Aplicação prática</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#0E7C4A">→</span><strong>Plan:</strong> "O NPS vai de 36 para 45 até dezembro reduzindo as queixas de infraestrutura"</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#0E7C4A">→</span><strong>Do:</strong> Execute o 5W2H — banheiro, carteiras, xerox, calendário</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#0E7C4A">→</span><strong>Check:</strong> Monitore NPS mensalmente (não só na CPA anual)</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#0E7C4A">→</span><strong>Act:</strong> Padronize o que funcionou, corrija o que falhou</li>
+            </ul>
+          </div>
+          <div style="margin-top:.7rem;background:#e8f5e9;border-left:3px solid #0E7C4A;padding:.5rem .7rem;border-radius:4px;font-size:.78rem;color:#0E7C4A"><strong>Impacto no NPS:</strong> Um PDCA por trimestre aplicado nos alertas move o indicador +5 a +8 pontos por ciclo.</div>
+        </div>
+      </div>
+
+      <!-- 5W2H -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#E30613,#b80010);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📋</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">5W2H</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#ffaaaa;letter-spacing:.12em;text-transform:uppercase">Plano de Ação Operacional</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">Use o 5W2H para <strong style="color:#E30613">transformar cada ação do PDCA em tarefa executável</strong>. Cada item da CPA que virou alerta precisa de um 5W2H preenchido — sem dono, sem prazo e sem custo definido, a ação fica no papel.</p>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Aplicação prática · Caso banheiro Bloco D</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E30613">→</span><strong>What:</strong> Reforma hidráulica + portas banheiros femininos</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E30613">→</span><strong>Who:</strong> Responsável: Patrimônio. Accountable: Direção</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E30613">→</span><strong>When:</strong> 30 dias a partir de hoje</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E30613">→</span><strong>How much:</strong> Orçamento aprovado em até 5 dias úteis</li>
+            </ul>
+          </div>
+          <div style="margin-top:.7rem;background:#fde8e8;border-left:3px solid #E30613;padding:.5rem .7rem;border-radius:4px;font-size:.78rem;color:#E30613"><strong>Impacto no NPS:</strong> Ações de alta irritabilidade resolvidas são percebidas imediatamente — redução direta de detratores.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.2rem">
+
+      <!-- SWOT -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#6B2D8B,#4a1f62);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🧭</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">Análise SWOT</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#d9b3ff;letter-spacing:.12em;text-transform:uppercase">Diagnóstico Estratégico Semestral</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">A SWOT da CPA 2025 já está feita: <strong>forças = professores + ambiente; fraquezas = infraestrutura + coordenação</strong>. Use esse diagnóstico para posicionar a unidade nas ações de captação e retenção.</p>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Aplicação prática</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#6B2D8B">→</span>Atualize a SWOT a cada semestre com os dados da CPA — não anualmente</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#6B2D8B">→</span>Use as forças como argumento de captação (professores qualificados = diferencial)</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#6B2D8B">→</span>Transforme cada fraqueza em meta do PDCA do próximo semestre</li>
+            </ul>
+          </div>
+          <div style="margin-top:.7rem;background:#f3e5f5;border-left:3px solid #6B2D8B;padding:.5rem .7rem;border-radius:4px;font-size:.78rem;color:#6B2D8B"><strong>Impacto no NPS:</strong> SWOT atualizada com dados da CPA evita que decisões estratégicas ignorem a voz do aluno.</div>
+        </div>
+      </div>
+
+      <!-- ISHIKAWA -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#E67E22,#c0620d);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🐟</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">Diagrama de Ishikawa</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#ffe0b3;letter-spacing:.12em;text-transform:uppercase">Causa e Efeito · Raiz do Problema</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">O Ishikawa é essencial quando o mesmo problema volta a cada ciclo da CPA. <strong>Coordenação com -5,8% por 3 anos consecutivos</strong> não é azar — tem causa-raiz. Use o diagrama para encontrá-la antes de agir.</p>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Aplicação prática · Coordenador em alerta</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E67E22">→</span><strong>Método:</strong> Falta de protocolo de atendimento ao aluno?</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E67E22">→</span><strong>Mão de obra:</strong> Perfil do coordenador não alinhado ao curso?</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E67E22">→</span><strong>Medida:</strong> Coordenador não recebe feedback estruturado?</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E67E22">→</span>Faça 3 entrevistas com alunos detratores antes de decidir a ação</li>
+            </ul>
+          </div>
+          <div style="margin-top:.7rem;background:#fff3e0;border-left:3px solid #E67E22;padding:.5rem .7rem;border-radius:4px;font-size:.78rem;color:#c0620d"><strong>Impacto no NPS:</strong> Resolve problemas recorrentes de vez — não aplica curativo em causa-raiz estrutural.</div>
+        </div>
+      </div>
+
+      <!-- EISENHOWER -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#1565C0,#0d47a1);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🎯</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">Matriz Eisenhower</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#90caf9;letter-spacing:.12em;text-transform:uppercase">Urgente × Importante · Decisão</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">Com 4 alertas simultâneos na CPA, o risco é tratar tudo como urgente e não resolver nada. A Eisenhower <strong>separa o que você deve fazer agora do que pode delegar</strong> — protegendo seu tempo de diretor.</p>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Classificação para o ciclo atual</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E30613">→</span><strong style="color:#E30613">Fazer agora:</strong> Banheiros + portas Bloco D (segurança)</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#E67E22">→</span><strong style="color:#E67E22">Agendar:</strong> Revisão do calendário + avaliação de coordenações</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#1565C0">→</span><strong style="color:#1565C0">Delegar:</strong> Xerox, micro-ondas, carteiras — Patrimônio executa</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:var(--g2)">→</span><strong style="color:var(--g2)">Eliminar:</strong> Reuniões sem pauta GUT e sem decisão registrada</li>
+            </ul>
+          </div>
+          <div style="margin-top:.7rem;background:#e3f2fd;border-left:3px solid #1565C0;padding:.5rem .7rem;border-radius:4px;font-size:.78rem;color:#1565C0"><strong>Impacto no NPS:</strong> Diretor focado nos quadrantes certos acelera a resolução dos alertas em 40–60%.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NORTH STAR + RACI + SEQUÊNCIA -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+
+      <!-- NORTH STAR -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#F5A623,#c07d00);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">⭐</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">North Star Metric</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#ffe0b3;letter-spacing:.12em;text-transform:uppercase">Bússola Estratégica da Unidade</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">O NPS é a North Star da unidade. Toda decisão — de orçamento, contratação, calendário ou infraestrutura — deve ser avaliada pela pergunta: <strong>"Isso move o NPS de 36 para 51?"</strong> Se a resposta for não, questione a prioridade.</p>
+          <div style="background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:8px;padding:.9rem 1rem;margin-bottom:.6rem">
+            <div style="font-size:.62rem;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.3rem">North Star Cianorte 2026</div>
+            <div style="font-size:1rem;font-weight:700;font-style:italic">NPS institucional ≥ 51 (Zona de Qualidade) medido em outubro de 2026</div>
+          </div>
+          <div style="background:var(--g5);border-radius:7px;padding:.75rem .9rem">
+            <div style="font-size:.62rem;font-family:monospace;text-transform:uppercase;color:var(--g1);font-weight:700;margin-bottom:.4rem">Use em toda reunião estratégica</div>
+            <ul style="list-style:none;display:grid;gap:.35rem;font-size:.81rem">
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#F5A623">→</span>Antes de aprovar qualquer gasto acima de R$ 1.000: "Isso move o NPS?"</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#F5A623">→</span>No início de cada reunião com coordenadores: mostre o NPS atual</li>
+              <li style="padding-left:.85rem;position:relative;color:var(--g1)"><span style="position:absolute;left:0;color:#F5A623">→</span>Crie um painel de NPS mensal por curso para acompanhar a evolução</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEQUÊNCIA RECOMENDADA -->
+      <div style="background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,32,96,.07)">
+        <div style="background:linear-gradient(135deg,#002060,#003299);padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem">
+          <div style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🗓️</div>
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.95rem">Sequência de Uso das Ferramentas</div>
+            <div style="font-size:.62rem;font-family:monospace;color:#ffc954;letter-spacing:.12em;text-transform:uppercase">Rotina Mensal do Diretor</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.2rem">
+          <p style="font-size:.84rem;line-height:1.55;color:var(--g1);margin-bottom:.8rem">As ferramentas não funcionam isoladas. Use-as em sequência para criar um sistema de gestão contínua da experiência do aluno.</p>
+          <div style="display:grid;gap:.5rem">
+            <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;background:#e8edf6;border-radius:6px;border-left:3px solid var(--navy)">
+              <div style="width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0">1</div>
+              <div style="font-size:.81rem;color:var(--g1)"><strong style="color:var(--navy)">CPA (anual):</strong> Coleta os dados — NPS, Likert e análise qualitativa são o insumo de tudo</div>
+            </div>
+            <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;background:#fff3e0;border-radius:6px;border-left:3px solid #E67E22">
+              <div style="width:22px;height:22px;border-radius:50%;background:#E67E22;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0">2</div>
+              <div style="font-size:.81rem;color:var(--g1)"><strong style="color:#E67E22">GUT (mensal):</strong> Prioriza os problemas identificados — o que atacar primeiro</div>
+            </div>
+            <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;background:#fde8e8;border-radius:6px;border-left:3px solid #E30613">
+              <div style="width:22px;height:22px;border-radius:50%;background:#E30613;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0">3</div>
+              <div style="font-size:.81rem;color:var(--g1)"><strong style="color:#E30613">Ishikawa (por problema):</strong> Encontra a causa-raiz de problemas recorrentes antes de agir</div>
+            </div>
+            <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;background:#e8f5e9;border-radius:6px;border-left:3px solid #0E7C4A">
+              <div style="width:22px;height:22px;border-radius:50%;background:#0E7C4A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0">4</div>
+              <div style="font-size:.81rem;color:var(--g1)"><strong style="color:#0E7C4A">5W2H + RACI (por ação):</strong> Converte cada prioridade em tarefa com dono, prazo e custo</div>
+            </div>
+            <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;background:#e3f2fd;border-radius:6px;border-left:3px solid #1565C0">
+              <div style="width:22px;height:22px;border-radius:50%;background:#1565C0;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0">5</div>
+              <div style="font-size:.81rem;color:var(--g1)"><strong style="color:#1565C0">PDCA (trimestral):</strong> Fecha o ciclo — avalia se a ação moveu o NPS e decide continuar ou corrigir</div>
+            </div>
+            <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;background:#fff8e1;border-radius:6px;border-left:3px solid #F5A623">
+              <div style="width:22px;height:22px;border-radius:50%;background:#F5A623;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0">6</div>
+              <div style="font-size:.81rem;color:var(--g1)"><strong style="color:#b07d00">North Star (sempre):</strong> O NPS 51+ orienta cada decisão — é o critério de priorização permanente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INSIGHT FINAL -->
+    <div style="background:linear-gradient(135deg,#002060,#003299);color:#fff;border-left:6px solid #F5A623;border-radius:12px;padding:1.8rem 2.2rem;box-shadow:0 10px 32px rgba(0,32,96,.18)">
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap">
+        <div style="font-size:2.5rem;flex-shrink:0">💡</div>
+        <div>
+          <div style="font-family:monospace;color:#ffc954;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Síntese Estratégica · Diretor Bruno Guilherme</div>
+          <p style="font-size:1rem;line-height:1.6;color:rgba(255,255,255,.92);margin-bottom:.8rem">A CPA 2025 entregou um diagnóstico preciso: o problema de Cianorte <strong>não é o ensino — é o hardware</strong>. Os professores (4,2 e em evolução) são o maior ativo. A queda do NPS para -2 em 2024 foi causada por frustrações operacionais acumuladas — banheiro, carteira, coordenação, calendário — não por falhas pedagógicas. Isso é uma <strong>excelente notícia</strong>: problemas operacionais têm solução mais rápida e barata do que problemas acadêmicos.</p>
+          <p style="font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.78)">Use as ferramentas nesta sequência: <strong style="color:#ffc954">GUT → Ishikawa → 5W2H → PDCA → North Star</strong>. O Eisenhower protege seu tempo. A SWOT orienta o posicionamento. Se você resolver os 4 alertas até outubro de 2026, o NPS 51+ é alcançável — e Cianorte entra na Zona de Qualidade.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
+            <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-family:monospace">NPS atual: 36</span>
+            <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-family:monospace">Meta: 51+ em out/2026</span>
+            <span style="background:rgba(245,166,35,.25);border:1px solid #ffc954;padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-family:monospace;color:#ffc954">Gap: +15 pontos</span>
+            <span style="background:rgba(14,124,74,.25);border:1px solid #9effc7;padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-family:monospace;color:#9effc7">Professores: 4,2 ▲</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <footer class="footer">© 2026 · UNIPAR Universidade Paranaense · Unidade Cianorte · Dashboard de Gestão Acadêmica · CPA 2025 + Evasão 2026 + Metodologias de Gestão</footer>
 
@@ -731,19 +1186,27 @@ button{font:inherit;cursor:pointer}
 <script>
 'use strict';
 // ─── CPA CHARTS ───────────────────────────────────────────────────────────────
+function makeChart(id, config){
+  var canvas = document.getElementById(id);
+  if(!canvas) return null;
+  var existing = Chart.getChart ? Chart.getChart(canvas) : null;
+  if(existing) existing.destroy();
+  try{ return new Chart(canvas, config); }catch(e){ return null; }
+}
+
 function initCPACharts(){
-  const navy='#002060',navy2='#003299',red='#E30613',gold='#F5A623',green='#0E7C4A',teal='#007A87',orange='#E67E22',g3='#C8D0DC';
+  var navy='#002060',navy2='#003299',red='#E30613',gold='#F5A623',green='#0E7C4A',teal='#007A87',orange='#E67E22',g3='#C8D0DC';
   const font='"Sora",system-ui,sans-serif';
 
   // NPS Evolution
-  new Chart(document.getElementById('chartNPS'),{
+  makeChart('chartNPS',{
     type:'line',
     data:{labels:['2023','2024','2025'],datasets:[{label:'NPS Cianorte',data:[37,-2,36],borderColor:gold,backgroundColor:'rgba(245,166,35,.15)',borderWidth:3,pointBackgroundColor:[green,red,gold],pointRadius:8,pointHoverRadius:10,tension:.35,fill:true}]},
-    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`NPS: ${c.raw}`}}},scales:{y:{min:-20,max:60,grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{family:font,size:11}}},x:{grid:{display:false},ticks:{font:{family:font,size:12,weight:'600'}}}},responsive:true,maintainAspectRatio:false}
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return 'NPS: '+c.raw;}}}},scales:{y:{min:-20,max:60,grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{family:font,size:11}}},x:{grid:{display:false},ticks:{font:{family:font,size:12,weight:'600'}}}},responsive:true,maintainAspectRatio:false}
   });
 
   // Bloco Acadêmico
-  new Chart(document.getElementById('chartAcademico'),{
+  makeChart('chartAcadêmico',{
     type:'bar',
     data:{labels:['Coordenador','Professores','Sala de Aula','Laboratórios','Biblioteca'],datasets:[
       {label:'2023',data:[4.4,4.0,4.0,4.0,4.3],backgroundColor:'rgba(0,32,96,.25)',borderColor:navy,borderWidth:1.5,borderRadius:4},
@@ -754,7 +1217,7 @@ function initCPACharts(){
   });
 
   // Bloco Serviços
-  new Chart(document.getElementById('chartServicos'),{
+  makeChart('chartServicos',{
     type:'bar',
     data:{labels:['Atendimento','Secretaria','Financeiro'],datasets:[
       {label:'2023',data:[4.1,4.2,3.7],backgroundColor:'rgba(0,32,96,.25)',borderColor:navy,borderWidth:1.5,borderRadius:4},
@@ -765,7 +1228,7 @@ function initCPACharts(){
   });
 
   // Radar 2025
-  new Chart(document.getElementById('chartRadar'),{
+  makeChart('chartRadar',{
     type:'radar',
     data:{labels:['Coordenador','Professores','Sala de Aula','Laboratórios','Biblioteca','Atendimento','Secretaria','Financeiro'],
       datasets:[
@@ -776,14 +1239,14 @@ function initCPACharts(){
   });
 
   // Engajamento
-  new Chart(document.getElementById('chartEngajamento'),{
+  makeChart('chartEngajamento',{
     type:'bar',
     data:{labels:['2023','2024','2025'],datasets:[{label:'Respondentes',data:[384,386,717],backgroundColor:['rgba(0,32,96,.6)','rgba(0,32,96,.6)','rgba(14,124,74,.8)'],borderColor:[navy,navy,green],borderWidth:2,borderRadius:8}]},
-    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw} respondentes`}}},scales:{y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{family:font,size:11}}},x:{grid:{display:false},ticks:{font:{family:font,size:12,weight:'600'}}}},responsive:true,maintainAspectRatio:false}
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.raw+' respondentes';}}}},scales:{y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{family:font,size:11}}},x:{grid:{display:false},ticks:{font:{family:font,size:12,weight:'600'}}}},responsive:true,maintainAspectRatio:false}
   });
 
   // YoY
-  new Chart(document.getElementById('chartYoY'),{
+  makeChart('chartYoY',{
     type:'bar',
     data:{
       labels:['NPS','Professores','Financeiro','Atendimento','Sala de Aula','Secretaria','Laboratórios','Biblioteca','Coordenador'],
@@ -797,8 +1260,8 @@ function initCPACharts(){
     },
     options:{
       indexAxis:'y',
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw===897.3?'NPS: +897.3%':`${c.raw>0?'+':''}${c.raw}%`}}},
-      scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:font,size:11},callback:v=>v===897.3?'NPS↑':v+'%'}},y:{grid:{display:false},ticks:{font:{family:font,size:11,weight:'500'}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.raw===897.3?'NPS: +897.3%':(c.raw>0?'+':'')+c.raw+'%';}}}},
+      scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:font,size:11},callback:function(v){return v===897.3?'NPS↑':v+'%';}}},y:{grid:{display:false},ticks:{font:{family:font,size:11,weight:'500'}}}},
       responsive:true,maintainAspectRatio:false
     }
   });
@@ -806,19 +1269,19 @@ function initCPACharts(){
 
 // ─── COURSE DATA ───────────────────────────────────────────────────────────────
 const COURSES=[
-{id:'adm',name:'Administração',short:'ADM',color:'#1565C0',light:'#E3EEF9',meta:'NPS Geral da unidade: 36 · Zona de Aperfeiçoamento',north:'Alunos com experiência prática documentada por semestre',swot:{s:['Curso tradicional com marca consolidada','Perfil de aluno-trabalhador','Conteúdo aplicável ao polo têxtil e industrial'],w:['Carência de empresa júnior ativa','Pouca conexão formal com empresas locais','Aulas muito teóricas em matérias-chave'],o:['Parcerias com indústrias e comércio','Demanda regional por formação em gestão','Trilhas em varejo, indústria e agronegócio'],t:['Concorrência de tecnólogos curtos','Migração para EAD barato','Mercado exige dados e habilidades digitais']},gut:[['Ausência de empresa júnior ativa',5,4,5],['Aulas teóricas demais em matérias práticas',4,5,4],['Falta de banco formal de estágios',4,4,4],['Pouca exposição a casos reais',3,3,4],['Grade sem disciplina de dados',3,3,5]],actions:[['Reativar empresa júnior','Criar laboratório real de prática gerencial','Bloco de Administração','Próximo semestre','Coordenação + docentes','Estatuto, edital e mentoria','Baixo'],['Banco de estágios com 10 empresas','Garantir prática supervisionada','Coordenação','60 dias','Coordenação + Carreiras','Visitas e convênios','Médio'],['ERP simulado nas disciplinas','Conectar teoria e sistemas reais','Laboratórios','Próximo semestre','Professor da disciplina','Licença educacional e capacitação','Médio']],insight:'A empresa júnior é a alavanca central: resolve prática, mentoria e conexão com o mercado.'},
-{id:'ads',name:'Análise e Desenvolvimento de Sistemas',short:'ADS',color:'#007A87',light:'#DCF0F2',meta:'Curso com 4 desistências em 2026 · alerta alto de evasão',north:'Alunos com projeto de software publicado ou em produção',swot:{s:['Curso curto e mensalidade competitiva','Mercado de TI com alta demanda','Possibilidade de trabalho remoto'],w:['Defasagem em cloud, DevOps e mobile','Pouca cultura de portfólio público','Laboratórios lentos apontados pela CPA'],o:['Demanda por devs no interior','Parcerias com empresas de tecnologia','Crescimento de games e mobile'],t:['Bootcamps online como concorrentes','Atualização tecnológica constante','Aluno pode evadir ao conseguir emprego']},gut:[['Computadores lentos nos laboratórios',5,5,5],['Grade desatualizada',5,4,5],['Falta de cultura GitHub',4,4,4],['Evasão precoce no 1º período',5,5,4],['Ausência de parcerias tech',4,3,4]],actions:[['Modernizar laboratórios','Impacto direto na percepção de qualidade','Laboratórios','90 dias','Direção + TI','Diagnóstico e upgrade gradual','Alto'],['GitHub obrigatório desde o 1º período','Criar portfólio público','Programação I','Imediato','Professor','Aulas práticas e repositório','Zero'],['Hackathon semestral','Conectar formação a problemas reais','Campus','Fim de semestre','Coordenação','Edital, banca e premiação','Baixo']],insight:'Antes de discutir grade, resolva hardware: computador travando destrói a percepção de qualidade.'},
-{id:'bio',name:'Biomedicina',short:'BIO',color:'#C0392B',light:'#FCEAE7',meta:'Curso com 4 desistências em 2026 · alerta alto',north:'Alunos com horas práticas em laboratório acima do mínimo exigido',swot:{s:['Área da saúde com empregabilidade laboratorial','Laboratórios como diferencial','Docentes mestres e doutores'],w:['Equipamentos envelhecidos','Pouca articulação com laboratórios privados','Iniciação científica subutilizada'],o:['Crescimento da medicina diagnóstica','Parcerias com clínicas e hospitais','Demanda por análises clínicas'],t:['IES próximas com infraestrutura nova','Manutenção cara de equipamentos','Alta competitividade profissional']},gut:[['Equipamentos com idade avançada',4,4,5],['Iniciação científica subutilizada',4,3,4],['Falta de convênios com laboratórios',4,4,4],['Carga prática limitada',5,4,4],['Poucos casos reais antes do estágio',3,3,4]],actions:[['Programa de iniciação científica','Prática e produção acadêmica','Laboratórios','Próximo semestre','Coordenação + docentes','Edital e supervisão','Baixo/Médio'],['Convênios com laboratórios clínicos','Ampliar campos de prática','Região','90 dias','Coordenação + Direção','Mapeamento e visitas','Baixo'],['Plano de modernização de equipamentos','Preservar diferencial laboratorial','Laboratórios','12 a 18 meses','Direção','Diagnóstico e cronograma','Alto']],insight:'IC é a alavanca rápida; modernização dos equipamentos é a pauta estratégica.'},
-{id:'cont',name:'Ciências Contábeis',short:'CON',color:'#6B2D8B',light:'#F0E6F5',meta:'Curso com tradição · gestão precisa de instrumentação',north:'Alunos aprovados ou em preparação ativa para o Exame de Suficiência do CFC',swot:{s:['Profissão regulamentada','Tradição na unidade','Aluno trabalha cedo na área'],w:['Sem núcleo CFC','Distância entre conteúdo e exigências do CFC','Pouca mensuração de egressos'],o:['Empreendedorismo demanda contadores','Reforma tributária exige atualização','Expansão da contabilidade digital'],t:['Automação de tarefas operacionais','EAD barato','Risco se aprovação CFC for baixa']},gut:[['Sem núcleo de preparação CFC',5,5,5],['Sem mensuração de aprovação',4,4,4],['Defasagem digital e tributária',4,4,5],['Pouca conexão com escritórios',3,3,3],['Falta de escritório-modelo',4,3,4]],actions:[['Criar núcleo CFC','Indicador de qualidade profissional','Coordenação','Próximo semestre','Coordenação + docentes','Simulados e grupos de estudo','Baixo'],['Medir aprovação dos egressos','Sem dado não há gestão','Coordenação','Imediato','Coordenação + secretaria','Pesquisa e acompanhamento','Zero'],['Parceria com escritórios','Prática e colocação','Região','90 dias','Coordenação + Carreiras','Convênios formais','Baixo']],insight:'Aprovação no CFC precisa virar indicador de gestão, não assunto informal.'},
-{id:'dir',name:'Direito',short:'DIR',color:'#0D1B3E',light:'#D4DCE8',meta:'Maior curso da unidade · 12 saídas em 2026',north:'Alunos com horas de prática jurídica real acumuladas',swot:{s:['Maior curso da unidade','Sem concorrente direto em Cianorte','Prestígio regional'],w:['Carteiras inadequadas ao Vade Mecum','Aulas teóricas demais','NPJ subutilizado'],o:['Reposicionar NPJ','Parceria com OAB Cianorte','Especialização em áreas regionais'],t:['Mercado saturado','Baixa aprovação nacional na OAB','Risco de queda na percepção de qualidade']},gut:[['12 saídas em 2026',5,5,5],['Carteiras inadequadas',4,5,4],['NPJ subutilizado',5,4,5],['Aulas teóricas demais',4,4,5],['Sem preparação estruturada OAB',4,3,5]],actions:[['Substituir carteiras','Dor diária apontada pela CPA','Salas de Direito','90 dias','Direção + patrimônio','Cotação e troca gradual','Médio/Alto'],['Reposicionar NPJ','Retenção e diferencial local','NPJ','Próximo semestre','Coordenação + supervisores','Atendimentos e casos reais','Baixo'],['Preparação OAB com OAB local','Reputação e empregabilidade','Auditório','7º período','Coordenação + OAB','Simulados e workshops','Baixo']],insight:'Direito tem massa e vantagem local. Carteiras + NPJ ativo é pacote de alto impacto.'},
-{id:'ef',name:'Educação Física',short:'EFI',color:'#1A7A4A',light:'#E8F5EC',meta:'Complexo esportivo é o maior ativo físico da unidade',north:'Alunos com intervenção prática supervisionada realizada',swot:{s:['Complexo esportivo forte','Curso prático por natureza','Mercado regional aquecido'],w:['Complexo subutilizado em extensão','Poucos convênios com escolas','Sem programa comunitário permanente'],o:['Bem-estar e longevidade em alta','Demanda por personal trainer','Ausência de oferta consolidada regional'],t:['Cursos técnicos concorrentes','Aluno quer formação rápida','Diferencial físico pode não ser percebido']},gut:[['Complexo subutilizado',4,4,5],['Falta de convênios com escolas',4,3,4],['Sem programa comunitário',3,3,4],['Pouca visibilidade do curso',3,3,4],['Poucas avaliações funcionais',4,3,4]],actions:[['Avaliação funcional comunitária','Laboratório vivo para alunos','Complexo esportivo','Próximo semestre','Coordenação + docentes','Edital e relatórios','Baixo'],['Convênio com escolas','Campo de estágio formal','Escolas públicas','60 dias','Coordenação + Carreiras','Visitas e termos','Zero'],['Festival de atividade física','Visibilidade e prática','Campus','Semestral','Coordenação + alunos','Programação aberta','Baixo']],insight:'O complexo esportivo precisa aparecer em prática, extensão e marketing.'},
+{id:'adm',name:'Administração',short:'ADM',color:'#1565C0',light:'#E3EEF9',meta:'NPS Geral da unidade: 36 · Zona de Aperfeiçoamento',north:'Alunos com experiência prática documentada por semestre',swot:{s:['Curso tradicional com marca consolidada','Perfil dé aluno-trabalhador','Conteúdo aplicável ao polo têxtil e industrial'],w:['Carência de empresa júnior ativa','Pouca conexão formal com empresas locais','Aulas muito teóricas em matérias-chave'],o:['Parcerias com indústrias e comércio','Demanda regional por formação em gestão','Trilhas em varejo, indústria é agronegócio'],t:['Concorrência de tecnólogos curtos','Migração para EAD barato','Mercado exige dados e habilidades digitais']},gut:[['Ausência de empresa júnior ativa',5,4,5],['Aulas teóricas demais em matérias práticas',4,5,4],['Falta de banco formal de estágios',4,4,4],['Pouca exposição a casos reais',3,3,4],['Grade sem disciplina de dados',3,3,5]],actions:[['Reativar empresa júnior','Criar laboratório real de prática gerencial','Bloco de Administração','Próximo semestre','Coordenação + docentes','Estatuto, edital e mentoria','Baixo'],['Banco de estágios com 10 empresas','Garantir prática supervisionada','Coordenação','60 dias','Coordenação + Carreiras','Visitas e convênios','Médio'],['ERP simulado nas disciplinas','Conectar teoria e sistemas reais','Laboratórios','Próximo semestre','Professor da disciplina','Licença educacional e capacitação','Médio']],insight:'A empresa júnior é a alavanca central: resolve prática, mentoria e conexão com o mercado.'},
+{id:'ads',name:'Análise e Desenvolvimento de Sistemas',short:'ADS',color:'#007A87',light:'#DCF0F2',meta:'Curso com 4 desistências em 2026 · alerta alto de evasão',north:'Alunos com projeto de software publicado ou em produção',swot:{s:['Curso curto e mensalidade competitiva','Mercado de TI com alta demanda','Possibilidade de trabalho remoto'],w:['Defasagem em cloud, DevOps e mobile','Pouca cultura de portfólio público','Laboratórios lentos apontados pela CPA'],o:['Demanda por devs no interior','Parcerias com empresas de tecnologia','Crescimento de games e mobile'],t:['Bootcamps online como concorrentes','Atualização tecnológica constante','Aluno pode evadir ao conseguir emprego']},gut:[['Computadores lentos nos laboratórios',5,5,5],['Grade desatualizada',5,4,5],['Falta de cultura GitHub',4,4,4],['Evasão precoce no 1º período',5,5,4],['Ausência de parcerias tech',4,3,4]],actions:[['Modernizar laboratórios','Impacto direto na percepção de qualidade','Laboratórios','90 dias','Direção + TI','Diagnóstico e upgrade gradual','Alto'],['GitHub obrigatório desdé o 1º período','Criar portfólio público','Programação I','Imediato','Professor','Aulas práticas e repositório','Zero'],['Hackathon semestral','Conectar formação a problemas reais','Campus','Fim de semestre','Coordenação','Edital, banca e premiação','Baixo']],insight:'Antes de discutir grade, resolva hardware: computador travando destrói a percepção de qualidade.'},
+{id:'bio',name:'Biomedicina',short:'BIO',color:'#C0392B',light:'#FCEAE7',meta:'Curso com 4 desistências em 2026 · alerta alto',north:'Alunos com horas práticas em laboratório acima do mínimo exigido',swot:{s:['Área da saúde com empregabilidade laboratorial','Laboratórios como diferencial','Docentes mestres e doutores'],w:['Equipamentos envelhecidos','Pouca articulação com laboratórios privados','Iniciação científica subutilizada'],o:['Crescimento da medicina diagnóstica','Parcerias com clínicas e hospitais','Demanda por análises clínicas'],t:['IES próximas com infraestrutura nova','Manutenção cara de equipamentos','Alta competitividade profissional']},gut:[['Equipamentos com idadé avançada',4,4,5],['Iniciação científica subutilizada',4,3,4],['Falta de convênios com laboratórios',4,4,4],['Carga prática limitada',5,4,4],['Poucos casos reais antes do estágio',3,3,4]],actions:[['Programa de iniciação científica','Prática e produção acadêmica','Laboratórios','Próximo semestre','Coordenação + docentes','Edital e supervisão','Baixo/Médio'],['Convênios com laboratórios clínicos','Ampliar campos de prática','Região','90 dias','Coordenação + Direção','Mapeamento e visitas','Baixo'],['Plano de modernização de equipamentos','Preservar diferencial laboratorial','Laboratórios','12 a 18 meses','Direção','Diagnóstico e cronograma','Alto']],insight:'IC é a alavanca rápida; modernização dos equipamentos é a pauta estratégica.'},
+{id:'cont',name:'Ciências Contábeis',short:'CON',color:'#6B2D8B',light:'#F0E6F5',meta:'Curso com tradição · gestão precisa de instrumentação',north:'Alunos aprovados ou em preparação ativa para o Exame de Suficiência do CFC',swot:{s:['Profissão regulamentada','Tradição na unidade','Aluno trabalha cedo na área'],w:['Sem núcleo CFC','Distância entre conteúdo e exigências do CFC','Pouca mensuração de egressos'],o:['Empreendedorismo demanda contadores','Reforma tributária exigé atualização','Expansão da contabilidade digital'],t:['Automação de tarefas operacionais','EAD barato','Risco sé aprovação CFC for baixa']},gut:[['Sem núcleo de preparação CFC',5,5,5],['Sem mensuração dé aprovação',4,4,4],['Defasagem digital e tributária',4,4,5],['Pouca conexão com escritórios',3,3,3],['Falta de escritório-modelo',4,3,4]],actions:[['Criar núcleo CFC','Indicador de qualidade profissional','Coordenação','Próximo semestre','Coordenação + docentes','Simulados e grupos de estudo','Baixo'],['Medir aprovação dos egressos','Sem dado não há gestão','Coordenação','Imediato','Coordenação + secretaria','Pesquisa é acompanhamento','Zero'],['Parceria com escritórios','Prática e colocação','Região','90 dias','Coordenação + Carreiras','Convênios formais','Baixo']],insight:'Aprovação no CFC precisa virar indicador de gestão, não assunto informal.'},
+{id:'dir',name:'Direito',short:'DIR',color:'#0D1B3E',light:'#D4DCE8',meta:'Maior curso da unidade · 12 saídas em 2026',north:'Alunos com horas de prática jurídica real acumuladas',swot:{s:['Maior curso da unidade','Sem concorrente direto em Cianorte','Prestígio regional'],w:['Carteiras inadequadas ao Vade Mecum','Aulas teóricas demais','NPJ subutilizado'],o:['Reposicionar NPJ','Parceria com OAB Cianorte','Especialização em áreas regionais'],t:['Mercado saturado','Baixa aprovação nacional na OAB','Risco de queda na percepção de qualidade']},gut:[['12 saídas em 2026',5,5,5],['Carteiras inadequadas',4,5,4],['NPJ subutilizado',5,4,5],['Aulas teóricas demais',4,4,5],['Sem preparação estruturada OAB',4,3,5]],actions:[['Substituir carteiras','Dor diária apontada pela CPA','Salas de Direito','90 dias','Direção + patrimônio','Cotação e troca gradual','Médio/Alto'],['Reposicionar NPJ','Retenção e diferencial local','NPJ','Próximo semestre','Coordenação + supervisores','Atendimentos e casos reais','Baixo'],['Preparação OAB com OAB local','Reputação e empregabilidade','Auditório','7º período','Coordenação + OAB','Simulados e workshops','Baixo']],insight:'Direito tem massa e vantagem local. Carteiras + NPJ ativo é pacote dé alto impacto.'},
+{id:'ef',name:'Educação Física',short:'EFI',color:'#1A7A4A',light:'#E8F5EC',meta:'Complexo esportivo é o maior ativo físico da unidade',north:'Alunos com intervenção prática supervisionada realizada',swot:{s:['Complexo esportivo forte','Curso prático por natureza','Mercado regional aquecido'],w:['Complexo subutilizado em extensão','Poucos convênios com escolas','Sem programa comunitário permanente'],o:['Bem-estar e longevidade em alta','Demanda por personal trainer','Ausência dé oferta consolidada regional'],t:['Cursos técnicos concorrentes','Aluno quer formação rápida','Diferencial físico pode não ser percebido']},gut:[['Complexo subutilizado',4,4,5],['Falta de convênios com escolas',4,3,4],['Sem programa comunitário',3,3,4],['Pouca visibilidade do curso',3,3,4],['Poucas avaliações funcionais',4,3,4]],actions:[['Avaliação funcional comunitária','Laboratório vivo para alunos','Complexo esportivo','Próximo semestre','Coordenação + docentes','Edital e relatórios','Baixo'],['Convênio com escolas','Campo de estágio formal','Escolas públicas','60 dias','Coordenação + Carreiras','Visitas e termos','Zero'],['Festival dé atividade física','Visibilidade e prática','Campus','Semestral','Coordenação + alunos','Programação aberta','Baixo']],insight:'O complexo esportivo precisa aparecer em prática, extensão e marketing.'},
 {id:'enf',name:'Enfermagem',short:'ENF',color:'#E67E22',light:'#FCEFE0',meta:'CPA 2025: pedido por coordenação com formação clínica',north:'Alunos com estágio supervisionado em ambiente hospitalar acima do mínimo',swot:{s:['Demanda elevada por enfermagem','Profissão essencial','Hospitais e UBS na região'],w:['Pedido CPA por perfil clínico na coordenação','Déficit de simuladores','Convênios limitam prática'],o:['Envelhecimento populacional','Crescimento de clínicas','Pós em UTI, oncologia e geriatria'],t:['IES com hospital-escola','Custo de laboratórios','Sobrecarga profissional afasta candidatos']},gut:[['Coordenação sem perfil clínico',5,5,5],['Déficit de simulador',4,4,4],['Convênios hospitalares limitados',4,4,4],['Carga prática abaixo do potencial',5,4,4],['Poucas simulações de emergência',4,3,4]],actions:[['Avaliar coordenação clínica','Responder demanda formal da CPA','Direção + RH','Imediato','Direção','Avaliação e seleção se necessário','Médio'],['Simulador de paciente','Treino seguro antes do real','Laboratório','Próximo semestre','Coordenação + Direção','Cotação compra/locação','Alto/Médio'],['Ampliar convênios hospitalares','Garantir vagas de estágio','Região','90 dias','Coordenação + Direção','Visitas institucionais','Baixo']],insight:'A demanda da CPA por perfil clínico é prioridade política, acadêmica e reputacional.'},
-{id:'psi',name:'Psicologia',short:'PSI',color:'#7B2D8B',light:'#F1E6F4',meta:'Segundo maior curso da unidade · 9 saídas em 2026',north:'Alunos com horas de atendimento supervisionado realizadas',swot:{s:['Segundo maior curso','Sem concorrente direto local','Saúde mental em alta'],w:['NPP subutilizado','Pouca diversidade de estágios','Início muito teórico'],o:['Saúde mental como pauta nacional','Parcerias com escolas e UBS','TCC e neuropsicologia'],t:['Plataformas online de psicoterapia','Saturação do mercado','Risco se prática for insuficiente']},gut:[['NPP subutilizado',5,4,5],['9 saídas em 2026',5,5,4],['Pouca diversidade de estágios',4,3,4],['Início do curso muito teórico',4,4,4],['Pouca produção científica visível',3,2,4]],actions:[['Expandir NPP à comunidade','Prática, impacto e marketing','NPP','Próximo semestre','Coordenação + supervisores','Edital de atendimento','Baixo'],['Trilhas de estágio','Diferenciar formação','Parceiros','90 dias','Coordenação','Mapeamento e termos','Baixo'],['Retenção no 1º período','Atacar evasão precoce','Sala de aula','Imediato','Coordenação + tutores','Rodas quinzenais','Baixo']],insight:'NPP comunitário gera prática, marca e diferenciação regional.'},
-{id:'ead',name:'EAD / Semipresencial',short:'EAD',color:'#2C3E50',light:'#DDE3E9',meta:'CPA 2025: indicadores digitais como NSA · sem instrumentação',north:'Alunos ativos com progresso semanal comprovado no AVA',swot:{s:['Baixo custo e escala','Mensalidade competitiva','Flexibilidade ao adulto-trabalhador'],w:['Indicadores digitais sem medição','Tutoria sem protocolo claro','Baixo pertencimento à unidade'],o:['Crescimento do EAD','Captação em cidades sem oferta','IA para personalização'],t:['Concorrentes com escala superior','Regulação em revisão','Percepção de qualidade inferior']},gut:[['Sem indicadores digitais',5,5,5],['Tutoria sem protocolo',5,5,4],['Aluno sem pertencimento',4,3,5],['Baixa adesão a aulas ao vivo',4,4,4],['Sem alerta de risco',5,4,5]],actions:[['Instrumentar indicadores no AVA','Sem dado não há gestão','Núcleo EAD + TI','90 dias','Coordenação EAD','Relatórios automáticos','Baixo'],['Tutoria ativa em 48h','EAD perde aluno no silêncio','Núcleo EAD','Imediato','Tutores','Alerta + script + registro','Baixo'],['Aulas gravadas em 24h','Aluno trabalha e precisa flexibilidade','Plataforma','Próximo semestre','Professores','Padronizar gravação','Zero']],insight:'No EAD, a prioridade zero é medir. Sem indicador digital, toda gestão é cega.'}
+{id:'psi',name:'Psicologia',short:'PSI',color:'#7B2D8B',light:'#F1E6F4',meta:'Segundo maior curso da unidade · 9 saídas em 2026',north:'Alunos com horas dé atendimento supervisionado realizadas',swot:{s:['Segundo maior curso','Sem concorrente direto local','Saúde mental em alta'],w:['NPP subutilizado','Pouca diversidade de estágios','Início muito teórico'],o:['Saúde mental como pauta nacional','Parcerias com escolas e UBS','TCC e neuropsicologia'],t:['Plataformas online de psicoterapia','Saturação do mercado','Risco se prática for insuficiente']},gut:[['NPP subutilizado',5,4,5],['9 saídas em 2026',5,5,4],['Pouca diversidade de estágios',4,3,4],['Início do curso muito teórico',4,4,4],['Pouca produção científica visível',3,2,4]],actions:[['Expandir NPP à comunidade','Prática, impacto e marketing','NPP','Próximo semestre','Coordenação + supervisores','Edital dé atendimento','Baixo'],['Trilhas de estágio','Diferenciar formação','Parceiros','90 dias','Coordenação','Mapeamento e termos','Baixo'],['Retenção no 1º período','Atacar evasão precoce','Sala dé aula','Imediato','Coordenação + tutores','Rodas quinzenais','Baixo']],insight:'NPP comunitário gera prática, marca e diferenciação regional.'},
+{id:'ead',name:'EAD / Semipresencial',short:'EAD',color:'#2C3E50',light:'#DDE3E9',meta:'CPA 2025: indicadores digitais como NSA · sem instrumentação',north:'Alunos ativos com progresso semanal comprovado no AVA',swot:{s:['Baixo custo e escala','Mensalidade competitiva','Flexibilidadé ao adulto-trabalhador'],w:['Indicadores digitais sem medição','Tutoria sem protocolo claro','Baixo pertencimento à unidade'],o:['Crescimento do EAD','Captação em cidades sem oferta','IA para personalização'],t:['Concorrentes com escala superior','Regulação em revisão','Percepção de qualidade inferior']},gut:[['Sem indicadores digitais',5,5,5],['Tutoria sem protocolo',5,5,4],['Aluno sem pertencimento',4,3,5],['Baixa adesão a aulas ao vivo',4,4,4],['Sem alerta de risco',5,4,5]],actions:[['Instrumentar indicadores no AVA','Sem dado não há gestão','Núcleo EAD + TI','90 dias','Coordenação EAD','Relatórios automáticos','Baixo'],['Tutoria ativa em 48h','EAD perdé aluno no silêncio','Núcleo EAD','Imediato','Tutores','Alerta + script + registro','Baixo'],['Aulas gravadas em 24h','Aluno trabalha e precisa flexibilidade','Plataforma','Próximo semestre','Professores','Padronizar gravação','Zero']],insight:'No EAD, a prioridade zero é medir. Sem indicador digital, toda gestão é cega.'}
 ];
 
 const $=id=>document.getElementById(id);
-function esc(v){return String(v).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
+function esc(v){var m={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'};return String(v).replace(/[&<>"]/g,function(c){return m[c]||c;});}
 function normalizeCourse(raw){return{...raw,actions:raw.actions.map(a=>({what:a[0],why:a[1],where:a[2],when:a[3],who:a[4],how:a[5],howMuch:a[6]})),gut:raw.gut.map(g=>({problem:g[0],g:g[1],u:g[2],t:g[3],score:g[1]*g[2]*g[3]})).sort((a,b)=>b.score-a.score)}}
 let current=COURSES[0].id;
 const userState={};
@@ -845,67 +1308,8 @@ function selectCourse(id){
   $("courseName").textContent=c.name;
   $("courseMeta").textContent=c.meta;
   $("northStar").textContent='"'+c.north+'"';
-  renderNorthMethod(c);renderSwot(c);renderGut(c);renderW2H(c);renderManagement(c);renderIshikawa(c);renderEisenhower(c);
+  renderSwot(c);renderGut(c);renderW2H(c);renderManagement(c);renderIshikawa(c);renderEisenhower(c);
   $("insightText").textContent=c.insight;
-}
-
-
-function getNorthInputs(c){
-  const map={
-    adm:['Amplitude: alunos envolvidos em práticas reais','Profundidade: entregáveis gerenciais por disciplina','Frequência: interações com empresas locais','Eficiência: práticas documentadas com feedback docente'],
-    ads:['Amplitude: alunos com repositório ativo','Profundidade: projetos completos publicados','Frequência: commits e entregas semanais','Eficiência: projetos validados por usuário ou banca'],
-    bio:['Amplitude: alunos em prática laboratorial','Profundidade: horas práticas acima do mínimo','Frequência: ciclos mensais de experimentação','Eficiência: evidências, laudos e protocolos concluídos'],
-    cont:['Amplitude: alunos inscritos no núcleo CFC','Profundidade: simulados concluídos por aluno','Frequência: rotina semanal de preparação','Eficiência: evolução por área de competência'],
-    enf:['Amplitude: alunos em campos de prática','Profundidade: procedimentos supervisionados','Frequência: feedback por ciclo de estágio','Eficiência: competências validadas por docente'],
-    edf:['Amplitude: alunos em intervenção supervisionada','Profundidade: planos de treino/saúde aplicados','Frequência: atendimentos ou ações comunitárias','Eficiência: resultados medidos no público atendido'],
-    psi:['Amplitude: alunos em atendimento supervisionado','Profundidade: horas e diversidade de casos','Frequência: supervisões e devolutivas','Eficiência: qualidade dos registros e evolução do caso'],
-    ead:['Amplitude: alunos ativos no AVA','Profundidade: progresso real por unidade','Frequência: acessos e entregas semanais','Eficiência: alertas respondidos em até 48h']
-  };
-  return map[c.id] || ['Amplitude: alunos alcançados','Profundidade: intensidade da experiência','Frequência: recorrência de uso ou prática','Eficiência: qualidade e velocidade da entrega'];
-}
-function getNorthGame(c){
-  if(c.id==='ead') return 'Jogo da produtividade e permanência: fazer o aluno avançar no AVA com acompanhamento real.';
-  if(c.id==='ads') return 'Jogo da produtividade: transformar estudo em software funcional, publicado e demonstrável.';
-  if(['adm','cont'].includes(c.id)) return 'Jogo da produtividade profissional: converter aprendizagem em competência de mercado mensurável.';
-  return 'Jogo da experiência prática: converter formação acadêmica em prática supervisionada, evidência e competência.';
-}
-function renderNorthMethod(c){
-  const inputs=getNorthInputs(c);
-  const top=c.gut[0];
-  const first=c.actions[0];
-  const all=COURSES.map(x=>normalizeCourse(x));
-  $('northMethodMain').innerHTML =
-    '<div class="ns-kicker">North Star do curso selecionado</div>'+
-    '<div class="ns-title">'+esc(c.name)+'</div>'+
-    '<div class="ns-star-box"><div class="ns-star-label">Métrica North Star</div><div class="ns-star-value">“'+esc(c.north)+'”</div></div>'+
-    '<p class="ns-copy" style="margin-top:1rem"><strong>Interpretação:</strong> esta é a métrica que melhor traduz o valor central que o curso precisa entregar ao aluno. Ela deve orientar coordenação, professores, ações comerciais, infraestrutura e rotina acadêmica.</p>'+
-    '<p class="ns-copy"><strong>Jogo estratégico:</strong> '+esc(getNorthGame(c))+'</p>'+
-    '<p class="ns-copy"><strong>Problema que mais ameaça a North Star:</strong> '+esc(top.problem)+' <strong>(GUT '+top.score+')</strong>.</p>'+
-    '<p class="ns-copy"><strong>Primeira aposta prática:</strong> '+esc(first.what)+'.</p>';
-  $('northMethodChecklist').innerHTML =
-    '<div class="ns-kicker">Checklist da boa North Star</div>'+
-    '<div class="ns-title">Como validar a métrica</div>'+
-    '<div class="ns-test-list">'+
-      ['Expressa valor real para o aluno, não apenas volume ou matrícula.','Representa a estratégia do curso e sua promessa de diferenciação.','É indicador líder: antecipa retenção, satisfação, empregabilidade ou qualidade percebida.','É acionável pela coordenação, docentes e direção.','É simples de entender por professores, alunos e equipe comercial.','Evita métrica de vaidade: só importa se melhorar a experiência acadêmica.'].map(x=>'<div class="ns-test-item">'+esc(x)+'</div>').join('')+
-    '</div>'+
-    '<div class="alert-bar"><strong>Regra de gestão:</strong> se uma ação não influencia a North Star ou seus inputs, ela deve ser revista antes de consumir tempo e orçamento.</div>';
-  $('northMethodInputs').innerHTML =
-    '<div class="ns-kicker">Inputs da North Star</div>'+
-    '<div class="ns-title">O que precisa mover para a métrica melhorar</div>'+
-    '<p class="ns-copy">A North Star não deve ser perseguida diretamente. A gestão deve atuar nos inputs: fatores que a coordenação consegue influenciar no cotidiano.</p>'+
-    '<div class="ns-formula">'+inputs.map((x,i)=>'<div class="ns-input-card"><strong>Input '+(i+1)+'</strong><span>'+esc(x)+'</span></div>').join('')+'</div>'+
-    '<div class="ns-flow"><div class="ns-flow-box"><b>Inputs</b><span>práticas, frequência, profundidade e eficiência</span></div><div class="ns-arrow">→</div><div class="ns-flow-box"><b>North Star</b><span>'+esc(c.north)+'</span></div><div class="ns-arrow">→</div><div class="ns-flow-box"><b>Resultado</b><span>retenção, satisfação, reputação e qualidade acadêmica</span></div></div>';
-  $('northMethodAll').innerHTML =
-    '<div class="ns-kicker">Mapa geral dos cursos</div>'+
-    '<div class="ns-title">North Star de cada curso</div>'+
-    '<p class="ns-copy">Use esta visão como placar executivo. Cada coordenação deve reportar mensalmente evolução da sua North Star, dos inputs e da principal aposta 30/60/90 dias.</p>'+
-    '<div class="ns-table">'+
-      '<div class="ns-row ns-head-row"><div>Curso</div><div>North Star</div><div>Inputs sugeridos</div><div>Aposta inicial</div></div>'+
-      all.map(function(x){
-        const ins=getNorthInputs(x).map(v=>'<span class="ns-chip">'+esc(v.split(':')[0])+'</span> '+esc(v.split(':').slice(1).join(':').trim())).join('<br>');
-        return '<div class="ns-row"><div><span class="ns-course-badge">'+esc(x.short)+'</span><br>'+esc(x.name)+'</div><div><strong>“'+esc(x.north)+'”</strong></div><div>'+ins+'</div><div>'+esc(x.actions[0].what)+'<br><span style="color:var(--g1);font-size:.75rem">Problema: '+esc(x.gut[0].problem)+'</span></div></div>';
-      }).join('')+
-    '</div>';
 }
 
 function renderSwot(c){
@@ -919,20 +1323,20 @@ function priority(score){if(score>=100)return['b-crit','Crítico'];if(score>=75)
 
 function renderGut(c){
   const max=Math.max(125,...c.gut.map(p=>p.score));
-  $("gutBars").innerHTML='<div class="kicker">Gráfico de priorização</div><h3 style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.1rem;margin-bottom:.8rem">Ranking por score GUT</h3>'+c.gut.map(p=>
+  $("gutBars").innerHTML='<div class="kicker">Gráfico de priorização</div><h3 style="font-family:serif;font-size:1.1rem;margin-bottom:.8rem">Ranking por score GUT</h3>'+c.gut.map(p=>
     '<div class="bar-row"><div class="bar-label">'+esc(p.problem)+'</div><div class="track"><div class="fill fill-gut" style="width:'+Math.max(8,p.score/max*100)+'%"></div></div><div class="score-val">'+p.score+'</div></div>'
   ).join("");
   $("gutTable").innerHTML=
     '<div class="gut-row gut-head-row"><div>#</div><div>Problema</div><div>G</div><div>U</div><div>T</div><div>Score</div><div>Prior.</div></div>'+
     c.gut.map((p,i)=>{
       const pr=priority(p.score);
-      return '<div class="gut-row"><div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.7rem">'+String(i+1).padStart(2,"0")+'</div><div>'+esc(p.problem)+'</div><div><span class="num-badge '+([5].includes(p.g)?'nb-high':'')+'">'+p.g+'</span></div><div><span class="num-badge '+([5].includes(p.u)?'nb-high':'')+'">'+p.u+'</span></div><div><span class="num-badge '+([5].includes(p.t)?'nb-high':'')+'">'+p.t+'</span></div><div class="score-val">'+p.score+'</div><div><span class="badge-pill '+pr[0]+'">'+pr[1]+'</span></div></div>';
+      return '<div class="gut-row"><div style="font-family:monospace;font-size:.7rem">'+String(i+1).padStart(2,"0")+'</div><div>'+esc(p.problem)+'</div><div><span class="num-badge '+([5].includes(p.g)?'nb-high':'')+'">'+p.g+'</span></div><div><span class="num-badge '+([5].includes(p.u)?'nb-high':'')+'">'+p.u+'</span></div><div><span class="num-badge '+([5].includes(p.t)?'nb-high':'')+'">'+p.t+'</span></div><div class="score-val">'+p.score+'</div><div><span class="badge-pill '+pr[0]+'">'+pr[1]+'</span></div></div>';
     }).join("");
   const top=c.gut[0];
   const pts=[[85,10+(5-top.g)*8],[18+(5-top.u)*6,128-(5-top.u)*2],[152-(5-top.t)*6,128-(5-top.t)*2]];
   $("gutRadar").innerHTML=
-    '<div><div class="kicker" style="color:rgba(255,255,255,.6)">Triângulo GUT</div><div style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.05rem;color:#fff;margin-bottom:.5rem">Problema crítico:<br><em>'+esc(top.problem)+'</em></div></div>'+
-    '<div style="position:relative;width:190px;height:166px;margin:.5rem auto"><span style="position:absolute;font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.58rem;color:var(--gold2);left:50%;top:-8px;transform:translateX(-50%)">G '+top.g+'</span><span style="position:absolute;font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.58rem;color:var(--gold2);left:-5px;bottom:0">U '+top.u+'</span><span style="position:absolute;font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.58rem;color:var(--gold2);right:-5px;bottom:0">T '+top.t+'</span><svg viewBox="0 0 170 150" style="width:100%;height:100%;overflow:visible"><polygon points="85,10 18,128 152,128" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/><polygon points="85,45 45,112 125,112" fill="none" stroke="rgba(255,255,255,.15)"/><polygon points="'+pts.map(p=>p.join(",")).join(" ")+'" fill="rgba(245,166,35,.45)" stroke="var(--gold2)" stroke-width="3"/></svg></div>'+
+    '<div><div class="kicker" style="color:rgba(255,255,255,.6)">Triângulo GUT</div><div style="font-family:serif;font-size:1.05rem;color:#fff;margin-bottom:.5rem">Problema crítico:<br><em>'+esc(top.problem)+'</em></div></div>'+
+    '<div style="position:relative;width:190px;height:166px;margin:.5rem auto"><span style="position:absolute;font-family:monospace;font-size:.58rem;color:var(--gold2);left:50%;top:-8px;transform:translateX(-50%)">G '+top.g+'</span><span style="position:absolute;font-family:monospace;font-size:.58rem;color:var(--gold2);left:-5px;bottom:0">U '+top.u+'</span><span style="position:absolute;font-family:monospace;font-size:.58rem;color:var(--gold2);right:-5px;bottom:0">T '+top.t+'</span><svg viewBox="0 0 170 150" style="width:100%;height:100%;overflow:visible"><polygon points="85,10 18,128 152,128" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/><polygon points="85,45 45,112 125,112" fill="none" stroke="rgba(255,255,255,.15)"/><polygon points="'+pts.map(p=>p.join(",")).join(" ")+'" fill="rgba(245,166,35,.45)" stroke="var(--gold2)" stroke-width="3"/></svg></div>'+
     '<p style="font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.4">Quanto maior o preenchimento, maior a combinação G·U·T.</p>';
 }
 
@@ -944,139 +1348,114 @@ function renderW2H(c){
     '</div></section>'
   ).join("");
   $("w2hList").innerHTML=c.actions.map((a,i)=>
-    '<article class="action-card card"><h3 style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.15rem;margin-bottom:.4rem">'+String(i+1).padStart(2,"0")+' · '+esc(a.what)+'</h3><p style="color:var(--g1);font-style:italic;margin-bottom:.9rem"><strong>Por quê:</strong> '+esc(a.why)+'</p><div class="fields"><div class="field"><span>Onde</span><div>'+esc(a.where)+'</div></div><div class="field"><span>Quando</span><div>'+esc(a.when)+'</div></div><div class="field"><span>Quem</span><div>'+esc(a.who)+'</div></div><div class="field"><span>Como</span><div>'+esc(a.how)+'</div></div><div class="field"><span>Custo</span><div>'+esc(a.howMuch)+'</div></div></div></article>'
+    '<article class="action-card card"><h3 style="font-family:serif;font-size:1.15rem;margin-bottom:.4rem">'+String(i+1).padStart(2,"0")+' · '+esc(a.what)+'</h3><p style="color:var(--g1);font-style:italic;margin-bottom:.9rem"><strong>Por quê:</strong> '+esc(a.why)+'</p><div class="fields"><div class="field"><span>Onde</span><div>'+esc(a.where)+'</div></div><div class="field"><span>Quando</span><div>'+esc(a.when)+'</div></div><div class="field"><span>Quem</span><div>'+esc(a.who)+'</div></div><div class="field"><span>Como</span><div>'+esc(a.how)+'</div></div><div class="field"><span>Custo</span><div>'+esc(a.howMuch)+'</div></div></div></article>'
   ).join("");
 }
 
 function renderManagement(c){
-  var p = c.gut[0];
-  var a = c.actions[0];
-  var nsTxt = esc(c.north || 'Indicador estratégico do curso');
-  var actTxt = esc(a.what || 'Ação prioritária');
+  var p=c.gut[0],a=c.actions[0];
+  var actTxt=esc(a.what);
+  var nsTxt=esc(c.north);
 
-  function joinParts(parts){ return parts.join(''); }
-  function explain(method, lens, idea, p1, p2, p3){
-    return joinParts([
-      '<div class="mg-explain">',
-        '<div class="kicker">Como interpretar · ', esc(lens), '</div>',
-        '<p><strong>', esc(method), ' — ', esc(idea), '.</strong></p>',
-        '<p>', p1, '</p>',
-        '<p>', p2, '</p>',
-        '<p>', p3, '</p>',
-      '</div>'
-    ]);
-  }
-  function card(tag, title, sub, visual, body){
-    return joinParts([
-      '<article class="mg-card card">',
-        '<div class="mg-head"><div>',
-          '<span class="mg-tag">', esc(tag), '</span>',
-          '<div class="mg-title">', esc(title), '</div>',
-          '<div class="mg-sub">', esc(sub), '</div>',
-        '</div></div>',
-        '<div class="mg-visual">', visual, '</div>',
-        body,
-      '</article>'
-    ]);
+  function mg(tag,title,sub,visual,b1,b2,b3){
+    return '<article class="mg-card card">'
+      +'<div class="mg-head"><div>'
+      +'<span class="mg-tag">'+tag+'</span>'
+      +'<div class="mg-title">'+title+'</div>'
+      +'<div class="mg-sub">'+sub+'</div>'
+      +'</div></div>'
+      +'<div class="mg-visual">'+visual+'</div>'
+      +'<div class="mg-explain">'
+      +'<div style="margin-bottom:.85rem;padding-bottom:.7rem;border-bottom:1px dashed var(--g3)">'
+      +'<span class="mg-tag">'+tag+'</span>'
+      +'<span style="display:block;font-family:serif;font-size:1.15rem;margin-bottom:.2rem;font-weight:700">'+title+'</span>'
+      +'<span style="font-family:monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g1)">'+sub+'</span>'
+      +'</div>'
+      +'<p>'+b1+'</p><p>'+b2+'</p><p>'+b3+'</p>'
+      +'</div></article>';
   }
 
-  var pdcaSteps = [
-    ['P','Planejar','Problema crítico: '+esc(p.problem)],
-    ['D','Fazer','Executar: '+actTxt],
-    ['C','Checar','Medir CPA, NPS e evasão'],
-    ['A','Agir','Padronizar ou corrigir']
-  ];
-  var pdcaVisual = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;max-width:420px;margin:auto">' +
-    pdcaSteps.map(function(x,i){
-      var radius = ['80px 8px 8px 8px','8px 80px 8px 8px','8px 8px 8px 80px','8px 8px 80px 8px'][i];
-      return '<div style="min-height:92px;padding:.8rem;border:1px solid var(--g4);background:var(--g5);border-radius:'+radius+'">' +
-        '<div style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.45rem;color:var(--course)">'+x[0]+'</div>' +
-        '<div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)">'+x[1]+'</div>' +
-        '<div style="font-size:.76rem;margin-top:.3rem">'+x[2]+'</div>' +
-      '</div>';
-    }).join('') + '</div>';
+  // PDCA
+  var pdcaSteps=[['P','Planejar','Meta e diagnóstico'],['D','Fazer','Executar com RACI'],['C','Checar','Medir KPIs e CPA'],['A','Agir','Padronizar ou corrigir']];
+  var radii=['80px 8px 8px 8px','8px 80px 8px 8px','8px 8px 8px 80px','8px 8px 80px 8px'];
+  var pdcaHtml='<div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;max-width:380px;margin:auto">';
+  pdcaSteps.forEach(function(x,i){
+    pdcaHtml+='<div style="min-height:80px;padding:.8rem;border:1px solid var(--g4);background:var(--g5);border-radius:'+radii[i]+'">'
+      +'<div style="font-family:serif;font-size:1.45rem;color:var(--course)">'+x[0]+'</div>'
+      +'<div style="font-family:monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)">'+x[1]+'</div>'
+      +'<div style="font-size:.76rem;margin-top:.3rem">'+x[2]+'</div>'
+      +'</div>';
+  });
+  pdcaHtml+='</div>';
 
-  var dmaicSteps = [
-    ['D','Define','Problema: '+esc(p.problem)],
-    ['M','Measure','Score GUT: '+p.score],
-    ['A','Analyze','Ishikawa: 6 causas'],
-    ['I','Improve','5W2H: '+actTxt],
-    ['C','Control','NPS + CPA mensal']
-  ];
-  var dmaicVisual = '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem">' +
-    dmaicSteps.map(function(x){
-      return '<div style="background:var(--g5);border:1px solid var(--g4);border-top:4px solid var(--course);border-radius:6px;padding:.65rem;min-height:112px">' +
-        '<div style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.3rem;color:var(--course)">'+x[0]+'</div>' +
-        '<div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);margin-bottom:.25rem">'+x[1]+'</div>' +
-        '<div style="font-size:.72rem;line-height:1.25">'+x[2]+'</div>' +
-      '</div>';
-    }).join('') + '</div>';
+  // DMAIC
+  var dmaicSteps=[['D','Define','Problema: '+esc(p.problem)],['M','Measure','Score GUT: '+p.score],['A','Analyze','Ishikawa: causas-raiz'],['I','Improve','5W2H: '+actTxt],['C','Control','NPS + CPA mensal']];
+  var dmaicHtml='<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem">';
+  dmaicSteps.forEach(function(x){
+    dmaicHtml+='<div style="background:var(--g5);border:1px solid var(--g4);border-top:4px solid var(--course);border-radius:6px;padding:.65rem;min-height:110px">'
+      +'<div style="font-family:serif;font-size:1.3rem;color:var(--course)">'+x[0]+'</div>'
+      +'<div style="font-family:monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);margin-bottom:.25rem">'+x[1]+'</div>'
+      +'<div style="font-size:.72rem;line-height:1.25">'+x[2]+'</div>'
+      +'</div>';
+  });
+  dmaicHtml+='</div>';
 
-  var raci = [
-    ['R','Responsible','Quem executa a tarefa',esc(a.who),'#002060'],
-    ['A','Accountable','Quem responde pelo resultado','Direção','#E30613'],
-    ['C','Consulted','Quem orienta com expertise','Coordenação','#0E7C4A'],
-    ['I','Informed','Quem precisa ser atualizado','Alunos + CPA','#8898AA']
-  ];
-  var raciVisual = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem">' +
-    raci.map(function(x){
-      return '<div style="background:var(--bone);border:1px solid var(--g4);border-radius:6px;overflow:hidden">' +
-        '<div style="background:'+x[4]+';color:#fff;text-align:center;padding:.5rem;font-family:&quot;DM Serif Display&quot;,serif;font-size:1.5rem">'+x[0]+'</div>' +
-        '<div style="padding:.65rem">' +
-          '<div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);margin-bottom:.2rem">'+x[1]+'</div>' +
-          '<div style="font-size:.78rem;margin-bottom:.3rem">'+x[2]+'</div>' +
-          '<div style="font-size:.82rem;font-weight:600;color:'+x[4]+'">'+x[3]+'</div>' +
-        '</div></div>';
-    }).join('') + '</div>';
+  // RACI
+  var raciCols=[['R','Responsible','Executa a tarefa',esc(a.who),'#002060'],['A','Accountable','Responde pelo resultado','Direção','#E30613'],['C','Consulted','Orienta com expertise','Coordenação','#0E7C4A'],['I','Informed','Precisa ser atualizado','Alunos + CPA','#8898AA']];
+  var raciHtml='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem">';
+  raciCols.forEach(function(x){
+    raciHtml+='<div style="background:var(--bone);border:1px solid var(--g4);border-radius:6px;overflow:hidden">'
+      +'<div style="background:'+x[4]+';color:#fff;text-align:center;padding:.5rem;font-family:serif;font-size:1.5rem">'+x[0]+'</div>'
+      +'<div style="padding:.65rem">'
+      +'<div style="font-family:monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);margin-bottom:.2rem">'+x[1]+'</div>'
+      +'<div style="font-size:.78rem;margin-bottom:.3rem">'+x[2]+'</div>'
+      +'<div style="font-size:.82rem;font-weight:600;color:'+x[4]+'">'+x[3]+'</div>'
+      +'</div></div>';
+  });
+  raciHtml+='</div>';
 
-  var northVisual = joinParts([
-    '<div style="background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:8px;padding:1.5rem 1.8rem">',
-      '<div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.6rem">North Star · ', esc(c.name), '</div>',
-      '<div style="font-family:&quot;DM Serif Display&quot;,serif;font-size:1.55rem;line-height:1.25;color:#fff;font-style:italic">&quot;', nsTxt, '&quot;</div>',
-      '<div style="margin-top:1rem;font-size:.85rem;color:rgba(255,255,255,.7)">Toda ação deve mover este indicador. Se não move, questione a ação.</div>',
-    '</div>'
-  ]);
+  // NORTH STAR
+  var nsHtml='<div style="background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:8px;padding:1.5rem 1.8rem">'
+    +'<div style="font-family:monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.6rem">North Star · '+esc(c.name)+'</div>'
+    +'<div style="font-family:serif;font-size:1.55rem;line-height:1.25;color:#fff;font-style:italic">"'+nsTxt+'"</div>'
+    +'<div style="margin-top:1rem;font-size:.85rem;color:rgba(255,255,255,.7)">Toda ação deve mover este indicador. Se não move, questioné a ação.</div>'
+    +'</div>';
 
-  var html = '';
-  html += card('PDCA / MASP','Ciclo de melhoria contínua','Planejar · Fazer · Checar · Agir', pdcaVisual,
-    explain('PDCA','Aplicação ao curso','melhoria contínua estruturada',
-      'O <strong>PDCA</strong> organiza a melhoria em ciclos curtos. Neste curso, o ciclo começa pelo problema priorizado pela Matriz GUT: <strong>'+esc(p.problem)+'</strong>, com score '+p.score+'.',
-      'A fase <strong>Plan</strong> define meta e causa-raiz; <strong>Do</strong> executa a ação; <strong>Check</strong> mede CPA, NPS, evasão e desempenho; <strong>Act</strong> padroniza o que funcionou ou corrige o que falhou.',
-      'Primeira ação concreta: <strong>'+actTxt+'</strong>. Antes de executar, defina meta, responsável, prazo e evidência de conclusão.'
+  $("managementGraphics").innerHTML=[
+    mg('PDCA / MASP','Ciclo de melhoria contínua','Planejar · Fazer · Checar · Agir',
+      pdcaHtml,
+      'O <strong>PDCA</strong> (Plan-Do-Check-Act) é o método de melhoria contínua. Cada ciclo começa com um problema priorizado pela Matriz GUT — neste caso: <strong>'+esc(p.problem)+'</strong>, score '+p.score+'.',
+      'A fase <strong>Plan</strong> definé a meta (North Star: "'+nsTxt+'"), identifica causas (Ishikawa) e planeja o 5W2H. A fase <strong>Do</strong> executa com RACI definido. A fase <strong>Check</strong> usa CPA, NPS e indicadores mensais. A fase <strong>Act</strong> padroniza ou corrige.',
+      'Primeira ação concreta: <strong>'+actTxt+'</strong>. Defina uma métrica de sucesso antes de executar — sem dado, o ciclo não fecha.'
+    ),
+    mg('DMAIC','Metodologia Six Sigma','Define · Measure · Analyze · Improve · Control',
+      dmaicHtml,
+      'O <strong>DMAIC</strong> é a espinha dorsal do Six Sigma é aplica-sé a problemas recorrentes com causas não óbvias. No curso de '+esc(c.name)+', o problema <strong>'+esc(p.problem)+'</strong> (score '+p.score+') exige investigação estruturada antes de qualquer ação.',
+      'A etapa <strong>Measure</strong> já está feita: CPA 2025 fornece dados quantitativos. A etapa <strong>Analyze</strong> usa o Diagrama de Ishikawa. A etapa <strong>Improve</strong> é o plano 5W2H. A etapa <strong>Control</strong> fecha o ciclo com NPS monitorado mensalmente.',
+      'Diferente do PDCA, o DMAIC exige evidência estatística antes dé agir. Isso evita soluções rápidas que não eliminam a causa-raiz e desperdiçam recursos.'
+    ),
+    mg('RACI','Matriz de responsabilidades','Responsible · Accountable · Consulted · Informed',
+      raciHtml,
+      'A <strong>Matriz RACI</strong> elimina a ambiguidade de responsabilidades, principal causa de inação em projetos institucionais. Para a ação <strong>'+actTxt+'</strong>, há um único responsável pela execução (R): <strong>'+esc(a.who)+'</strong>.',
+      'O papel <strong>Accountable</strong> (A) pertence à Direção, que responde peranté a mantenedora. <strong>Consulted</strong> (C) é a coordenação que tem o contexto pedagógico. <strong>Informed</strong> (I) inclui alunos e CPA, que monitoram o resultado sem interferir na execução.',
+      'Sem RACI, toda reunião redefine responsabilidades. Com RACI, a pergunta sempre é: "Quem é o R desta ação?" — e há uma resposta clara.'
+    ),
+    mg('North Star','Placar estratégico do curso','A métrica qué alinha todas as decisões',
+      nsHtml,
+      'A <strong>North Star</strong> é a métrica única que representa o valor essencial entregué ao aluno. O conceito foi popularizado por Facebook, Airbnb e Spotify para alinhar times grandes em torno de um único número — é adapta-se perfeitamente à gestão acadêmica como bússola estratégica.',
+      'Para '+esc(c.name)+', a North Star é: <strong>"'+nsTxt+'"</strong>. Em toda reunião de coordenação, a pergunta central é: esta decisão move este indicador? Sé a resposta for não, a ação precisa ser justificada ou cancelada.',
+      'NPS 36 significa que há detratores suficientes para travar o crescimento por captação orgânica. Elevar o NPS requer qué a North Star seja vivida pelos alunos — não apenas declarada em documentos internos.'
     )
-  );
-  html += card('DMAIC','Metodologia Six Sigma','Define · Measure · Analyze · Improve · Control', dmaicVisual,
-    explain('DMAIC','Aplicação ao curso','rigor para problemas recorrentes',
-      'O <strong>DMAIC</strong> é indicado quando a dor se repete e a causa não é óbvia. Ele evita decisões por impressão e força o gestor a medir antes de agir.',
-      'No curso de '+esc(c.name)+', o problema <strong>'+esc(p.problem)+'</strong> deve ser definido, medido por indicadores, analisado no Ishikawa, melhorado por 5W2H e controlado por rotina mensal.',
-      'Use DMAIC quando a solução exige evidência. Se o dado não existe, a primeira melhoria é criar a medição.'
-    )
-  );
-  html += card('RACI','Matriz de responsabilidades','Responsible · Accountable · Consulted · Informed', raciVisual,
-    explain('RACI','Aplicação ao curso','clareza de papéis',
-      'A <strong>Matriz RACI</strong> elimina ambiguidade. Para a ação <strong>'+actTxt+'</strong>, o responsável pela execução é <strong>'+esc(a.who)+'</strong>.',
-      'A Direção responde pelo resultado, a coordenação deve ser consultada pelo contexto pedagógico, e alunos/CPA devem ser informados quando o efeito impactar experiência discente.',
-      'Sem RACI, a reunião vira conversa. Com RACI, toda ação sai com dono, prazo e forma de prestação de contas.'
-    )
-  );
-  html += card('North Star','Placar estratégico do curso','A métrica que alinha todas as decisões', northVisual,
-    explain('North Star','A bússola do curso','foco decisório',
-      'A <strong>North Star</strong> traduz o valor essencial que o curso precisa entregar ao aluno. Ela impede que a gestão se perca em ações bonitas, mas pouco relevantes.',
-      'Para '+esc(c.name)+', a métrica central é: <strong>&quot;'+nsTxt+'&quot;</strong>. Em toda reunião, a pergunta deve ser: esta decisão move esse indicador?',
-      'Quando a ação não move a North Star, ela deve ser adiada, delegada ou eliminada. Isso protege tempo, orçamento e energia da equipe.'
-    )
-  );
+  ].join('');
 
-  $('managementGraphics').innerHTML = html;
-  $('managementAlert').innerHTML = '<strong>Foco do diretor:</strong> combine as metodologias. GUT prioriza, Ishikawa encontra causas, PDCA executa, DMAIC mede, RACI distribui responsabilidades e North Star mantém a direção estratégica.';
+  $("managementAlert").innerHTML='<strong>🎯 Foco do diretor:</strong> combiné as metodologias. GUT prioriza, Ishikawa acha causas, PDCA executa, DMAIC mede, RACI distribui responsabilidades e North Star mantém direção estratégica.';
 }
-
 
 function renderIshikawa(c){
   const p=c.gut[0];
   const causes=[
     ['Método',['Rotina sem padronização',c.gut[1].problem,'Planos sem conexão prática']],
-    ['Mão de obra',['Engajamento docente desigual','Formação continuada aplicada','Dependência da coordenação']],
+    ['Mão dé obra',['Engajamento docente desigual','Formação continuada aplicada','Dependência da coordenação']],
     ['Máquina',[c.swot.w[0],'Estrutura precisa sustentar a promessa','Manutenção por criticidade']],
     ['Material',['Casos reais pouco padronizados','Recursos ligados ao mercado','Avaliações de competência']],
     ['Medida',['North Star sem linha de base','CPA, evasão e desempenho integrados','Painel mensal por turma']],
@@ -1093,19 +1472,47 @@ function renderEisenhower(c){
   const doNow=c.gut.filter(p=>p.g>=5&&p.u>=5).slice(0,3);
   const schedule=c.gut.filter(p=>!(p.g>=5&&p.u>=5)&&p.score>=64).slice(0,3);
   const delegate=c.actions.map(a=>({problem:a.what,score:null}));
-  const eliminate=[{problem:'Reuniões sem decisão, dono e prazo'},{problem:'Discussões sem dado de CPA/GUT'},{problem:'Ações sem registro e acompanhamento'}];
+  const eliminate=[{problem:'Reuniões sem decisão, dono e prazo'},{problem:'Discussões sem dado de CPA/GUT'},{problem:'Ações sem registro é acompanhamento'}];
   const qs=[
     ['do','Urgente + Importante','Fazer agora','Ação direta da direção',doNow.length?doNow:c.gut.slice(0,2)],
     ['schedule','Importante + Não urgente','Agendar','Projeto 30/60/90 dias',schedule.length?schedule:c.gut.slice(1,4)],
     ['delegate','Urgente + Menos estratégico','Delegar','RACI e prazo',delegate],
     ['eliminate','Não urgente + Não essencial','Eliminar ou reduzir','Cortar ruído operacional',eliminate]
   ];
-  $("eisenGrid").innerHTML=qs.map(q=>
-    '<article class="e-card card '+q[0]+'"><div class="kicker">'+esc(q[1])+'</div><h3 style="font-family:&quot;DM Serif Display&quot;,serif">'+esc(q[2])+'</h3><div style="font-family:&quot;JetBrains Mono&quot;,monospace;font-size:.62rem;color:var(--g2);text-transform:uppercase;margin-bottom:.6rem">'+esc(q[3])+'</div><ul>'+q[4].map(function(i){return '<li>'+esc(i.problem)+(i.score ? ' <strong>('+i.score+')</strong>' : '')+'</li>';}).join("")+'</ul></article>'
-  ).join("");
+  $("eisenGrid").innerHTML=qs.map(function(q){
+    return '<article class="e-card card '+q[0]+'">'
+      +'<div class="kicker">'+q[1]+'</div>'
+      +'<h3 style="font-family:serif">'+q[2]+'</h3>'
+      +'<div style="font-family:monospace;font-size:.62rem;color:var(--g2);text-transform:uppercase;margin-bottom:.6rem">'+q[3]+'</div>'
+      +'<ul>'+q[4].map(function(i){return '<li>'+esc(i.problem)+(i.score?' <strong>('+i.score+')</strong>':'')+'</li>';}).join('')+'</ul>'
+      +'</article>';
+  }).join('');
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
+
+function showCpaTab(id, btn){
+  // Scope to CPA section only
+  var section = document.getElementById('cpa');
+  if(!section) return;
+  section.querySelectorAll('.cpa-panel').forEach(function(p){
+    p.style.display = 'none';
+  });
+  var panel = document.getElementById('cpa-'+id);
+  if(panel){ panel.style.display = 'block'; }
+  // Updaté active tab styling
+  var tabBar = document.getElementById('cpaTabBar');
+  if(tabBar){
+    tabBar.querySelectorAll('.cpa-tab').forEach(function(b){
+      b.classList.remove('cpa-tab-active');
+    });
+  }
+  if(btn){ btn.classList.add('cpa-tab-active'); }
+  // Re-init charts after panel is visible (Chart.js needs visible canvas)
+  setTimeout(function(){
+    initCPACharts();
+  }, 40);
+}
 function setupTabs(){
   document.querySelectorAll(".tab").forEach(btn=>{
     btn.addEventListener("click",()=>{
@@ -1157,7 +1564,22 @@ function resetCourse(){const idx=COURSES.findIndex(x=>x.id===current);if(idx<0)r
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function init(){
   renderCourseBar();setupTabs();selectCourse(current);
-  setTimeout(initCPACharts,100);
+  // Init CPA charts after a short delay so visible canvases render correctly
+  setTimeout(function(){
+    initCPACharts();
+    window._cpaChartsReady = true;
+  }, 120);
+}
+
+// Lazy chart init: re-init charts for a newly visible panel
+function reinitPanelCharts(panelId){
+  if(!window._cpaChartsReady) return;
+  // Charts that live in sub-panels (Acadêmico, serviços) need recreation
+  var lazyCharts = {
+    'cpa-Acadêmico': function(){ if(!Chart.getChart('chartAcadêmico')) initCPACharts(); },
+    'cpa-serviços':  function(){ if(!Chart.getChart('chartServicos')) initCPACharts(); }
+  };
+  if(lazyCharts[panelId]) lazyCharts[panelId]();
 }
 init();
 </script>
