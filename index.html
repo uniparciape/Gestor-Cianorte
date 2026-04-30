@@ -765,6 +765,96 @@ button{font:inherit;cursor:pointer}
   .lc-arrow{display:none}
   .lc-url{display:none}
 }
+
+/* ═══ DIRETRIZES REGULATÓRIAS ═══ */
+.dreg-hero{background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:12px;padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:6px solid #E30613;position:relative;overflow:hidden}
+.dreg-hero:before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.04)}
+.dreg-hero:after{content:"";position:absolute;right:60px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.025)}
+.dreg-eyebrow{font-size:.65rem;font-family:monospace;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem;position:relative;z-index:1}
+.dreg-title{font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.35rem;position:relative;z-index:1}
+.dreg-sub{font-size:.9rem;color:rgba(255,255,255,.65);position:relative;z-index:1}
+
+/* Course selector pills */
+.dreg-course-bar{display:flex;gap:.5rem;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:.25rem 0 .5rem;margin-bottom:1.5rem}
+.dreg-course-bar::-webkit-scrollbar{display:none}
+.dreg-pill{border:2px solid var(--g3);background:#fff;color:var(--g1);padding:.5rem 1rem;border-radius:999px;font-family:monospace;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:.15s;flex-shrink:0}
+.dreg-pill:hover{border-color:var(--course);color:var(--course);background:var(--courseLight)}
+.dreg-pill.dreg-active{background:var(--course);color:#fff;border-color:var(--course);box-shadow:0 3px 10px rgba(0,32,96,.2)}
+
+/* Progress header */
+.dreg-progress-header{background:#fff;border:1px solid var(--g4);border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:1.2rem;box-shadow:0 2px 8px rgba(0,32,96,.06)}
+.dreg-progress-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:.7rem;gap:1rem;flex-wrap:wrap}
+.dreg-course-name{font-size:1.4rem;font-weight:800;letter-spacing:-.01em}
+.dreg-pct-badge{font-size:1.8rem;font-weight:800;font-family:monospace;line-height:1}
+.dreg-progress-track{height:14px;background:var(--g4);border-radius:999px;overflow:hidden}
+.dreg-progress-fill{height:100%;border-radius:999px;transition:width .5s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--course),#0066cc)}
+.dreg-progress-fill.pct-green{background:linear-gradient(90deg,#0E7C4A,#12a060)}
+.dreg-progress-fill.pct-yellow{background:linear-gradient(90deg,#E67E22,#f39c12)}
+.dreg-progress-fill.pct-red{background:linear-gradient(90deg,#E30613,#c0001b)}
+.dreg-stats{display:flex;gap:1rem;margin-top:.7rem;flex-wrap:wrap}
+.dreg-stat{font-family:monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);display:flex;align-items:center;gap:.35rem}
+.dreg-stat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* Category groups */
+.dreg-groups{display:grid;gap:1rem}
+.dreg-group{background:#fff;border:1px solid var(--g4);border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,32,96,.06)}
+.dreg-group-header{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.2rem;cursor:pointer;user-select:none;transition:.15s;background:var(--g5);border-bottom:1px solid var(--g4)}
+.dreg-group-header:hover{background:var(--courseLight)}
+.dreg-group-title{font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.6rem}
+.dreg-group-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.dreg-group-meta{display:flex;align-items:center;gap:.7rem}
+.dreg-group-pct{font-family:monospace;font-size:.72rem;font-weight:700;color:var(--course)}
+.dreg-group-mini-bar{width:80px;height:6px;background:var(--g3);border-radius:999px;overflow:hidden;flex-shrink:0}
+.dreg-group-mini-fill{height:100%;border-radius:999px;background:var(--course);transition:width .4s}
+.dreg-chevron{font-size:.7rem;color:var(--g1);transition:transform .2s;flex-shrink:0}
+.dreg-group-header.collapsed .dreg-chevron{transform:rotate(-90deg)}
+.dreg-group-body{padding:.5rem .6rem .7rem}
+.dreg-group-body.hidden{display:none}
+
+/* Checklist items */
+.dreg-item{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem .6rem;border-radius:7px;cursor:pointer;transition:.15s;border:1px solid transparent;margin-bottom:2px}
+.dreg-item:hover{background:var(--g5);border-color:var(--g4)}
+.dreg-item.checked{background:#f0fdf4;border-color:#bbf7d0}
+.dreg-item.checked .dreg-item-text{color:var(--g1)}
+.dreg-cb{width:20px;height:20px;border:2px solid var(--g3);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.15s;margin-top:.1rem;background:#fff}
+.dreg-item.checked .dreg-cb{background:#0E7C4A;border-color:#0E7C4A}
+.dreg-cb-check{color:#fff;font-size:.75rem;opacity:0;transition:.1s}
+.dreg-item.checked .dreg-cb-check{opacity:1}
+.dreg-item-body{flex:1;min-width:0}
+.dreg-item-text{font-size:.87rem;line-height:1.4;transition:.15s}
+.dreg-item.checked .dreg-item-text{text-decoration:line-through;color:var(--g2)}
+.dreg-item-meta{font-family:monospace;font-size:.6rem;color:var(--g2);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+.dreg-item-tag{font-family:monospace;font-size:.58rem;padding:.15rem .45rem;border-radius:999px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-left:.3rem}
+.tag-prio{background:#fde8e8;color:#E30613}
+.tag-spec{background:#e8edf6;color:#002060}
+
+/* Actions bar */
+.dreg-actions{display:flex;gap:.6rem;margin-top:1.2rem;flex-wrap:wrap}
+.dreg-btn{border:2px solid var(--g3);background:#fff;color:var(--g1);padding:.5rem 1rem;border-radius:7px;font-family:monospace;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:.15s}
+.dreg-btn:hover{border-color:var(--course);color:var(--course)}
+.dreg-btn-primary{background:var(--course);color:#fff;border-color:var(--course)}
+.dreg-btn-primary:hover{opacity:.88;color:#fff}
+
+/* Summary grid */
+.dreg-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.2rem}
+.dreg-sum-card{background:#fff;border:1px solid var(--g4);border-radius:8px;padding:1rem;text-align:center;border-top:4px solid var(--course)}
+.dreg-sum-num{font-size:1.8rem;font-weight:800;font-family:monospace;color:var(--course);line-height:1}
+.dreg-sum-label{font-family:monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:var(--g1);margin-top:.2rem}
+
+/* Responsive */
+@media(max-width:768px){
+  .dreg-title{font-size:1.3rem}
+  .dreg-summary{grid-template-columns:1fr 1fr}
+  .dreg-course-name{font-size:1.1rem}
+  .dreg-pct-badge{font-size:1.4rem}
+  .dreg-group-mini-bar{width:50px}
+  .dreg-actions{gap:.4rem}
+  .dreg-btn{padding:.45rem .8rem;font-size:.62rem}
+}
+@media(max-width:480px){
+  .dreg-summary{grid-template-columns:1fr}
+  .dreg-group-header{padding:.75rem 1rem}
+}
 </style>
 </head>
 <body>
@@ -797,6 +887,7 @@ button{font:inherit;cursor:pointer}
     <button class="tab" data-tab="eisenhower">06 Eisenhower</button>
     <button class="tab" data-tab="agenda">📅 Agenda</button>
     <button class="tab" data-tab="links">🔗 Links</button>
+    <button class="tab" data-tab="diretrizes">📋 Diretrizes</button>
   </div>
 </nav>
 
@@ -1277,6 +1368,8 @@ button{font:inherit;cursor:pointer}
     <div class="sec-header"><h2 class="sec-title">Dicas de Gestão</h2><p class="sec-desc">PDCA, DMAIC, A3, 8D, RACI, Negociação e North Star aplicados ao curso.</p></div>
     <div class="mgmt-grid" id="managementGraphics"></div>
     <div class="alert-bar" id="managementAlert"></div>
+  
+    <aside class="insight"><div class="insight-label">💡 Síntese do Consultor</div><p class="insight-text" id="insightText"></p></aside>
   </section>
 
   <!-- ══ ISHIKAWA ══ -->
@@ -1602,13 +1695,66 @@ button{font:inherit;cursor:pointer}
 
   </section>
 
-  <aside class="insight"><div class="insight-label">💡 Síntese do Consultor</div><p class="insight-text" id="insightText"></p></aside>
+  <!-- ══ DIRETRIZES REGULATÓRIAS ══ -->
+  <section id="diretrizes" class="section">
+
+    <!-- HERO -->
+    <div class="dreg-hero">
+      <div class="dreg-eyebrow">Procuradoria Institucional · UNIPAR · Versão 01</div>
+      <div class="dreg-title">Diretrizes Regulatórias por Curso</div>
+      <p class="dreg-sub">Checklist de conformidade baseado no Manual de Referências Regulatórias para Coordenadores de Graduação. Selecione um curso e marque os itens concluídos — o progresso é salvo automaticamente.</p>
+    </div>
+
+    <!-- COURSE SELECTOR -->
+    <div id="dregCourseBar" class="dreg-course-bar"></div>
+
+    <!-- PROGRESS HEADER -->
+    <div class="dreg-progress-header" id="dregProgressHeader">
+      <div class="dreg-progress-top">
+        <div>
+          <div class="dreg-course-name" id="dregCourseName">Selecione um curso</div>
+          <div class="dreg-stats" id="dregStats"></div>
+        </div>
+        <div class="dreg-pct-badge" id="dregPctBadge" style="color:var(--course)">0%</div>
+      </div>
+      <div class="dreg-progress-track">
+        <div class="dreg-progress-fill" id="dregProgressFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST CONTENT -->
+    <div id="dregContent" class="dreg-groups"></div>
+
+    <!-- ACTIONS + SUMMARY -->
+    <div class="dreg-actions" id="dregActions" style="display:none">
+      <button class="dreg-btn dreg-btn-primary" onclick="dregMarkAll()">✓ Marcar todos</button>
+      <button class="dreg-btn" onclick="dregUnmarkAll()">↺ Desmarcar todos</button>
+      <button class="dreg-btn" onclick="dregExport()">↓ Exportar relatório</button>
+    </div>
+
+    <div class="dreg-summary" id="dregSummary" style="display:none">
+      <div class="dreg-sum-card">
+        <div class="dreg-sum-num" id="dregSumTotal" style="color:var(--navy)">0</div>
+        <div class="dreg-sum-label">Total de Itens</div>
+      </div>
+      <div class="dreg-sum-card" style="border-top-color:#0E7C4A">
+        <div class="dreg-sum-num" id="dregSumOk" style="color:#0E7C4A">0</div>
+        <div class="dreg-sum-label">Concluídos</div>
+      </div>
+      <div class="dreg-sum-card" style="border-top-color:#E30613">
+        <div class="dreg-sum-num" id="dregSumPend" style="color:#E30613">0</div>
+        <div class="dreg-sum-label">Pendentes</div>
+      </div>
+    </div>
+
+  </section>
+
 </main>
 
 
 <!-- ══ NPS TIPS SECTION ══ -->
 <div style="max-width:1440px;margin:0 auto 0;padding:0 2rem 3rem">
-  <div style="border-top:3px solid var(--g4);padding-top:2.5rem;margin-top:1rem">
+  <div style="padding-top:.5rem;margin-top:0">
 
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.8rem">
       <div>
@@ -1890,6 +2036,10 @@ button{font:inherit;cursor:pointer}
   <button class="mbn-btn" onclick="switchMainTab('links',this)" data-tab="links">
     <span class="mbn-icon">🔗</span>
     <span class="mbn-label">Links</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('diretrizes',this)" data-tab="diretrizes">
+    <span class="mbn-icon">📋</span>
+    <span class="mbn-label">Reg.</span>
   </button>
 </nav>
 
@@ -2746,6 +2896,7 @@ function exportAgenda() {
 
 function init(){
   renderCourseBar();setupTabs();selectCourse(current);
+  setTimeout(function(){ initDiretrizes(); }, 80);
   // Init CPA charts after a short delay so visible canvases render correctly
   setTimeout(function(){
     initCPACharts();
@@ -2763,6 +2914,426 @@ function reinitPanelCharts(panelId){
   };
   if(lazyCharts[panelId]) lazyCharts[panelId]();
 }
+
+// ─── DIRETRIZES REGULATÓRIAS MODULE ──────────────────────────────────────────
+var DREG_KEY = 'unipar_diretrizes_v1';
+var dregCurrentCourse = null;
+
+// CHECKLIST DATA — built from the Diretrizes PDF document
+var DREG_GROUPS = [
+  {
+    id: 'nivel_prioritario',
+    title: 'Nível Prioritário — Regularidade do Curso',
+    icon: '🔴',
+    color: '#E30613',
+    bg: '#fde8e8',
+    items: [
+      {id:'ppc_atualizado', text:'PPC atualizado, aprovado e aderente às DCNs do curso', meta:'NDE + Colegiado + CONSEPE', priority:true},
+      {id:'matriz_curricular', text:'Matriz curricular vigente validada conforme Diretrizes Curriculares Nacionais (DCNs)', meta:'NDE + Colegiado + CONSEPE', priority:true},
+      {id:'planos_ensino', text:'Planos de Ensino de todas as disciplinas elaborados e aprovados (incluindo Estágio, TCC, ACEX e optativas)', meta:'Colegiado de Curso', priority:true},
+      {id:'nde_atas', text:'Atas do NDE atualizadas com deliberações sobre PPC, metodologia e matriz curricular', meta:'Mínimo: 3 reuniões/ano', priority:true},
+      {id:'colegiado_atas', text:'Atas do Colegiado de Curso registradas com aprovações de planos, regulamentos e desempenho', meta:'Mínimo: 2 reuniões/semestre', priority:true},
+      {id:'cpt_atas', text:'Atas do CPT (Conselho de Professores de Turma) com análises de desempenho e intervenções pedagógicas', meta:'Res. CONSEPE n.º 25/2024', priority:true},
+      {id:'evidencias_doc', text:'Organização e manutenção das evidências documentais obrigatórias — disponíveis a qualquer momento', meta:'Não apenas às vésperas de avaliações', priority:true},
+      {id:'reg_estagio', text:'Regulamento de Estágio Supervisionado Curricular Obrigatório (ESCO) aprovado e vigente', meta:'Colegiado + Diretoria de Educação', priority:true},
+      {id:'manual_estagio', text:'Manual do ESCO disponibilizado aos alunos', meta:'Colegiado + Diretoria de Educação'},
+      {id:'termos_convenio', text:'Termos de Convênios e Compromissos de ESCO e ESCNO assinados e atualizados', meta:'Lei n.º 11.788/2008'},
+      {id:'reg_tcc', text:'Regulamento e Manual do TCC aprovados e vigentes', meta:'Res. CONSEPE n.º 22/2024'},
+      {id:'avaliacoes_externas', text:'Acompanhamento dos processos de avaliação institucional e externa (INEP/MEC/CPA)', meta:'SINAES — Lei 10.861/2004'},
+    ]
+  },
+  {
+    id: 'nivel_essencial',
+    title: 'Nível Essencial — Qualidade Acadêmica e Desempenho',
+    icon: '🟡',
+    color: '#E67E22',
+    bg: '#fff3e0',
+    items: [
+      {id:'bibliografias', text:'Relatório de adequação das Bibliografias Básicas e Complementares aprovado pelo NDE', meta:'Modelo fornecido pela Procuradoria Institucional'},
+      {id:'iqcd', text:'Relatório do Índice de Qualificação do Corpo Docente (IQCD) aprovado pelo NDE', meta:'Modelo fornecido pela Procuradoria Institucional'},
+      {id:'plano_acao', text:'Plano de Ação do Curso com evidências de melhorias decorrentes de CPA, NPS, ENADE, CC, CPC, IGC', meta:'Aprovado pelo Colegiado'},
+      {id:'indicadores', text:'Acompanhamento sistemático de indicadores acadêmicos: evasão, aprovação, desempenho e frequência', meta:'Nível Essencial — ação contínua'},
+      {id:'acex', text:'Registros do desenvolvimento das Atividades Curriculares de Extensão (ACEX) com evidências de impacto social', meta:'Res. CNE/CES nº 7/2018'},
+      {id:'atividades_comp', text:'Critérios de equivalência de Atividades Complementares aprovados pelo Colegiado', meta:'Res. CONSEPE n.º 23/2024'},
+      {id:'proin', text:'Evidências documentadas de execução do Programa de Nivelamento Acadêmico (PROIN)', meta:'Res. CONSEPE n.º 24/2024'},
+      {id:'pim_pibim', text:'Evidências documentadas de execução do PIM/PIBIM (Programas de Monitoria)', meta:'Portaria de 04/02/2026'},
+      {id:'enade', text:'Indicadores ENADE acompanhados e plano de melhoria formulado', meta:'SINAES — monitoramento contínuo'},
+      {id:'tcc_repositorio', text:'TCCs do curso depositados no repositório digital da UNIPAR (tcc.unipar.br)', meta:'Res. CONSEPE n.º 22/2024'},
+      {id:'ensino_projetos', text:'Relação e evidências documentadas de projetos de ensino (fórum do egresso, fórum pedagógico, seminários)', meta:'Evidências permanentes'},
+      {id:'extensao_projetos', text:'Relação e evidências documentadas de projetos de extensão com projeção no curso', meta:'Res. CONSEPE n.º 15/2024'},
+      {id:'pesquisa_projetos', text:'Relatórios e evidências de projetos de pesquisa no âmbito do curso', meta:'Res. CONSEPE n.º 10/2024'},
+    ]
+  },
+  {
+    id: 'nivel_estrategico',
+    title: 'Nível Estratégico — Diferencial Institucional e Inovação',
+    icon: '🟢',
+    color: '#0E7C4A',
+    bg: '#dcf5ea',
+    items: [
+      {id:'metodologias', text:'Atas do NDE sobre avaliação e revisão metodológica: metodologias ativas, tecnologias educacionais, acessibilidade metodológica', meta:'Revisão semestral'},
+      {id:'posgrad', text:'Relação e evidências de projetos de Pós-Graduação Lato e Stricto Sensu na área do curso', meta:'Nível estratégico'},
+      {id:'internacionalizacao', text:'Evidências de participação docente e/ou discente em projetos de internacionalização', meta:'Res. CONSEPE n.º 19/2024'},
+      {id:'inovacao', text:'Evidências documentadas de adoção de práticas inovadoras ou com sucesso comprovado', meta:'Diferencial institucional'},
+      {id:'mercado', text:'Ações de integração com o mercado de trabalho e empregabilidade implementadas', meta:'Nível Estratégico — Diferencial'},
+      {id:'permanencia', text:'Ações voltadas à permanência e sucesso acadêmico desenvolvidas e documentadas', meta:'Indicadores de retenção'},
+    ]
+  },
+  {
+    id: 'base_legal',
+    title: 'Base Legal do Curso — Atos Normativos',
+    icon: '⚖️',
+    color: '#002060',
+    bg: '#e8edf6',
+    items: [
+      {id:'ato_autorizacao', text:'Ato de Autorização do Curso expedido (CONSUNI ou Portaria MEC, conforme o curso)', meta:'Resolução UNIPAR ou Portaria MEC'},
+      {id:'ato_reconhecimento', text:'Ato de Reconhecimento do Curso válido', meta:'Portaria do MEC'},
+      {id:'ato_renovacao', text:'Ato de Renovação de Reconhecimento do Curso vigente', meta:'Portaria do MEC'},
+      {id:'ato_ppc', text:'Ato de aprovação do PPC pelo CONSEPE', meta:'Resolução CONSEPE'},
+      {id:'ato_matriz', text:'Ato de aprovação da Matriz Curricular pelo CONSEPE', meta:'Resolução CONSEPE'},
+      {id:'ato_coordenador', text:'Ato de nomeação do Coordenador do Curso vigente', meta:'Ato Executivo da Diretoria Executiva'},
+      {id:'ato_nde', text:'Ato de nomeação do NDE atualizado', meta:'Ato Administrativo do Diretor da Unidade'},
+      {id:'ato_colegiado', text:'Ato de nomeação do Colegiado de Curso atualizado', meta:'Ato Administrativo do Diretor da Unidade'},
+    ]
+  },
+  {
+    id: 'infraestrutura',
+    title: 'Infraestrutura e Laboratórios',
+    icon: '🏛️',
+    color: '#007A87',
+    bg: '#e0f4f6',
+    items: [
+      {id:'reg_laboratorios', text:'Regulamento de funcionamento, utilização e segurança dos Laboratórios didáticos aprovado', meta:'Aprovado pelo Colegiado'},
+      {id:'desc_equipamentos', text:'Descrição dos insumos, materiais e equipamentos disponíveis condizentes com as vagas do curso', meta:'Evidência física e documental'},
+      {id:'inst_praticas', text:'Instruções normativas de aulas práticas elaboradas e disponíveis (se aplicável)', meta:'Conforme perfil do curso'},
+      {id:'ambientes_prof', text:'Descrição e convênios com Ambientes Profissionais articulados ao curso (se aplicável)', meta:'Termos de convênio assinados'},
+    ]
+  },
+];
+
+// Course-specific extra items
+var DREG_EXTRAS = {
+  dir: [
+    {id:'npj_regular', text:'Núcleo de Prática Jurídica (NPJ) regularizado, com ata de aprovação do Colegiado e regulamento vigente', meta:'Específico Direito', tag:'spec'},
+    {id:'oab_prep', text:'Programa de preparação para o Exame da OAB com ações documentadas', meta:'Específico Direito', tag:'spec'},
+    {id:'simulado_oab', text:'Simulados OAB realizados com registro de participação e resultados', meta:'Indicador de qualidade', tag:'spec'},
+  ],
+  enf: [
+    {id:'convenios_estagio', text:'Convênios de estágio com campos de prática vigentes (hospitais, UBSs, clínicas)', meta:'Específico Enfermagem — Res. CONSEPE n.º 04/2007', tag:'spec'},
+    {id:'campos_pratica', text:'Campos de prática ativos e supervisionados com carga horária registrada', meta:'Específico Enfermagem', tag:'spec'},
+    {id:'simulador_paciente', text:'Plano de utilização de simuladores ou laboratórios de habilidades documentado', meta:'Melhoria recomendada CPA 2025', tag:'spec'},
+  ],
+  psi: [
+    {id:'clinica_escola', text:'Clínica-escola de Psicologia regularizada com regulamento aprovado pelo Colegiado', meta:'Específico Psicologia', tag:'spec'},
+    {id:'npp_funcionamento', text:'NPP (Núcleo de Práticas Psicológicas) em funcionamento com atendimentos registrados', meta:'Diferencial e obrigação regulatória', tag:'spec'},
+    {id:'supervisao_clinica', text:'Supervisões clínicas documentadas por disciplina de estágio', meta:'Específico Psicologia', tag:'spec'},
+  ],
+  bio: [
+    {id:'convenios_laboratorios', text:'Convênios com laboratórios clínicos parceiros para campos de prática', meta:'Específico Biomedicina', tag:'spec'},
+    {id:'ic_programa', text:'Programa de Iniciação Científica implementado com projetos vinculados ao curso', meta:'Res. CONSEPE n.º 04/2022', tag:'spec'},
+    {id:'equipamentos_labs', text:'Plano de manutenção e atualização de equipamentos laboratoriais aprovado', meta:'Infraestrutura crítica — CPA 2025', tag:'spec'},
+  ],
+  ef: [
+    {id:'complexo_convenios', text:'Convênios com escolas e instituições para campos de estágio e extensão', meta:'Específico Educação Física', tag:'spec'},
+    {id:'avaliacoes_funcionais', text:'Programa de avaliação funcional comunitária documentado como extensão', meta:'Uso do complexo esportivo', tag:'spec'},
+  ],
+  adm: [
+    {id:'empresa_junior', text:'Empresa júnior ativa com estatuto aprovado e atividades documentadas', meta:'Específico Administração', tag:'spec'},
+    {id:'banco_estagios', text:'Banco de estágios formalizado com convênios com empresas parceiras', meta:'Específico Administração', tag:'spec'},
+  ],
+  cont: [
+    {id:'nucleo_cfc', text:'Núcleo de preparação para o Exame de Suficiência do CFC implementado', meta:'Específico Ciências Contábeis', tag:'spec'},
+    {id:'aprovacao_cfc', text:'Mensuração e acompanhamento da taxa de aprovação dos egressos no Exame CFC', meta:'Indicador de qualidade', tag:'spec'},
+  ],
+  ads: [
+    {id:'github_cultura', text:'Cultura de portfólio público (GitHub/repositórios) implementada nas disciplinas', meta:'Específico ADS', tag:'spec'},
+    {id:'parceria_tech', text:'Parcerias com empresas de tecnologia para estágios e projetos documentadas', meta:'Específico ADS', tag:'spec'},
+  ],
+  ead: [
+    {id:'indicadores_ava', text:'Indicadores digitais do AVA instrumentalizados e monitorados mensalmente', meta:'Específico EAD — NSA na CPA 2025', tag:'spec'},
+    {id:'tutoria_protocolo', text:'Protocolo de tutoria ativa com tempo de resposta máximo de 48h documentado', meta:'Específico EAD', tag:'spec'},
+    {id:'polos_desc', text:'Descrição dos ambientes de todos os polos condizente com as vagas ofertadas', meta:'Decreto nº 12.456/2025 e Port. MEC nº 506/2025', tag:'spec'},
+  ],
+};
+
+// Storage
+var DREG_STORAGE_KEY = 'unipar_diretrizes_v1';
+
+function dregLoadState() {
+  try {
+    var raw = localStorage.getItem(DREG_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch(e) { return {}; }
+}
+
+function dregSaveState(state) {
+  try { localStorage.setItem(DREG_STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function dregGetChecked(courseId) {
+  var state = dregLoadState();
+  return state[courseId] || {};
+}
+
+function dregSetChecked(courseId, itemId, val) {
+  var state = dregLoadState();
+  if (!state[courseId]) state[courseId] = {};
+  state[courseId][itemId] = val;
+  dregSaveState(state);
+}
+
+// Render course selector using COURSES from the main dashboard
+function renderDregCourseBar() {
+  var bar = document.getElementById('dregCourseBar');
+  if (!bar || typeof COURSES === 'undefined') return;
+  bar.innerHTML = '';
+  COURSES.forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'dreg-pill';
+    btn.setAttribute('data-id', c.id);
+    btn.textContent = c.short + ' · ' + c.name;
+    btn.onclick = function() { dregSelectCourse(c.id); };
+    bar.appendChild(btn);
+  });
+}
+
+function dregSelectCourse(courseId) {
+  dregCurrentCourse = courseId;
+  // Update pill active state
+  document.querySelectorAll('.dreg-pill').forEach(function(p) {
+    p.classList.toggle('dreg-active', p.getAttribute('data-id') === courseId);
+  });
+  // Get course color
+  var course = (typeof COURSES !== 'undefined') ? COURSES.find(function(c){return c.id===courseId;}) : null;
+  if (course) {
+    document.documentElement.style.setProperty('--course', course.color || '#002060');
+    document.documentElement.style.setProperty('--courseLight', course.light || '#e8edf6');
+  }
+  // Update course name
+  var nameEl = document.getElementById('dregCourseName');
+  if (nameEl && course) nameEl.textContent = course.name;
+  // Render checklist
+  renderDregChecklist(courseId);
+  // Show actions
+  var actions = document.getElementById('dregActions');
+  var summary = document.getElementById('dregSummary');
+  if (actions) actions.style.display = 'flex';
+  if (summary) summary.style.display = 'grid';
+}
+
+function buildDregItems(courseId) {
+  var allItems = [];
+  DREG_GROUPS.forEach(function(g) {
+    g.items.forEach(function(item) {
+      allItems.push({groupId: g.id, item: item});
+    });
+  });
+  var extras = DREG_EXTRAS[courseId] || [];
+  extras.forEach(function(item) {
+    allItems.push({groupId: 'especificos', item: item});
+  });
+  return allItems;
+}
+
+function renderDregChecklist(courseId) {
+  var checked = dregGetChecked(courseId);
+  var extras = DREG_EXTRAS[courseId] || [];
+  var content = document.getElementById('dregContent');
+  if (!content) return;
+
+  var groups = DREG_GROUPS.slice();
+  if (extras.length > 0) {
+    groups = groups.concat([{
+      id: 'especificos',
+      title: 'Requisitos Específicos do Curso',
+      icon: '⭐',
+      color: '#6B2D8B',
+      bg: '#f3e5f5',
+      items: extras
+    }]);
+  }
+
+  content.innerHTML = groups.map(function(g) {
+    var total = g.items.length;
+    var done = g.items.filter(function(i){return !!checked[i.id];}).length;
+    var pct = total > 0 ? Math.round(done/total*100) : 0;
+    var fillColor = pct === 100 ? '#0E7C4A' : (pct >= 60 ? g.color : (pct >= 30 ? '#E67E22' : '#E30613'));
+    return '<div class="dreg-group" id="dgrp-'+g.id+'">'
+      + '<div class="dreg-group-header" onclick="dregToggleGroup(\''+g.id+'\')">'
+      + '<div class="dreg-group-title">'
+      + '<div class="dreg-group-icon" style="background:'+g.bg+';color:'+g.color+'">'+g.icon+'</div>'
+      + esc(g.title)
+      + '</div>'
+      + '<div class="dreg-group-meta">'
+      + '<span class="dreg-group-pct" style="color:'+fillColor+'">'+done+'/'+total+'</span>'
+      + '<div class="dreg-group-mini-bar"><div class="dreg-group-mini-fill" style="width:'+pct+'%;background:'+fillColor+'"></div></div>'
+      + '<span class="dreg-chevron">▾</span>'
+      + '</div></div>'
+      + '<div class="dreg-group-body" id="dbody-'+g.id+'">'
+      + g.items.map(function(item) {
+          var isChecked = !!checked[item.id];
+          return '<div class="dreg-item'+(isChecked?' checked':'')
+            + '" onclick="dregToggleItem(\''+courseId+'\',\''+item.id+'\',this)">'
+            + '<div class="dreg-cb"><span class="dreg-cb-check">✓</span></div>'
+            + '<div class="dreg-item-body">'
+            + '<div class="dreg-item-text">'+esc(item.text)
+            + (item.priority ? '<span class="dreg-item-tag tag-prio">Prioritário</span>' : '')
+            + (item.tag === 'spec' ? '<span class="dreg-item-tag tag-spec">Específico</span>' : '')
+            + '</div>'
+            + (item.meta ? '<div class="dreg-item-meta">'+esc(item.meta)+'</div>' : '')
+            + '</div></div>';
+        }).join('')
+      + '</div></div>';
+  }).join('');
+
+  dregUpdateProgress(courseId);
+}
+
+function dregToggleItem(courseId, itemId, el) {
+  var isChecked = el.classList.contains('checked');
+  var newVal = !isChecked;
+  el.classList.toggle('checked', newVal);
+  dregSetChecked(courseId, itemId, newVal);
+  dregUpdateProgress(courseId);
+  // Re-render group header counts
+  var checked = dregGetChecked(courseId);
+  var extras = DREG_EXTRAS[courseId] || [];
+  var allGroups = DREG_GROUPS.slice();
+  if (extras.length) allGroups.push({id:'especificos',items:extras});
+  allGroups.forEach(function(g) {
+    var grpEl = document.getElementById('dgrp-'+g.id);
+    if (!grpEl) return;
+    var total = g.items.length;
+    var done = g.items.filter(function(i){return !!checked[i.id];}).length;
+    var pct = total > 0 ? Math.round(done/total*100) : 0;
+    var fillColor = pct===100?'#0E7C4A':(pct>=60?'#002060':(pct>=30?'#E67E22':'#E30613'));
+    var pctEl = grpEl.querySelector('.dreg-group-pct');
+    var fillEl = grpEl.querySelector('.dreg-group-mini-fill');
+    if (pctEl) { pctEl.textContent = done+'/'+total; pctEl.style.color = fillColor; }
+    if (fillEl) { fillEl.style.width = pct+'%'; fillEl.style.background = fillColor; }
+  });
+}
+
+function dregUpdateProgress(courseId) {
+  var checked = dregGetChecked(courseId);
+  var extras = DREG_EXTRAS[courseId] || [];
+  var allItems = buildDregItems(courseId);
+  var total = allItems.length;
+  var done = allItems.filter(function(x){return !!checked[x.item.id];}).length;
+  var pct = total > 0 ? Math.round(done/total*100) : 0;
+
+  var fill = document.getElementById('dregProgressFill');
+  var badge = document.getElementById('dregPctBadge');
+  var statsEl = document.getElementById('dregStats');
+  var sumTotal = document.getElementById('dregSumTotal');
+  var sumOk = document.getElementById('dregSumOk');
+  var sumPend = document.getElementById('dregSumPend');
+
+  if (fill) {
+    fill.style.width = pct+'%';
+    fill.className = 'dreg-progress-fill' + (pct===100?' pct-green':pct>=60?' pct-green':pct>=30?' pct-yellow':' pct-red');
+  }
+  var color = pct===100?'#0E7C4A':pct>=60?'#0E7C4A':pct>=30?'#E67E22':'#E30613';
+  if (badge) { badge.textContent = pct+'%'; badge.style.color = color; }
+  if (sumTotal) sumTotal.textContent = total;
+  if (sumOk) sumOk.textContent = done;
+  if (sumPend) sumPend.textContent = (total - done);
+
+  // Priority items stats
+  var prioTotal = allItems.filter(function(x){return x.item.priority;}).length;
+  var prioDone = allItems.filter(function(x){return x.item.priority && !!checked[x.item.id];}).length;
+  var specTotal = allItems.filter(function(x){return x.item.tag==='spec';}).length;
+  var specDone = allItems.filter(function(x){return x.item.tag==='spec' && !!checked[x.item.id];}).length;
+
+  if (statsEl) {
+    statsEl.innerHTML = ''
+      + '<span class="dreg-stat"><span class="dreg-stat-dot" style="background:#E30613"></span>'+(prioDone)+'/'+prioTotal+' Prioritários</span>'
+      + (specTotal>0 ? '<span class="dreg-stat"><span class="dreg-stat-dot" style="background:#6B2D8B"></span>'+(specDone)+'/'+specTotal+' Específicos</span>' : '')
+      + '<span class="dreg-stat"><span class="dreg-stat-dot" style="background:#0E7C4A"></span>'+done+'/'+total+' Total</span>';
+  }
+}
+
+function dregToggleGroup(groupId) {
+  var body = document.getElementById('dbody-'+groupId);
+  var header = body ? body.previousElementSibling : null;
+  if (!body) return;
+  body.classList.toggle('hidden');
+  if (header) header.classList.toggle('collapsed');
+}
+
+function dregMarkAll() {
+  if (!dregCurrentCourse) return;
+  var allItems = buildDregItems(dregCurrentCourse);
+  var state = dregLoadState();
+  if (!state[dregCurrentCourse]) state[dregCurrentCourse] = {};
+  allItems.forEach(function(x){ state[dregCurrentCourse][x.item.id] = true; });
+  dregSaveState(state);
+  renderDregChecklist(dregCurrentCourse);
+}
+
+function dregUnmarkAll() {
+  if (!dregCurrentCourse) return;
+  var state = dregLoadState();
+  state[dregCurrentCourse] = {};
+  dregSaveState(state);
+  renderDregChecklist(dregCurrentCourse);
+}
+
+function dregExport() {
+  if (!dregCurrentCourse) return;
+  var course = (typeof COURSES !== 'undefined') ? COURSES.find(function(c){return c.id===dregCurrentCourse;}) : null;
+  var courseName = course ? course.name : dregCurrentCourse;
+  var checked = dregGetChecked(dregCurrentCourse);
+  var allItems = buildDregItems(dregCurrentCourse);
+  var total = allItems.length;
+  var done = allItems.filter(function(x){return !!checked[x.item.id];}).length;
+  var pct = total > 0 ? Math.round(done/total*100) : 0;
+
+  var lines = [
+    'RELATÓRIO DE CONFORMIDADE REGULATÓRIA — UNIPAR CIANORTE',
+    'Curso: '+courseName,
+    'Gerado em: '+new Date().toLocaleDateString('pt-BR')+' às '+new Date().toLocaleTimeString('pt-BR'),
+    'Conformidade geral: '+pct+'% ('+done+'/'+total+' itens)',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    ''
+  ];
+
+  var allGroups = DREG_GROUPS.slice();
+  var extras = DREG_EXTRAS[dregCurrentCourse] || [];
+  if (extras.length) allGroups.push({id:'especificos',title:'Requisitos Específicos do Curso',items:extras});
+
+  allGroups.forEach(function(g) {
+    var groupItems = g.items;
+    var gDone = groupItems.filter(function(i){return !!checked[i.id];}).length;
+    lines.push('■ '+g.title+' ('+gDone+'/'+groupItems.length+')');
+    groupItems.forEach(function(item) {
+      var mark = checked[item.id] ? '[✓]' : '[ ]';
+      lines.push('  '+mark+' '+item.text);
+      if (item.meta) lines.push('        → '+item.meta);
+    });
+    lines.push('');
+  });
+
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('Base legal: Manual de Referências Regulatórias UNIPAR — Procuradoria Institucional — Versão 01');
+  lines.push('');
+
+  var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'conformidade_regulatoria_'+dregCurrentCourse+'_'+new Date().toISOString().slice(0,10)+'.txt';
+  a.click();
+}
+
+function initDiretrizes() {
+  renderDregCourseBar();
+  // Auto-select first course
+  if (typeof COURSES !== 'undefined' && COURSES.length > 0) {
+    dregSelectCourse(COURSES[0].id);
+  }
+}
+
+
 init();
 </script>
 </body>
