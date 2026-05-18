@@ -984,8 +984,12 @@ button{font:inherit;cursor:pointer}
 .view-field-lbl{font-family:"JetBrains Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g2);margin-bottom:.2rem}
 .view-field-val{font-size:.84rem;color:var(--ink);background:#f9f9f9;border-radius:4px;padding:.4rem .6rem;line-height:1.45}
 .view-field-empty{font-size:.8rem;color:#ccc;font-style:italic}
+.share-btn-sync{background:#6B2D8B;color:#fff}.share-btn-sync:hover{background:#552370}
+.share-btn-settings{background:#f5f7fa;color:#555;border:1.5px solid var(--g3)}.share-btn-settings:hover{background:var(--g4)}
+.sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle}
+.sync-dot-ok{background:#0E7C4A}.sync-dot-off{background:#ccc}.sync-dot-err{background:#E30613}.sync-dot-spin{background:#F5A623;animation:syncPulse 1s infinite}
+@keyframes syncPulse{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
-</head>
 <body>
 
 <header class="header">
@@ -1034,19 +1038,19 @@ button{font:inherit;cursor:pointer}
       </button>
       <!-- BARRA DE COMPARTILHAMENTO -->
       <div class="share-bar" style="margin-top:.7rem;padding:.6rem .9rem">
-        <button class="share-btn share-btn-copy" onclick="indShare()" title="Coordenador: clique para copiar o código e enviar à direção">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          Compartilhar
-        </button>
-        <button class="share-btn share-btn-import" onclick="indImportModal()" title="Direção: importe o código recebido do coordenador">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Importar
-        </button>
         <button class="share-btn share-btn-view" onclick="indViewAll()" title="Ver painel consolidado de todos os cursos">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           Ver todos
         </button>
-        <span class="share-info" id="shareStatus" style="font-size:.6rem">SWOT · GUT · 5W2H · Gestão · Ishikawa · Eisenhower · Indicadores</span>
+        <button class="share-btn share-btn-sync" onclick="syncNow()" id="syncBtn" title="Sincronizar dados com a nuvem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <span id="syncBtnLabel">Sincronizar</span>
+        </button>
+        <button class="share-btn share-btn-settings" onclick="syncConfigModal()" title="Configurar banco de dados compartilhado">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          ⚙
+        </button>
+        <span class="share-info" id="shareStatus" style="font-size:.6rem"><span class="sync-dot sync-dot-off" id="syncDot"></span><span id="syncStatusText">Nuvem não configurada</span></span>
       </div>
     </div>
     <aside class="north-box">
@@ -2356,13 +2360,13 @@ function initCPACharts(){
 // ─── COURSE DATA ───────────────────────────────────────────────────────────────
 const COURSES=[
 {id:'adm',name:'Administração',short:'ADM',color:'#1565C0',light:'#E3EEF9',meta:'NPS Geral da unidade: 36 · Zona de Aperfeiçoamento',north:'Alunos com experiência prática documentada por semestre',swot:{s:['Curso tradicional com marca consolidada','Perfil dé aluno-trabalhador','Conteúdo aplicável ao polo têxtil e industrial'],w:['Carência de empresa júnior ativa','Pouca conexão formal com empresas locais','Aulas muito teóricas em matérias-chave'],o:['Parcerias com indústrias e comércio','Demanda regional por formação em gestão','Trilhas em varejo, indústria é agronegócio'],t:['Concorrência de tecnólogos curtos','Migração para EAD barato','Mercado exige dados e habilidades digitais']},gut:[['Ausência de empresa júnior ativa',5,4,5],['Aulas teóricas demais em matérias práticas',4,5,4],['Falta de banco formal de estágios',4,4,4],['Pouca exposição a casos reais',3,3,4],['Grade sem disciplina de dados',3,3,5]],actions:[['Reativar empresa júnior','Criar laboratório real de prática gerencial','Bloco de Administração','Próximo semestre','Coordenação + docentes','Estatuto, edital e mentoria','Baixo'],['Banco de estágios com 10 empresas','Garantir prática supervisionada','Coordenação','60 dias','Coordenação + Carreiras','Visitas e convênios','Médio'],['ERP simulado nas disciplinas','Conectar teoria e sistemas reais','Laboratórios','Próximo semestre','Professor da disciplina','Licença educacional e capacitação','Médio']],insight:'A empresa júnior é a alavanca central: resolve prática, mentoria e conexão com o mercado.'},
-{id:'ads',name:'Análise e Desenvolvimento de Sistemas',short:'ADS',color:'#007A87',light:'#DCF0F2',meta:'Curso com 4 desistências em 2026 · alerta alto de evasão',north:'Alunos com projeto de software publicado ou em produção',swot:{s:['Curso curto e mensalidade competitiva','Mercado de TI com alta demanda','Possibilidade de trabalho remoto'],w:['Defasagem em cloud, DevOps e mobile','Pouca cultura de portfólio público','Laboratórios lentos apontados pela CPA'],o:['Demanda por devs no interior','Parcerias com empresas de tecnologia','Crescimento de games e mobile'],t:['Bootcamps online como concorrentes','Atualização tecnológica constante','Aluno pode evadir ao conseguir emprego']},gut:[['Computadores lentos nos laboratórios',5,5,5],['Grade desatualizada',5,4,5],['Falta de cultura GitHub',4,4,4],['Evasão precoce no 1º período',5,5,4],['Ausência de parcerias tech',4,3,4]],actions:[['Modernizar laboratórios','Impacto direto na percepção de qualidade','Laboratórios','90 dias','Direção + TI','Diagnóstico e upgrade gradual','Alto'],['GitHub obrigatório desdé o 1º período','Criar portfólio público','Programação I','Imediato','Professor','Aulas práticas e repositório','Zero'],['Hackathon semestral','Conectar formação a problemas reais','Campus','Fim de semestre','Coordenação','Edital, banca e premiação','Baixo']],insight:'Antes de discutir grade, resolva hardware: computador travando destrói a percepção de qualidade.'},
-{id:'bio',name:'Biomedicina',short:'BIO',color:'#C0392B',light:'#FCEAE7',meta:'Curso com 4 desistências em 2026 · alerta alto',north:'Alunos com horas práticas em laboratório acima do mínimo exigido',swot:{s:['Área da saúde com empregabilidade laboratorial','Laboratórios como diferencial','Docentes mestres e doutores'],w:['Equipamentos envelhecidos','Pouca articulação com laboratórios privados','Iniciação científica subutilizada'],o:['Crescimento da medicina diagnóstica','Parcerias com clínicas e hospitais','Demanda por análises clínicas'],t:['IES próximas com infraestrutura nova','Manutenção cara de equipamentos','Alta competitividade profissional']},gut:[['Equipamentos com idadé avançada',4,4,5],['Iniciação científica subutilizada',4,3,4],['Falta de convênios com laboratórios',4,4,4],['Carga prática limitada',5,4,4],['Poucos casos reais antes do estágio',3,3,4]],actions:[['Programa de iniciação científica','Prática e produção acadêmica','Laboratórios','Próximo semestre','Coordenação + docentes','Edital e supervisão','Baixo/Médio'],['Convênios com laboratórios clínicos','Ampliar campos de prática','Região','90 dias','Coordenação + Direção','Mapeamento e visitas','Baixo'],['Plano de modernização de equipamentos','Preservar diferencial laboratorial','Laboratórios','12 a 18 meses','Direção','Diagnóstico e cronograma','Alto']],insight:'IC é a alavanca rápida; modernização dos equipamentos é a pauta estratégica.'},
-{id:'cont',name:'Ciências Contábeis',short:'CON',color:'#6B2D8B',light:'#F0E6F5',meta:'Curso com tradição · gestão precisa de instrumentação',north:'Alunos aprovados ou em preparação ativa para o Exame de Suficiência do CFC',swot:{s:['Profissão regulamentada','Tradição na unidade','Aluno trabalha cedo na área'],w:['Sem núcleo CFC','Distância entre conteúdo e exigências do CFC','Pouca mensuração de egressos'],o:['Empreendedorismo demanda contadores','Reforma tributária exigé atualização','Expansão da contabilidade digital'],t:['Automação de tarefas operacionais','EAD barato','Risco sé aprovação CFC for baixa']},gut:[['Sem núcleo de preparação CFC',5,5,5],['Sem mensuração dé aprovação',4,4,4],['Defasagem digital e tributária',4,4,5],['Pouca conexão com escritórios',3,3,3],['Falta de escritório-modelo',4,3,4]],actions:[['Criar núcleo CFC','Indicador de qualidade profissional','Coordenação','Próximo semestre','Coordenação + docentes','Simulados e grupos de estudo','Baixo'],['Medir aprovação dos egressos','Sem dado não há gestão','Coordenação','Imediato','Coordenação + secretaria','Pesquisa é acompanhamento','Zero'],['Parceria com escritórios','Prática e colocação','Região','90 dias','Coordenação + Carreiras','Convênios formais','Baixo']],insight:'Aprovação no CFC precisa virar indicador de gestão, não assunto informal.'},
-{id:'dir',name:'Direito',short:'DIR',color:'#0D1B3E',light:'#D4DCE8',meta:'Maior curso da unidade · 12 saídas em 2026',north:'Alunos com horas de prática jurídica real acumuladas',swot:{s:['Maior curso da unidade','Sem concorrente direto em Cianorte','Prestígio regional'],w:['Carteiras inadequadas ao Vade Mecum','Aulas teóricas demais','NPJ subutilizado'],o:['Reposicionar NPJ','Parceria com OAB Cianorte','Especialização em áreas regionais'],t:['Mercado saturado','Baixa aprovação nacional na OAB','Risco de queda na percepção de qualidade']},gut:[['12 saídas em 2026',5,5,5],['Carteiras inadequadas',4,5,4],['NPJ subutilizado',5,4,5],['Aulas teóricas demais',4,4,5],['Sem preparação estruturada OAB',4,3,5]],actions:[['Substituir carteiras','Dor diária apontada pela CPA','Salas de Direito','90 dias','Direção + patrimônio','Cotação e troca gradual','Médio/Alto'],['Reposicionar NPJ','Retenção e diferencial local','NPJ','Próximo semestre','Coordenação + supervisores','Atendimentos e casos reais','Baixo'],['Preparação OAB com OAB local','Reputação e empregabilidade','Auditório','7º período','Coordenação + OAB','Simulados e workshops','Baixo']],insight:'Direito tem massa e vantagem local. Carteiras + NPJ ativo é pacote dé alto impacto.'},
-{id:'ef',name:'Educação Física',short:'EFI',color:'#1A7A4A',light:'#E8F5EC',meta:'Complexo esportivo é o maior ativo físico da unidade',north:'Alunos com intervenção prática supervisionada realizada',swot:{s:['Complexo esportivo forte','Curso prático por natureza','Mercado regional aquecido'],w:['Complexo subutilizado em extensão','Poucos convênios com escolas','Sem programa comunitário permanente'],o:['Bem-estar e longevidade em alta','Demanda por personal trainer','Ausência dé oferta consolidada regional'],t:['Cursos técnicos concorrentes','Aluno quer formação rápida','Diferencial físico pode não ser percebido']},gut:[['Complexo subutilizado',4,4,5],['Falta de convênios com escolas',4,3,4],['Sem programa comunitário',3,3,4],['Pouca visibilidade do curso',3,3,4],['Poucas avaliações funcionais',4,3,4]],actions:[['Avaliação funcional comunitária','Laboratório vivo para alunos','Complexo esportivo','Próximo semestre','Coordenação + docentes','Edital e relatórios','Baixo'],['Convênio com escolas','Campo de estágio formal','Escolas públicas','60 dias','Coordenação + Carreiras','Visitas e termos','Zero'],['Festival dé atividade física','Visibilidade e prática','Campus','Semestral','Coordenação + alunos','Programação aberta','Baixo']],insight:'O complexo esportivo precisa aparecer em prática, extensão e marketing.'},
-{id:'enf',name:'Enfermagem',short:'ENF',color:'#E67E22',light:'#FCEFE0',meta:'CPA 2025: pedido por melhoria no relacionamento com alunos',north:'Alunos com estágio supervisionado em ambiente hospitalar acima do mínimo',swot:{s:['Demanda elevada por enfermagem','Profissão essencial','Hospitais e UBS na região'],w:['Pedido CPA por melhoria no relacionamento com alunos','Déficit de simuladores','Convênios limitam prática'],o:['Envelhecimento populacional','Crescimento de clínicas','Pós em UTI, oncologia e geriatria'],t:['IES com hospital-escola','Custo de laboratórios','Sobrecarga profissional afasta candidatos']},gut:[['Relacionamento coordenação-aluno frágil',5,5,5],['Déficit de simulador',4,4,4],['Convênios hospitalares limitados',4,4,4],['Carga prática abaixo do potencial',5,4,4],['Poucas simulações de emergência',4,3,4]],actions:[['Programa de relacionamento coordenação-aluno','Responder demanda CPA por melhor comunicação','Coordenação','30 dias','Coordenação + Direção','Reuniões mensais e canal direto','Baixo'],['Simulador de paciente','Treino seguro antes do real','Laboratório','Próximo semestre','Coordenação + Direção','Cotação compra/locação','Alto/Médio'],['Ampliar convênios hospitalares','Garantir vagas de estágio','Região','90 dias','Coordenação + Direção','Visitas institucionais','Baixo']],insight:'Melhorar o relacionamento coordenação-aluno em Enfermagem é o caminho mais rápido para reduzir detratores e subir o NPS do curso.'},
-{id:'psi',name:'Psicologia',short:'PSI',color:'#7B2D8B',light:'#F1E6F4',meta:'Segundo maior curso da unidade · 9 saídas em 2026',north:'Alunos com horas dé atendimento supervisionado realizadas',swot:{s:['Segundo maior curso','Sem concorrente direto local','Saúde mental em alta'],w:['NPP subutilizado','Pouca diversidade de estágios','Início muito teórico'],o:['Saúde mental como pauta nacional','Parcerias com escolas e UBS','TCC e neuropsicologia'],t:['Plataformas online de psicoterapia','Saturação do mercado','Risco se prática for insuficiente']},gut:[['NPP subutilizado',5,4,5],['9 saídas em 2026',5,5,4],['Pouca diversidade de estágios',4,3,4],['Início do curso muito teórico',4,4,4],['Pouca produção científica visível',3,2,4]],actions:[['Expandir NPP à comunidade','Prática, impacto e marketing','NPP','Próximo semestre','Coordenação + supervisores','Edital dé atendimento','Baixo'],['Trilhas de estágio','Diferenciar formação','Parceiros','90 dias','Coordenação','Mapeamento e termos','Baixo'],['Retenção no 1º período','Atacar evasão precoce','Sala dé aula','Imediato','Coordenação + tutores','Rodas quinzenais','Baixo']],insight:'NPP comunitário gera prática, marca e diferenciação regional.'},
+{id:'ads',name:'Análise e Desenvolvimento de Sistemas',short:'ADS',color:'#007A87',light:'#DCF0F2',meta:'Curso com 4 desistências em 2026 · alerta alto de evasão',north:'Alunos com projeto de software publicado ou em produção',swot:{s:['Curso curto e mensalidade competitiva','Mercado de TI com alta demanda','Possibilidade de trabalho remoto'],w:['Defasagem em cloud, DevOps e mobile','Pouca cultura de portfólio público','Laboratórios lentos apontados pela CPA'],o:['Demanda por devs no interior','Parcerias com empresas de tecnologia','Crescimento de games e mobile'],t:['Bootcamps online como concorrentes','Atualização tecnológica constante','Aluno pode evadir ao conseguir emprego']},gut:[['Computadores lentos nos laboratórios',5,5,5],['Grade desatualizada',5,4,5],['Evasão precoce no 1º período',5,5,4],['Falta de cultura GitHub',4,4,4],['Ausência de parcerias tech',4,3,4]],actions:[['Modernizar laboratórios','Impacto direto na percepção de qualidade','Laboratórios','90 dias','Direção + TI','Diagnóstico e upgrade gradual','Alto'],['GitHub obrigatório desde o 1º período','Criar portfólio público','Programação I','Imediato','Professor','Aulas práticas e repositório','Zero'],['Hackathon semestral','Conectar formação a problemas reais','Campus','Fim de semestre','Coordenação','Edital, banca e premiação','Baixo']],insight:'Antes de discutir grade, resolva hardware: computador travando destrói a percepção de qualidade.'},
+{id:'bio',name:'Biomedicina',short:'BIO',color:'#C0392B',light:'#FCEAE7',meta:'Curso com 4 desistências em 2026 · alerta alto',north:'Alunos com horas práticas em laboratório acima do mínimo exigido',swot:{s:['Área da saúde com empregabilidade laboratorial','Laboratórios como diferencial','Docentes mestres e doutores'],w:['Equipamentos envelhecidos','Pouca articulação com laboratórios privados','Iniciação científica subutilizada'],o:['Crescimento da medicina diagnóstica','Parcerias com clínicas e hospitais','Demanda por análises clínicas'],t:['IES próximas com infraestrutura nova','Manutenção cara de equipamentos','Alta competitividade profissional']},gut:[['Equipamentos com idade avançada',4,4,5],['Carga prática limitada',5,4,4],['Falta de convênios com laboratórios',4,4,4],['Iniciação científica subutilizada',4,3,4],['Poucos casos reais antes do estágio',3,3,4]],actions:[['Programa de iniciação científica','Prática e produção acadêmica','Laboratórios','Próximo semestre','Coordenação + docentes','Edital e supervisão','Baixo/Médio'],['Convênios com laboratórios clínicos','Ampliar campos de prática','Região','90 dias','Coordenação + Direção','Mapeamento e visitas','Baixo'],['Plano de modernização de equipamentos','Preservar diferencial laboratorial','Laboratórios','12 a 18 meses','Direção','Diagnóstico e cronograma','Alto']],insight:'IC é a alavanca rápida; modernização dos equipamentos é a pauta estratégica.'},
+{id:'cont',name:'Ciências Contábeis',short:'CON',color:'#6B2D8B',light:'#F0E6F5',meta:'Curso com tradição · gestão precisa de instrumentação',north:'Alunos aprovados ou em preparação ativa para o Exame de Suficiência do CFC',swot:{s:['Profissão regulamentada','Tradição na unidade','Aluno trabalha cedo na área'],w:['Sem núcleo CFC','Distância entre conteúdo e exigências do CFC','Pouca mensuração de egressos'],o:['Empreendedorismo demanda contadores','Reforma tributária exige atualização','Expansão da contabilidade digital'],t:['Automação de tarefas operacionais','EAD barato','Risco se aprovação CFC for baixa']},gut:[['Sem núcleo de preparação CFC',5,5,5],['Defasagem digital e tributária',4,4,5],['Sem mensuração de aprovação',4,4,4],['Falta de escritório-modelo',4,3,4],['Pouca conexão com escritórios',3,3,3]],actions:[['Criar núcleo CFC','Indicador de qualidade profissional','Coordenação','Próximo semestre','Coordenação + docentes','Simulados e grupos de estudo','Baixo'],['Medir aprovação dos egressos','Sem dado não há gestão','Coordenação','Imediato','Coordenação + secretaria','Pesquisa e acompanhamento','Zero'],['Parceria com escritórios','Prática e colocação','Região','90 dias','Coordenação + Carreiras','Convênios formais','Baixo']],insight:'Aprovação no CFC precisa virar indicador de gestão, não assunto informal.'},
+{id:'dir',name:'Direito',short:'DIR',color:'#0D1B3E',light:'#D4DCE8',meta:'Maior curso da unidade · 12 saídas em 2026',north:'Obter "SELO OAB RECOMENDA"',swot:{s:['Maior curso da unidade','Sem concorrente direto em Cianorte','Prestígio regional'],w:['Carteiras inadequadas ao material de estudo','Aulas teóricas demais','NPJ subutilizado'],o:['Reestruturar NPJ','Parceria com OAB Cianorte','Reposicionar SAJUG'],t:['Mercado saturado','Novas Tecnologias (LegalTechs)','Atuação multidisciplinar']},gut:[['Carteiras inadequadas',5,5,5],['12 saídas em 2026',5,5,3],['NPJ subutilizado',4,4,4],['Aulas teóricas demais',4,4,3],['Sem preparação estruturada OAB',3,3,3]],actions:[['Substituir carteiras','Dor diária apontada pela CPA','Salas de Direito','90 dias','Direção + patrimônio','Cotação e troca gradual','Médio/Alto'],['Reposicionar NPJ','Retenção e diferencial local','NPJ','Próximo semestre','Coordenação + supervisores','Atendimentos e casos reais','Baixo'],['Preparação OAB com OAB local','Reputação e empregabilidade','Auditório','9º período','Coordenação + OAB','Simulados, workshops e reconhecimento de boas práticas','Baixo']],insight:'Direito tem massa e vantagem local. Carteiras + NPJ ativo é pacote de alto impacto.'},
+{id:'ef',name:'Educação Física',short:'EFI',color:'#1A7A4A',light:'#E8F5EC',meta:'Complexo esportivo é o maior ativo físico da unidade',north:'Alunos com intervenção prática supervisionada realizada',swot:{s:['Complexo esportivo estruturado e aberto a diversas atividades','Participação em eventos específicos locais e regionais','Curso prático por natureza','Mercado regional aquecido'],w:['Alto investimento para manutenção dos espaços do complexo esportivo','Alto custo de Responsáveis Técnicos','Complexo subutilizado - em alguns horários, ou muitos empréstimos ao invés de aluguel'],o:['Autocuidado visando o bem-estar e longevidade em alta','Demanda por personal trainer','Ausência de oferta consolidada regional'],t:['Diferencial físico pode não ser percebido','Pensamento de alto investimento para uma graduação']},gut:[['Complexo subutilizado - em alguns horários, ou muitos empréstimos ao invés de aluguel',4,4,5],['Alto investimento para manutenção dos espaços do complexo esportivo',4,3,4],['Alto custo de Responsáveis Técnicos',4,3,3],['Falta de convênios com escolas e academias',3,3,4],['Pouca visibilidade do diferencial físico',3,3,4]],actions:[['Criação de políticas de parcerias para o complexo','Alta demanda de pedidos de empréstimos sem retorno financeiro','Complexo esportivo','90 a 120 dias','Coordenação + Responsáveis Técnicos + Direção','Criação de políticas de parcerias','Baixo'],['Revisão de custos da piscina e novas turmas','Alto custo principalmente com o setor da piscina','Piscina do complexo esportivo','90 a 120 dias','Coordenação + Responsáveis Técnicos + Direção + Controladoria','Revisão de custos e possibilidades de novas turmas','Baixo'],['Novos cronogramas de atendimento dos RTs','Abertura de novas turmas e atividades de responsabilidade dos RTs','Complexo esportivo','Para o próximo semestre','Responsáveis técnicos + coordenação + direção + controladoria','Elaboração de novos cronogramas de atendimento das aulas','Baixo']],insight:'O complexo esportivo precisa aparecer em prática, com aumento de receitas, e extensão.'},
+{id:'enf',name:'Enfermagem',short:'ENF',color:'#E67E22',light:'#FCEFE0',meta:'CPA 2025: pedido por melhoria no relacionamento com alunos',north:'Contemplação de todas as práticas curriculares e extracurriculares.',swot:{s:['Única Instituição ofertante do curso','Estrutura laboratorial em ascensão','Profissão essencial','Abertura de diversos campos de estágio','Diversidade de eventos curriculares e extracurriculares','Vagas em estágio remunerados na cidade e na região'],w:['Déficit de boneco de simuladores realísticos','Pedido pelo aluno de maior carga-horária prática em todas as disciplinas','Divisão de disciplinas específicas em Núcleo Comum','Convênios com a prefeitura municipal que limitam algumas práticas de estágio'],o:['Crescimento de clínicas e o novo hospital em Cianorte','Abertura de concursos na cidade e na região','Envelhecimento populacional','Aumento do autocuidado pela população'],t:['IES com hospital-escola','Custo de laboratórios','Sobrecarga profissional afasta candidatos docentes e Responsáveis Técnicos']},gut:[['Divisão de disciplinas específicas em Núcleo Comum',4,4,4],['Convênios com a prefeitura municipal que limitam algumas práticas de estágio',5,4,3],['Maior carga-horária prática em todas as disciplinas',3,4,4],['Poucas simulações de emergência',4,3,4],['Déficit boneco de simuladores realísticos',5,4,2]],actions:[['Aumento de cursos livres','Contemplação do pedido de práticas laboratoriais','Laboratórios de práticas','120 dias','Coordenação + Docentes + Direção','Avaliação dos pedidos dos alunos pela temática de cursos','Médio'],['Déficit boneco de simuladores realísticos','Contemplação parcial de melhorias na prática','Laboratório','Próximo semestre e próximo ano','Coordenação + Direção','Cotação compra/locação','Alto/Médio'],['Divisão de disciplinas específicas em Núcleo Comum','Contemplação de carga-horária em disciplina específica','Matriz curricular e planejamento acadêmico','90 dias (se possível para o segundo semestre)','Coordenação + Direção + Planejamento Acadêmico','Revisão orçamentária de carga-horária docente','Médio']],insight:'Aumentar a carga-horária prática curricular e extracurricular.'},
+{id:'psi',name:'Psicologia',short:'PSI',color:'#7B2D8B',light:'#F1E6F4',meta:'Segundo maior curso da unidade · 9 saídas em 2026',north:'Instrumentalizar os alunos com métodos, técnicas e recursos que possibilitem uma atuação condigna e competente nas suas funções na área da Psicologia.',swot:{s:['Segundo maior curso','Corpo docente qualificado','Serviço Escola de Psicologia (SEP)'],w:['Elevada carga teórica','Carga horária limitada em disciplinas chaves','Inserção em uma cidade de médio porte'],o:['Saúde mental como pauta nacional','Parcerias com as políticas públicas','Número elevado de alunos'],t:['Saturação do mercado','Prefeitura como oposição','Concorrência na região']},gut:[['Pouca produção científica visível',5,5,4],['9 saídas em 2026',5,4,4],['Inserção em uma cidade de médio porte',3,3,3],['Carga horária limitada em disciplinas chaves',2,1,5],['Elevada carga teórica',1,1,5]],actions:[['Incentivar a participação científica','Pouca produção científica visível','Eventos, conferências, congressos e revistas científicas','Próximo semestre','Coordenação, docentes e discentes','Grupos de pesquisa, Mostra de Estágio, Salão da Extensão, Curso de Escrita Científica','Baixo'],['Aumentar o atendimento direto de alunos','9 saídas em 2026.1','Coordenação','Segundo semestre','Coordenação','Redução de carga horária em sala de aula','Médio'],['Aumentar a abrangência regional de captação','Cidade de médio porte','Região Noroeste do PR','2026.2 - 2027.1','Direção, CAC, Coordenação, Colegiado','Eventos regionais, parcerias com prefeituras e núcleos de educação','Baixo']],insight:'SEP comunitário gera prática, marca e diferenciação regional.'},
 {id:'ead',name:'EAD / Semipresencial',short:'EAD',color:'#2C3E50',light:'#DDE3E9',meta:'CPA 2025: indicadores digitais como NSA · sem instrumentação',north:'Alunos ativos com progresso semanal comprovado no AVA',swot:{s:['Baixo custo e escala','Mensalidade competitiva','Flexibilidadé ao adulto-trabalhador'],w:['Indicadores digitais sem medição','Tutoria sem protocolo claro','Baixo pertencimento à unidade'],o:['Crescimento do EAD','Captação em cidades sem oferta','IA para personalização'],t:['Concorrentes com escala superior','Regulação em revisão','Percepção de qualidade inferior']},gut:[['Sem indicadores digitais',5,5,5],['Tutoria sem protocolo',5,5,4],['Aluno sem pertencimento',4,3,5],['Baixa adesão a aulas ao vivo',4,4,4],['Sem alerta de risco',5,4,5]],actions:[['Instrumentar indicadores no AVA','Sem dado não há gestão','Núcleo EAD + TI','90 dias','Coordenação EAD','Relatórios automáticos','Baixo'],['Tutoria ativa em 48h','EAD perdé aluno no silêncio','Núcleo EAD','Imediato','Tutores','Alerta + script + registro','Baixo'],['Aulas gravadas em 24h','Aluno trabalha e precisa de flexibilidade','Plataforma','Próximo semestre','Professores','Padronizar gravação','Zero']],insight:'No EAD, a prioridade zero é medir. Sem indicador digital, toda gestão é cega.'}
 ];
 
@@ -2644,6 +2648,7 @@ function applyEdits(){
   c.actions=c.actions.map((_,i)=>fields.map(k=>$(`ep_w2h_${i}_${k}`).value.trim()));
   c.insight=$("ep_insight").value.trim();
   saveCourseData(current);
+  syncSchedule();
   selectCourse(current);closeEditor();
 }
 function resetCourse(){const idx=COURSES.findIndex(x=>x.id===current);if(idx<0)return;populateEditor(current);}
@@ -3071,6 +3076,12 @@ function init(){
     initCPACharts();
     window._cpaChartsReady = true;
   }, 120);
+  // Carregar dados da nuvem se configurado
+  var _cfg = syncGetConfig();
+  if (_cfg && _cfg.binId) {
+    syncSetStatus('spin', 'Carregando nuvem...');
+    setTimeout(function(){ syncPull(true); }, 500);
+  }
 }
 
 // Lazy chart init: re-init charts for a newly visible panel
@@ -3228,11 +3239,165 @@ var DREG_EXTRAS = {
 // Storage
 var DREG_STORAGE_KEY = 'unipar_diretrizes_v1';
 
+// ── Dados pré-populados dos PDFs (Indicadores — CPA 2025) ─────────────────────
+var DEFAULT_INDICATORS = {
+  bio: {
+    captacao: 'Palestras em colégios; Participação em eventos da saúde e gerais; Divulgação em redes sociais com projetos de extensão; Visita em clínicas.',
+    retencao: 'Retorno do Projeto de Tutoria Acadêmica; Acompanhamento do Projeto PIESA; Divulgação do Projeto PROIN; Atendimento individual pela coordenação; Acolhimento dos ingressantes com apresentação da matriz curricular, projetos e plataformas disponíveis.',
+    evasao: 'Mapeamento de evasão (secretaria acadêmica e coordenação); Acompanhamento da evolução do alunado após reunião de CPT; Valorização da qualidade de ensino pela experiência dos docentes; Fórum pedagógico.',
+    satisfacao: 'Aulas práticas; Eventos internos com profissionais; Visitas técnicas locais, regionais e nacionais; Participação em congressos científicos da UNIPAR e outras instituições.',
+    engajamento: 'Capacitações dos docentes online e presencial; Valorização com honra ao mérito; Abertura no formato de trabalho.',
+    visibilidade: 'Eventos institucionais e regionais com alta visibilidade; Projetos de extensão ativos na comunidade; Parcerias com conselho regional e nacional; Parcerias com hospital, secretarias de saúde da região, SAMU, Bombeiros.'
+  },
+  ef: {
+    captacao: 'Palestras em colégios; Participação em eventos da secretaria de esportes; Divulgação em redes sociais com projetos de extensão; Visita em academias.',
+    retencao: 'Retorno do Projeto de Tutoria Acadêmica; Acompanhamento do Projeto PIESA; Divulgação do Projeto PROIN; Atendimento individual pela coordenação; Fórum de egresso; Apresentação aos ingressantes da matriz curricular, projetos e plataformas disponíveis.',
+    evasao: 'Mapeamento de evasão (secretaria acadêmica e coordenação); Acompanhamento após reunião de CPT; Valorização da qualidade de ensino; Fórum pedagógico.',
+    satisfacao: 'Aulas práticas; Eventos internos com profissionais; Visitas técnicas; Participação em corridas, jogos esportivos e paradesportivos; Elaboração/organização de jogos intercursos.',
+    engajamento: 'Capacitações dos docentes online e presencial; Valorização com honra ao mérito; Abertura no formato de trabalho.',
+    visibilidade: 'Eventos institucionais e regionais com alta visibilidade; Projetos de extensão ativos na comunidade; Parcerias com secretarias municipais, empresas locais e regionais, academias, clubes e escolas (regulares, APAEs).'
+  },
+  psi: {
+    captacao: 'Visitas a escolas de Ensino Médio; Aula aberta - como pensa um psicólogo?; Campanhas nas redes sociais envolvendo os alunos; Feira de profissões; Projeto "Um dia universitário"; Divulgação dos campos de estágio.',
+    retencao: 'Programa de acolhimento aos calouros; Monitoria nas disciplinas mais complexas; Grupos de estudo; Calendário de eventos; Comunicação mais próxima da coordenação; Inclusão do Programa de Tutoria.',
+    evasao: 'Mapeamento precoce de alunos em risco; Aumento do tempo de atendimento individual; Contato ativo antes do trancamento formal.',
+    satisfacao: 'Devolutiva das avaliações institucionais; Jornada construída com a participação discente.',
+    engajamento: 'Reunião pedagógica bimestral; Formação continuada; 1by1.',
+    visibilidade: 'Projetos de extensão com a comunidade; Parceria com políticas públicas municipais, estaduais e regionais; Participação em Campanhas Públicas; Presença em Rádio Locais e Mídias Regionais; Eventos abertos à comunidade.'
+  },
+  enf: {
+    captacao: 'Palestras em colégios; Participação em eventos da saúde e gerais; Divulgação em redes sociais com projetos de extensão; Visita em clínicas.',
+    retencao: 'Retorno do Projeto de Tutoria Acadêmica; Acompanhamento do Projeto PIESA; Divulgação do Projeto PROIN; Atendimento individual pela coordenação; Acolhimento dos ingressantes; Apresentação da matriz curricular, projetos e plataformas disponíveis.',
+    evasao: 'Mapeamento de evasão (secretaria acadêmica e coordenação); Acompanhamento da evolução do alunado após reunião de CPT; Valorização da qualidade de ensino pela experiência dos docentes; Valorização da estrutura institucional; Fórum do egresso.',
+    satisfacao: 'Aulas práticas; Eventos internos com interação com profissionais; Eventos na comunidade; Visitas técnicas; Melhorias apontadas pelo CPA.',
+    engajamento: 'Capacitações dos docentes online e presencial; Valorização com honra ao mérito de participação.',
+    visibilidade: 'Eventos institucionais e regionais com alta visibilidade; Projetos de extensão ativos na comunidade; Parcerias com conselho regional e nacional; Parcerias com hospital, secretarias de saúde da região, SAMU, Bombeiros, Polícia Militar e órgãos afins.'
+  },
+  cont: {
+    captacao: 'Ações nas escolas (oficinas e palestras); Visitas nas empresas e presença em eventos.',
+    retencao: 'Retorno das Tutorias; Projeto PIESA; Unipar Empregabilidade (preparação de Currículo, LinkedIn, CIAPE).',
+    evasao: 'Mapeamento de alunos em inadimplência; Reuniões individuais; Acompanhamento do CPT.',
+    satisfacao: 'Melhorias apontadas na CPA; Alinhamento da comunicação com as lideranças; Realização de eventos e visitas técnicas; Aulas Interdisciplinares e práticas.',
+    engajamento: 'Reuniões pedagógicas; Capacitações; Integração docente.',
+    visibilidade: 'Implantação do NAF; Participação em eventos locais e regionais; Parcerias com empresas; Participação em conselhos da área.'
+  },
+  ads: {
+    captacao: 'Ações nas escolas (oficinas e palestras); Visitas nas empresas e presença em eventos.',
+    retencao: 'Retorno das Tutorias; Projeto PIESA; Unipar Empregabilidade (preparação de Currículo, LinkedIn).',
+    evasao: 'Mapeamento de alunos em inadimplência; Reuniões individuais; Acompanhamento do CPT de notas e frequências.',
+    satisfacao: 'Melhorias apontadas na CPA como a internet; Alinhamento da comunicação com as lideranças das turmas; Realização de eventos e visitas técnicas; Aulas Interdisciplinares e projetos.',
+    engajamento: 'Reuniões pedagógicas; Capacitações; Integração docente.',
+    visibilidade: 'Participação em eventos locais e regionais de tecnologia; Parcerias com empresas do setor; Participação em conselhos da área.'
+  },
+  adm: {
+    captacao: 'Ações nas escolas (oficinas e palestras); Visitas nas empresas e presença em eventos.',
+    retencao: 'Retorno das Tutorias; Projeto PIESA; Unipar Empregabilidade (preparação de Currículo, LinkedIn, CIAPE).',
+    evasao: 'Mapeamento de alunos em inadimplência; Reuniões individuais; Acompanhamento do CPT.',
+    satisfacao: 'Melhorias apontadas na CPA; Alinhamento da comunicação com as lideranças; Realização de eventos e visitas técnicas; Aulas Interdisciplinares e práticas.',
+    engajamento: 'Reuniões pedagógicas; Capacitações; Integração docente.',
+    visibilidade: 'Reativação do CIAPE; Participação em eventos locais e regionais; Parcerias com empresas; Participação em conselhos da área.'
+  },
+  dir: {
+    captacao: 'Intensificação da divulgação do curso de Direito em escolas de ensino médio da região (inclusive com Júri Simulado); Visitas guiadas ao campus (UPXP ou atividades práticas); Participação em eventos jurídicos; Produção de conteúdos institucionais nas redes sociais; Promoção de eventos abertos à comunidade; Divulgação de aprovados na OAB em outdoor pela cidade e redes sociais.',
+    retencao: 'Participação em projetos institucionais (monitoria, projetos de pesquisa, atlética do curso); Acompanhamento contínuo com identificação de dificuldades pedagógicas; Monitoramento de frequência; Aproximação entre coordenação, professores e discentes; Acolhimento dos ingressantes; Escuta ativa dos representantes de turma.',
+    evasao: 'Monitoramento de alunos com risco de evasão mediante análise de faltas, desempenho acadêmico e dificuldades relatadas; Atendimentos individualizados; Diálogo com professores e encaminhamento institucional; Plano de recuperação acadêmica; Flexibilização de estratégias de aprendizagem; Fortalecimento do vínculo do estudante.',
+    satisfacao: 'Ampliação da comunicação entre coordenação e acadêmicos; Encontros periódicos com representantes de turma; Incentivo a atividades práticas e eventos acadêmicos; Inserção do aluno nas atividades do curso; Fortalecimento da atlética; Reconhecimento dos bons resultados pessoais.',
+    engajamento: 'Reuniões pedagógicas periódicas; Alinhamento institucional entre docentes; Incentivo à formação continuada; Compartilhamento de boas práticas; Integração entre disciplinas e metodologias ativas.',
+    visibilidade: 'Participação por meio de palestras, eventos abertos, projetos de extensão, campanhas educativas e parcerias com instituições privadas e públicas; Estreitamento da relação com profissionais das mais variadas áreas para aproximação do curso de Direito e seus eventos.'
+  }
+};
+
+// ── Diretrizes pré-populadas do PDF Biomedicina (30/43 — 70%) ─────────────────
+var DEFAULT_DIRETRIZES = {
+  bio: {
+    matriz_curricular:true, planos_ensino:true, colegiado_atas:true,
+    cpt_atas:true, evidencias_doc:true, reg_estagio:true,
+    termos_convenio:true, avaliacoes_externas:true,
+    bibliografias:true, iqcd:true, indicadores:true,
+    acex:true, atividades_comp:true, proin:true,
+    pim_pibim:true, tcc_repositorio:true, ensino_projetos:true,
+    extensao_projetos:true,
+    inovacao:true, mercado:true, permanencia:true,
+    ato_autorizacao:true, ato_reconhecimento:true, ato_renovacao:true,
+    ato_matriz:true, ato_coordenador:true,
+    reg_laboratorios:true, desc_equipamentos:true,
+    inst_praticas:true, ambientes_prof:true
+  },
+  cont: {
+    ppc_atualizado:true, matriz_curricular:true, planos_ensino:true,
+    nde_atas:true, colegiado_atas:true, cpt_atas:true,
+    evidencias_doc:true, reg_estagio:true, manual_estagio:true,
+    reg_tcc:true, avaliacoes_externas:true,
+    bibliografias:true, plano_acao:true, indicadores:true,
+    acex:true, atividades_comp:true, proin:true,
+    pim_pibim:true, enade:true, ensino_projetos:true, extensao_projetos:true,
+    metodologias:true, inovacao:true, mercado:true, permanencia:true,
+    ato_autorizacao:true, ato_reconhecimento:true,
+    ato_ppc:true, ato_matriz:true, ato_coordenador:true,
+    ato_nde:true, ato_colegiado:true
+  },
+  ads: {
+    ppc_atualizado:true, matriz_curricular:true, planos_ensino:true,
+    nde_atas:true, colegiado_atas:true, cpt_atas:true,
+    evidencias_doc:true, reg_estagio:true, manual_estagio:true,
+    avaliacoes_externas:true,
+    bibliografias:true, iqcd:true, plano_acao:true, indicadores:true,
+    acex:true, atividades_comp:true, ensino_projetos:true, extensao_projetos:true,
+    inovacao:true, mercado:true,
+    ato_nde:true, ato_colegiado:true,
+    desc_equipamentos:true, ambientes_prof:true
+  },
+  adm: {
+    // Nível Prioritário 12/12 = 100%
+    ppc_atualizado:true, matriz_curricular:true, planos_ensino:true,
+    nde_atas:true, colegiado_atas:true, cpt_atas:true,
+    evidencias_doc:true, reg_estagio:true, manual_estagio:true,
+    termos_convenio:true, reg_tcc:true, avaliacoes_externas:true,
+    // Nível Essencial 6/13 = 46%
+    plano_acao:true, indicadores:true, acex:true,
+    atividades_comp:true, ensino_projetos:true, extensao_projetos:true,
+    // Nível Estratégico 4/6 = 67%
+    metodologias:true, inovacao:true, mercado:true, permanencia:true,
+    // Base Legal 6/8 = 75%
+    ato_autorizacao:true, ato_reconhecimento:true,
+    ato_matriz:true, ato_coordenador:true, ato_nde:true, ato_colegiado:true
+    // Infraestrutura 0/4 — nenhum checked
+  },
+  dir: {
+    // Nível Prioritário 9/12 = 75%
+    ppc_atualizado:true, matriz_curricular:true, planos_ensino:true,
+    evidencias_doc:true, reg_estagio:true, manual_estagio:true,
+    termos_convenio:true, reg_tcc:true, avaliacoes_externas:true,
+    // Nível Essencial 7/13 = 54%
+    acex:true, atividades_comp:true, proin:true, pim_pibim:true,
+    ensino_projetos:true, extensao_projetos:true, pesquisa_projetos:true,
+    // Nível Estratégico 5/6 = 83%
+    posgrad:true, internacionalizacao:true, inovacao:true, mercado:true, permanencia:true,
+    // Base Legal 8/8 = 100%
+    ato_autorizacao:true, ato_reconhecimento:true, ato_renovacao:true,
+    ato_ppc:true, ato_matriz:true, ato_coordenador:true, ato_nde:true, ato_colegiado:true
+    // Infraestrutura 0/4 — nenhum checked
+  }
+};
+
 function dregLoadState() {
   try {
     var raw = localStorage.getItem(DREG_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch(e) { return {}; }
+    if (!raw) {
+      // Primeira carga: pré-popular com dados do PDF Biomedicina
+      var initial = JSON.parse(JSON.stringify(DEFAULT_DIRETRIZES));
+      localStorage.setItem(DREG_STORAGE_KEY, JSON.stringify(initial));
+      return initial;
+    }
+    var state = JSON.parse(raw);
+    // Merge: só preenche se o curso ainda não tiver dados
+    Object.keys(DEFAULT_DIRETRIZES).forEach(function(cid) {
+      if (!state[cid] || Object.keys(state[cid]).length === 0) {
+        state[cid] = JSON.parse(JSON.stringify(DEFAULT_DIRETRIZES[cid]));
+      }
+    });
+    return state;
+  } catch(e) { return JSON.parse(JSON.stringify(DEFAULT_DIRETRIZES)); }
 }
 
 function dregSaveState(state) {
@@ -3249,6 +3414,7 @@ function dregSetChecked(courseId, itemId, val) {
   if (!state[courseId]) state[courseId] = {};
   state[courseId][itemId] = val;
   dregSaveState(state);
+  syncSchedule();
 }
 
 // Render course selector using COURSES from the main dashboard
@@ -3551,8 +3717,23 @@ var IND_ITEMS = [
   { id:'visibilidade',  icon:'📢', title:'Ações Externas / Visibilidade',sub:'Projetos de extensão, parcerias e presença regional',ph:'Ex: Eventos abertos, parceria com empresas, projetos comunitários, presença em mídias locais...' }
 ];
 
+
 function indLoadState() {
-  try { return JSON.parse(localStorage.getItem(IND_KEY) || '{}'); } catch(e) { return {}; }
+  try {
+    var stored = localStorage.getItem(IND_KEY);
+    if (!stored) {
+      localStorage.setItem(IND_KEY, JSON.stringify(DEFAULT_INDICATORS));
+      return JSON.parse(JSON.stringify(DEFAULT_INDICATORS));
+    }
+    var state = JSON.parse(stored);
+    // Merge: preenche cursos que ainda não têm dados salvos
+    Object.keys(DEFAULT_INDICATORS).forEach(function(cid) {
+      if (!state[cid] || Object.keys(state[cid]).length === 0) {
+        state[cid] = JSON.parse(JSON.stringify(DEFAULT_INDICATORS[cid]));
+      }
+    });
+    return state;
+  } catch(e) { return JSON.parse(JSON.stringify(DEFAULT_INDICATORS)); }
 }
 function indSaveState(s) {
   try { localStorage.setItem(IND_KEY, JSON.stringify(s)); } catch(e) {}
@@ -3566,6 +3747,7 @@ function indSetField(courseId, fieldId, value) {
   if (!s[courseId]) s[courseId] = {};
   s[courseId][fieldId] = value;
   indSaveState(s);
+  syncSchedule();
 }
 
 function renderIndicadores(courseId) {
@@ -3848,6 +4030,208 @@ function indToast(msg) {
   setTimeout(function(){ t.style.opacity = '0'; setTimeout(function(){ t.remove(); }, 350); }, 2800);
 }
 
+
+// ─── SYNC NUVEM (JSONBin.io) ──────────────────────────────────────────────────
+var SYNC_CFG_KEY = 'unipar_sync_config_v1';
+var _syncTimer   = null;
+var _syncBusy    = false;
+
+function syncGetConfig() {
+  try { return JSON.parse(localStorage.getItem(SYNC_CFG_KEY) || 'null'); } catch(e) { return null; }
+}
+function syncSetConfig(cfg) {
+  localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(cfg));
+}
+
+function syncSetStatus(state, text) {
+  var dot  = document.getElementById('syncDot');
+  var lbl  = document.getElementById('syncStatusText');
+  var btn  = document.getElementById('syncBtnLabel');
+  if (dot) { dot.className = 'sync-dot sync-dot-' + state; }
+  if (lbl) lbl.textContent = text;
+  if (btn) btn.textContent = state === 'spin' ? 'Sincronizando...' : 'Sincronizar';
+}
+
+// Monta o pacote completo de todos os dados do dashboard
+function syncBuildPayload() {
+  var courses_state = {};
+  try { courses_state = JSON.parse(localStorage.getItem(COURSES_KEY) || '{}'); } catch(e) {}
+  return {
+    v:        3,
+    ts:       new Date().toISOString(),
+    courses:  courses_state,
+    ind:      indLoadState(),
+    dreg:     dregLoadState()
+  };
+}
+
+// Aplica um payload recebido da nuvem (merge inteligente)
+function syncApplyPayload(remote) {
+  if (!remote) return;
+
+  // Merge COURSES (dados de planejamento)
+  if (remote.courses) {
+    var localC = {};
+    try { localC = JSON.parse(localStorage.getItem(COURSES_KEY) || '{}'); } catch(e) {}
+    Object.keys(remote.courses).forEach(function(id) {
+      // Só sobrescreve se o remote for mais recente ou local estiver vazio
+      localC[id] = Object.assign({}, localC[id] || {}, remote.courses[id]);
+    });
+    localStorage.setItem(COURSES_KEY, JSON.stringify(localC));
+    loadAllCourseData();
+  }
+
+  // Merge Indicadores
+  if (remote.ind) {
+    var localI = indLoadState();
+    Object.keys(remote.ind).forEach(function(courseId) {
+      if (!localI[courseId]) localI[courseId] = {};
+      Object.assign(localI[courseId], remote.ind[courseId]);
+    });
+    indSaveState(localI);
+  }
+
+  // Merge Diretrizes (só marca, nunca desmarca)
+  if (remote.dreg) {
+    var localD = dregLoadState();
+    Object.keys(remote.dreg).forEach(function(courseId) {
+      if (!localD[courseId]) localD[courseId] = {};
+      Object.keys(remote.dreg[courseId] || {}).forEach(function(k) {
+        if (remote.dreg[courseId][k]) localD[courseId][k] = true;
+      });
+    });
+    dregSaveState(localD);
+  }
+
+  // Recarregar UI do curso atual
+  selectCourse(current);
+  renderIndicadores(current);
+}
+
+// Envia dados para a nuvem
+function syncPush(silent) {
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId || !cfg.apiKey) return;
+  if (_syncBusy) return;
+  _syncBusy = true;
+  if (!silent) syncSetStatus('spin', 'Enviando...');
+
+  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': cfg.apiKey
+    },
+    body: JSON.stringify(syncBuildPayload())
+  })
+  .then(function(r) {
+    _syncBusy = false;
+    if (r.ok) {
+      syncSetStatus('ok', 'Nuvem atualizada · ' + new Date().toLocaleTimeString('pt-BR'));
+    } else {
+      syncSetStatus('err', 'Erro ao enviar · verifique a chave');
+    }
+  })
+  .catch(function() {
+    _syncBusy = false;
+    syncSetStatus('err', 'Sem conexão');
+  });
+}
+
+// Busca dados da nuvem
+function syncPull(silent) {
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) return;
+  if (!silent) syncSetStatus('spin', 'Buscando...');
+
+  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', {
+    headers: { 'X-Master-Key': cfg.apiKey || '' }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(json) {
+    var data = json.record || json;
+    syncApplyPayload(data);
+    syncSetStatus('ok', 'Sincronizado · ' + new Date().toLocaleTimeString('pt-BR'));
+    if (!silent) indToast('✓ Dados da nuvem carregados com sucesso!');
+  })
+  .catch(function() {
+    syncSetStatus('err', 'Não foi possível buscar dados');
+  });
+}
+
+// Sync automático com debounce de 3s após qualquer alteração
+function syncSchedule() {
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId || !cfg.apiKey) return;
+  clearTimeout(_syncTimer);
+  syncSetStatus('spin', 'Aguardando...');
+  _syncTimer = setTimeout(function() { syncPush(false); }, 3000);
+}
+
+// Botão "Sincronizar" manual
+function syncNow() {
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) { syncConfigModal(); return; }
+  syncPull(false);
+}
+
+// Modal de configuração
+function syncConfigModal() {
+  var old = document.getElementById('syncConfigModal');
+  if (old) old.remove();
+  var cfg = syncGetConfig() || {};
+
+  var modal = document.createElement('div');
+  modal.id = 'syncConfigModal';
+  modal.className = 'modal-overlay';
+  modal.innerHTML = ''
+    + '<div class="modal-box" style="max-width:540px">'
+    + '<div class="modal-title">☁️ Configurar Banco de Dados Compartilhado</div>'
+    + '<div class="modal-sub" style="margin-bottom:1rem">Use o <strong>JSONBin.io</strong> (gratuito) para que todos vejam os mesmos dados em tempo real, sem precisar copiar código.'
+    + '<br><br><strong>Como configurar (1 vez, só o diretor):</strong>'
+    + '<ol style="margin:.5rem 0 0 1.2rem;font-size:.82rem;line-height:1.7">'
+    + '<li>Acesse <a href="https://jsonbin.io" target="_blank" style="color:#002060">jsonbin.io</a> e crie uma conta gratuita</li>'
+    + '<li>Clique em <strong>Bins → + Create Bin</strong> e salve um JSON vazio: <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px">{}</code></li>'
+    + '<li>Copie o <strong>BIN ID</strong> (aparece na URL)</li>'
+    + '<li>Em <strong>API Keys</strong>, copie sua <strong>Master Key</strong></li>'
+    + '<li>Cole abaixo e clique Salvar</li>'
+    + '</ol>'
+    + '</div>'
+    + '<label style="font-size:.78rem;font-weight:700;color:#002060;display:block;margin-bottom:.3rem">BIN ID</label>'
+    + '<input id="syncBinId" type="text" style="width:100%;border:2px solid #ddd;border-radius:7px;padding:.55rem .8rem;font-family:monospace;font-size:.85rem;box-sizing:border-box;margin-bottom:.9rem" placeholder="ex: 64a1b2c3d4e5f6a7b8c9d0e1" value="' + (cfg.binId||'') + '">'
+    + '<label style="font-size:.78rem;font-weight:700;color:#002060;display:block;margin-bottom:.3rem">MASTER KEY</label>'
+    + '<input id="syncApiKey" type="password" style="width:100%;border:2px solid #ddd;border-radius:7px;padding:.55rem .8rem;font-family:monospace;font-size:.85rem;box-sizing:border-box;margin-bottom:.5rem" placeholder="$2b$10$..." value="' + (cfg.apiKey||'') + '">'
+    + '<div style="font-size:.75rem;color:#888;margin-bottom:1rem">A chave fica salva só no seu navegador. Compartilhe apenas o BIN ID (não a chave) com os coordenadores se quiser que eles também enviem dados.</div>'
+    + '<div id="syncTestMsg" style="font-size:.8rem;min-height:1.2rem;margin-bottom:.5rem"></div>'
+    + '<div class="modal-actions">'
+    + '<button class="modal-cancel" onclick="document.getElementById(\'syncConfigModal\').remove()">Cancelar</button>'
+    + '<button class="modal-ok" style="background:#6B2D8B" onclick="syncConfigSave()">Salvar e Sincronizar</button>'
+    + '</div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function(e){ if(e.target===modal) modal.remove(); });
+}
+
+function syncConfigSave() {
+  var binId  = (document.getElementById('syncBinId').value  || '').trim();
+  var apiKey = (document.getElementById('syncApiKey').value || '').trim();
+  var msg    = document.getElementById('syncTestMsg');
+
+  if (!binId) { msg.style.color='#E30613'; msg.textContent='⚠ Informe o BIN ID.'; return; }
+
+  syncSetConfig({ binId: binId, apiKey: apiKey });
+  msg.style.color = '#0E7C4A';
+  msg.textContent = '✓ Configuração salva. Conectando...';
+  syncSetStatus('spin', 'Conectando...');
+
+  setTimeout(function(){
+    document.getElementById('syncConfigModal').remove();
+    // Primeiro puxa dados existentes, depois sobe os locais
+    syncPull(true);
+    setTimeout(function(){ syncPush(false); }, 2000);
+  }, 800);
+}
+
+// Hooks automáticos: chamar syncSchedule() após cada save
 // ─── EXPORTAR PDF ─────────────────────────────────────────────────────────────
 function exportCoursePDF() {
   var courseRaw = COURSES.find(function(c){ return c.id === current; });
