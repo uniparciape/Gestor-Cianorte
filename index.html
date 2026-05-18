@@ -956,6 +956,34 @@ button{font:inherit;cursor:pointer}
 .rpt-ns-box{background:#002060;color:#fff;border-radius:8px;padding:6mm 8mm;margin-bottom:6mm}
 .rpt-ns-label{font-size:7pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:2mm}
 .rpt-ns-val{font-size:13pt;font-style:italic;color:#ffc954;line-height:1.4}
+
+/* ═══ COMPARTILHAMENTO ═══ */
+.share-bar{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--g4);border-radius:var(--radius);padding:.85rem 1.2rem;margin-bottom:1.5rem;box-shadow:var(--shadow2)}
+.share-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1rem;border-radius:7px;font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:.18s ease}
+.share-btn-copy{background:#002060;color:#fff}.share-btn-copy:hover{background:#003299}
+.share-btn-import{background:#0E7C4A;color:#fff}.share-btn-import:hover{background:#0a5c37}
+.share-btn-view{background:#f5f7fa;color:#002060;border:1.5px solid var(--g3)}.share-btn-view:hover{background:var(--g4)}
+.share-info{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--g2);letter-spacing:.05em;flex:1;min-width:160px}
+.share-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#002060;color:#fff;padding:.75rem 1.5rem;border-radius:8px;font-family:"JetBrains Mono",monospace;font-size:.8rem;letter-spacing:.08em;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .3s;pointer-events:none}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:flex;align-items:center;justify-content:center}
+.modal-box{background:#fff;border-radius:12px;padding:2rem;max-width:580px;width:93%;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto}
+.modal-title{font-family:"DM Serif Display",serif;font-size:1.25rem;color:#002060;margin-bottom:.4rem}
+.modal-sub{font-size:.85rem;color:var(--g1);margin-bottom:1.2rem}
+.modal-ta{width:100%;min-height:120px;border:2px solid var(--g3);border-radius:8px;padding:.7rem;font-family:"JetBrains Mono",monospace;font-size:.73rem;resize:vertical;box-sizing:border-box;line-height:1.4}
+.modal-ta:focus{outline:none;border-color:#002060}
+.modal-actions{display:flex;gap:.7rem;margin-top:1rem;justify-content:flex-end}
+.modal-ok{background:#002060;color:#fff;border:none;border-radius:7px;padding:.55rem 1.2rem;font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.modal-ok:hover{background:#003299}
+.modal-cancel{background:var(--g4);color:var(--ink);border:none;border-radius:7px;padding:.55rem 1rem;font-family:"JetBrains Mono",monospace;font-size:.72rem;cursor:pointer}
+.view-course{border:1px solid var(--g4);border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.view-course-hdr{background:#f5f7fa;padding:.7rem 1rem;display:flex;align-items:center;gap:.8rem;border-bottom:1px solid var(--g4)}
+.view-course-name{font-weight:700;color:#002060;font-size:.9rem;flex:1}
+.view-course-pct{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--g2)}
+.view-course-body{padding:.8rem 1rem}
+.view-field{margin-bottom:.55rem}
+.view-field-lbl{font-family:"JetBrains Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g2);margin-bottom:.2rem}
+.view-field-val{font-size:.84rem;color:var(--ink);background:#f9f9f9;border-radius:4px;padding:.4rem .6rem;line-height:1.45}
+.view-field-empty{font-size:.8rem;color:#ccc;font-style:italic}
 </style>
 </head>
 <body>
@@ -1863,8 +1891,24 @@ button{font:inherit;cursor:pointer}
       <p class="sec-desc">Registre o que cada curso está fazendo para melhorar cada indicador. Salvo automaticamente.</p>
     </div>
 
-    <div id="indContent"></div>
+    <!-- BARRA DE COMPARTILHAMENTO -->
+    <div class="share-bar">
+      <button class="share-btn share-btn-copy" onclick="indShare()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Copiar código para compartilhar
+      </button>
+      <button class="share-btn share-btn-import" onclick="indImportModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Importar dados de coordenador
+      </button>
+      <button class="share-btn share-btn-view" onclick="indViewAll()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Ver todos os cursos
+      </button>
+      <span class="share-info" id="shareStatus">Compartilha SWOT, GUT, 5W2H, Gestão, Ishikawa, Eisenhower e Indicadores do curso selecionado.</span>
+    </div>
 
+    <div id="indContent"></div>
   </section>
 
 </main>
@@ -2600,6 +2644,7 @@ function applyEdits(){
   const fields=["what","why","where","when","who","how","howMuch"];
   c.actions=c.actions.map((_,i)=>fields.map(k=>$(`ep_w2h_${i}_${k}`).value.trim()));
   c.insight=$("ep_insight").value.trim();
+  saveCourseData(current);
   selectCourse(current);closeEditor();
 }
 function resetCourse(){const idx=COURSES.findIndex(x=>x.id===current);if(idx<0)return;populateEditor(current);}
@@ -3019,6 +3064,7 @@ function exportAgenda() {
 
 
 function init(){
+  loadAllCourseData();
   renderCourseBar();setupTabs();selectCourse(current);
   setTimeout(function(){ initDiretrizes(); }, 80);
   // Init CPA charts after a short delay so visible canvases render correctly
@@ -3459,7 +3505,43 @@ function initDiretrizes() {
 
 
 // ─── MÓDULO INDICADORES ──────────────────────────────────────────────────────
-var IND_KEY = 'unipar_cianorte_indicadores_v1';
+var IND_KEY     = 'unipar_cianorte_indicadores_v1';
+var COURSES_KEY = 'unipar_cianorte_courses_v1';
+
+// ── Persistência de COURSES ───────────────────────────────────────────────────
+function saveCourseData(courseId) {
+  try {
+    var state = JSON.parse(localStorage.getItem(COURSES_KEY) || '{}');
+    var c = normalizeCourse(COURSES.find(function(x){ return x.id === courseId; }));
+    if (!c) return;
+    state[courseId] = {
+      north:   c.north,
+      swot:    c.swot,
+      gut:     c.gut,
+      actions: c.actions,
+      insight: c.insight
+    };
+    localStorage.setItem(COURSES_KEY, JSON.stringify(state));
+  } catch(e) {}
+}
+
+function loadAllCourseData() {
+  try {
+    var state = JSON.parse(localStorage.getItem(COURSES_KEY) || '{}');
+    COURSES.forEach(function(cr) {
+      if (!state[cr.id]) return;
+      var d = state[cr.id];
+      if (d.north)   cr.north   = d.north;
+      if (d.swot)    cr.swot    = d.swot;
+      if (d.gut)     cr.gut     = d.gut.map(function(g){ return Array.isArray(g) ? {problem:g[0],g:g[1],u:g[2],t:g[3],score:g[1]*g[2]*g[3]} : g; });
+      if (d.actions) cr.actions = d.actions.map(function(a){
+        if (Array.isArray(a)) return {what:a[0],why:a[1],where:a[2],when:a[3],who:a[4],how:a[5],howMuch:a[6]};
+        return a;
+      });
+      if (d.insight) cr.insight = d.insight;
+    });
+  } catch(e) {}
+}
 
 var IND_ITEMS = [
   { id:'captacao',      icon:'🎯', title:'Captação',                    sub:'Estratégias para atrair novos alunos',            ph:'Ex: Participação em feiras, parceria com escolas, campanhas nas redes sociais, visitas ao campus...' },
@@ -3577,6 +3659,183 @@ function indClearField(courseId, fieldId) {
   if (ta) { ta.value = ''; indHandleInput(courseId, fieldId, ta); }
 }
 
+
+
+// ─── COMPARTILHAMENTO DE INDICADORES ──────────────────────────────────────────
+function indShare() {
+  var courseRaw = COURSES.find(function(x){ return x.id === current; });
+  if (!courseRaw) return;
+  var c = normalizeCourse(courseRaw);
+
+  var payload = {
+    v: 2,
+    course:  current,
+    name:    c.name,
+    short:   c.short,
+    ts:      new Date().toLocaleDateString('pt-BR'),
+    // dados das abas de planejamento
+    north:   c.north,
+    swot:    c.swot,
+    gut:     c.gut,
+    actions: c.actions,
+    insight: c.insight,
+    // dados dos indicadores
+    ind: indGetCourseData(current)
+  };
+
+  var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+  var copy = function(text) {
+    try {
+      navigator.clipboard.writeText(text).then(function(){
+        indToast('✓ Código copiado! Cole no dashboard da direção → "Importar dados de coordenador".');
+        var el = document.getElementById('shareStatus');
+        if (el) el.textContent = 'Código gerado em ' + new Date().toLocaleTimeString('pt-BR') + ' · inclui SWOT, GUT, 5W2H, Ishikawa, Eisenhower, Gestão e Indicadores.';
+      });
+    } catch(e) {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      indToast('✓ Código copiado!');
+    }
+  };
+  copy(encoded);
+}
+
+function indImportModal() {
+  // Remover modal anterior se existir
+  var old = document.getElementById('indImportModal');
+  if (old) old.remove();
+
+  var modal = document.createElement('div');
+  modal.id = 'indImportModal';
+  modal.className = 'modal-overlay';
+  modal.innerHTML = ''
+    + '<div class="modal-box">'
+    + '<div class="modal-title">📥 Importar dados de coordenador</div>'
+    + '<div class="modal-sub">Cole abaixo o código gerado pelo coordenador. Serão importados: SWOT, GUT, 5W2H, Gestão, Ishikawa, Eisenhower e Indicadores. Os dados existentes não são apagados — apenas complementados.</div>'
+    + '<textarea class="modal-ta" id="indImportTA" placeholder="Cole aqui o código do coordenador..."></textarea>'
+    + '<div id="indImportMsg" style="font-size:.8rem;margin-top:.5rem;min-height:1.2rem"></div>'
+    + '<div class="modal-actions">'
+    + '<button class="modal-cancel" onclick="document.getElementById(\'indImportModal\').remove()">Cancelar</button>'
+    + '<button class="modal-ok" onclick="indImportConfirm()">Importar</button>'
+    + '</div></div>';
+  document.body.appendChild(modal);
+  setTimeout(function(){ document.getElementById('indImportTA').focus(); }, 100);
+}
+
+function indImportConfirm() {
+  var raw = (document.getElementById('indImportTA').value || '').trim();
+  var msg = document.getElementById('indImportMsg');
+  if (!raw) { msg.style.color='#E30613'; msg.textContent = '⚠ Cole o código antes de importar.'; return; }
+
+  try {
+    var payload = JSON.parse(decodeURIComponent(escape(atob(raw))));
+    if (!payload.course) throw new Error('Formato inválido');
+
+    var courseId = payload.course;
+    var idx = COURSES.findIndex(function(x){ return x.id === courseId; });
+    if (idx < 0) throw new Error('Curso não encontrado: ' + courseId);
+
+    // ── Importar dados de planejamento ──
+    if (payload.north)   COURSES[idx].north   = payload.north;
+    if (payload.swot)    COURSES[idx].swot     = payload.swot;
+    if (payload.gut)     COURSES[idx].gut      = payload.gut.map(function(g){
+      if (Array.isArray(g)) return {problem:g[0],g:g[1],u:g[2],t:g[3],score:g[1]*g[2]*g[3]};
+      return g;
+    });
+    if (payload.actions) COURSES[idx].actions  = payload.actions.map(function(a){
+      if (Array.isArray(a)) return {what:a[0],why:a[1],where:a[2],when:a[3],who:a[4],how:a[5],howMuch:a[6]};
+      return a;
+    });
+    if (payload.insight) COURSES[idx].insight  = payload.insight;
+    saveCourseData(courseId);
+
+    // ── Importar indicadores (mescla) ──
+    if (payload.ind) {
+      var s = indLoadState();
+      if (!s[courseId]) s[courseId] = {};
+      Object.keys(payload.ind).forEach(function(k){
+        if (payload.ind[k] && payload.ind[k].trim()) s[courseId][k] = payload.ind[k];
+      });
+      indSaveState(s);
+    }
+
+    // Feedback
+    var nome = payload.name || courseId;
+    msg.style.color = '#0E7C4A';
+    msg.textContent = '✓ Dados de ' + nome + ' importados · SWOT, GUT, 5W2H, Ishikawa, Eisenhower, Gestão e Indicadores · ' + (payload.ts || '');
+
+    // Recarregar se for o curso atual
+    if (courseId === current) { selectCourse(current); renderIndicadores(current); }
+
+    setTimeout(function(){
+      var m = document.getElementById('indImportModal');
+      if (m) m.remove();
+      indToast('✓ ' + nome + ' importado com sucesso em todos os quadros!');
+    }, 1400);
+
+  } catch(e) {
+    msg.style.color = '#E30613';
+    msg.textContent = '⚠ Código inválido ou corrompido. Peça ao coordenador para gerar novamente. (' + e.message + ')';
+  }
+}
+
+function indViewAll() {
+  var old = document.getElementById('indViewModal');
+  if (old) old.remove();
+
+  var state = indLoadState();
+  var coursesHtml = COURSES.map(function(cr){
+    var c = normalizeCourse(cr);
+    var d = state[c.id] || {};
+    var filled = IND_ITEMS.filter(function(i){ return (d[i.id]||'').trim(); }).length;
+    var pct = Math.round(filled/IND_ITEMS.length*100);
+    var color = pct >= 80 ? '#0E7C4A' : pct >= 50 ? '#F5A623' : '#E30613';
+
+    var fieldsHtml = IND_ITEMS.map(function(item){
+      var val = (d[item.id]||'').trim();
+      return '<div class="view-field">'
+        + '<div class="view-field-lbl">' + item.icon + ' ' + item.title + '</div>'
+        + (val
+          ? '<div class="view-field-val">' + val.replace(/\n/g,'<br>') + '</div>'
+          : '<div class="view-field-empty">Não preenchido</div>')
+        + '</div>';
+    }).join('');
+
+    return '<div class="view-course">'
+      + '<div class="view-course-hdr">'
+      + '<div class="view-course-name">' + c.name + '</div>'
+      + '<div class="view-course-pct" style="color:' + color + '">' + filled + '/' + IND_ITEMS.length + ' · ' + pct + '%</div>'
+      + '</div>'
+      + '<div class="view-course-body">' + fieldsHtml + '</div>'
+      + '</div>';
+  }).join('');
+
+  var modal = document.createElement('div');
+  modal.id = 'indViewModal';
+  modal.className = 'modal-overlay';
+  modal.innerHTML = ''
+    + '<div class="modal-box" style="max-width:700px">'
+    + '<div class="modal-title">👁 Painel Consolidado — Todos os Cursos</div>'
+    + '<div class="modal-sub">Visão geral dos indicadores preenchidos por cada curso no seu navegador.</div>'
+    + coursesHtml
+    + '<div class="modal-actions"><button class="modal-ok" onclick="document.getElementById(\'indViewModal\').remove()">Fechar</button></div>'
+    + '</div>';
+  document.body.appendChild(modal);
+  // Fechar clicando fora
+  modal.addEventListener('click', function(e){ if(e.target === modal) modal.remove(); });
+}
+
+function indToast(msg) {
+  var old = document.getElementById('indToastEl');
+  if (old) old.remove();
+  var t = document.createElement('div');
+  t.id = 'indToastEl';
+  t.className = 'share-toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function(){ t.style.opacity = '0'; setTimeout(function(){ t.remove(); }, 350); }, 2800);
+}
 
 // ─── EXPORTAR PDF ─────────────────────────────────────────────────────────────
 function exportCoursePDF() {
