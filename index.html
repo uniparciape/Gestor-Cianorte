@@ -855,6 +855,107 @@ button{font:inherit;cursor:pointer}
   .dreg-summary{grid-template-columns:1fr}
   .dreg-group-header{padding:.75rem 1rem}
 }
+
+/* ═══ INDICADORES ═══ */
+.ind-hero{background:linear-gradient(135deg,#002060,#003299);color:#fff;border-radius:12px;padding:1.6rem 2rem;margin-bottom:1.8rem;border-left:6px solid var(--gold);display:flex;align-items:center;gap:1.2rem}
+.ind-hero-icon{font-size:2.4rem;flex-shrink:0}
+.ind-hero-label{font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.3rem}
+.ind-hero-name{font-family:"DM Serif Display",serif;font-size:1.5rem;font-style:italic;color:#fff}
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.2rem}
+.ind-card{background:#fff;border:1px solid var(--g4);border-radius:var(--radius);box-shadow:var(--shadow2);overflow:hidden;transition:box-shadow .2s}
+.ind-card:hover{box-shadow:var(--shadow)}
+.ind-card-head{padding:.85rem 1.1rem .7rem;display:flex;align-items:center;gap:.7rem;border-bottom:1px solid var(--g4)}
+.ind-card-icon{font-size:1.4rem;flex-shrink:0}
+.ind-card-title{font-family:"JetBrains Mono",monospace;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--navy)}
+.ind-card-sub{font-size:.72rem;color:var(--g2);font-style:italic;margin-top:.15rem}
+.ind-card-body{padding:.85rem 1.1rem}
+.ind-textarea{width:100%;min-height:110px;border:1.5px solid var(--g3);border-radius:6px;padding:.7rem .85rem;font-family:"Sora",sans-serif;font-size:.84rem;line-height:1.5;color:var(--ink);resize:vertical;transition:border-color .18s,box-shadow .18s;background:var(--g5)}
+.ind-textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(0,32,96,.1);background:#fff}
+.ind-textarea::placeholder{color:var(--g2);font-style:italic}
+.ind-save-badge{font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green2);opacity:0;transition:opacity .3s;margin-top:.4rem;display:block}
+.ind-save-badge.show{opacity:1}
+.ind-footer{background:var(--g5);border-top:1px solid var(--g4);padding:.6rem 1.1rem;display:flex;justify-content:space-between;align-items:center}
+.ind-footer-label{font-family:"JetBrains Mono",monospace;font-size:.6rem;color:var(--g2);text-transform:uppercase;letter-spacing:.1em}
+.ind-clear-btn{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--red);background:none;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .4rem;border-radius:4px;transition:background .15s}
+.ind-clear-btn:hover{background:rgba(227,6,19,.08)}
+.ind-summary-bar{background:#fff;border:1px solid var(--g4);border-radius:var(--radius);padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;box-shadow:var(--shadow2)}
+.ind-stat{display:flex;flex-direction:column;align-items:center;gap:.2rem;min-width:60px}
+.ind-stat-num{font-family:"DM Serif Display",serif;font-size:1.6rem;color:var(--navy);line-height:1}
+.ind-stat-label{font-family:"JetBrains Mono",monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g2)}
+.ind-stat-sep{width:1px;height:36px;background:var(--g3);flex-shrink:0}
+.ind-progress-wrap{flex:1;min-width:180px}
+.ind-progress-label{font-family:"JetBrains Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--g1);margin-bottom:.4rem}
+.ind-progress-track{height:8px;background:var(--g4);border-radius:999px;overflow:hidden}
+.ind-progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--navy),var(--green2));transition:width .4s ease}
+
+/* ═══ BOTÃO PDF ═══ */
+.pdf-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin-top:.85rem;padding:.55rem 1.1rem;
+  background:var(--red);color:#fff;border:none;border-radius:8px;
+  font-family:"JetBrains Mono",monospace;font-size:.75rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  box-shadow:0 4px 14px rgba(227,6,19,.3);transition:.18s ease;
+}
+.pdf-btn:hover{background:var(--red2);transform:translateY(-1px);box-shadow:0 6px 18px rgba(227,6,19,.4)}
+.pdf-btn:active{transform:none}
+.pdf-btn.loading{background:var(--g2);pointer-events:none}
+
+/* ═══ RELATÓRIO PDF (div oculto — não usado para impressão) ═══ */
+#pdfReport{display:none}
+
+/* ═══ ESTILOS INTERNOS DO PDF ═══ */
+.rpt-page{page-break-after:always;padding:28mm 22mm 20mm;min-height:270mm;box-sizing:border-box}
+.rpt-page:last-child{page-break-after:avoid}
+.rpt-cover{background:linear-gradient(135deg,#002060 0%,#003299 100%);color:#fff;padding:32mm 22mm;min-height:280mm;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between}
+.rpt-cover-badge{font-family:"JetBrains Mono",monospace;font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6mm}
+.rpt-cover-title{font-size:28pt;font-weight:900;letter-spacing:-.02em;margin-bottom:3mm;color:#fff}
+.rpt-cover-course{font-size:16pt;font-style:italic;color:rgba(255,255,255,.85);margin-bottom:8mm}
+.rpt-cover-meta{font-size:9pt;color:rgba(255,255,255,.6);margin-bottom:2mm}
+.rpt-cover-ns{border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6mm 8mm;margin-top:8mm;background:rgba(255,255,255,.07)}
+.rpt-cover-ns-label{font-size:7pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:2mm}
+.rpt-cover-ns-val{font-size:13pt;font-style:italic;color:#ffc954;line-height:1.4}
+.rpt-cover-footer{font-size:8pt;color:rgba(255,255,255,.4);border-top:1px solid rgba(255,255,255,.15);padding-top:5mm}
+.rpt-section-title{font-size:15pt;font-weight:900;color:#002060;border-bottom:3px solid #E30613;padding-bottom:3mm;margin-bottom:7mm;margin-top:0}
+.rpt-sub{font-size:9pt;color:#666;font-style:italic;margin-bottom:6mm}
+.rpt-label{font-size:7pt;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-bottom:1.5mm;font-weight:700}
+.rpt-swot{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:6mm}
+.rpt-swot-q{border:1px solid #ddd;border-radius:6px;padding:5mm;page-break-inside:avoid}
+.rpt-swot-q-s{border-left:5px solid #0E7C4A}
+.rpt-swot-q-w{border-left:5px solid #E30613}
+.rpt-swot-q-o{border-left:5px solid #1565C0}
+.rpt-swot-q-t{border-left:5px solid #E67E22}
+.rpt-swot-letter{font-size:20pt;font-weight:900;line-height:1;margin-bottom:2mm}
+.rpt-swot-letter-s{color:#0E7C4A}.rpt-swot-letter-w{color:#E30613}.rpt-swot-letter-o{color:#1565C0}.rpt-swot-letter-t{color:#E67E22}
+.rpt-swot-name{font-size:7pt;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:3mm}
+.rpt-swot-li{font-size:9.5pt;padding:2mm 3mm;background:#f7f7f7;border-radius:3px;margin-bottom:1.5mm;line-height:1.35}
+.rpt-table{width:100%;border-collapse:collapse;margin-bottom:6mm;font-size:9pt}
+.rpt-table th{background:#002060;color:#fff;padding:3mm 4mm;text-align:left;font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase}
+.rpt-table td{padding:3mm 4mm;border-bottom:1px solid #eee;vertical-align:top;line-height:1.4}
+.rpt-table tr:nth-child(even) td{background:#f9f9f9}
+.rpt-badge{display:inline-block;padding:1mm 3mm;border-radius:3px;font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.rpt-badge-crit{background:#E30613;color:#fff}.rpt-badge-alto{background:#E67E22;color:#fff}.rpt-badge-medio{background:#F5A623;color:#002060}.rpt-badge-baixo{background:#ddd;color:#444}
+.rpt-action{border:1px solid #ddd;border-radius:6px;padding:5mm;margin-bottom:4mm;page-break-inside:avoid}
+.rpt-action-title{font-size:11pt;font-weight:900;color:#002060;margin-bottom:2mm}
+.rpt-action-why{font-size:9pt;color:#555;font-style:italic;margin-bottom:3mm}
+.rpt-action-fields{display:grid;grid-template-columns:repeat(5,1fr);gap:2mm}
+.rpt-action-field{background:#f5f7fa;border-radius:4px;padding:2.5mm 3mm}
+.rpt-action-field-label{font-size:7pt;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:1mm}
+.rpt-action-field-val{font-size:9pt;font-weight:600;color:#002060;line-height:1.3}
+.rpt-ind-card{border:1px solid #ddd;border-radius:6px;padding:5mm;margin-bottom:4mm;page-break-inside:avoid}
+.rpt-ind-head{display:flex;align-items:center;gap:3mm;margin-bottom:3mm;border-bottom:1px solid #eee;padding-bottom:3mm}
+.rpt-ind-icon{font-size:15pt;line-height:1}
+.rpt-ind-title{font-size:10.5pt;font-weight:900;color:#002060}
+.rpt-ind-sub{font-size:8pt;color:#888;font-style:italic}
+.rpt-ind-text{font-size:10pt;color:#333;line-height:1.55;background:#f9f9f9;border-radius:4px;padding:3mm 4mm}
+.rpt-ind-empty{font-size:9.5pt;color:#bbb;font-style:italic}
+.rpt-insight{background:#002060;color:#fff;border-radius:8px;padding:7mm 9mm;border-left:5px solid #F5A623;margin-top:4mm;page-break-inside:avoid}
+.rpt-insight-label{font-size:7pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:2mm}
+.rpt-insight-text{font-size:12pt;font-style:italic;line-height:1.5;color:#fff}
+.rpt-divider{border:none;border-top:1px solid #eee;margin:6mm 0}
+.rpt-ns-box{background:#002060;color:#fff;border-radius:8px;padding:6mm 8mm;margin-bottom:6mm}
+.rpt-ns-label{font-size:7pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:2mm}
+.rpt-ns-val{font-size:13pt;font-style:italic;color:#ffc954;line-height:1.4}
 </style>
 </head>
 <body>
@@ -888,6 +989,7 @@ button{font:inherit;cursor:pointer}
     <button class="tab" data-tab="agenda">📅 Agenda</button>
     <button class="tab" data-tab="links">🔗 Links</button>
     <button class="tab" data-tab="diretrizes">📋 Diretrizes</button>
+    <button class="tab" data-tab="indicadores">📈 Indicadores</button>
   </div>
 </nav>
 
@@ -898,6 +1000,10 @@ button{font:inherit;cursor:pointer}
       <div class="course-tag" id="courseTag"></div>
       <h1 class="course-name" id="courseName"></h1>
       <div class="course-meta" id="courseMeta"></div>
+      <button class="pdf-btn" onclick="exportCoursePDF()" id="pdfExportBtn" title="Gerar relatório completo em PDF">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        Exportar PDF
+      </button>
     </div>
     <aside class="north-box">
       <div class="north-label">⭐ Métrica North Star</div>
@@ -1749,6 +1855,18 @@ button{font:inherit;cursor:pointer}
 
   </section>
 
+  <!-- ══ INDICADORES OBRIGATÓRIOS ══ -->
+  <section id="indicadores" class="section">
+
+    <div class="sec-header">
+      <h2 class="sec-title">Indicadores Obrigatórios por Curso</h2>
+      <p class="sec-desc">Registre o que cada curso está fazendo para melhorar cada indicador. Salvo automaticamente.</p>
+    </div>
+
+    <div id="indContent"></div>
+
+  </section>
+
 </main>
 
 
@@ -2008,6 +2126,8 @@ button{font:inherit;cursor:pointer}
         </div>
       </div>
     </div>
+<div id="pdfReport"></div>
+
 <!-- MOBILE BOTTOM NAV -->
 <nav class="mobile-bottom-nav" id="mobileBottomNav">
   <button class="mbn-btn mbn-active" onclick="switchMainTab('cpa',this)" data-tab="cpa">
@@ -2233,6 +2353,7 @@ function selectCourse(id){
   $("northStar").textContent='"'+c.north+'"';
   renderSwot(c);renderGut(c);renderW2H(c);renderManagement(c);renderIshikawa(c);renderEisenhower(c);
   $("insightText").textContent=c.insight;
+  renderIndicadores(current);
 }
 
 function renderSwot(c){
@@ -2506,6 +2627,10 @@ function switchMainTab(tabId, mobileBtn){
   // Re-init CPA charts if switching to CPA
   if(tabId === 'cpa'){
     setTimeout(function(){ initCPACharts(); }, 40);
+  }
+  // Re-render indicadores ao entrar na aba
+  if(tabId === 'indicadores'){
+    renderIndicadores(current);
   }
   // Scroll to top
   window.scrollTo({top:0, behavior:'smooth'});
@@ -3332,6 +3457,521 @@ function initDiretrizes() {
   }
 }
 
+
+// ─── MÓDULO INDICADORES ──────────────────────────────────────────────────────
+var IND_KEY = 'unipar_cianorte_indicadores_v1';
+
+var IND_ITEMS = [
+  { id:'captacao',      icon:'🎯', title:'Captação',                    sub:'Estratégias para atrair novos alunos',            ph:'Ex: Participação em feiras, parceria com escolas, campanhas nas redes sociais, visitas ao campus...' },
+  { id:'retencao',      icon:'🔒', title:'Retenção',                    sub:'Ações para manter os alunos matriculados',        ph:'Ex: Programa de acolhimento, monitorias, atendimento ao aluno, acompanhamento de faltas...' },
+  { id:'evasao',        icon:'⚠️', title:'Evasão',                     sub:'Medidas para reduzir desistências',               ph:'Ex: Mapeamento de alunos em risco, reuniões individuais, análise de causas, plano de recuperação...' },
+  { id:'satisfacao',    icon:'⭐', title:'Satisfação',                  sub:'Iniciativas para melhorar a experiência do aluno',ph:'Ex: Melhorias apontadas pela CPA, ações sobre infraestrutura, comunicação e atendimento...' },
+  { id:'engajamento',   icon:'👩‍🏫', title:'Engajamento Docente',        sub:'Ações de envolvimento e qualificação dos professores',ph:'Ex: Reuniões pedagógicas, capacitações, integração docente, feedback sobre aulas...' },
+  { id:'visibilidade',  icon:'📢', title:'Ações Externas / Visibilidade',sub:'Projetos de extensão, parcerias e presença regional',ph:'Ex: Eventos abertos, parceria com empresas, projetos comunitários, presença em mídias locais...' }
+];
+
+function indLoadState() {
+  try { return JSON.parse(localStorage.getItem(IND_KEY) || '{}'); } catch(e) { return {}; }
+}
+function indSaveState(s) {
+  try { localStorage.setItem(IND_KEY, JSON.stringify(s)); } catch(e) {}
+}
+function indGetCourseData(courseId) {
+  var s = indLoadState();
+  return s[courseId] || {};
+}
+function indSetField(courseId, fieldId, value) {
+  var s = indLoadState();
+  if (!s[courseId]) s[courseId] = {};
+  s[courseId][fieldId] = value;
+  indSaveState(s);
+}
+
+function renderIndicadores(courseId) {
+  var course = (typeof COURSES !== 'undefined') ? COURSES.find(function(c){ return c.id === courseId; }) : null;
+  if (!course) return;
+  var data = indGetCourseData(courseId);
+  var filled = IND_ITEMS.filter(function(i){ return (data[i.id]||'').trim().length > 0; }).length;
+  var pct = Math.round(filled / IND_ITEMS.length * 100);
+
+  var html = '';
+
+  // Hero do curso
+  html += '<div class="ind-hero">'
+    + '<div class="ind-hero-icon">📈</div>'
+    + '<div><div class="ind-hero-label">Indicadores Obrigatórios · ' + esc(course.short) + '</div>'
+    + '<div class="ind-hero-name">' + esc(course.name) + '</div></div>'
+    + '</div>';
+
+  // Barra de progresso
+  html += '<div class="ind-summary-bar">'
+    + '<div class="ind-stat"><div class="ind-stat-num">' + filled + '</div><div class="ind-stat-label">Preenchidos</div></div>'
+    + '<div class="ind-stat-sep"></div>'
+    + '<div class="ind-stat"><div class="ind-stat-num">' + (IND_ITEMS.length - filled) + '</div><div class="ind-stat-label">Pendentes</div></div>'
+    + '<div class="ind-stat-sep"></div>'
+    + '<div class="ind-progress-wrap">'
+    + '<div class="ind-progress-label">Cobertura dos indicadores — ' + pct + '%</div>'
+    + '<div class="ind-progress-track"><div class="ind-progress-fill" style="width:' + pct + '%"></div></div>'
+    + '</div></div>';
+
+  // Grid de cards
+  html += '<div class="ind-grid">';
+  IND_ITEMS.forEach(function(item) {
+    var val = data[item.id] || '';
+    html += '<div class="ind-card">'
+      + '<div class="ind-card-head">'
+      + '<div class="ind-card-icon">' + item.icon + '</div>'
+      + '<div><div class="ind-card-title">' + item.title + '</div><div class="ind-card-sub">' + item.sub + '</div></div>'
+      + '</div>'
+      + '<div class="ind-card-body">'
+      + '<textarea class="ind-textarea" id="ind_' + courseId + '_' + item.id + '" placeholder="' + item.ph + '" oninput="indHandleInput(\'' + courseId + '\',\'' + item.id + '\',this)">' + esc(val) + '</textarea>'
+      + '<span class="ind-save-badge" id="ind_badge_' + courseId + '_' + item.id + '">✓ Salvo</span>'
+      + '</div>'
+      + '<div class="ind-footer">'
+      + '<span class="ind-footer-label">' + (val.trim() ? '✓ Preenchido' : '○ Aguardando') + '</span>'
+      + '<button class="ind-clear-btn" onclick="indClearField(\'' + courseId + '\',\'' + item.id + '\')">Limpar</button>'
+      + '</div>'
+      + '</div>';
+  });
+  html += '</div>';
+
+  var el = document.getElementById('indContent');
+  if (el) el.innerHTML = html;
+}
+
+var indTimers = {};
+function indHandleInput(courseId, fieldId, el) {
+  indSetField(courseId, fieldId, el.value);
+  // Mostrar badge "Salvo"
+  var badge = document.getElementById('ind_badge_' + courseId + '_' + fieldId);
+  if (badge) {
+    badge.classList.add('show');
+    clearTimeout(indTimers[courseId + fieldId]);
+    indTimers[courseId + fieldId] = setTimeout(function() {
+      badge.classList.remove('show');
+    }, 1800);
+  }
+  // Atualizar footer label
+  var footer = el.closest('.ind-card');
+  if (footer) {
+    var label = footer.querySelector('.ind-footer-label');
+    if (label) label.textContent = el.value.trim() ? '✓ Preenchido' : '○ Aguardando';
+  }
+  // Atualizar barra de progresso
+  var data = indGetCourseData(courseId);
+  var filled = IND_ITEMS.filter(function(i){ return (data[i.id]||'').trim().length > 0; }).length;
+  var pct = Math.round(filled / IND_ITEMS.length * 100);
+  var fill = document.querySelector('.ind-progress-fill');
+  var lbl = document.querySelector('.ind-progress-label');
+  var numEl = document.querySelectorAll('.ind-stat-num');
+  if (fill) fill.style.width = pct + '%';
+  if (lbl) lbl.textContent = 'Cobertura dos indicadores — ' + pct + '%';
+  if (numEl[0]) numEl[0].textContent = filled;
+  if (numEl[1]) numEl[1].textContent = IND_ITEMS.length - filled;
+}
+
+function indClearField(courseId, fieldId) {
+  var s = indLoadState();
+  if (s[courseId]) { s[courseId][fieldId] = ''; indSaveState(s); }
+  var ta = document.getElementById('ind_' + courseId + '_' + fieldId);
+  if (ta) { ta.value = ''; indHandleInput(courseId, fieldId, ta); }
+}
+
+
+// ─── EXPORTAR PDF ─────────────────────────────────────────────────────────────
+function exportCoursePDF() {
+  var courseRaw = COURSES.find(function(c){ return c.id === current; });
+  if (!courseRaw) return;
+  var c = normalizeCourse(courseRaw);
+  var indData = indGetCourseData(current);
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+
+  function safe(v){ return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function priLabel(s){if(s>=100)return['#E30613','Crítico'];if(s>=75)return['#E67E22','Alto'];if(s>=50)return['#F5A623','Médio'];return['#999','Baixo'];}
+
+  // ── DADOS ISHIKAWA ──
+  var ishTop = c.gut[0];
+  var ishCauses = [
+    {cat:'Método',       items:['Rotina sem padronização', safe(c.gut[1]?c.gut[1].problem:'Processos informais'), 'Planos sem conexão prática']},
+    {cat:'Mão de Obra',  items:['Engajamento docente desigual', 'Formação continuada insuficiente', 'Dependência excessiva da coordenação']},
+    {cat:'Máquina',      items:[safe(c.swot.w[0]||'Infraestrutura crítica'), 'Estrutura precisa sustentar a promessa', 'Manutenção por criticidade']},
+    {cat:'Material',     items:['Casos reais pouco sistematizados', 'Recursos sem alinhamento ao mercado', 'Avaliações por competência ausentes']},
+    {cat:'Medida',       items:['North Star sem linha de base definida', 'CPA, evasão e desempenho não integrados', 'Sem painel mensal por turma']},
+    {cat:'Meio Ambiente',items:[safe(c.swot.t[0]||'Pressão competitiva externa'), 'Aluno-trabalhador exige utilidade imediata', 'Mercado regional sub-explorado']}
+  ];
+
+  // ── DADOS EISENHOWER ──
+  var doNow    = c.gut.filter(function(p){return p.g>=5&&p.u>=5;}).slice(0,3);
+  if(!doNow.length) doNow = c.gut.slice(0,2);
+  var schedule = c.gut.filter(function(p){return !(p.g>=5&&p.u>=5)&&p.score>=50;}).slice(0,3);
+  if(!schedule.length) schedule = c.gut.slice(1,4);
+  var delegate = c.actions.slice(0,3).map(function(a){return {problem:a.what, who:a.who};});
+  var eliminate = ['Reuniões sem pauta, decisão e registro','Discussões sem dado GUT/CPA como base','Ações sem responsável e sem prazo definido','Relatórios que ninguém lê ou usa'];
+
+  // ── INDICADORES ──
+  var indFilled = IND_ITEMS.filter(function(it){return (indData[it.id]||'').trim();}).length;
+  var indPct    = Math.round(indFilled/IND_ITEMS.length*100);
+
+  var html = '';
+  var CSS = [
+    'body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;line-height:1.55;color:#1a1a1a;background:#fff;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}',
+    'h1,h2,h3,h4{margin:0}',
+    '.page{page-break-after:always;padding:18mm 17mm 15mm;box-sizing:border-box;min-height:267mm}',
+    '.page:last-child{page-break-after:avoid}',
+    // capa
+    '.cover{background:linear-gradient(150deg,#001845 0%,#002060 50%,#003299 100%);color:#fff;min-height:277mm;padding:30mm 22mm;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between}',
+    '.cover-eyebrow{font-size:7pt;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8mm}',
+    '.cover-rule{width:50mm;height:4px;background:#E30613;margin-bottom:7mm;border-radius:2px}',
+    '.cover-title{font-size:30pt;font-weight:900;color:#fff;line-height:1.05;margin-bottom:4mm}',
+    '.cover-course{font-size:17pt;font-style:italic;color:#ffc954;margin-bottom:3mm}',
+    '.cover-meta{font-size:9pt;color:rgba(255,255,255,.55);margin-bottom:1.5mm}',
+    '.cover-ns{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6mm 8mm;margin-top:9mm}',
+    '.cover-ns-lbl{font-size:6.5pt;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:2mm}',
+    '.cover-ns-val{font-size:13pt;font-style:italic;color:#ffc954;line-height:1.4}',
+    '.cover-tags{display:flex;gap:3mm;flex-wrap:wrap;margin-top:6mm}',
+    '.cover-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:2mm 4mm;border-radius:4px;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}',
+    '.cover-footer{font-size:7.5pt;color:rgba(255,255,255,.35);border-top:1px solid rgba(255,255,255,.12);padding-top:4mm}',
+    // sumário
+    '.toc-title{font-size:15pt;font-weight:900;color:#002060;border-bottom:3px solid #E30613;padding-bottom:3mm;margin-bottom:8mm}',
+    '.toc-row{display:flex;justify-content:space-between;align-items:baseline;padding:3mm 0;border-bottom:1px dotted #ddd;font-size:10pt}',
+    '.toc-num{color:#E30613;font-weight:900;font-size:9pt;min-width:6mm}',
+    '.toc-name{flex:1;padding:0 3mm}',
+    '.toc-page{color:#aaa;font-size:8.5pt}',
+    '.toc-kpi-row{display:flex;gap:6mm;margin-top:6mm;flex-wrap:wrap}',
+    '.toc-kpi{flex:1;min-width:40mm;background:#f5f7fa;border-radius:6px;padding:4mm 5mm;border-top:3px solid #002060}',
+    '.toc-kpi-val{font-size:16pt;font-weight:900;color:#002060;line-height:1}',
+    '.toc-kpi-lbl{font-size:7pt;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-top:1mm}',
+    // headers de seção
+    '.sec-hdr{margin-bottom:6mm}',
+    '.sec-eyebrow{font-size:6.5pt;letter-spacing:.2em;text-transform:uppercase;color:#E30613;font-weight:700;margin-bottom:1.5mm}',
+    '.sec-title{font-size:15pt;font-weight:900;color:#002060;border-bottom:3px solid #E30613;padding-bottom:3mm;margin-bottom:2mm}',
+    '.sec-sub{font-size:9pt;color:#666;font-style:italic;margin-bottom:5mm}',
+    // boxes
+    '.ns-box{background:#002060;color:#fff;border-radius:7px;padding:5mm 7mm;margin-bottom:5mm;border-left:5px solid #ffc954}',
+    '.ns-lbl{font-size:6.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5mm}',
+    '.ns-val{font-size:12.5pt;font-style:italic;color:#ffc954;line-height:1.4}',
+    '.insight-box{background:#002060;color:#fff;border-radius:7px;padding:6mm 8mm;border-left:5px solid #F5A623;margin-top:5mm;page-break-inside:avoid}',
+    '.insight-lbl{font-size:6.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:2mm}',
+    '.insight-text{font-size:11.5pt;font-style:italic;line-height:1.5;color:#fff}',
+    '.alert-box{background:#fff3cd;border:1.5px solid #F5A623;border-radius:6px;padding:4mm 6mm;margin-top:4mm;font-size:9pt;color:#7a5700;page-break-inside:avoid}',
+    // swot
+    '.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:5mm}',
+    '.sq{border:1px solid #e0e0e0;border-radius:7px;padding:5mm;page-break-inside:avoid}',
+    '.sq-s{border-left:5px solid #0E7C4A}.sq-w{border-left:5px solid #E30613}.sq-o{border-left:5px solid #1565C0}.sq-t{border-left:5px solid #E67E22}',
+    '.sq-letter{font-size:22pt;font-weight:900;line-height:1;margin-bottom:1mm}',
+    '.sq-letter-s{color:#0E7C4A}.sq-letter-w{color:#E30613}.sq-letter-o{color:#1565C0}.sq-letter-t{color:#E67E22}',
+    '.sq-name{font-size:7pt;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:3mm}',
+    '.sq-li{font-size:9pt;padding:2mm 3mm;background:#f7f7f7;border-radius:3px;margin-bottom:1.5mm;line-height:1.35}',
+    // tabelas
+    '.tbl{width:100%;border-collapse:collapse;margin-bottom:5mm;font-size:9pt}',
+    '.tbl th{background:#002060;color:#fff;padding:3mm 4mm;text-align:left;font-size:7pt;letter-spacing:.1em;text-transform:uppercase}',
+    '.tbl td{padding:3mm 4mm;border-bottom:1px solid #eee;vertical-align:top;line-height:1.45}',
+    '.tbl tr:nth-child(even) td{background:#fafafa}',
+    '.badge{display:inline-block;padding:1.5mm 3mm;border-radius:3px;font-size:7pt;font-weight:700;text-transform:uppercase;color:#fff}',
+    '.score-bar-wrap{display:flex;align-items:center;gap:2mm}',
+    '.score-bar{height:8px;border-radius:4px;background:#eee;flex:1;overflow:hidden}',
+    '.score-fill{height:100%;border-radius:4px}',
+    // ações
+    '.action-card{border:1px solid #e0e0e0;border-radius:7px;padding:5mm;margin-bottom:4mm;page-break-inside:avoid;border-left:4px solid #002060}',
+    '.action-num{font-size:18pt;font-weight:900;color:#E30613;line-height:1;float:left;margin-right:3mm}',
+    '.action-title{font-size:11pt;font-weight:900;color:#002060;margin-bottom:1mm}',
+    '.action-why{font-size:9pt;color:#555;font-style:italic;margin-bottom:3mm;padding-bottom:2mm;border-bottom:1px solid #f0f0f0}',
+    '.action-fields{display:grid;grid-template-columns:repeat(5,1fr);gap:2mm}',
+    '.af{background:#f5f7fa;border-radius:4px;padding:2.5mm 3mm}',
+    '.af-lbl{font-size:6.5pt;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:1mm}',
+    '.af-val{font-size:8.5pt;font-weight:700;color:#002060;line-height:1.3}',
+    // ishikawa
+    '.ish-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:5mm}',
+    '.ish-bone{border:1px solid #e0e0e0;border-radius:6px;padding:4mm;page-break-inside:avoid}',
+    '.ish-cat{font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#fff;background:#002060;padding:1.5mm 3mm;border-radius:3px;margin-bottom:3mm;display:inline-block}',
+    '.ish-li{font-size:8.5pt;padding:1.5mm 2mm;border-left:3px solid #002060;margin-bottom:1.5mm;line-height:1.3;background:#f8f9fa}',
+    '.ish-effect{background:#E30613;color:#fff;border-radius:7px;padding:5mm 7mm;margin-bottom:5mm;text-align:center}',
+    '.ish-effect-lbl{font-size:7pt;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:2mm}',
+    '.ish-effect-val{font-size:12pt;font-weight:900;line-height:1.3}',
+    // eisenhower
+    '.eisen-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:5mm}',
+    '.eq{border:1px solid #e0e0e0;border-radius:7px;padding:5mm;page-break-inside:avoid}',
+    '.eq-do{border-top:4px solid #E30613}.eq-schedule{border-top:4px solid #1565C0}.eq-delegate{border-top:4px solid #0E7C4A}.eq-eliminate{border-top:4px solid #999}',
+    '.eq-tag{font-size:7pt;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:1mm}',
+    '.eq-title{font-size:11pt;font-weight:900;color:#002060;margin-bottom:1mm}',
+    '.eq-desc{font-size:8pt;color:#888;font-style:italic;margin-bottom:3mm;padding-bottom:2mm;border-bottom:1px solid #f0f0f0}',
+    '.eq-li{font-size:8.5pt;padding:2mm 3mm;border-radius:3px;margin-bottom:1.5mm;line-height:1.3}',
+    '.eq-li-do{background:#fff0f0;border-left:3px solid #E30613}',
+    '.eq-li-schedule{background:#eef3ff;border-left:3px solid #1565C0}',
+    '.eq-li-delegate{background:#f0faf3;border-left:3px solid #0E7C4A}',
+    '.eq-li-eliminate{background:#f5f5f5;border-left:3px solid #999;text-decoration:line-through;color:#aaa}',
+    // indicadores
+    '.ind-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm}',
+    '.ind-card{border:1px solid #e0e0e0;border-radius:7px;padding:4.5mm;page-break-inside:avoid}',
+    '.ind-head{display:flex;align-items:center;gap:3mm;margin-bottom:3mm;padding-bottom:2.5mm;border-bottom:1px solid #eee}',
+    '.ind-icon{font-size:14pt;line-height:1}',
+    '.ind-title{font-size:10pt;font-weight:900;color:#002060}',
+    '.ind-sub{font-size:7.5pt;color:#888;font-style:italic}',
+    '.ind-text{font-size:9pt;color:#333;line-height:1.5;background:#f9f9f9;border-radius:4px;padding:3mm 4mm}',
+    '.ind-empty{font-size:8.5pt;color:#ccc;font-style:italic;padding:2mm 0}',
+    '.ind-progress{background:#f0f0f0;border-radius:4px;overflow:hidden;height:7px;margin:3mm 0}',
+    '.ind-progress-fill{height:100%;background:linear-gradient(90deg,#002060,#0E7C4A);border-radius:4px}',
+    // gestão
+    '.fw-section{margin-bottom:6mm}',
+    '.fw-label{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:2mm 4mm;border-radius:4px;display:inline-block;margin-bottom:3mm;color:#fff}',
+    '.fw-pdca{background:#002060}.fw-dmaic{background:#6B2D8B}.fw-raci{background:#E30613}.fw-ns{background:#b07d00}',
+    '.ns-full{background:#002060;color:#fff;border-radius:7px;padding:5mm 8mm;margin-bottom:5mm}',
+    '.ns-full-lbl{font-size:7pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:2mm}',
+    '.ns-full-val{font-size:13pt;font-style:italic;color:#ffc954;margin-bottom:2mm;line-height:1.4}',
+    '.ns-full-desc{font-size:8.5pt;color:rgba(255,255,255,.7);line-height:1.45}',
+    // rodapé
+    '.page-footer{font-size:7.5pt;color:#bbb;text-align:center;border-top:1px solid #eee;padding-top:4mm;margin-top:6mm}',
+    '@media print{body{margin:0}.page{padding:15mm 14mm 12mm}}'
+  ].join('\n');
+
+  // ── PÁGINA 0: CAPA ─────────────────────────────────────────────────────────
+  html += '<div class="cover">'
+    + '<div>'
+    + '<div class="cover-eyebrow">UNIPAR · Universidade Paranaense · Unidade Cianorte · CPA 2025</div>'
+    + '<div class="cover-rule"></div>'
+    + '<div class="cover-title">Plano Estratégico<br>de Curso</div>'
+    + '<div class="cover-course">' + safe(c.name) + '</div>'
+    + '<div class="cover-meta">Código: <strong style="color:#fff">' + safe(c.short) + '</strong> &nbsp;·&nbsp; Gerado em ' + dateStr + '</div>'
+    + '<div class="cover-meta" style="color:rgba(255,255,255,.4)">' + safe(c.meta) + '</div>'
+    + '<div class="cover-ns"><div class="cover-ns-lbl">⭐ Métrica North Star</div><div class="cover-ns-val">"' + safe(c.north) + '"</div></div>'
+    + '<div class="cover-tags">'
+    + '<span class="cover-tag">SWOT</span><span class="cover-tag">GUT</span><span class="cover-tag">Ishikawa</span>'
+    + '<span class="cover-tag">5W2H</span><span class="cover-tag">Eisenhower</span><span class="cover-tag">PDCA</span>'
+    + '<span class="cover-tag">DMAIC</span><span class="cover-tag">RACI</span><span class="cover-tag">North Star</span>'
+    + '<span class="cover-tag">Indicadores</span>'
+    + '</div>'
+    + '</div>'
+    + '<div class="cover-footer">Diretor Bruno Guilherme de Castro Oliveira &nbsp;·&nbsp; Dashboard de Gestão Acadêmica v7 &nbsp;·&nbsp; Documento gerado automaticamente</div>'
+    + '</div>';
+
+  // ── PÁGINA 1: SUMÁRIO + KPIs ────────────────────────────────────────────────
+  html += '<div class="page">'
+    + '<div class="toc-title">Índice do Plano Estratégico</div>'
+    + [
+        ['01','Análise SWOT','Forças, Fraquezas, Oportunidades e Ameaças'],
+        ['02','Matriz GUT','Priorização de problemas por Gravidade × Urgência × Tendência'],
+        ['03','Diagrama de Ishikawa','Causa-raiz do problema crítico'],
+        ['04','Plano de Ações 5W2H','Ações com responsável, prazo, local, método e custo'],
+        ['05','Matriz de Eisenhower','Quadrantes de decisão: Fazer / Agendar / Delegar / Eliminar'],
+        ['06','Indicadores Obrigatórios','Captação, Retenção, Evasão, Satisfação, Engajamento, Visibilidade'],
+        ['07','Gestão: PDCA · DMAIC · RACI · North Star','Frameworks de execução e controle']
+      ].map(function(r,i){
+        return '<div class="toc-row"><span class="toc-num">' + r[0] + '</span><span class="toc-name"><strong>' + r[1] + '</strong><br><span style="font-size:8pt;color:#888">' + r[2] + '</span></span><span class="toc-page">pág. ' + (i+3) + '</span></div>';
+      }).join('')
+    + '<div class="toc-kpi-row">'
+    + '<div class="toc-kpi" style="border-color:#002060"><div class="toc-kpi-val">' + c.gut.length + '</div><div class="toc-kpi-lbl">Problemas GUT mapeados</div></div>'
+    + '<div class="toc-kpi" style="border-color:#E30613"><div class="toc-kpi-val">' + c.gut[0].score + '</div><div class="toc-kpi-lbl">Score GUT máximo</div></div>'
+    + '<div class="toc-kpi" style="border-color:#0E7C4A"><div class="toc-kpi-val">' + c.actions.length + '</div><div class="toc-kpi-lbl">Ações no plano 5W2H</div></div>'
+    + '<div class="toc-kpi" style="border-color:#b07d00"><div class="toc-kpi-val">' + indFilled + '/' + IND_ITEMS.length + '</div><div class="toc-kpi-lbl">Indicadores preenchidos</div></div>'
+    + '</div>'
+    + '<div class="ns-box" style="margin-top:6mm"><div class="ns-lbl">⭐ Métrica North Star do Curso</div><div class="ns-val">"' + safe(c.north) + '"</div></div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · Plano Estratégico · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 2: SWOT ──────────────────────────────────────────────────────────
+  var swotDef = [
+    {k:'s',cls:'s',letter:'S',name:'Forças · Interno positivo',tip:'Aproveitar e comunicar ao mercado'},
+    {k:'w',cls:'w',letter:'W',name:'Fraquezas · Interno negativo',tip:'Corrigir antes que virem ameaças'},
+    {k:'o',cls:'o',letter:'O',name:'Oportunidades · Externo positivo',tip:'Capturar antes da concorrência'},
+    {k:'t',cls:'t',letter:'T',name:'Ameaças · Externo negativo',tip:'Monitorar e criar plano de contingência'}
+  ];
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 01</div><div class="sec-title">Análise SWOT</div><div class="sec-sub">Diagnóstico estratégico interno e externo · ' + safe(c.name) + ' · Base: CPA 2025 + percepção do coordenador</div></div>'
+    + '<div class="ns-box"><div class="ns-lbl">⭐ North Star — o filtro estratégico desta análise</div><div class="ns-val">"' + safe(c.north) + '"</div></div>'
+    + '<div class="swot-grid">';
+  swotDef.forEach(function(q){
+    html += '<div class="sq sq-' + q.cls + '">'
+      + '<div class="sq-letter sq-letter-' + q.cls + '">' + q.letter + '</div>'
+      + '<div class="sq-name">' + q.name + '</div>'
+      + (c.swot[q.k]||[]).map(function(x){ return '<div class="sq-li">→ ' + safe(x) + '</div>'; }).join('')
+      + '<div style="font-size:7.5pt;color:#aaa;font-style:italic;margin-top:2mm;padding-top:2mm;border-top:1px dashed #e0e0e0">Estratégia: ' + q.tip + '</div>'
+      + '</div>';
+  });
+  html += '</div>'
+    + '<div class="insight-box"><div class="insight-lbl">💡 Insight Estratégico</div><div class="insight-text">' + safe(c.insight) + '</div></div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 01 SWOT · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 3: GUT ───────────────────────────────────────────────────────────
+  var maxScore = Math.max.apply(null, c.gut.map(function(p){return p.score;}));
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 02</div><div class="sec-title">Matriz GUT — Priorização de Problemas</div><div class="sec-sub">Ranking por G × U × T. Prioridade máxima = 125 pontos. Foco no que tem maior score antes de agir.</div></div>'
+    + '<table class="tbl"><thead><tr><th>#</th><th>Problema Identificado</th><th>G</th><th>U</th><th>T</th><th>Score</th><th>Prioridade</th><th>Força relativa</th></tr></thead><tbody>';
+  c.gut.forEach(function(p,i){
+    var pr = priLabel(p.score);
+    var pct = Math.round(p.score/maxScore*100);
+    html += '<tr>'
+      + '<td style="font-weight:900;color:#002060;font-size:11pt">' + String(i+1).padStart(2,'0') + '</td>'
+      + '<td><strong>' + safe(p.problem) + '</strong>' + (i===0?'<br><span style="font-size:7.5pt;color:#E30613;font-weight:700">⚡ PROBLEMA CRÍTICO — foco do Ishikawa</span>':'') + '</td>'
+      + '<td style="text-align:center;font-weight:700;font-size:11pt;color:' + (p.g>=5?'#E30613':'#555') + '">' + p.g + '</td>'
+      + '<td style="text-align:center;font-weight:700;font-size:11pt;color:' + (p.u>=5?'#E30613':'#555') + '">' + p.u + '</td>'
+      + '<td style="text-align:center;font-weight:700;font-size:11pt;color:' + (p.t>=5?'#E30613':'#555') + '">' + p.t + '</td>'
+      + '<td style="text-align:center;font-weight:900;font-size:12pt;color:#002060">' + p.score + '</td>'
+      + '<td><span class="badge" style="background:' + pr[0] + '">' + pr[1] + '</span></td>'
+      + '<td style="width:90px"><div class="score-bar-wrap"><div class="score-bar"><div class="score-fill" style="width:' + pct + '%;background:' + pr[0] + '"></div></div><span style="font-size:7pt;color:#aaa;min-width:22px">' + pct + '%</span></div></td>'
+      + '</tr>';
+  });
+  html += '</tbody></table>'
+    + '<div class="alert-box">⚡ <strong>Foco de ação imediata:</strong> ' + safe(c.gut[0].problem) + ' (score ' + c.gut[0].score + '). Este problema alimenta o diagrama de Ishikawa na próxima página. G=' + c.gut[0].g + ' · U=' + c.gut[0].u + ' · T=' + c.gut[0].t + '.</div>'
+    + '<div class="insight-box" style="margin-top:4mm"><div class="insight-lbl">📊 Leitura do GUT</div><div class="insight-text" style="font-size:10pt">G = Gravidade (impacto se não resolvido) · U = Urgência (tempo disponível) · T = Tendência (piora com o tempo). Score ≥ 100 = Crítico · ≥ 75 = Alto · ≥ 50 = Médio.</div></div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 02 GUT · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 4: ISHIKAWA ─────────────────────────────────────────────────────
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 03</div><div class="sec-title">Diagrama de Ishikawa — Causa e Efeito</div><div class="sec-sub">Análise das 6 categorias de causa-raiz para o problema crítico identificado pelo GUT.</div></div>'
+    + '<div class="ish-effect"><div class="ish-effect-lbl">⚡ Efeito Crítico — Score GUT ' + ishTop.score + '</div><div class="ish-effect-val">' + safe(ishTop.problem) + '</div></div>'
+    + '<div class="ish-grid">';
+  ishCauses.forEach(function(bone){
+    html += '<div class="ish-bone">'
+      + '<span class="ish-cat">' + bone.cat + '</span>'
+      + bone.items.map(function(it){ return '<div class="ish-li">' + safe(it) + '</div>'; }).join('')
+      + '</div>';
+  });
+  html += '</div>'
+    + '<div class="alert-box">🔍 <strong>Próximo passo:</strong> validar com o coordenador qual categoria concentra a maior causa-raiz. Após confirmação, vincular ao plano 5W2H na Seção 04.</div>'
+    + '<div class="insight-box" style="margin-top:4mm"><div class="insight-lbl">📋 Como usar este diagrama</div><div class="insight-text" style="font-size:10pt">Identifique a causa-raiz mais provável (hipótese principal). Confirme com dados da CPA, evasão e percepção docente. Construa o 5W2H atacando diretamente essa causa — não o efeito.</div></div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 03 Ishikawa · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 5: 5W2H ─────────────────────────────────────────────────────────
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 04</div><div class="sec-title">Plano de Ações — 5W2H</div><div class="sec-sub">Cada ação com responsável único, prazo, local, método e custo. Sem esses 7 campos preenchidos, a ação é intenção, não plano.</div></div>';
+  c.actions.forEach(function(a,i){
+    html += '<div class="action-card">'
+      + '<div style="display:flex;align-items:flex-start;gap:3mm">'
+      + '<div class="action-num">' + String(i+1).padStart(2,'0') + '</div>'
+      + '<div style="flex:1">'
+      + '<div class="action-title">' + safe(a.what) + '</div>'
+      + '<div class="action-why"><strong>Por quê:</strong> ' + safe(a.why) + '</div>'
+      + '<div class="action-fields">'
+      + '<div class="af"><div class="af-lbl">📍 Onde</div><div class="af-val">' + safe(a.where) + '</div></div>'
+      + '<div class="af"><div class="af-lbl">📅 Quando</div><div class="af-val">' + safe(a.when) + '</div></div>'
+      + '<div class="af"><div class="af-lbl">👤 Quem</div><div class="af-val">' + safe(a.who) + '</div></div>'
+      + '<div class="af"><div class="af-lbl">⚙️ Como</div><div class="af-val">' + safe(a.how) + '</div></div>'
+      + '<div class="af"><div class="af-lbl">💰 Custo</div><div class="af-val">' + safe(a.howMuch) + '</div></div>'
+      + '</div></div></div></div>';
+  });
+  html += '<div class="alert-box">⚡ <strong>Ação prioritária (GUT ' + c.gut[0].score + '):</strong> ' + safe(c.actions[0].what) + ' · Responsável: ' + safe(c.actions[0].who) + ' · Prazo: ' + safe(c.actions[0].when) + '</div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 04 5W2H · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 6: EISENHOWER ───────────────────────────────────────────────────
+  var eisenQuadrants = [
+    {cls:'do',     title:'⚡ Fazer Agora',   tag:'Urgente + Importante',   desc:'Ação direta da direção — sem delegar',         liCls:'eq-li-do',       items: doNow.map(function(p){return safe(p.problem)+(p.score?' (score '+p.score+')':'');})},
+    {cls:'schedule',title:'📅 Agendar',      tag:'Importante + Não Urgente',desc:'Projetos 30/60/90 dias — colocar na agenda',   liCls:'eq-li-schedule', items: schedule.map(function(p){return safe(p.problem)+(p.score?' (score '+p.score+')':'');})},
+    {cls:'delegate',title:'🤝 Delegar',      tag:'Urgente + Menos Estratégico',desc:'Definir responsável e prazo (RACI)',         liCls:'eq-li-delegate', items: delegate.map(function(d){return safe(d.problem)+' → '+safe(d.who);})},
+    {cls:'eliminate',title:'🗑️ Eliminar',   tag:'Não Urgente + Não Essencial',desc:'Cortar ruído operacional imediatamente',      liCls:'eq-li-eliminate',items: eliminate}
+  ];
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 05</div><div class="sec-title">Matriz de Eisenhower</div><div class="sec-sub">Classifica cada problema e ação em 4 quadrantes para proteger o tempo do diretor e da coordenação.</div></div>'
+    + '<div class="eisen-grid">';
+  eisenQuadrants.forEach(function(q){
+    html += '<div class="eq eq-' + q.cls + '">'
+      + '<div class="eq-tag">' + q.tag + '</div>'
+      + '<div class="eq-title">' + q.title + '</div>'
+      + '<div class="eq-desc">' + q.desc + '</div>'
+      + q.items.map(function(it){ return '<div class="eq-li ' + q.liCls + '">' + it + '</div>'; }).join('')
+      + '</div>';
+  });
+  html += '</div>'
+    + '<div class="alert-box">⏱️ <strong>Regra de ouro:</strong> só o que está no quadrante "Fazer Agora" recebe atenção desta semana. Os demais têm dono, prazo ou são cortados.</div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 05 Eisenhower · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 7: INDICADORES ──────────────────────────────────────────────────
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 06</div><div class="sec-title">Indicadores Obrigatórios por Curso</div><div class="sec-sub">Registro das ações em andamento para cada indicador estratégico. Cobertura atual: ' + indFilled + '/' + IND_ITEMS.length + ' indicadores (' + indPct + '%).</div></div>'
+    + '<div style="margin-bottom:4mm"><div style="font-size:8pt;color:#555;margin-bottom:1.5mm">Cobertura — ' + indPct + '%</div><div class="ind-progress"><div class="ind-progress-fill" style="width:' + indPct + '%"></div></div></div>'
+    + '<div class="ind-grid">';
+  IND_ITEMS.forEach(function(item){
+    var val = (indData[item.id]||'').trim();
+    html += '<div class="ind-card">'
+      + '<div class="ind-head"><div class="ind-icon">' + item.icon + '</div>'
+      + '<div><div class="ind-title">' + item.title + '</div><div class="ind-sub">' + item.sub + '</div></div>'
+      + (val?'<span style="font-size:7pt;color:#0E7C4A;font-weight:700;margin-left:auto">✓ OK</span>':'<span style="font-size:7pt;color:#E30613;font-weight:700;margin-left:auto">● Pendente</span>')
+      + '</div>'
+      + (val ? '<div class="ind-text">' + safe(val).replace(/\n/g,'<br>') + '</div>' : '<div class="ind-empty">Nenhuma ação registrada. Preencher na aba Indicadores do dashboard.</div>')
+      + '</div>';
+  });
+  html += '</div>'
+    + '<div class="alert-box" style="margin-top:4mm">📋 <strong>Atenção:</strong> indicadores não preenchidos devem ser registrados pelos coordenadores no dashboard antes da próxima reunião de CPA.</div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 06 Indicadores · ' + dateStr + '</div>'
+    + '</div>';
+
+  // ── PÁGINA 8: GESTÃO (PDCA + DMAIC + RACI + NORTH STAR) ───────────────────
+  var top  = c.gut[0];
+  var act0 = c.actions[0];
+  var dmaicRows = [
+    ['D','Define',   'Problema: ' + safe(top.problem) + ' · Score GUT: ' + top.score + ' · Definido como foco pela Matriz GUT'],
+    ['M','Measure',  'CPA 2025: NPS 36, Likert por dimensão, evasão Jan–Abr 2026 via Lyceum'],
+    ['A','Analyze',  'Ishikawa: 6 categorias de causa-raiz mapeadas (Método, Mão de Obra, Máquina, Material, Medida, Meio)'],
+    ['I','Improve',  '5W2H: ' + safe(act0.what) + ' · Quem: ' + safe(act0.who) + ' · Prazo: ' + safe(act0.when)],
+    ['C','Control',  'NPS mensal + revisão CPA trimestral + painel de evasão semanal via Lyceum']
+  ];
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 07</div><div class="sec-title">Gestão: PDCA · DMAIC · RACI · North Star</div><div class="sec-sub">Frameworks de execução, controle e alinhamento estratégico aplicados ao curso de ' + safe(c.name) + '.</div></div>'
+
+    // PDCA
+    + '<div class="fw-section">'
+    + '<span class="fw-label fw-pdca">PDCA — Ciclo de Melhoria Contínua</span>'
+    + '<table class="tbl"><thead><tr><th style="width:18%">Fase</th><th>Aplicação em ' + safe(c.name) + '</th></tr></thead><tbody>'
+    + '<tr><td><strong>P — Planejar</strong></td><td>Meta: <em>"' + safe(c.north) + '"</em> · Problema crítico: <strong>' + safe(top.problem) + '</strong> (score ' + top.score + ') · Ferramenta: Ishikawa para causa-raiz</td></tr>'
+    + '<tr><td><strong>D — Fazer</strong></td><td>Executar: <strong>' + safe(act0.what) + '</strong> · Responsável: ' + safe(act0.who) + ' · Prazo: ' + safe(act0.when) + ' · Local: ' + safe(act0.where) + '</td></tr>'
+    + '<tr><td><strong>C — Checar</strong></td><td>NPS mensal · Revisão CPA trimestral · Evasão via Lyceum · Indicadores: Captação, Retenção, Satisfação · Painel semanal</td></tr>'
+    + '<tr><td><strong>A — Agir</strong></td><td>Padronizar práticas que funcionaram · Corrigir desvios com nova rodada GUT · Registrar aprendizados · Abrir novo ciclo PDCA</td></tr>'
+    + '</tbody></table></div>'
+
+    // DMAIC
+    + '<div class="fw-section">'
+    + '<span class="fw-label fw-dmaic">DMAIC — Six Sigma (problemas recorrentes)</span>'
+    + '<table class="tbl"><thead><tr><th style="width:10%">Etapa</th><th style="width:16%">Nome</th><th>Aplicação em ' + safe(c.short) + '</th></tr></thead><tbody>'
+    + dmaicRows.map(function(r){return '<tr><td style="font-size:14pt;font-weight:900;color:#6B2D8B;text-align:center">' + r[0] + '</td><td><strong>' + r[1] + '</strong></td><td>' + r[2] + '</td></tr>';}).join('')
+    + '</tbody></table></div>'
+
+    // RACI
+    + '<div class="fw-section">'
+    + '<span class="fw-label fw-raci">RACI — Matriz de Responsabilidades · Ação: ' + safe(act0.what) + '</span>'
+    + '<table class="tbl"><thead><tr><th style="width:22%">Papel</th><th style="width:28%">Quem</th><th>Responsabilidade</th></tr></thead><tbody>'
+    + '<tr><td><strong style="color:#002060">R — Responsible</strong></td><td>' + safe(act0.who) + '</td><td>Executa a ação diretamente</td></tr>'
+    + '<tr><td><strong style="color:#E30613">A — Accountable</strong></td><td>Direção</td><td>Responde pelo resultado perante a mantenedora e a CPA</td></tr>'
+    + '<tr><td><strong style="color:#0E7C4A">C — Consulted</strong></td><td>Coordenação de Curso</td><td>Orienta com expertise pedagógica e conhecimento do contexto</td></tr>'
+    + '<tr><td><strong style="color:#888">I — Informed</strong></td><td>Alunos + CPA + NDE</td><td>Monitoram e recebem feedback sobre o resultado da ação</td></tr>'
+    + '</tbody></table></div>'
+
+    // North Star
+    + '<div class="ns-full"><div class="ns-full-lbl">⭐ North Star Metric — ' + safe(c.name) + ' · 2025–2026</div>'
+    + '<div class="ns-full-val">"' + safe(c.north) + '"</div>'
+    + '<div class="ns-full-desc">Toda decisão — de orçamento, grade, infraestrutura ou contratação — deve responder: <strong style="color:#fff">isso move este indicador?</strong> Se a resposta for não, questione a prioridade.</div></div>'
+
+    + '<div class="insight-box"><div class="insight-lbl">💡 Síntese Estratégica do Diretor</div><div class="insight-text">' + safe(c.insight) + '</div></div>'
+    + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 07 Gestão · ' + dateStr + ' &nbsp;·&nbsp; Diretor Bruno Guilherme de Castro Oliveira · CPA 2025</div>'
+    + '</div>';
+
+  // ── ABRIR JANELA E IMPRIMIR ────────────────────────────────────────────────
+  var btn = document.getElementById('pdfExportBtn');
+  if (btn) { btn.classList.add('loading'); btn.textContent = 'Gerando...'; }
+
+  var printWindow = window.open('', '_blank', 'width=1000,height=750');
+  printWindow.document.write('<!DOCTYPE html><html lang="pt-BR"><head>'
+    + '<meta charset="UTF-8"/>'
+    + '<title>Plano Estratégico · ' + safe(c.name) + '</title>'
+    + '<style>' + CSS + '</style>'
+    + '</head><body>' + html + '</body></html>');
+  printWindow.document.close();
+
+  printWindow.onload = function(){
+    setTimeout(function(){
+      printWindow.focus();
+      printWindow.print();
+      if (btn) {
+        btn.classList.remove('loading');
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg> Exportar PDF';
+      }
+    }, 700);
+  };
+}
 
 init();
 </script>
