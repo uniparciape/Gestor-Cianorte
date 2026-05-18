@@ -1032,6 +1032,22 @@ button{font:inherit;cursor:pointer}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
         Exportar PDF
       </button>
+      <!-- BARRA DE COMPARTILHAMENTO -->
+      <div class="share-bar" style="margin-top:.7rem;padding:.6rem .9rem">
+        <button class="share-btn share-btn-copy" onclick="indShare()" title="Coordenador: clique para copiar o código e enviar à direção">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Compartilhar
+        </button>
+        <button class="share-btn share-btn-import" onclick="indImportModal()" title="Direção: importe o código recebido do coordenador">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Importar
+        </button>
+        <button class="share-btn share-btn-view" onclick="indViewAll()" title="Ver painel consolidado de todos os cursos">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Ver todos
+        </button>
+        <span class="share-info" id="shareStatus" style="font-size:.6rem">SWOT · GUT · 5W2H · Gestão · Ishikawa · Eisenhower · Indicadores</span>
+      </div>
     </div>
     <aside class="north-box">
       <div class="north-label">⭐ Métrica North Star</div>
@@ -1889,23 +1905,6 @@ button{font:inherit;cursor:pointer}
     <div class="sec-header">
       <h2 class="sec-title">Indicadores Obrigatórios por Curso</h2>
       <p class="sec-desc">Registre o que cada curso está fazendo para melhorar cada indicador. Salvo automaticamente.</p>
-    </div>
-
-    <!-- BARRA DE COMPARTILHAMENTO -->
-    <div class="share-bar">
-      <button class="share-btn share-btn-copy" onclick="indShare()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        Copiar código para compartilhar
-      </button>
-      <button class="share-btn share-btn-import" onclick="indImportModal()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        Importar dados de coordenador
-      </button>
-      <button class="share-btn share-btn-view" onclick="indViewAll()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        Ver todos os cursos
-      </button>
-      <span class="share-info" id="shareStatus">Compartilha SWOT, GUT, 5W2H, Gestão, Ishikawa, Eisenhower e Indicadores do curso selecionado.</span>
     </div>
 
     <div id="indContent"></div>
@@ -3680,7 +3679,9 @@ function indShare() {
     actions: c.actions,
     insight: c.insight,
     // dados dos indicadores
-    ind: indGetCourseData(current)
+    ind: indGetCourseData(current),
+    // dados das diretrizes (checklist)
+    dreg: dregGetChecked(current)
   };
 
   var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
@@ -3758,6 +3759,16 @@ function indImportConfirm() {
         if (payload.ind[k] && payload.ind[k].trim()) s[courseId][k] = payload.ind[k];
       });
       indSaveState(s);
+    }
+
+    // ── Importar diretrizes (mescla — só marca, nunca desmarca) ──
+    if (payload.dreg) {
+      var ds = dregLoadState();
+      if (!ds[courseId]) ds[courseId] = {};
+      Object.keys(payload.dreg).forEach(function(k){
+        if (payload.dreg[k]) ds[courseId][k] = true; // só importa o que foi marcado
+      });
+      dregSaveState(ds);
     }
 
     // Feedback
@@ -4014,7 +4025,8 @@ function exportCoursePDF() {
         ['04','Plano de Ações 5W2H','Ações com responsável, prazo, local, método e custo'],
         ['05','Matriz de Eisenhower','Quadrantes de decisão: Fazer / Agendar / Delegar / Eliminar'],
         ['06','Indicadores Obrigatórios','Captação, Retenção, Evasão, Satisfação, Engajamento, Visibilidade'],
-        ['07','Gestão: PDCA · DMAIC · RACI · North Star','Frameworks de execução e controle']
+        ['07','Gestão: PDCA · DMAIC · RACI · North Star','Frameworks de execução e controle'],
+        ['08','Diretrizes Institucionais — Checklist','Conformidade pedagógica e regulatória']
       ].map(function(r,i){
         return '<div class="toc-row"><span class="toc-num">' + r[0] + '</span><span class="toc-name"><strong>' + r[1] + '</strong><br><span style="font-size:8pt;color:#888">' + r[2] + '</span></span><span class="toc-page">pág. ' + (i+3) + '</span></div>';
       }).join('')
@@ -4206,6 +4218,50 @@ function exportCoursePDF() {
 
     + '<div class="insight-box"><div class="insight-lbl">💡 Síntese Estratégica do Diretor</div><div class="insight-text">' + safe(c.insight) + '</div></div>'
     + '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 07 Gestão · ' + dateStr + ' &nbsp;·&nbsp; Diretor Bruno Guilherme de Castro Oliveira · CPA 2025</div>'
+    + '</div>';
+
+  // ── PÁGINA 9: DIRETRIZES ──────────────────────────────────────────────────
+  var dregChecked = dregGetChecked(current);
+  var totalItems  = 0;
+  var doneItems   = 0;
+  DREG_GROUPS.forEach(function(g){ totalItems += g.items.length; g.items.forEach(function(it){ if(dregChecked[it.id]) doneItems++; }); });
+  var dregPct = totalItems ? Math.round(doneItems/totalItems*100) : 0;
+  var dregColor = dregPct>=80?'#0E7C4A':dregPct>=50?'#F5A623':'#E30613';
+
+  html += '<div class="page">'
+    + '<div class="sec-hdr"><div class="sec-eyebrow">Seção 08</div>'
+    + '<div class="sec-title">Diretrizes Institucionais — Checklist</div>'
+    + '<div class="sec-sub">Itens obrigatórios de conformidade pedagógica e regulatória · ' + safe(c.name) + ' · ' + doneItems + '/' + totalItems + ' concluídos (' + dregPct + '%)</div></div>'
+    + '<div style="background:#f5f7fa;border-radius:7px;padding:4mm 6mm;margin-bottom:5mm;display:flex;align-items:center;gap:5mm">'
+    + '<div style="font-size:20pt;font-weight:900;color:' + dregColor + ';line-height:1">' + dregPct + '%</div>'
+    + '<div style="flex:1"><div style="font-size:8pt;color:#666;margin-bottom:1.5mm">Progresso geral de conformidade</div>'
+    + '<div style="background:#e0e0e0;border-radius:4px;height:10px;overflow:hidden"><div style="height:100%;border-radius:4px;background:' + dregColor + ';width:' + dregPct + '%"></div></div></div>'
+    + '</div>';
+
+  DREG_GROUPS.forEach(function(g){
+    var groupDone  = g.items.filter(function(it){ return dregChecked[it.id]; }).length;
+    var groupTotal = g.items.length;
+    var groupPct   = Math.round(groupDone/groupTotal*100);
+    var gColor     = g.color || '#002060';
+
+    html += '<div style="border:1px solid #e0e0e0;border-radius:7px;margin-bottom:4mm;overflow:hidden;page-break-inside:avoid">'
+      + '<div style="background:' + (g.bg||'#f5f7fa') + ';padding:3mm 5mm;display:flex;align-items:center;gap:3mm;border-bottom:1px solid #e0e0e0">'
+      + '<span style="font-size:13pt">' + (g.icon||'📋') + '</span>'
+      + '<strong style="flex:1;font-size:9.5pt;color:#002060">' + safe(g.title) + '</strong>'
+      + '<span style="font-family:monospace;font-size:8pt;font-weight:700;color:' + gColor + '">' + groupDone + '/' + groupTotal + ' · ' + groupPct + '%</span>'
+      + '</div>'
+      + '<div style="padding:3mm 5mm;display:grid;grid-template-columns:1fr 1fr;gap:2mm">'
+      + g.items.map(function(it){
+          var done = !!dregChecked[it.id];
+          return '<div style="display:flex;align-items:flex-start;gap:2mm;padding:2mm;border-radius:4px;background:' + (done?'#f0fdf4':'#fafafa') + '">'
+            + '<span style="font-size:10pt;line-height:1.2;flex-shrink:0">' + (done?'✅':'⬜') + '</span>'
+            + '<span style="font-size:8pt;color:' + (done?'#0E7C4A':'#444') + ';line-height:1.35' + (done?';text-decoration:line-through':'') + '">' + safe(it.text) + '</span>'
+            + '</div>';
+        }).join('')
+      + '</div></div>';
+  });
+
+  html += '<div class="page-footer">UNIPAR · ' + safe(c.name) + ' · 08 Diretrizes · ' + dateStr + '</div>'
     + '</div>';
 
   // ── ABRIR JANELA E IMPRIMIR ────────────────────────────────────────────────
