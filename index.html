@@ -3377,6 +3377,14 @@ var DEFAULT_DIRETRIZES = {
     ato_autorizacao:true, ato_reconhecimento:true, ato_renovacao:true,
     ato_ppc:true, ato_matriz:true, ato_coordenador:true, ato_nde:true, ato_colegiado:true
     // Infraestrutura 0/4 — nenhum checked
+  },
+  ef: {
+    // Educação Física — aguardando PDF para pré-população
+    // Todos os itens deixados desmarcados para preenchimento manual
+  },
+  enf: {
+    // Enfermagem — aguardando PDF para pré-população
+    // Todos os itens deixados desmarcados para preenchimento manual
   }
 };
 
@@ -3390,7 +3398,7 @@ function dregLoadState() {
       return initial;
     }
     var state = JSON.parse(raw);
-    // Merge: só preenche se o curso ainda não tiver dados
+    // Merge: preenche se o curso não tiver dados OU tiver objeto vazio
     Object.keys(DEFAULT_DIRETRIZES).forEach(function(cid) {
       if (!state[cid] || Object.keys(state[cid]).length === 0) {
         state[cid] = JSON.parse(JSON.stringify(DEFAULT_DIRETRIZES[cid]));
