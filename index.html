@@ -4042,7 +4042,8 @@ function indToast(msg) {
 // ─── SYNC NUVEM (JSONBin.io) ──────────────────────────────────────────────────
 // Diretor: após configurar, cole o BIN ID abaixo e suba o HTML no GitHub Pages.
 // Coordenadores não precisam fazer nada — o botão Sincronizar funciona direto.
-var SYNC_PUBLIC_BIN_ID = '6a0c48a46877513b27988df3'; // ex: '6834f2a1abc123def456'
+var SYNC_PUBLIC_BIN_ID = '6a0c48a46877513b27988df3';
+var SYNC_ACCESS_KEY    = '$2a$10$yTHJV7LKmh2CYU0jPLp3D.i1rr4QKQQd4vIDV5NqnyJNJytMbY0Lm'; // Access Key pública de escrita
 
 var SYNC_CFG_KEY = 'unipar_sync_config_v1';
 var _syncTimer   = null;
@@ -4053,7 +4054,7 @@ function syncGetConfig() {
   var stored = null;
   try { stored = JSON.parse(localStorage.getItem(SYNC_CFG_KEY) || 'null'); } catch(e) {}
   if (SYNC_PUBLIC_BIN_ID) {
-    return { binId: SYNC_PUBLIC_BIN_ID, apiKey: (stored && stored.apiKey) || '' };
+    return { binId: SYNC_PUBLIC_BIN_ID, apiKey: (stored && stored.apiKey) || SYNC_ACCESS_KEY };
   }
   return stored;
 }
