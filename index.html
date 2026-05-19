@@ -4040,22 +4040,12 @@ function indToast(msg) {
 
 
 // ─── SYNC NUVEM (JSONBin.io) ──────────────────────────────────────────────────
-// Diretor: após configurar, cole o BIN ID abaixo e suba o HTML no GitHub Pages.
-// Coordenadores não precisam fazer nada — o botão Sincronizar funciona direto.
-var SYNC_PUBLIC_BIN_ID = '6a0c48a46877513b27988df3'; // ex: '6834f2a1abc123def456'
-
 var SYNC_CFG_KEY = 'unipar_sync_config_v1';
 var _syncTimer   = null;
 var _syncBusy    = false;
 
 function syncGetConfig() {
-  // Prioridade: bin público hardcoded > config local do navegador
-  var stored = null;
-  try { stored = JSON.parse(localStorage.getItem(SYNC_CFG_KEY) || 'null'); } catch(e) {}
-  if (SYNC_PUBLIC_BIN_ID) {
-    return { binId: SYNC_PUBLIC_BIN_ID, apiKey: (stored && stored.apiKey) || '' };
-  }
-  return stored;
+  try { return JSON.parse(localStorage.getItem(SYNC_CFG_KEY) || 'null'); } catch(e) { return null; }
 }
 function syncSetConfig(cfg) {
   localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(cfg));
@@ -4126,7 +4116,7 @@ function syncApplyPayload(remote) {
   renderIndicadores(current);
 }
 
-// Envia dados para a nuvem (pull → merge → push para não sobrescrever dados de outros)
+// Envia dados para a nuvem
 function syncPush(silent) {
   var cfg = syncGetConfig();
   if (!cfg || !cfg.binId || !cfg.apiKey) return;
@@ -4134,53 +4124,17 @@ function syncPush(silent) {
   _syncBusy = true;
   if (!silent) syncSetStatus('spin', 'Enviando...');
 
-  // 1. Busca estado remoto atual
-  var pushHeaders = {};
-  if (cfg.apiKey) pushHeaders['X-Master-Key'] = cfg.apiKey;
-
-  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', {
-    headers: pushHeaders
-  })
-  .then(function(r) { return r.ok ? r.json() : Promise.resolve(null); })
-  .then(function(json) {
-    var remote = (json && (json.record || json)) || {};
-    var local  = syncBuildPayload();
-
-    // 2. Merge: local prevalece sobre remoto (por curso)
-    var merged = { v: 3, ts: new Date().toISOString(), courses: {}, ind: {}, dreg: {} };
-
-    var allIds = Object.keys(Object.assign({}, remote.courses || {}, local.courses || {}));
-    allIds.forEach(function(id) {
-      merged.courses[id] = Object.assign({}, (remote.courses || {})[id] || {}, (local.courses || {})[id] || {});
-    });
-
-    var allInd = Object.keys(Object.assign({}, remote.ind || {}, local.ind || {}));
-    allInd.forEach(function(id) {
-      merged.ind[id] = Object.assign({}, (remote.ind || {})[id] || {}, (local.ind || {})[id] || {});
-    });
-
-    var allDreg = Object.keys(Object.assign({}, remote.dreg || {}, local.dreg || {}));
-    allDreg.forEach(function(id) {
-      merged.dreg[id] = {};
-      var remD = (remote.dreg || {})[id] || {};
-      var locD = (local.dreg  || {})[id] || {};
-      Object.keys(Object.assign({}, remD, locD)).forEach(function(k) {
-        merged.dreg[id][k] = !!(remD[k] || locD[k]);
-      });
-    });
-
-    // 3. Push do estado merged
-    var putHeaders = { 'Content-Type': 'application/json' };
-    if (cfg.apiKey) putHeaders['X-Master-Key'] = cfg.apiKey;
-    return fetch('https://api.jsonbin.io/v3/b/' + cfg.binId, {
-      method: 'PUT',
-      headers: putHeaders,
-      body: JSON.stringify(merged)
-    });
+  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': cfg.apiKey
+    },
+    body: JSON.stringify(syncBuildPayload())
   })
   .then(function(r) {
     _syncBusy = false;
-    if (r && r.ok) {
+    if (r.ok) {
       syncSetStatus('ok', 'Nuvem atualizada · ' + new Date().toLocaleTimeString('pt-BR'));
     } else {
       syncSetStatus('err', 'Erro ao enviar · verifique a chave');
@@ -4198,11 +4152,8 @@ function syncPull(silent) {
   if (!cfg || !cfg.binId) return;
   if (!silent) syncSetStatus('spin', 'Buscando...');
 
-  var pullHeaders = {};
-  if (cfg.apiKey) pullHeaders['X-Master-Key'] = cfg.apiKey;
-
   fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', {
-    headers: pullHeaders
+    headers: { 'X-Master-Key': cfg.apiKey || '' }
   })
   .then(function(r) { return r.json(); })
   .then(function(json) {
@@ -4237,101 +4188,55 @@ function syncConfigModal() {
   var old = document.getElementById('syncConfigModal');
   if (old) old.remove();
   var cfg = syncGetConfig() || {};
-  var hasBin = !!(SYNC_PUBLIC_BIN_ID || cfg.binId);
 
   var modal = document.createElement('div');
   modal.id = 'syncConfigModal';
   modal.className = 'modal-overlay';
-
-  if (hasBin) {
-    var binId = SYNC_PUBLIC_BIN_ID || cfg.binId;
-    modal.innerHTML = ''
-      + '<div class="modal-box" style="max-width:500px">'
-      + '<div class="modal-title">☁️ Sincronização Configurada</div>'
-      + '<div class="modal-sub" style="margin-bottom:1rem">'
-      + '✅ Este dashboard já está conectado ao banco compartilhado.<br><br>'
-      + '<strong>BIN ID:</strong> <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px;font-size:.82rem">' + binId + '</code>'
-      + '</div>'
-      + '<div class="modal-sub" style="font-size:.82rem;margin-bottom:1rem">Qualquer coordenador que abrir este arquivo e clicar em <strong>Sincronizar</strong> terá os dados atualizados — sem configurar nada.</div>'
-      + '<div id="syncTestMsg" style="font-size:.82rem;min-height:1rem;margin-bottom:.6rem"></div>'
-      + '<div class="modal-actions">'
-      + '<button class="modal-cancel" onclick="document.getElementById('syncConfigModal').remove()">Fechar</button>'
-      + '<button class="modal-ok" style="background:#6B2D8B" onclick="document.getElementById('syncConfigModal').remove();syncPull(false)">Sincronizar Agora</button>'
-      + '</div></div>';
-  } else {
-    modal.innerHTML = ''
-      + '<div class="modal-box" style="max-width:520px">'
-      + '<div class="modal-title">☁️ Ativar Sincronização (Diretor)</div>'
-      + '<div class="modal-sub" style="margin-bottom:1.2rem">Você faz isso <strong>uma vez só</strong>. Após configurar, todos os coordenadores sincronizam com um clique — sem precisar configurar nada.'
-      + '<br><br><strong>Passos:</strong>'
-      + '<ol style="margin:.5rem 0 0 1.2rem;font-size:.82rem;line-height:1.9">'
-      + '<li>Acesse <a href="https://jsonbin.io" target="_blank" style="color:#002060">jsonbin.io</a> → crie conta gratuita</li>'
-      + '<li>Vá em <strong>API Keys</strong> → copie a <strong>Master Key</strong></li>'
-      + '<li>Cole abaixo e clique <strong>Criar Banco</strong></li>'
-      + '<li>Copie o BIN ID gerado, cole na linha <code>SYNC_PUBLIC_BIN_ID</code> do HTML e suba no GitHub Pages</li>'
-      + '</ol></div>'
-      + '<label style="font-size:.78rem;font-weight:700;color:#002060;display:block;margin-bottom:.3rem">MASTER KEY</label>'
-      + '<input id="syncApiKey" type="text" style="width:100%;border:2px solid #ddd;border-radius:7px;padding:.55rem .8rem;font-family:monospace;font-size:.85rem;box-sizing:border-box;margin-bottom:.5rem" placeholder="$2b$10$...">'
-      + '<div id="syncTestMsg" style="font-size:.82rem;min-height:1.4rem;margin-bottom:.6rem"></div>'
-      + '<div class="modal-actions">'
-      + '<button class="modal-cancel" onclick="document.getElementById('syncConfigModal').remove()">Cancelar</button>'
-      + '<button class="modal-ok" style="background:#6B2D8B" onclick="syncConfigSave()">Criar Banco</button>'
-      + '</div></div>';
-  }
+  modal.innerHTML = ''
+    + '<div class="modal-box" style="max-width:540px">'
+    + '<div class="modal-title">☁️ Configurar Banco de Dados Compartilhado</div>'
+    + '<div class="modal-sub" style="margin-bottom:1rem">Use o <strong>JSONBin.io</strong> (gratuito) para que todos vejam os mesmos dados em tempo real, sem precisar copiar código.'
+    + '<br><br><strong>Como configurar (1 vez, só o diretor):</strong>'
+    + '<ol style="margin:.5rem 0 0 1.2rem;font-size:.82rem;line-height:1.7">'
+    + '<li>Acesse <a href="https://jsonbin.io" target="_blank" style="color:#002060">jsonbin.io</a> e crie uma conta gratuita</li>'
+    + '<li>Clique em <strong>Bins → + Create Bin</strong> e salve um JSON vazio: <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px">{}</code></li>'
+    + '<li>Copie o <strong>BIN ID</strong> (aparece na URL)</li>'
+    + '<li>Em <strong>API Keys</strong>, copie sua <strong>Master Key</strong></li>'
+    + '<li>Cole abaixo e clique Salvar</li>'
+    + '</ol>'
+    + '</div>'
+    + '<label style="font-size:.78rem;font-weight:700;color:#002060;display:block;margin-bottom:.3rem">BIN ID</label>'
+    + '<input id="syncBinId" type="text" style="width:100%;border:2px solid #ddd;border-radius:7px;padding:.55rem .8rem;font-family:monospace;font-size:.85rem;box-sizing:border-box;margin-bottom:.9rem" placeholder="ex: 64a1b2c3d4e5f6a7b8c9d0e1" value="' + (cfg.binId||'') + '">'
+    + '<label style="font-size:.78rem;font-weight:700;color:#002060;display:block;margin-bottom:.3rem">MASTER KEY</label>'
+    + '<input id="syncApiKey" type="password" style="width:100%;border:2px solid #ddd;border-radius:7px;padding:.55rem .8rem;font-family:monospace;font-size:.85rem;box-sizing:border-box;margin-bottom:.5rem" placeholder="$2b$10$..." value="' + (cfg.apiKey||'') + '">'
+    + '<div style="font-size:.75rem;color:#888;margin-bottom:1rem">A chave fica salva só no seu navegador. Compartilhe apenas o BIN ID (não a chave) com os coordenadores se quiser que eles também enviem dados.</div>'
+    + '<div id="syncTestMsg" style="font-size:.8rem;min-height:1.2rem;margin-bottom:.5rem"></div>'
+    + '<div class="modal-actions">'
+    + '<button class="modal-cancel" onclick="document.getElementById(\'syncConfigModal\').remove()">Cancelar</button>'
+    + '<button class="modal-ok" style="background:#6B2D8B" onclick="syncConfigSave()">Salvar e Sincronizar</button>'
+    + '</div></div>';
   document.body.appendChild(modal);
   modal.addEventListener('click', function(e){ if(e.target===modal) modal.remove(); });
 }
+
 function syncConfigSave() {
+  var binId  = (document.getElementById('syncBinId').value  || '').trim();
   var apiKey = (document.getElementById('syncApiKey').value || '').trim();
   var msg    = document.getElementById('syncTestMsg');
-  var cfg    = syncGetConfig() || {};
 
-  if (!apiKey) { msg.style.color='#E30613'; msg.textContent='⚠ Informe a Master Key.'; return; }
+  if (!binId) { msg.style.color='#E30613'; msg.textContent='⚠ Informe o BIN ID.'; return; }
 
-  msg.style.color='#555'; msg.textContent='⏳ Criando banco de dados público...';
-  document.querySelector('#syncConfigModal .modal-ok').disabled = true;
+  syncSetConfig({ binId: binId, apiKey: apiKey });
+  msg.style.color = '#0E7C4A';
+  msg.textContent = '✓ Configuração salva. Conectando...';
+  syncSetStatus('spin', 'Conectando...');
 
-  fetch('https://api.jsonbin.io/v3/b', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Master-Key': apiKey,
-      'X-Bin-Name': 'CPA-UNIPAR-Cianorte',
-      'X-Private': 'false'
-    },
-    body: JSON.stringify({ _init: true })
-  })
-  .then(function(r) {
-    if (!r.ok) return r.json().then(function(e){ throw new Error(e.message || ('HTTP ' + r.status)); });
-    return r.json();
-  })
-  .then(function(data) {
-    var newBinId = data.metadata && data.metadata.id;
-    if (!newBinId) throw new Error('Resposta inesperada da API.');
-    syncSetConfig({ binId: newBinId, apiKey: apiKey });
-
-    // Mostrar instruções para embutir no HTML
-    var modal = document.getElementById('syncConfigModal');
-    modal.querySelector('.modal-box').innerHTML = ''
-      + '<div class="modal-title">✅ Banco Criado com Sucesso!</div>'
-      + '<div class="modal-sub" style="margin-bottom:1rem">Seu BIN ID é:</div>'
-      + '<div style="background:#f0f4ff;border:2px solid #6B2D8B;border-radius:8px;padding:1rem;font-family:monospace;font-size:1rem;text-align:center;letter-spacing:.05em;margin-bottom:1rem">' + newBinId + '</div>'
-      + '<div class="modal-sub" style="font-size:.82rem;margin-bottom:1rem">'
-      + '<strong>Próximo passo:</strong> Abra o arquivo HTML, encontre a linha:<br>'
-      + '<code style="background:#f0f0f0;padding:3px 6px;border-radius:4px">var SYNC_PUBLIC_BIN_ID = '6a0c48a46877513b27988df3';</code><br><br>'
-      + 'Substitua por:<br>'
-      + '<code style="background:#e8f5e9;padding:3px 6px;border-radius:4px">var SYNC_PUBLIC_BIN_ID = '' + newBinId + '';</code><br><br>'
-      + 'Suba o HTML atualizado no GitHub Pages. Pronto — coordenadores só clicam em <strong>Sincronizar</strong>.'
-      + '</div>'
-      + '<div class="modal-actions">'
-      + '<button class="modal-ok" style="background:#6B2D8B" onclick="document.getElementById('syncConfigModal').remove();syncPush(false)">Fechar e Sincronizar</button>'
-      + '</div>';
-  })
-  .catch(function(err) {
-    msg.style.color='#E30613';
-    msg.textContent='✗ Erro: ' + err.message + '. Verifique a Master Key.';
-    document.querySelector('#syncConfigModal .modal-ok').disabled = false;
-  });
+  setTimeout(function(){
+    document.getElementById('syncConfigModal').remove();
+    // Primeiro puxa dados existentes, depois sobe os locais
+    syncPull(true);
+    setTimeout(function(){ syncPush(false); }, 2000);
+  }, 800);
 }
 
 // Hooks automáticos: chamar syncSchedule() após cada save
