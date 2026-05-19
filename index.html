@@ -4042,7 +4042,7 @@ function indToast(msg) {
 // ─── SYNC NUVEM (JSONBin.io) ──────────────────────────────────────────────────
 // Diretor: após configurar, cole o BIN ID abaixo e suba o HTML no GitHub Pages.
 // Coordenadores não precisam fazer nada — o botão Sincronizar funciona direto.
-var SYNC_PUBLIC_BIN_ID = ''; // ex: '6834f2a1abc123def456'
+var SYNC_PUBLIC_BIN_ID = '6a0c48a46877513b27988df3'; // ex: '6834f2a1abc123def456'
 
 var SYNC_CFG_KEY = 'unipar_sync_config_v1';
 var _syncTimer   = null;
@@ -4318,7 +4318,7 @@ function syncConfigSave() {
       + '<div style="background:#f0f4ff;border:2px solid #6B2D8B;border-radius:8px;padding:1rem;font-family:monospace;font-size:1rem;text-align:center;letter-spacing:.05em;margin-bottom:1rem">' + newBinId + '</div>'
       + '<div class="modal-sub" style="font-size:.82rem;margin-bottom:1rem">'
       + '<strong>Próximo passo:</strong> Abra o arquivo HTML, encontre a linha:<br>'
-      + '<code style="background:#f0f0f0;padding:3px 6px;border-radius:4px">var SYNC_PUBLIC_BIN_ID = '';</code><br><br>'
+      + '<code style="background:#f0f0f0;padding:3px 6px;border-radius:4px">var SYNC_PUBLIC_BIN_ID = '6a0c48a46877513b27988df3';</code><br><br>'
       + 'Substitua por:<br>'
       + '<code style="background:#e8f5e9;padding:3px 6px;border-radius:4px">var SYNC_PUBLIC_BIN_ID = '' + newBinId + '';</code><br><br>'
       + 'Suba o HTML atualizado no GitHub Pages. Pronto — coordenadores só clicam em <strong>Sincronizar</strong>.'
