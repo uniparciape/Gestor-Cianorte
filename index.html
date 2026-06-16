@@ -7,6 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<!-- Firebase (tempo real) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{
@@ -1390,6 +1395,108 @@ button[onclick*="openAddEvent"],
   background: linear-gradient(135deg, var(--red), #cc0010);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   EVENT CANVAS (aba Comercial) — estilos isolados, prefixo ec-
+   ═══════════════════════════════════════════════════════════ */
+.ec-root{
+  --ec-ink:#1a1a1a; --ec-line:#111; --ec-muted:#6b6b6b;
+  --ec-pink:#f4a6c4; --ec-pinkS:#ee6fa3;
+  --ec-green:#a8e063; --ec-cyan:#7fd6ef; --ec-cyanS:#4cc3e8;
+  --ec-yellow:#ffe14d; --ec-orange:#ffb347; --ec-purple:#cdbdf0; --ec-gray:#cfcfcf;
+  font-family:'Inter',sans-serif; color:var(--ec-ink);
+}
+.ec-toolbar{
+  display:flex; gap:10px; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; padding:12px 16px; background:#fff;
+  border:1px solid #e3e3e3; border-radius:10px; margin-bottom:14px;
+}
+.ec-toolbar h3{font-family:'Archivo';font-weight:800;font-size:14px;margin:0;letter-spacing:.5px;}
+.ec-toolbar .ec-hint{font-size:12px;color:var(--ec-muted);flex:1;min-width:180px;}
+.ec-toolbar .ec-actions{display:flex;gap:8px;}
+.ec-btn{
+  font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.3px;
+  border:1.5px solid var(--ec-line);background:#fff;color:var(--ec-ink);
+  padding:8px 14px;border-radius:6px;cursor:pointer;transition:.15s;
+}
+.ec-btn:hover{background:var(--ec-ink);color:#fff;}
+.ec-btn.ec-ghost{border-color:#bbb;color:#777;}
+.ec-btn.ec-ghost:hover{background:#777;color:#fff;border-color:#777;}
+
+.ec-stage{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
+.ec-canvas{
+  width:1480px; margin:0 auto; background:#fff; border:2.5px solid var(--ec-line);
+  display:grid; grid-template-columns:255px 1fr 255px;
+  grid-template-rows:auto auto 1fr auto;
+}
+.ec-cell{border:1px solid #d9d9d9;padding:12px 13px;position:relative;min-height:0;}
+.ec-lbl{font-family:'Archivo';font-weight:800;font-size:19px;color:#222;letter-spacing:.2px;}
+.ec-lbl.ec-sm{font-size:15px;}
+.ec-lbl .ec-ico{font-weight:400;font-size:13px;color:#999;}
+.ec-sub{font-size:9.5px;font-style:italic;color:#9a9a9a;line-height:1.35;margin-top:6px;}
+.ec-notes{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;align-items:flex-start;}
+.ec-note{
+  font-size:10.5px;line-height:1.3;font-weight:500;
+  padding:8px 9px;border-radius:3px;min-width:78px;max-width:150px;
+  box-shadow:1px 1px 0 rgba(0,0,0,.08);outline:none;cursor:text;
+}
+.ec-note:focus{box-shadow:0 0 0 2px var(--ec-cyanS);}
+.ec-pink{background:var(--ec-pink);}
+.ec-pinkS{background:var(--ec-pinkS);color:#fff;}
+.ec-greenN{background:var(--ec-green);}
+.ec-cyanN{background:var(--ec-cyan);}
+.ec-yellowN{background:var(--ec-yellow);}
+.ec-orangeN{background:var(--ec-orange);}
+.ec-purpleN{background:var(--ec-purple);}
+.ec-grayN{background:var(--ec-gray);}
+
+.ec-header{grid-column:1 / -1;display:grid;grid-template-columns:255px 1fr 1fr 255px;border-bottom:2.5px solid var(--ec-line);}
+.ec-brand{display:flex;align-items:center;gap:8px;padding:16px;border-right:1px solid #d9d9d9;}
+.ec-brand .ec-hash{font-family:'Archivo';font-weight:900;font-size:30px;letter-spacing:-1px;}
+.ec-field{border-right:1px solid #d9d9d9;padding:10px 14px;display:flex;flex-direction:column;justify-content:center;gap:4px;}
+.ec-field .ec-k{font-family:'Archivo';font-weight:600;font-size:11px;color:#999;}
+.ec-field .ec-v{font-family:'Archivo';font-weight:700;font-size:17px;outline:none;}
+.ec-field .ec-v:focus{box-shadow:0 0 0 2px var(--ec-cyanS);border-radius:3px;}
+.ec-meta{display:grid;grid-template-columns:repeat(3,1fr);}
+.ec-meta .ec-mcol{border-left:1px solid #d9d9d9;padding:8px 10px;text-align:center;}
+.ec-meta .ec-mcol:first-child{border-left:none;}
+.ec-meta .ec-mk{font-family:'Archivo';font-size:10px;color:#999;font-weight:600;}
+.ec-meta .ec-mv{font-family:'Archivo';font-weight:700;font-size:16px;outline:none;}
+.ec-meta .ec-mv:focus{box-shadow:0 0 0 2px var(--ec-cyanS);border-radius:3px;}
+.ec-stackfields{display:flex;flex-direction:column;}
+.ec-stackfields .ec-field{border-bottom:1px solid #d9d9d9;}
+.ec-stackfields .ec-field:last-child{border-bottom:none;}
+
+.ec-pains{grid-column:1;grid-row:2;}
+.ec-topmid{grid-column:2;grid-row:2;display:grid;grid-template-columns:1fr 1fr;}
+.ec-topmid .ec-cell{border-top:none;border-bottom:none;}
+.ec-commitment{border-left:none;}
+.ec-gains{grid-column:3;grid-row:2;}
+.ec-lbl.ec-right{text-align:right;}
+.ec-notes.ec-right{justify-content:flex-end;}
+.ec-sub.ec-right{text-align:right;}
+
+.ec-entering{grid-column:1;grid-row:3;}
+.ec-centerbig{grid-column:2;grid-row:3;position:relative;padding:0;display:flex;flex-direction:column;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;}
+.ec-exiting{grid-column:3;grid-row:3;}
+.ec-journey{padding:12px 13px;border-bottom:none;position:relative;z-index:2;}
+.ec-core{flex:1;position:relative;display:grid;grid-template-columns:1fr 1fr;}
+.ec-xlines{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.ec-jobs{padding:12px 13px;position:relative;z-index:2;}
+.ec-promise{padding:12px 13px;position:relative;z-index:2;text-align:right;}
+.ec-promise .ec-notes{justify-content:flex-end;}
+.ec-instr{position:absolute;left:0;right:0;bottom:0;text-align:center;z-index:2;padding:10px;}
+.ec-instr .ec-notes{justify-content:center;}
+.ec-instr .ec-lbl{text-align:center;}
+
+.ec-expectation{grid-column:1;grid-row:4;border-top:2.5px solid var(--ec-line);}
+.ec-botmid{grid-column:2;grid-row:4;display:grid;grid-template-columns:1fr 1fr;border-top:2.5px solid var(--ec-line);}
+.ec-botmid .ec-cell{border-top:none;border-bottom:none;}
+.ec-cost{border-left:none;}
+.ec-satisfaction{grid-column:3;grid-row:4;border-top:2.5px solid var(--ec-line);}
+.ec-stars{font-size:20px;letter-spacing:2px;color:#222;text-align:right;margin-top:8px;}
+.ec-credit{font-size:10px;color:#9a9a9a;margin-top:12px;text-align:right;}
+.ec-credit a{color:#9a9a9a;}
 </style>
 <body>
 
@@ -1423,6 +1530,7 @@ button[onclick*="openAddEvent"],
     <button class="tab" data-tab="links">🔗 Links</button>
     <button class="tab" data-tab="diretrizes">📋 Diretrizes</button>
     <button class="tab" data-tab="indicadores">📈 Indicadores</button>
+    <button class="tab" data-tab="comercial">💼 Comercial</button>
   </div>
 </nav>
 
@@ -1447,7 +1555,7 @@ button[onclick*="openAddEvent"],
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           <span id="syncBtnLabel">Sincronizar</span>
         </button>
-        <button class="share-btn share-btn-settings" onclick="syncConfigModal()" title="Configurar banco de dados compartilhado">
+        <button class="share-btn share-btn-settings" onclick="fbStatusModal()" title="Status da sincronização em tempo real">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           ⚙
         </button>
@@ -2315,6 +2423,211 @@ button[onclick*="openAddEvent"],
     <div id="indContent"></div>
   </section>
 
+  <!-- ══ COMERCIAL · EVENT CANVAS ══ -->
+  <section id="comercial" class="section">
+    <div class="sec-header">
+      <h2 class="sec-title">Comercial · Event Canvas</h2>
+      <p class="sec-desc">Modelo de design de experiência por stakeholder. Clique em qualquer bloco para editar — tudo é salvo automaticamente neste navegador.</p>
+    </div>
+
+    <div class="ec-root">
+      <div class="ec-toolbar">
+        <h3>EVENT CANVAS · UPXP</h3>
+        <span class="ec-hint">Clique em qualquer bloco para editar. As alterações ficam salvas automaticamente.</span>
+        <div class="ec-actions">
+          <button class="ec-btn" onclick="ecPrint()">Imprimir / PDF</button>
+          <button class="ec-btn ec-ghost" onclick="ecReset()">Restaurar original</button>
+        </div>
+      </div>
+
+      <div class="ec-stage">
+        <div class="ec-canvas" id="ecCanvas">
+
+          <!-- HEADER -->
+          <div class="ec-header">
+            <div class="ec-brand"><span class="ec-hash">#EventCanvas</span></div>
+            <div class="ec-stackfields">
+              <div class="ec-field"><span class="ec-k">event name:</span><span class="ec-v" contenteditable>UPXP</span></div>
+              <div class="ec-field"><span class="ec-k">designed for:</span><span class="ec-v" contenteditable>UNIPAR Cianorte</span></div>
+            </div>
+            <div class="ec-stackfields">
+              <div class="ec-field"><span class="ec-k">stakeholder:</span><span class="ec-v" contenteditable>Alunos do Ensino Médio</span></div>
+              <div class="ec-field"><span class="ec-k">designed by:</span><span class="ec-v" contenteditable>UNIPAR</span></div>
+            </div>
+            <div class="ec-stackfields">
+              <div class="ec-meta">
+                <div class="ec-mcol"><div class="ec-mk">day</div><div class="ec-mv" contenteditable>XX</div></div>
+                <div class="ec-mcol"><div class="ec-mk">month</div><div class="ec-mv" contenteditable>XX</div></div>
+                <div class="ec-mcol"><div class="ec-mk">year</div><div class="ec-mv" contenteditable>XXXX</div></div>
+              </div>
+              <div class="ec-field" style="border-top:1px solid #d9d9d9;"><span class="ec-k">version:</span><span class="ec-v" contenteditable>2025</span></div>
+            </div>
+          </div>
+
+          <!-- TOP ROW -->
+          <div class="ec-cell ec-pains">
+            <div class="ec-lbl">pains <span class="ec-ico">☹</span></div>
+            <div class="ec-sub">What are his/her fears, frustrations, obstacles? O que o faz se sentir mal?</div>
+            <div class="ec-notes">
+              <div class="ec-note ec-pink" contenteditable>Medo de escolher o curso errado ou não entender as diferenças entre as graduações.</div>
+              <div class="ec-note ec-pink" contenteditable>Insegurança ao visitar uma universidade pela primeira vez.</div>
+              <div class="ec-note ec-pink" contenteditable>IES Pública x Privada (comunicação).</div>
+            </div>
+          </div>
+
+          <div class="ec-topmid">
+            <div class="ec-cell ec-commitment">
+              <div class="ec-lbl">commitment <span class="ec-ico">⚲</span></div>
+              <div class="ec-sub">Que sacrifício ele faz para participar (tempo, custo, oportunidade)?</div>
+              <div class="ec-notes">
+                <div class="ec-note ec-pinkS" contenteditable>Reservar um dia inteiro para participar, incluindo manhã e noite.</div>
+                <div class="ec-note ec-pinkS" contenteditable>Deslocamento até o campus (transporte ou tempo).</div>
+              </div>
+            </div>
+            <div class="ec-cell ec-return">
+              <div class="ec-lbl ec-right">return <span class="ec-ico">↻</span></div>
+              <div class="ec-notes ec-right">
+                <div class="ec-note ec-pinkS" contenteditable>Visita guiada às instalações: laboratórios e salas de aula.</div>
+                <div class="ec-note ec-pink" contenteditable>Participação em atividades: apresentação cultural, feira de empreendedorismo, interação esportiva, brindes e food trucks.</div>
+              </div>
+              <div class="ec-sub ec-right">O que ele leva embora depois do evento?</div>
+            </div>
+          </div>
+
+          <div class="ec-cell ec-gains">
+            <div class="ec-lbl ec-right">gains <span class="ec-ico">☺</span></div>
+            <div class="ec-sub ec-right">What does he/she want, need, dream about?</div>
+            <div class="ec-notes ec-right">
+              <div class="ec-note ec-greenN" contenteditable>Conhecer na prática os cursos de graduação (administração, educação física, enfermagem, pedagogia, direito, psicologia etc.).</div>
+              <div class="ec-note ec-greenN" contenteditable>Entender a rotina acadêmica e o ambiente universitário.</div>
+              <div class="ec-note ec-greenN" contenteditable>Networking com alunos, professores e profissionais.</div>
+            </div>
+          </div>
+
+          <!-- MIDDLE ROW -->
+          <div class="ec-cell ec-entering">
+            <div class="ec-lbl ec-sm">entering behaviour <span class="ec-ico">⤓</span></div>
+            <div class="ec-sub">Antes do evento: como descreveria o comportamento, atitude e contatos atuais dele?</div>
+            <div class="ec-notes">
+              <div class="ec-note ec-yellowN" contenteditable>Curiosidade sobre a universidade, mas com pouca clareza sobre cursos e ambiente acadêmico.</div>
+              <div class="ec-note ec-yellowN" contenteditable>Provável timidez e poucos contatos no meio universitário.</div>
+            </div>
+          </div>
+
+          <div class="ec-centerbig">
+            <div class="ec-journey">
+              <div class="ec-lbl ec-sm">experience journey <span class="ec-ico">➤➤➤</span></div>
+              <div class="ec-sub">Pontos de contato em ordem (antes, durante e depois). Onde estão os momentos decisivos?</div>
+              <div class="ec-notes">
+                <div class="ec-note ec-purpleN" contenteditable>Divulgação e convite nas escolas</div>
+                <div class="ec-note ec-purpleN" contenteditable>Confirmação de presença</div>
+                <div class="ec-note ec-purpleN" contenteditable>Chegada e recepção no campus (mantém comercial)</div>
+                <div class="ec-note ec-purpleN" contenteditable>Visitas guiadas e participação em atividades diversas</div>
+                <div class="ec-note ec-purpleN" contenteditable>Interação com acadêmicos e professores</div>
+                <div class="ec-note ec-purpleN" contenteditable>Ideação · Prototipação · Validação · Apresentação da ideia</div>
+                <div class="ec-note ec-purpleN" contenteditable>Encerramento com agradecimentos, brindes e food trucks</div>
+              </div>
+            </div>
+
+            <div class="ec-core">
+              <svg class="ec-xlines" preserveAspectRatio="none" viewBox="0 0 100 100">
+                <line x1="0" y1="0" x2="100" y2="100" stroke="#222" stroke-width="0.25"/>
+                <line x1="100" y1="0" x2="0" y2="100" stroke="#222" stroke-width="0.25"/>
+              </svg>
+
+              <div class="ec-jobs">
+                <div class="ec-lbl ec-sm">jobs to be done <span class="ec-ico">⚒</span></div>
+                <div class="ec-notes">
+                  <div class="ec-note ec-cyanN" contenteditable>Explorar cursos e entender o que cada profissão demanda.</div>
+                  <div class="ec-note ec-cyanN" contenteditable>Medir afinidade com o ambiente universitário da UNIPAR.</div>
+                  <div class="ec-note ec-cyanN" contenteditable>Conhecer a infraestrutura e a cultura da universidade.</div>
+                  <div class="ec-note ec-cyanN" contenteditable>Possibilidades de acesso — Prouni / FIES (Sala com Sandra e Sala Workalove).</div>
+                  <div class="ec-note ec-cyanN" contenteditable>Roteiro obrigatório.</div>
+                </div>
+              </div>
+
+              <div class="ec-promise">
+                <div class="ec-lbl ec-sm">promise <span class="ec-ico">🎁</span></div>
+                <div class="ec-notes">
+                  <div class="ec-note ec-cyanN" contenteditable>"Você vivencia de perto como é estudar na universidade: conhece cursos, infraestrutura, gente e ganha clareza para decidir seu futuro."</div>
+                  <div class="ec-note ec-cyanN" contenteditable>Essa promessa alivia o medo de escolher algo que não conhece e gera conhecimento e segurança.</div>
+                </div>
+              </div>
+
+              <div class="ec-instr">
+                <div class="ec-lbl ec-sm">instructional design <span class="ec-ico">👤</span></div>
+                <div class="ec-notes">
+                  <div class="ec-note ec-purpleN" contenteditable>Oratória</div>
+                  <div class="ec-note ec-purpleN" contenteditable>Autoestima · Liderança</div>
+                  <div class="ec-note ec-purpleN" contenteditable>Busca por aprendizagem constante</div>
+                  <div class="ec-note ec-purpleN" contenteditable>Leitura de mercado</div>
+                  <div class="ec-note ec-purpleN" contenteditable>Comprometimento e trabalho em equipe</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ec-cell ec-exiting">
+            <div class="ec-lbl ec-sm ec-right">exiting behaviour <span class="ec-ico">⤒</span></div>
+            <div class="ec-sub ec-right">Como resultado: que novo conhecimento, atitude e contatos ele adquiriu?</div>
+            <div class="ec-notes ec-right">
+              <div class="ec-note ec-greenN" contenteditable>Mais clareza sobre cursos e infraestrutura acadêmica.</div>
+              <div class="ec-note ec-greenN" contenteditable>Maior confiança para decidir profissão / faculdade.</div>
+              <div class="ec-note ec-greenN" contenteditable>Conversa mais aberta com familiares e colegas sobre suas opções.</div>
+              <div class="ec-note ec-greenN" contenteditable>Hábito de compartilhar nas redes o que viveu no evento (stories, fotos).</div>
+            </div>
+          </div>
+
+          <!-- BOTTOM ROW -->
+          <div class="ec-cell ec-expectation">
+            <div class="ec-lbl ec-sm">expectation <span class="ec-ico">💭</span></div>
+            <div class="ec-sub">Expectativas baseadas em experiências anteriores, boca a boca e marketing.</div>
+            <div class="ec-notes">
+              <div class="ec-note ec-orangeN" contenteditable>Espera por vivência real: visitas a laboratórios e exemplos práticos.</div>
+              <div class="ec-note ec-orangeN" contenteditable>Aguardam um evento dinâmico, acolhedor e bem organizado.</div>
+              <div class="ec-note ec-orangeN" contenteditable>Desejam atrações estimulantes como apresentações culturais ou food trucks.</div>
+            </div>
+          </div>
+
+          <div class="ec-botmid">
+            <div class="ec-cell ec-cost">
+              <div class="ec-lbl ec-sm">cost <span class="ec-ico">💲</span></div>
+              <div class="ec-sub">Custos fixos e variáveis do evento para este stakeholder.</div>
+              <div class="ec-notes">
+                <div class="ec-note ec-grayN" contenteditable>Prêmios</div>
+                <div class="ec-note ec-grayN" contenteditable>Decoração</div>
+                <div class="ec-note ec-grayN" contenteditable>Tempo dispensado (dia inteiro, manhã e noite)</div>
+                <div class="ec-note ec-grayN" contenteditable>Despesas com transporte ou alimentação (caso não seja gratuito)</div>
+              </div>
+            </div>
+            <div class="ec-cell ec-revenue">
+              <div class="ec-lbl ec-sm">revenue <span class="ec-ico">🪙</span></div>
+              <div class="ec-sub">Fontes de retorno do evento para este stakeholder.</div>
+              <div class="ec-notes">
+                <div class="ec-note ec-grayN" contenteditable>Formação de imagem positiva da faculdade (captação futura)</div>
+                <div class="ec-note ec-grayN" contenteditable>Interação com potenciais candidatos</div>
+                <div class="ec-note ec-grayN" contenteditable>Apoio de parceiros: Fundação Gerar, McDonald's, Rainha da Paz</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ec-cell ec-satisfaction">
+            <div class="ec-lbl ec-sm ec-right">satisfaction <span class="ec-ico">★</span></div>
+            <div class="ec-notes ec-right">
+              <div class="ec-note ec-greenN" contenteditable>Depoimentos</div>
+              <div class="ec-note ec-greenN" contenteditable>Entrevistas em rádio e TVs institucionais</div>
+              <div class="ec-note ec-greenN" contenteditable>Cobertura da imprensa regional</div>
+            </div>
+            <div class="ec-stars">★ ★ ★ ★ ☆</div>
+            <div class="ec-sub ec-right">Para quem ele conta? Como qualifica a experiência?</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="ec-credit">Event Canvas © Ruud Janssen &amp; Roel Frissen — CC BY-NC-ND 4.0 · <a href="https://www.eventmodelgeneration.com" target="_blank" rel="noopener">eventmodelgeneration.com</a></div>
+    </div>
+  </section>
+
 </main>
 
 
@@ -2617,6 +2930,10 @@ button[onclick*="openAddEvent"],
   <button class="mbn-btn" onclick="switchMainTab('diretrizes',this)" data-tab="diretrizes">
     <span class="mbn-icon">📋</span>
     <span class="mbn-label">Reg.</span>
+  </button>
+  <button class="mbn-btn" onclick="switchMainTab('comercial',this)" data-tab="comercial">
+    <span class="mbn-icon">💼</span>
+    <span class="mbn-label">Comerc.</span>
   </button>
 </nav>
 
@@ -3155,6 +3472,7 @@ function loadEvents() {
 
 function saveEvents(events) {
   try { localStorage.setItem(AGENDA_KEY, JSON.stringify(events)); } catch(e) {}
+  if (typeof syncSchedule === 'function') syncSchedule();
 }
 
 function getFilteredEvents() {
@@ -3477,12 +3795,8 @@ function init(){
     initCPACharts();
     window._cpaChartsReady = true;
   }, 120);
-  // Carregar dados da nuvem se configurado
-  var _cfg = syncGetConfig();
-  if (_cfg && _cfg.binId) {
-    syncSetStatus('spin', 'Carregando nuvem...');
-    setTimeout(function(){ syncPull(true); }, 500);
-  }
+  // Conectar à nuvem em tempo real (Firebase)
+  setTimeout(function(){ fbInit(); }, 300);
 }
 
 // Lazy chart init: re-init charts for a newly visible panel
@@ -4476,12 +4790,18 @@ function syncSetStatus(state, text) {
 function syncBuildPayload() {
   var courses_state = {};
   try { courses_state = JSON.parse(localStorage.getItem(COURSES_KEY) || '{}'); } catch(e) {}
+  var canvas_state = {};
+  try { canvas_state = JSON.parse(localStorage.getItem('unipar_cianorte_comercial_canvas_v1') || '{}'); } catch(e) {}
+  var agenda_state = [];
+  try { agenda_state = JSON.parse(localStorage.getItem(AGENDA_KEY) || 'null') || []; } catch(e) {}
   return {
-    v:        3,
+    v:        4,
     ts:       new Date().toISOString(),
     courses:  courses_state,
     ind:      indLoadState(),
-    dreg:     dregLoadState()
+    dreg:     dregLoadState(),
+    canvas:   canvas_state,
+    agenda:   agenda_state
   };
 }
 
@@ -4523,118 +4843,229 @@ function syncApplyPayload(remote) {
     dregSaveState(localD);
   }
 
+  // Merge Event Canvas (aba Comercial) — campo a campo, remoto prevalece no pull
+  if (remote.canvas) {
+    var localCv = {};
+    try { localCv = JSON.parse(localStorage.getItem('unipar_cianorte_comercial_canvas_v1') || '{}'); } catch(e) {}
+    Object.assign(localCv, remote.canvas);
+    try { localStorage.setItem('unipar_cianorte_comercial_canvas_v1', JSON.stringify(localCv)); } catch(e) {}
+    if (window.ecApplyFromStorage) window.ecApplyFromStorage();
+  }
+
+  // Merge Agenda — união por id, remoto prevalece no pull
+  if (remote.agenda && remote.agenda.length) {
+    var localA = [];
+    try { localA = JSON.parse(localStorage.getItem(AGENDA_KEY) || 'null') || []; } catch(e) {}
+    var byId = {};
+    localA.forEach(function(ev){ if(ev && ev.id) byId[ev.id] = ev; });
+    remote.agenda.forEach(function(ev){ if(ev && ev.id) byId[ev.id] = ev; });
+    var mergedA = Object.keys(byId).map(function(k){ return byId[k]; });
+    try { localStorage.setItem(AGENDA_KEY, JSON.stringify(mergedA)); } catch(e) {}
+    if (typeof renderAgenda === 'function') { try { renderAgenda(); } catch(e) {} }
+  }
+
   // Recarregar UI do curso atual
   selectCourse(current);
   renderIndicadores(current);
 }
 
 // Envia dados para a nuvem (pull → merge → push para não sobrescrever dados de outros)
+// ═══════════════════════════════════════════════════════════════════════════
+// MOTOR DE SINCRONIZAÇÃO EM TEMPO REAL — Firebase Firestore
+// ───────────────────────────────────────────────────────────────────────────
+// DIRETOR: cole abaixo a configuração do seu projeto Firebase (uma única vez).
+// Passo a passo no fim do arquivo / nas instruções. Enquanto não preencher,
+// o dashboard funciona normalmente offline (salva só neste navegador).
+// ═══════════════════════════════════════════════════════════════════════════
+var FIREBASE_CONFIG = {
+  apiKey:            "COLE_AQUI_apiKey",
+  authDomain:        "COLE_AQUI.firebaseapp.com",
+  projectId:         "COLE_AQUI_projectId",
+  storageBucket:     "COLE_AQUI.appspot.com",
+  messagingSenderId: "COLE_AQUI",
+  appId:             "COLE_AQUI_appId"
+};
+var FB_DOC_PATH = ['dashboards', 'unipar_cianorte']; // coleção / documento
+
+var _fbDb = null, _fbDoc = null, _fbReady = false;
+var _fbLastLocalWriteTs = null;
+var _fbPendingData = null;
+var _applyingRemote = false;
+
+function fbConfigured() {
+  return FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey.indexOf('COLE_AQUI') !== 0;
+}
+
+function syncIsEditing() {
+  var el = document.activeElement;
+  if (!el) return false;
+  if (el.isContentEditable) return true;
+  var t = (el.tagName || '').toLowerCase();
+  return t === 'input' || t === 'textarea' || t === 'select';
+}
+
+// Aplica dados remotos sem disparar novo envio (evita eco entre usuários)
+function applyRemote(data) {
+  if (!data) return;
+  _applyingRemote = true;
+  try { syncApplyPayload(data); } catch (e) {}
+  setTimeout(function(){ _applyingRemote = false; }, 120);
+}
+
+// Une remoto + local (local prevalece) — mesma lógica de merge de antes
+function mergePayloads(remote, local) {
+  remote = remote || {}; local = local || {};
+  var merged = { v: 4, ts: new Date().toISOString(), courses: {}, ind: {}, dreg: {}, canvas: {}, agenda: [] };
+
+  Object.keys(Object.assign({}, remote.courses || {}, local.courses || {})).forEach(function(id) {
+    merged.courses[id] = Object.assign({}, (remote.courses || {})[id] || {}, (local.courses || {})[id] || {});
+  });
+  Object.keys(Object.assign({}, remote.ind || {}, local.ind || {})).forEach(function(id) {
+    merged.ind[id] = Object.assign({}, (remote.ind || {})[id] || {}, (local.ind || {})[id] || {});
+  });
+  Object.keys(Object.assign({}, remote.dreg || {}, local.dreg || {})).forEach(function(id) {
+    merged.dreg[id] = {};
+    var remD = (remote.dreg || {})[id] || {}, locD = (local.dreg || {})[id] || {};
+    Object.keys(Object.assign({}, remD, locD)).forEach(function(k) {
+      merged.dreg[id][k] = !!(remD[k] || locD[k]);
+    });
+  });
+  merged.canvas = Object.assign({}, remote.canvas || {}, local.canvas || {});
+  var agById = {};
+  (remote.agenda || []).forEach(function(ev){ if (ev && ev.id) agById[ev.id] = ev; });
+  (local.agenda  || []).forEach(function(ev){ if (ev && ev.id) agById[ev.id] = ev; });
+  merged.agenda = Object.keys(agById).map(function(k){ return agById[k]; });
+  return merged;
+}
+
+// Inicializa Firebase e assina o documento em tempo real
+function fbInit() {
+  if (!fbConfigured()) { syncSetStatus('err', 'Nuvem não configurada'); return; }
+  if (typeof firebase === 'undefined') { syncSetStatus('err', 'Firebase não carregou'); return; }
+  try {
+    if (!firebase.apps || !firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    _fbDb  = firebase.firestore();
+    _fbDoc = _fbDb.collection(FB_DOC_PATH[0]).doc(FB_DOC_PATH[1]);
+  } catch (e) { syncSetStatus('err', 'Falha ao iniciar nuvem'); return; }
+
+  syncSetStatus('spin', 'Conectando...');
+  firebase.auth().signInAnonymously().catch(function(){ /* regras podem permitir sem auth */ });
+
+  // Listener em tempo real: dispara para qualquer mudança de qualquer usuário
+  _fbDoc.onSnapshot(function(snap) {
+    if (!snap.exists) { _fbReady = true; syncSetStatus('ok', 'Nuvem pronta (vazia)'); return; }
+    var data = snap.data();
+    // Ignora a notificação da nossa própria escrita (evita re-render desnecessário)
+    if (data && data.ts && data.ts === _fbLastLocalWriteTs) {
+      syncSetStatus('ok', 'Sincronizado · ' + new Date().toLocaleTimeString('pt-BR'));
+      return;
+    }
+    // Se o usuário está digitando, guarda para aplicar quando ele sair do campo
+    if (syncIsEditing()) {
+      _fbPendingData = data;
+      syncSetStatus('ok', '🔄 Atualização disponível');
+      return;
+    }
+    applyRemote(data);
+    syncSetStatus('ok', 'Atualizado · ' + new Date().toLocaleTimeString('pt-BR'));
+    if (_fbReady && typeof indToast === 'function') indToast('🔄 Atualizado em tempo real por outro usuário');
+    _fbReady = true;
+  }, function(err) {
+    syncSetStatus('err', 'Erro de conexão com a nuvem');
+  });
+}
+
+// Aplica atualização pendente assim que o usuário termina de editar
+document.addEventListener('focusout', function() {
+  setTimeout(function() {
+    if (_fbPendingData && !syncIsEditing()) {
+      var d = _fbPendingData; _fbPendingData = null;
+      applyRemote(d);
+      syncSetStatus('ok', 'Atualizado · ' + new Date().toLocaleTimeString('pt-BR'));
+    }
+  }, 200);
+});
+
+// Envia (transação: lê → junta → grava, para nunca apagar trabalho de colega)
 function syncPush(silent) {
-  var cfg = syncGetConfig();
-  if (!cfg || !cfg.binId || !cfg.apiKey) return;
+  if (!_fbDoc) return;
+  if (_applyingRemote) return;
   if (_syncBusy) return;
   _syncBusy = true;
   if (!silent) syncSetStatus('spin', 'Enviando...');
 
-  // 1. Busca estado remoto atual
-  var pushHeaders = {};
-  if (cfg.apiKey) pushHeaders['X-Master-Key'] = cfg.apiKey;
-
-  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', {
-    headers: pushHeaders
-  })
-  .then(function(r) { return r.ok ? r.json() : Promise.resolve(null); })
-  .then(function(json) {
-    var remote = (json && (json.record || json)) || {};
-    var local  = syncBuildPayload();
-
-    // 2. Merge: local prevalece sobre remoto (por curso)
-    var merged = { v: 3, ts: new Date().toISOString(), courses: {}, ind: {}, dreg: {} };
-
-    var allIds = Object.keys(Object.assign({}, remote.courses || {}, local.courses || {}));
-    allIds.forEach(function(id) {
-      merged.courses[id] = Object.assign({}, (remote.courses || {})[id] || {}, (local.courses || {})[id] || {});
+  _fbDb.runTransaction(function(tx) {
+    return tx.get(_fbDoc).then(function(snap) {
+      var remote = snap.exists ? snap.data() : {};
+      var merged = mergePayloads(remote, syncBuildPayload());
+      _fbLastLocalWriteTs = merged.ts;
+      tx.set(_fbDoc, merged);
     });
-
-    var allInd = Object.keys(Object.assign({}, remote.ind || {}, local.ind || {}));
-    allInd.forEach(function(id) {
-      merged.ind[id] = Object.assign({}, (remote.ind || {})[id] || {}, (local.ind || {})[id] || {});
-    });
-
-    var allDreg = Object.keys(Object.assign({}, remote.dreg || {}, local.dreg || {}));
-    allDreg.forEach(function(id) {
-      merged.dreg[id] = {};
-      var remD = (remote.dreg || {})[id] || {};
-      var locD = (local.dreg  || {})[id] || {};
-      Object.keys(Object.assign({}, remD, locD)).forEach(function(k) {
-        merged.dreg[id][k] = !!(remD[k] || locD[k]);
-      });
-    });
-
-    // 3. Push do estado merged
-    var putHeaders = { 'Content-Type': 'application/json' };
-    if (cfg.apiKey) putHeaders['X-Master-Key'] = cfg.apiKey;
-    return fetch('https://api.jsonbin.io/v3/b/' + cfg.binId, {
-      method: 'PUT',
-      headers: putHeaders,
-      body: JSON.stringify(merged)
-    });
-  })
-  .then(function(r) {
+  }).then(function() {
     _syncBusy = false;
-    if (r && r.ok) {
-      syncSetStatus('ok', 'Nuvem atualizada · ' + new Date().toLocaleTimeString('pt-BR'));
-    } else {
-      syncSetStatus('err', 'Erro ao enviar · verifique a chave');
-    }
-  })
-  .catch(function() {
+    syncSetStatus('ok', 'Nuvem atualizada · ' + new Date().toLocaleTimeString('pt-BR'));
+  }).catch(function() {
     _syncBusy = false;
-    syncSetStatus('err', 'Sem conexão');
+    syncSetStatus('err', 'Erro ao enviar · tente Sincronizar');
   });
 }
 
-// Busca dados da nuvem
+// Busca pontual (botão Sincronizar) — o tempo real já roda sozinho
 function syncPull(silent) {
-  var cfg = syncGetConfig();
-  if (!cfg || !cfg.binId) return;
+  if (!_fbDoc) return;
   if (!silent) syncSetStatus('spin', 'Buscando...');
-
-  var pullHeaders = {};
-  if (cfg.apiKey) pullHeaders['X-Master-Key'] = cfg.apiKey;
-
-  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', {
-    headers: pullHeaders
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(json) {
-    var data = json.record || json;
-    syncApplyPayload(data);
+  _fbDoc.get().then(function(snap) {
+    if (snap.exists) applyRemote(snap.data());
     syncSetStatus('ok', 'Sincronizado · ' + new Date().toLocaleTimeString('pt-BR'));
-    if (!silent) indToast('✓ Dados da nuvem carregados com sucesso!');
-  })
-  .catch(function() {
+    if (!silent && typeof indToast === 'function') indToast('✓ Dados da nuvem carregados!');
+  }).catch(function() {
     syncSetStatus('err', 'Não foi possível buscar dados');
   });
 }
 
-// Sync automático com debounce de 3s após qualquer alteração
+// Auto-envio com debounce curto após qualquer alteração
 function syncSchedule() {
-  var cfg = syncGetConfig();
-  if (!cfg || !cfg.binId || !cfg.apiKey) return;
+  if (_applyingRemote) return;          // não reenvia o que acabou de chegar
+  if (!_fbDoc) return;
   clearTimeout(_syncTimer);
   syncSetStatus('spin', 'Aguardando...');
-  _syncTimer = setTimeout(function() { syncPush(false); }, 3000);
+  _syncTimer = setTimeout(function() { syncPush(false); }, 1500);
 }
 
-// Botão "Sincronizar" manual
+// Botão "Sincronizar" manual — força uma busca imediata
 function syncNow() {
-  var cfg = syncGetConfig();
-  if (!cfg || !cfg.binId) { syncConfigModal(); return; }
+  if (!_fbDoc) { fbInit(); return; }
   syncPull(false);
 }
 
-// Modal de configuração
+// Modal de status da sincronização em tempo real (Firebase)
+function fbStatusModal() {
+  var old = document.getElementById('syncConfigModal');
+  if (old) old.remove();
+  var configured = fbConfigured();
+  var connected  = !!_fbDoc;
+  var statusTxt = !configured
+    ? '⚠ Ainda não configurado. Cole a configuração do seu projeto Firebase no início do bloco de script (variável <code>FIREBASE_CONFIG</code>) e publique o arquivo.'
+    : (connected
+        ? '✅ Conectado em tempo real. Qualquer edição feita por você ou pelos coordenadores aparece automaticamente nas telas de todos, sem recarregar.'
+        : '⏳ Configurado, conectando…');
+  var modal = document.createElement('div');
+  modal.id = 'syncConfigModal';
+  modal.className = 'modal-overlay';
+  modal.innerHTML = ''
+    + '<div class="modal-box" style="max-width:520px">'
+    + '<div class="modal-title">☁️ Sincronização em Tempo Real</div>'
+    + '<div class="modal-sub" style="margin-bottom:1rem;line-height:1.6">' + statusTxt + '</div>'
+    + '<div class="modal-sub" style="font-size:.8rem;color:#666;margin-bottom:1rem">Projeto: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px">' + (configured ? FIREBASE_CONFIG.projectId : '—') + '</code> · Documento: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px">' + FB_DOC_PATH.join('/') + '</code></div>'
+    + '<div class="modal-actions">'
+    + '<button class="modal-cancel" onclick="document.getElementById(\'syncConfigModal\').remove()">Fechar</button>'
+    + '<button class="modal-ok" style="background:#6B2D8B" onclick="document.getElementById(\'syncConfigModal\').remove();syncNow()">Sincronizar agora</button>'
+    + '</div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function(e){ if (e.target === modal) modal.remove(); });
+}
+
+// Modal de configuração (legado JSONBin — mantido inativo)
 function syncConfigModal() {
   var old = document.getElementById('syncConfigModal');
   if (old) old.remove();
@@ -5178,6 +5609,101 @@ function exportCoursePDF() {
 }
 
 init();
+</script>
+
+<!-- ══ EVENT CANVAS · persistência, reset e impressão ══ -->
+<script>
+(function(){
+  var EC_KEY = 'unipar_cianorte_comercial_canvas_v1';
+  var ecOriginal = {};   // index -> HTML original (para restaurar)
+  var ecReady = false;
+
+  function ecFields(){
+    var root = document.getElementById('ecCanvas');
+    return root ? Array.prototype.slice.call(root.querySelectorAll('[contenteditable]')) : [];
+  }
+  function ecSave(){
+    var data = {};
+    ecFields().forEach(function(el, i){ data[i] = el.innerHTML; });
+    try{ localStorage.setItem(EC_KEY, JSON.stringify(data)); }catch(e){}
+    if (typeof window.syncSchedule === 'function') window.syncSchedule();
+  }
+  function ecLoad(){
+    var raw;
+    try{ raw = localStorage.getItem(EC_KEY); }catch(e){ raw = null; }
+    if(!raw) return;
+    var data;
+    try{ data = JSON.parse(raw); }catch(e){ return; }
+    ecFields().forEach(function(el, i){
+      if(data[i] !== undefined && data[i] !== null) el.innerHTML = data[i];
+    });
+  }
+  // Exposto para o sync da nuvem: aplica o que está salvo no localStorage à tela
+  window.ecApplyFromStorage = function(){
+    if(!ecReady) ecInit(); else ecLoad();
+  };
+  function ecInit(){
+    var fields = ecFields();
+    if(!fields.length || ecReady) return;
+    ecReady = true;
+    fields.forEach(function(el, i){
+      ecOriginal[i] = el.innerHTML;                 // guarda o original
+      el.addEventListener('input', ecSave);
+      el.addEventListener('blur', ecSave);
+    });
+    ecLoad();                                        // aplica o salvo, se houver
+  }
+
+  window.ecReset = function(){
+    if(!confirm('Restaurar todo o Event Canvas para o conteúdo original do UPXP? As edições salvas serão apagadas.')) return;
+    try{ localStorage.removeItem(EC_KEY); }catch(e){}
+    ecFields().forEach(function(el, i){
+      if(ecOriginal[i] !== undefined) el.innerHTML = ecOriginal[i];
+    });
+  };
+
+  window.ecPrint = function(){
+    var canvas = document.getElementById('ecCanvas');
+    if(!canvas) return;
+    // Coleta apenas as regras CSS do canvas (prefixo .ec)
+    var css = '';
+    for(var s=0; s<document.styleSheets.length; s++){
+      var rules; try{ rules = document.styleSheets[s].cssRules; }catch(e){ continue; }
+      if(!rules) continue;
+      for(var r=0; r<rules.length; r++){
+        var sel = rules[r].selectorText || '';
+        if(sel.indexOf('.ec-') === 0 || sel.indexOf('.ec-root') !== -1){
+          css += rules[r].cssText + '\n';
+        }
+      }
+    }
+    var w = window.open('', '_blank');
+    if(!w){ alert('Permita pop-ups para gerar o PDF.'); return; }
+    w.document.write(
+      '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">'
+      + '<title>Event Canvas — UPXP</title>'
+      + '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">'
+      + '<style>@page{size:A3 landscape;margin:8mm}html,body{margin:0;background:#fff}'
+      + '.ec-root{padding:0}.ec-canvas{width:100%!important;border-width:2px}.ec-note{box-shadow:none!important}'
+      + css
+      + '</style></head><body><div class="ec-root">'
+      + '<div class="ec-stage" style="overflow:visible">' + canvas.outerHTML + '</div></div>'
+      + '<scr'+'ipt>window.onload=function(){setTimeout(function(){window.print();},350);};<\/scr'+'ipt>'
+      + '</body></html>'
+    );
+    w.document.close();
+  };
+
+  // Inicializa quando a aba Comercial existir; também ao trocar de aba.
+  function tryInit(){ ecInit(); }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tryInit);
+  } else { tryInit(); }
+  // Garante init mesmo que a seção só apareça ao clicar na aba
+  document.querySelectorAll('[data-tab="comercial"]').forEach(function(b){
+    b.addEventListener('click', function(){ setTimeout(ecInit, 30); });
+  });
+})();
 </script>
 </body>
 </html>
