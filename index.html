@@ -8,10 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<!-- Firebase (tempo real) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{
@@ -1083,6 +1079,34 @@ button{font:inherit;cursor:pointer}
 .tab.active::after { left:10%; right:10% }
 .tab:hover { background: linear-gradient(180deg, var(--g5), #fff) }
 
+/* ── Menu agrupado em 2 níveis (Nível 2) ── */
+.nav-groups{display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--g4)}
+.nav-groups::-webkit-scrollbar{display:none}
+.nav-group{
+  border:0;background:transparent;cursor:pointer;white-space:nowrap;
+  padding:.8rem 1.2rem;margin-bottom:-1px;
+  font-family:"Sora",sans-serif;font-size:.92rem;font-weight:600;
+  color:var(--g1);border-bottom:3px solid transparent;border-radius:8px 8px 0 0;
+  transition:color .18s ease,background .18s ease,border-color .18s ease
+}
+.nav-group:hover{color:var(--ink);background:var(--g5)}
+.nav-group.active{color:var(--navy);border-bottom-color:var(--red)}
+/* container vira bloco; cada grupo de sub-abas aparece só quando ativo */
+#tabs.tabs{display:block;overflow:visible}
+.tab-group{display:none;flex-wrap:wrap;gap:.35rem;padding:.55rem 0 .15rem}
+.tab-group.active{display:flex}
+/* sub-abas mais leves: sem caixa-alta, sem mono, sem barra vermelha */
+.main-nav .tab{
+  border:1px solid transparent;background:transparent;margin-bottom:0;
+  padding:.45rem .9rem;border-radius:8px;
+  font-family:"Sora",sans-serif;font-size:.8rem;font-weight:500;
+  text-transform:none;letter-spacing:.01em;color:var(--g1);
+  transition:background .15s ease,color .15s ease,border-color .15s ease
+}
+.main-nav .tab:hover{background:var(--g5);color:var(--ink)}
+.main-nav .tab.active{background:rgba(0,32,96,.06);color:var(--navy);font-weight:700;border-color:rgba(0,32,96,.12)}
+.main-nav .tab::after,.main-nav .tab.active::after{display:none}
+
 /* ── Cards aprimorados ── */
 .card {
   background: #fff;
@@ -1441,6 +1465,10 @@ button[onclick*="openAddEvent"],
   box-shadow:1px 1px 0 rgba(0,0,0,.08);outline:none;cursor:text;
 }
 .ec-note:focus{box-shadow:0 0 0 2px var(--ec-cyanS);}
+.ec-note.ec-add{border:1.5px dashed rgba(0,0,0,.32);box-shadow:none;min-width:58px;min-height:26px;}
+.ec-note.ec-add:empty{opacity:.5;}
+.ec-note.ec-add:empty::before{content:'+';font-size:14px;font-weight:800;color:rgba(0,0,0,.5);}
+.ec-note.ec-add:focus{opacity:1;}
 .ec-pink{background:var(--ec-pink);}
 .ec-pinkS{background:var(--ec-pinkS);color:#fff;}
 .ec-greenN{background:var(--ec-green);}
@@ -1485,7 +1513,7 @@ button[onclick*="openAddEvent"],
 .ec-jobs{padding:12px 13px;position:relative;z-index:2;}
 .ec-promise{padding:12px 13px;position:relative;z-index:2;text-align:right;}
 .ec-promise .ec-notes{justify-content:flex-end;}
-.ec-instr{position:absolute;left:0;right:0;bottom:0;text-align:center;z-index:2;padding:10px;}
+.ec-instr{grid-column:1 / -1;text-align:center;z-index:2;padding:12px 13px;border-top:1px dashed #dcdcdc;}
 .ec-instr .ec-notes{justify-content:center;}
 .ec-instr .ec-lbl{text-align:center;}
 
@@ -1518,19 +1546,33 @@ button[onclick*="openAddEvent"],
 </header>
 
 <nav class="main-nav">
+  <div class="nav-groups" id="navGroups">
+    <button class="nav-group active" data-group="visao">Visão geral</button>
+    <button class="nav-group" data-group="analise">Análise</button>
+    <button class="nav-group" data-group="operacao">Operação</button>
+    <button class="nav-group" data-group="comercial">Comercial</button>
+  </div>
   <div class="tabs" id="tabs">
-    <button class="tab active" data-tab="cpa">📊 CPA 2025</button>
-    <button class="tab" data-tab="swot">01 SWOT</button>
-    <button class="tab" data-tab="gut">02 GUT</button>
-    <button class="tab" data-tab="w2h">03 5W2H</button>
-    <button class="tab" data-tab="gestão">04 Gestão</button>
-    <button class="tab" data-tab="ishikawa">05 Ishikawa</button>
-    <button class="tab" data-tab="eisenhower">06 Eisenhower</button>
-    <button class="tab" data-tab="agenda">📅 Agenda</button>
-    <button class="tab" data-tab="links">🔗 Links</button>
-    <button class="tab" data-tab="diretrizes">📋 Diretrizes</button>
-    <button class="tab" data-tab="indicadores">📈 Indicadores</button>
-    <button class="tab" data-tab="comercial">💼 Comercial</button>
+    <div class="tab-group active" data-group="visao">
+      <button class="tab active" data-tab="cpa" data-group="visao">CPA 2025</button>
+    </div>
+    <div class="tab-group" data-group="analise">
+      <button class="tab" data-tab="swot" data-group="analise">SWOT</button>
+      <button class="tab" data-tab="gut" data-group="analise">GUT</button>
+      <button class="tab" data-tab="w2h" data-group="analise">5W2H</button>
+      <button class="tab" data-tab="gestão" data-group="analise">Gestão</button>
+      <button class="tab" data-tab="ishikawa" data-group="analise">Ishikawa</button>
+      <button class="tab" data-tab="eisenhower" data-group="analise">Eisenhower</button>
+    </div>
+    <div class="tab-group" data-group="operacao">
+      <button class="tab" data-tab="indicadores" data-group="operacao">Indicadores</button>
+      <button class="tab" data-tab="diretrizes" data-group="operacao">Diretrizes</button>
+      <button class="tab" data-tab="agenda" data-group="operacao">Agenda</button>
+      <button class="tab" data-tab="links" data-group="operacao">Links</button>
+    </div>
+    <div class="tab-group" data-group="comercial">
+      <button class="tab" data-tab="comercial" data-group="comercial">Comercial</button>
+    </div>
   </div>
 </nav>
 
@@ -1555,7 +1597,7 @@ button[onclick*="openAddEvent"],
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           <span id="syncBtnLabel">Sincronizar</span>
         </button>
-        <button class="share-btn share-btn-settings" onclick="fbStatusModal()" title="Status da sincronização em tempo real">
+        <button class="share-btn share-btn-settings" onclick="syncConfigModal()" title="Configurar banco de dados compartilhado">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           ⚙
         </button>
@@ -3330,6 +3372,30 @@ function setupTabs(){
   });
 }
 
+// Menu agrupado: ativa um grupo e mostra suas sub-abas
+function activateGroup(group){
+  document.querySelectorAll('.nav-group').forEach(function(b){ b.classList.toggle('active', b.dataset.group === group); });
+  document.querySelectorAll('.tab-group').forEach(function(g){ g.classList.toggle('active', g.dataset.group === group); });
+}
+// Mantém o grupo correto destacado quando se troca de aba (clique, mobile ou programático)
+function syncNavGroup(tabId){
+  var btn = document.querySelector('.tab[data-tab="' + tabId + '"]');
+  if(!btn || !btn.dataset.group) return;
+  activateGroup(btn.dataset.group);
+}
+window.syncNavGroup = syncNavGroup;
+function setupNavGroups(){
+  document.querySelectorAll('.nav-group').forEach(function(b){
+    b.addEventListener('click', function(){
+      var group = b.dataset.group;
+      activateGroup(group);
+      // ao abrir um grupo, vai para a primeira aba dele
+      var first = document.querySelector('.tab-group[data-group="' + group + '"] .tab');
+      if(first) switchMainTab(first.dataset.tab, null);
+    });
+  });
+}
+
 // ── EDITOR ────────────────────────────────────────────────────────────────────
 function escAttr(v){return String(v).replace(/"/g,"&quot;");}
 function openEditor(){populateEditor(current);$("editorPanel").classList.add("open");$("editorOverlay").classList.add("open");document.body.style.overflow="hidden";}
@@ -3399,6 +3465,8 @@ function switchMainTab(tabId, mobileBtn){
   if(tabId === 'indicadores'){
     renderIndicadores(current);
   }
+  // Sincroniza o grupo do menu (Nível 2)
+  if(window.syncNavGroup) window.syncNavGroup(tabId);
   // Scroll to top
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -3788,15 +3856,20 @@ function exportAgenda() {
 
 function init(){
   loadAllCourseData();
-  renderCourseBar();setupTabs();selectCourse(current);
+  renderCourseBar();setupTabs();setupNavGroups();selectCourse(current);
   setTimeout(function(){ initDiretrizes(); }, 80);
   // Init CPA charts after a short delay so visible canvases render correctly
   setTimeout(function(){
     initCPACharts();
     window._cpaChartsReady = true;
   }, 120);
-  // Conectar à nuvem em tempo real (Firebase)
-  setTimeout(function(){ fbInit(); }, 300);
+  // Conectar à nuvem compartilhada (JSONBin) + auto-refresh
+  var _cfg = syncGetConfig();
+  if (_cfg && _cfg.binId) {
+    syncSetStatus('spin', 'Carregando nuvem...');
+    setTimeout(function(){ syncPull(true); }, 500);
+    startAutoRefresh();
+  }
 }
 
 // Lazy chart init: re-init charts for a newly visible panel
@@ -4869,32 +4942,13 @@ function syncApplyPayload(remote) {
   renderIndicadores(current);
 }
 
-// Envia dados para a nuvem (pull → merge → push para não sobrescrever dados de outros)
 // ═══════════════════════════════════════════════════════════════════════════
-// MOTOR DE SINCRONIZAÇÃO EM TEMPO REAL — Firebase Firestore
-// ───────────────────────────────────────────────────────────────────────────
-// DIRETOR: cole abaixo a configuração do seu projeto Firebase (uma única vez).
-// Passo a passo no fim do arquivo / nas instruções. Enquanto não preencher,
-// o dashboard funciona normalmente offline (salva só neste navegador).
+// MOTOR DE SINCRONIZAÇÃO — JSONBin (compartilhado) + auto-refresh
 // ═══════════════════════════════════════════════════════════════════════════
-var FIREBASE_CONFIG = {
-  apiKey:            "COLE_AQUI_apiKey",
-  authDomain:        "COLE_AQUI.firebaseapp.com",
-  projectId:         "COLE_AQUI_projectId",
-  storageBucket:     "COLE_AQUI.appspot.com",
-  messagingSenderId: "COLE_AQUI",
-  appId:             "COLE_AQUI_appId"
-};
-var FB_DOC_PATH = ['dashboards', 'unipar_cianorte']; // coleção / documento
-
-var _fbDb = null, _fbDoc = null, _fbReady = false;
-var _fbLastLocalWriteTs = null;
-var _fbPendingData = null;
 var _applyingRemote = false;
-
-function fbConfigured() {
-  return FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey.indexOf('COLE_AQUI') !== 0;
-}
+var _autoRefreshTimer = null;
+var _pendingPush = false;
+var AUTO_REFRESH_MS = 90000; // 90s
 
 function syncIsEditing() {
   var el = document.activeElement;
@@ -4912,7 +4966,7 @@ function applyRemote(data) {
   setTimeout(function(){ _applyingRemote = false; }, 120);
 }
 
-// Une remoto + local (local prevalece) — mesma lógica de merge de antes
+// Une remoto + local (local prevalece) — protege trabalho de cada coordenador
 function mergePayloads(remote, local) {
   remote = remote || {}; local = local || {};
   var merged = { v: 4, ts: new Date().toISOString(), courses: {}, ind: {}, dreg: {}, canvas: {}, agenda: [] };
@@ -4938,131 +4992,81 @@ function mergePayloads(remote, local) {
   return merged;
 }
 
-// Inicializa Firebase e assina o documento em tempo real
-function fbInit() {
-  if (!fbConfigured()) { syncSetStatus('err', 'Nuvem não configurada'); return; }
-  if (typeof firebase === 'undefined') { syncSetStatus('err', 'Firebase não carregou'); return; }
-  try {
-    if (!firebase.apps || !firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-    _fbDb  = firebase.firestore();
-    _fbDoc = _fbDb.collection(FB_DOC_PATH[0]).doc(FB_DOC_PATH[1]);
-  } catch (e) { syncSetStatus('err', 'Falha ao iniciar nuvem'); return; }
-
-  syncSetStatus('spin', 'Conectando...');
-  firebase.auth().signInAnonymously().catch(function(){ /* regras podem permitir sem auth */ });
-
-  // Listener em tempo real: dispara para qualquer mudança de qualquer usuário
-  _fbDoc.onSnapshot(function(snap) {
-    if (!snap.exists) { _fbReady = true; syncSetStatus('ok', 'Nuvem pronta (vazia)'); return; }
-    var data = snap.data();
-    // Ignora a notificação da nossa própria escrita (evita re-render desnecessário)
-    if (data && data.ts && data.ts === _fbLastLocalWriteTs) {
-      syncSetStatus('ok', 'Sincronizado · ' + new Date().toLocaleTimeString('pt-BR'));
-      return;
-    }
-    // Se o usuário está digitando, guarda para aplicar quando ele sair do campo
-    if (syncIsEditing()) {
-      _fbPendingData = data;
-      syncSetStatus('ok', '🔄 Atualização disponível');
-      return;
-    }
-    applyRemote(data);
-    syncSetStatus('ok', 'Atualizado · ' + new Date().toLocaleTimeString('pt-BR'));
-    if (_fbReady && typeof indToast === 'function') indToast('🔄 Atualizado em tempo real por outro usuário');
-    _fbReady = true;
-  }, function(err) {
-    syncSetStatus('err', 'Erro de conexão com a nuvem');
-  });
-}
-
-// Aplica atualização pendente assim que o usuário termina de editar
-document.addEventListener('focusout', function() {
-  setTimeout(function() {
-    if (_fbPendingData && !syncIsEditing()) {
-      var d = _fbPendingData; _fbPendingData = null;
-      applyRemote(d);
-      syncSetStatus('ok', 'Atualizado · ' + new Date().toLocaleTimeString('pt-BR'));
-    }
-  }, 200);
-});
-
-// Envia (transação: lê → junta → grava, para nunca apagar trabalho de colega)
+// Envia para a nuvem (busca → junta → grava, para nunca apagar trabalho de colega)
 function syncPush(silent) {
-  if (!_fbDoc) return;
   if (_applyingRemote) return;
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) return;
   if (_syncBusy) return;
   _syncBusy = true;
   if (!silent) syncSetStatus('spin', 'Enviando...');
 
-  _fbDb.runTransaction(function(tx) {
-    return tx.get(_fbDoc).then(function(snap) {
-      var remote = snap.exists ? snap.data() : {};
+  var getHeaders = {}; if (cfg.apiKey) getHeaders['X-Master-Key'] = cfg.apiKey;
+  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', { headers: getHeaders })
+    .then(function(r){ return r.ok ? r.json() : Promise.resolve(null); })
+    .then(function(json){
+      var remote = (json && (json.record || json)) || {};
       var merged = mergePayloads(remote, syncBuildPayload());
-      _fbLastLocalWriteTs = merged.ts;
-      tx.set(_fbDoc, merged);
-    });
-  }).then(function() {
-    _syncBusy = false;
-    syncSetStatus('ok', 'Nuvem atualizada · ' + new Date().toLocaleTimeString('pt-BR'));
-  }).catch(function() {
-    _syncBusy = false;
-    syncSetStatus('err', 'Erro ao enviar · tente Sincronizar');
-  });
+      var putHeaders = { 'Content-Type': 'application/json' };
+      if (cfg.apiKey) putHeaders['X-Master-Key'] = cfg.apiKey;
+      return fetch('https://api.jsonbin.io/v3/b/' + cfg.binId, {
+        method: 'PUT', headers: putHeaders, body: JSON.stringify(merged)
+      });
+    })
+    .then(function(r){
+      _syncBusy = false; _pendingPush = false;
+      if (r && r.ok) syncSetStatus('ok', 'Nuvem atualizada · ' + new Date().toLocaleTimeString('pt-BR'));
+      else syncSetStatus('err', 'Erro ao enviar · verifique a conexão');
+    })
+    .catch(function(){ _syncBusy = false; _pendingPush = false; syncSetStatus('err', 'Sem conexão'); });
 }
 
-// Busca pontual (botão Sincronizar) — o tempo real já roda sozinho
+// Busca dados da nuvem e aplica
 function syncPull(silent) {
-  if (!_fbDoc) return;
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) return;
   if (!silent) syncSetStatus('spin', 'Buscando...');
-  _fbDoc.get().then(function(snap) {
-    if (snap.exists) applyRemote(snap.data());
-    syncSetStatus('ok', 'Sincronizado · ' + new Date().toLocaleTimeString('pt-BR'));
-    if (!silent && typeof indToast === 'function') indToast('✓ Dados da nuvem carregados!');
-  }).catch(function() {
-    syncSetStatus('err', 'Não foi possível buscar dados');
-  });
+  var headers = {}; if (cfg.apiKey) headers['X-Master-Key'] = cfg.apiKey;
+  fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', { headers: headers })
+    .then(function(r){ return r.json(); })
+    .then(function(json){
+      applyRemote(json.record || json);
+      syncSetStatus('ok', 'Sincronizado · ' + new Date().toLocaleTimeString('pt-BR'));
+      if (!silent && typeof indToast === 'function') indToast('✓ Dados da nuvem carregados!');
+    })
+    .catch(function(){ syncSetStatus('err', 'Não foi possível buscar dados'); });
 }
 
-// Auto-envio com debounce curto após qualquer alteração
+// Auto-envio com debounce de 3s após qualquer alteração
 function syncSchedule() {
-  if (_applyingRemote) return;          // não reenvia o que acabou de chegar
-  if (!_fbDoc) return;
+  if (_applyingRemote) return;
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) return;
+  _pendingPush = true;
   clearTimeout(_syncTimer);
   syncSetStatus('spin', 'Aguardando...');
-  _syncTimer = setTimeout(function() { syncPush(false); }, 1500);
+  _syncTimer = setTimeout(function(){ syncPush(false); }, 3000);
 }
 
-// Botão "Sincronizar" manual — força uma busca imediata
+// Auto-refresh: puxa a nuvem a cada 90s, sem atrapalhar quem edita
+function syncAutoRefresh() {
+  if (document.hidden) return;          // aba em segundo plano: poupa requisições
+  if (syncIsEditing()) return;          // alguém digitando: não interrompe
+  if (_syncBusy || _pendingPush) return; // há envio em andamento/pendente: espera
+  syncPull(true);
+}
+function startAutoRefresh() {
+  if (_autoRefreshTimer) return;
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) return;
+  _autoRefreshTimer = setInterval(syncAutoRefresh, AUTO_REFRESH_MS);
+}
+
+// Botão "Sincronizar" manual
 function syncNow() {
-  if (!_fbDoc) { fbInit(); return; }
+  var cfg = syncGetConfig();
+  if (!cfg || !cfg.binId) { syncConfigModal(); return; }
   syncPull(false);
-}
-
-// Modal de status da sincronização em tempo real (Firebase)
-function fbStatusModal() {
-  var old = document.getElementById('syncConfigModal');
-  if (old) old.remove();
-  var configured = fbConfigured();
-  var connected  = !!_fbDoc;
-  var statusTxt = !configured
-    ? '⚠ Ainda não configurado. Cole a configuração do seu projeto Firebase no início do bloco de script (variável <code>FIREBASE_CONFIG</code>) e publique o arquivo.'
-    : (connected
-        ? '✅ Conectado em tempo real. Qualquer edição feita por você ou pelos coordenadores aparece automaticamente nas telas de todos, sem recarregar.'
-        : '⏳ Configurado, conectando…');
-  var modal = document.createElement('div');
-  modal.id = 'syncConfigModal';
-  modal.className = 'modal-overlay';
-  modal.innerHTML = ''
-    + '<div class="modal-box" style="max-width:520px">'
-    + '<div class="modal-title">☁️ Sincronização em Tempo Real</div>'
-    + '<div class="modal-sub" style="margin-bottom:1rem;line-height:1.6">' + statusTxt + '</div>'
-    + '<div class="modal-sub" style="font-size:.8rem;color:#666;margin-bottom:1rem">Projeto: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px">' + (configured ? FIREBASE_CONFIG.projectId : '—') + '</code> · Documento: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px">' + FB_DOC_PATH.join('/') + '</code></div>'
-    + '<div class="modal-actions">'
-    + '<button class="modal-cancel" onclick="document.getElementById(\'syncConfigModal\').remove()">Fechar</button>'
-    + '<button class="modal-ok" style="background:#6B2D8B" onclick="document.getElementById(\'syncConfigModal\').remove();syncNow()">Sincronizar agora</button>'
-    + '</div></div>';
-  document.body.appendChild(modal);
-  modal.addEventListener('click', function(e){ if (e.target === modal) modal.remove(); });
 }
 
 // Modal de configuração (legado JSONBin — mantido inativo)
@@ -5615,16 +5619,65 @@ init();
 <script>
 (function(){
   var EC_KEY = 'unipar_cianorte_comercial_canvas_v1';
-  var ecOriginal = {};   // index -> HTML original (para restaurar)
+  var ecOriginal = {};   // chave estável -> HTML original (para restaurar)
   var ecReady = false;
+
+  // Áreas do canvas: [seletor, classe de cor, slug da chave]
+  var EC_AREAS = [
+    ['.ec-pains','ec-pink','pains'],
+    ['.ec-commitment','ec-pinkS','commitment'],
+    ['.ec-return','ec-pink','return'],
+    ['.ec-gains','ec-greenN','gains'],
+    ['.ec-entering','ec-yellowN','entering'],
+    ['.ec-journey','ec-purpleN','journey'],
+    ['.ec-jobs','ec-cyanN','jobs'],
+    ['.ec-promise','ec-cyanN','promise'],
+    ['.ec-instr','ec-purpleN','instr'],
+    ['.ec-exiting','ec-greenN','exiting'],
+    ['.ec-expectation','ec-orangeN','expectation'],
+    ['.ec-cost','ec-grayN','cost'],
+    ['.ec-revenue','ec-grayN','revenue'],
+    ['.ec-satisfaction','ec-greenN','satisfaction']
+  ];
 
   function ecFields(){
     var root = document.getElementById('ecCanvas');
     return root ? Array.prototype.slice.call(root.querySelectorAll('[contenteditable]')) : [];
   }
+
+  // Injeta um quadrado "+" complementar em cada área (uma única vez)
+  function ecInjectAddNotes(root){
+    if(root.getAttribute('data-ec-added') === '1') return;
+    EC_AREAS.forEach(function(a){
+      var area = root.querySelector(a[0]);
+      if(!area) return;
+      var notes = area.querySelector('.ec-notes');
+      if(!notes) return;
+      var add = document.createElement('div');
+      add.className = 'ec-note ' + a[1] + ' ec-add';
+      add.setAttribute('contenteditable', '');
+      add.setAttribute('title', 'Clique para complementar');
+      notes.appendChild(add);
+    });
+    root.setAttribute('data-ec-added', '1');
+  }
+
+  // Atribui chaves estáveis por área (sobrevive a futuras inclusões de campos)
+  function ecAssignKeys(root){
+    var hd = root.querySelector('.ec-header');
+    if(hd) Array.prototype.slice.call(hd.querySelectorAll('[contenteditable]'))
+      .forEach(function(el,i){ el.setAttribute('data-eck','hdr:'+i); });
+    EC_AREAS.forEach(function(a){
+      var area = root.querySelector(a[0]);
+      if(!area) return;
+      Array.prototype.slice.call(area.querySelectorAll('[contenteditable]'))
+        .forEach(function(el,i){ el.setAttribute('data-eck', a[2]+':'+i); });
+    });
+  }
+
   function ecSave(){
     var data = {};
-    ecFields().forEach(function(el, i){ data[i] = el.innerHTML; });
+    ecFields().forEach(function(el){ var k = el.getAttribute('data-eck'); if(k) data[k] = el.innerHTML; });
     try{ localStorage.setItem(EC_KEY, JSON.stringify(data)); }catch(e){}
     if (typeof window.syncSchedule === 'function') window.syncSchedule();
   }
@@ -5634,8 +5687,9 @@ init();
     if(!raw) return;
     var data;
     try{ data = JSON.parse(raw); }catch(e){ return; }
-    ecFields().forEach(function(el, i){
-      if(data[i] !== undefined && data[i] !== null) el.innerHTML = data[i];
+    ecFields().forEach(function(el){
+      var k = el.getAttribute('data-eck');
+      if(k && data[k] !== undefined && data[k] !== null) el.innerHTML = data[k];
     });
   }
   // Exposto para o sync da nuvem: aplica o que está salvo no localStorage à tela
@@ -5643,11 +5697,14 @@ init();
     if(!ecReady) ecInit(); else ecLoad();
   };
   function ecInit(){
-    var fields = ecFields();
-    if(!fields.length || ecReady) return;
+    var root = document.getElementById('ecCanvas');
+    if(!root || ecReady) return;
     ecReady = true;
-    fields.forEach(function(el, i){
-      ecOriginal[i] = el.innerHTML;                 // guarda o original
+    ecInjectAddNotes(root);                          // cria os quadrados complementares
+    ecAssignKeys(root);                              // chaves estáveis
+    ecFields().forEach(function(el){
+      var k = el.getAttribute('data-eck');
+      ecOriginal[k] = el.innerHTML;                  // guarda o original (add-notes = vazio)
       el.addEventListener('input', ecSave);
       el.addEventListener('blur', ecSave);
     });
@@ -5657,8 +5714,9 @@ init();
   window.ecReset = function(){
     if(!confirm('Restaurar todo o Event Canvas para o conteúdo original do UPXP? As edições salvas serão apagadas.')) return;
     try{ localStorage.removeItem(EC_KEY); }catch(e){}
-    ecFields().forEach(function(el, i){
-      if(ecOriginal[i] !== undefined) el.innerHTML = ecOriginal[i];
+    ecFields().forEach(function(el){
+      var k = el.getAttribute('data-eck');
+      if(ecOriginal[k] !== undefined) el.innerHTML = ecOriginal[k];
     });
   };
 
@@ -5685,6 +5743,7 @@ init();
       + '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">'
       + '<style>@page{size:A3 landscape;margin:8mm}html,body{margin:0;background:#fff}'
       + '.ec-root{padding:0}.ec-canvas{width:100%!important;border-width:2px}.ec-note{box-shadow:none!important}'
+      + '.ec-note.ec-add:empty{opacity:.35}.ec-note.ec-add:empty::before{content:""!important}'
       + css
       + '</style></head><body><div class="ec-root">'
       + '<div class="ec-stage" style="overflow:visible">' + canvas.outerHTML + '</div></div>'
