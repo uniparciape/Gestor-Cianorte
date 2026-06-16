@@ -1525,6 +1525,46 @@ button[onclick*="openAddEvent"],
 .ec-stars{font-size:20px;letter-spacing:2px;color:#222;text-align:right;margin-top:8px;}
 .ec-credit{font-size:10px;color:#9a9a9a;margin-top:12px;text-align:right;}
 .ec-credit a{color:#9a9a9a;}
+
+/* ── Plano de Ação · Captação (aba Comercial) ── */
+.com-subnav{display:flex;gap:.5rem;margin:0 0 1.4rem;flex-wrap:wrap;}
+.com-subtab{font-family:"Sora",sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;padding:.6rem 1.4rem;border-radius:10px;border:1.5px solid var(--g3);background:#fff;color:var(--g1);transition:background .15s,color .15s,border-color .15s;}
+.com-subtab:hover{background:var(--g5);color:var(--ink);}
+.com-subtab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.com-view{display:none;}
+.com-view.active{display:block;}
+.pa-wrap{margin-top:.4rem;font-family:"Sora",sans-serif;}
+.pa-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:2px solid var(--g4);}
+.pa-title{font-size:1.1rem;font-weight:700;color:var(--navy);margin:0;}
+.pa-sub{font-size:.8rem;color:var(--g1);margin:.25rem 0 0;max-width:640px;line-height:1.4;}
+.pa-global{font-family:"Sora";font-size:.85rem;font-weight:700;color:var(--navy);background:rgba(0,32,96,.06);border:1px solid rgba(0,32,96,.12);padding:.4rem .8rem;border-radius:20px;white-space:nowrap;}
+.pa-course{border:1px solid var(--g4);border-radius:12px;margin-bottom:.7rem;overflow:hidden;background:#fff;}
+.pa-chead{display:flex;align-items:center;gap:.7rem;padding:.85rem 1.1rem;cursor:pointer;user-select:none;transition:background .15s;}
+.pa-chead:hover{background:var(--g5);}
+.pa-chev{font-size:.7rem;color:var(--g2);transition:transform .2s;}
+.pa-course.open .pa-chev{transform:rotate(90deg);}
+.pa-cname{font-size:.95rem;font-weight:600;color:var(--ink);flex:1;}
+.pa-cprog{font-size:.72rem;font-weight:700;color:var(--g1);background:var(--g5);padding:.25rem .6rem;border-radius:12px;white-space:nowrap;}
+.pa-course.done .pa-cprog{color:#0E7C4A;background:#dcf5ea;}
+.pa-cbody{display:none;padding:.3rem .7rem .8rem;}
+.pa-course.open .pa-cbody{display:block;}
+.pa-row{display:flex;align-items:center;gap:.6rem;padding:.5rem .4rem;border-top:1px solid var(--g5);flex-wrap:wrap;}
+.pa-check{width:20px;height:20px;flex-shrink:0;cursor:pointer;accent-color:#0E7C4A;}
+.pa-local{flex:1 1 170px;min-width:140px;font-size:.82rem;color:var(--ink);font-weight:500;border:0;background:transparent;font-family:"Sora";padding:.2rem;border-radius:5px;}
+.pa-local:focus{background:var(--g5);outline:1px solid var(--g3);}
+.pa-row.checked .pa-local{color:#0E7C4A;}
+.pa-status{flex:0 0 auto;font-size:.74rem;font-family:"Sora";padding:.3rem .5rem;border:1px solid var(--g3);border-radius:6px;background:#fff;color:var(--g1);cursor:pointer;}
+.pa-date{flex:0 0 130px;font-size:.74rem;font-family:"Sora";padding:.3rem .4rem;border:1px solid var(--g3);border-radius:6px;color:var(--g1);}
+.pa-resp{flex:1 1 130px;min-width:110px;font-size:.78rem;font-family:"Sora";padding:.3rem .5rem;border:1px solid var(--g3);border-radius:6px;color:var(--g1);}
+.pa-resp::placeholder,.pa-date::placeholder{color:var(--g2);}
+.pa-del{flex:0 0 auto;border:0;background:transparent;color:var(--g2);cursor:pointer;font-size:1rem;line-height:1;padding:.2rem .4rem;border-radius:5px;}
+.pa-del:hover{color:var(--red);background:#fde8e8;}
+.pa-add{display:inline-flex;align-items:center;gap:.4rem;margin:.5rem .4rem 0;padding:.4rem .7rem;border:1px dashed var(--g3);border-radius:7px;background:transparent;color:var(--navy);font-family:"Sora";font-size:.76rem;font-weight:600;cursor:pointer;transition:.15s;}
+.pa-add:hover{background:var(--g5);border-color:var(--navy);}
+@media(max-width:768px){
+  .pa-status,.pa-date,.pa-resp{flex:1 1 100%;}
+  .pa-local{flex:1 1 calc(100% - 90px);}
+}
 </style>
 <body>
 
@@ -2468,10 +2508,16 @@ button[onclick*="openAddEvent"],
   <!-- ══ COMERCIAL · EVENT CANVAS ══ -->
   <section id="comercial" class="section">
     <div class="sec-header">
-      <h2 class="sec-title">Comercial · Event Canvas</h2>
-      <p class="sec-desc">Modelo de design de experiência por stakeholder. Clique em qualquer bloco para editar — tudo é salvo automaticamente neste navegador.</p>
+      <h2 class="sec-title">Comercial</h2>
+      <p class="sec-desc">Planejamento de experiência e relacionamento da unidade. Escolha a ferramenta abaixo.</p>
     </div>
 
+    <div class="com-subnav">
+      <button class="com-subtab active" data-view="canvas" onclick="comView('canvas',this)">🎯 Event Canvas</button>
+      <button class="com-subtab" data-view="plano" onclick="comView('plano',this)">📍 Plano de Ação</button>
+    </div>
+
+    <div class="com-view active" data-view="canvas">
     <div class="ec-root">
       <div class="ec-toolbar">
         <h3>EVENT CANVAS · UPXP</h3>
@@ -2668,6 +2714,20 @@ button[onclick*="openAddEvent"],
       </div>
       <div class="ec-credit">Event Canvas © Ruud Janssen &amp; Roel Frissen — CC BY-NC-ND 4.0 · <a href="https://www.eventmodelgeneration.com" target="_blank" rel="noopener">eventmodelgeneration.com</a></div>
     </div>
+    </div><!-- /com-view canvas -->
+
+    <div class="com-view" data-view="plano">
+    <div class="pa-wrap" id="planoAcao">
+      <div class="pa-header">
+        <div>
+          <h3 class="pa-title">Plano de Ação · Captação e Relacionamento</h3>
+          <p class="pa-sub">Mapa de contatos por curso para o ano. Marque, registre status, data e responsável. Salvo e sincronizado automaticamente.</p>
+        </div>
+        <div class="pa-global" id="paGlobal">0 / 0</div>
+      </div>
+      <div id="paCourses"></div>
+    </div>
+    </div><!-- /com-view plano -->
   </section>
 
 </main>
@@ -3395,6 +3455,14 @@ function setupNavGroups(){
     });
   });
 }
+
+// Sub-navegação da aba Comercial: alterna entre Event Canvas e Plano de Ação
+function comView(view, btn){
+  document.querySelectorAll('#comercial .com-view').forEach(function(v){ v.classList.toggle('active', v.dataset.view === view); });
+  document.querySelectorAll('#comercial .com-subtab').forEach(function(b){ b.classList.toggle('active', b.dataset.view === view); });
+  if(view === 'plano' && typeof window.paRender === 'function') window.paRender();
+}
+window.comView = comView;
 
 // ── EDITOR ────────────────────────────────────────────────────────────────────
 function escAttr(v){return String(v).replace(/"/g,"&quot;");}
@@ -4867,6 +4935,8 @@ function syncBuildPayload() {
   try { canvas_state = JSON.parse(localStorage.getItem('unipar_cianorte_comercial_canvas_v1') || '{}'); } catch(e) {}
   var agenda_state = [];
   try { agenda_state = JSON.parse(localStorage.getItem(AGENDA_KEY) || 'null') || []; } catch(e) {}
+  var plano_state = {};
+  try { plano_state = JSON.parse(localStorage.getItem('unipar_cianorte_plano_acao_v1') || '{}'); } catch(e) {}
   return {
     v:        4,
     ts:       new Date().toISOString(),
@@ -4874,7 +4944,8 @@ function syncBuildPayload() {
     ind:      indLoadState(),
     dreg:     dregLoadState(),
     canvas:   canvas_state,
-    agenda:   agenda_state
+    agenda:   agenda_state,
+    plano:    plano_state
   };
 }
 
@@ -4937,6 +5008,15 @@ function syncApplyPayload(remote) {
     if (typeof renderAgenda === 'function') { try { renderAgenda(); } catch(e) {} }
   }
 
+  // Merge Plano de Ação — por item, remoto prevalece no pull
+  if (remote.plano) {
+    var localP = {};
+    try { localP = JSON.parse(localStorage.getItem('unipar_cianorte_plano_acao_v1') || '{}'); } catch(e) {}
+    Object.assign(localP, remote.plano);
+    try { localStorage.setItem('unipar_cianorte_plano_acao_v1', JSON.stringify(localP)); } catch(e) {}
+    if (window.paApplyFromStorage) window.paApplyFromStorage();
+  }
+
   // Recarregar UI do curso atual
   selectCourse(current);
   renderIndicadores(current);
@@ -4989,6 +5069,7 @@ function mergePayloads(remote, local) {
   (remote.agenda || []).forEach(function(ev){ if (ev && ev.id) agById[ev.id] = ev; });
   (local.agenda  || []).forEach(function(ev){ if (ev && ev.id) agById[ev.id] = ev; });
   merged.agenda = Object.keys(agById).map(function(k){ return agById[k]; });
+  merged.plano = Object.assign({}, remote.plano || {}, local.plano || {});
   return merged;
 }
 
@@ -5761,6 +5842,143 @@ init();
   // Garante init mesmo que a seção só apareça ao clicar na aba
   document.querySelectorAll('[data-tab="comercial"]').forEach(function(b){
     b.addEventListener('click', function(){ setTimeout(ecInit, 30); });
+  });
+})();
+</script>
+
+<!-- ══ PLANO DE AÇÃO · CAPTAÇÃO (aba Comercial) ══ -->
+<script>
+(function(){
+  var PA_KEY = 'unipar_cianorte_plano_acao_v1';
+  var PA_STATUS = ['A fazer','Em contato','Reunião marcada','Parceria fechada','Sem interesse'];
+  var PA_ORDER = ['geral','adm','ads','bio','cont','dir','ef','enf','psi','ead'];
+  var PA_CNAMES = (typeof COURSE_NAMES !== 'undefined') ? COURSE_NAMES : {};
+  var PA_CATALOG = {
+    geral: ['Escolas de ensino médio da região','Cursinhos pré-vestibular','Prefeituras da AMENORTE','Rádios e TVs locais','Igrejas e entidades','Eventos e feiras da cidade','Cursos técnicos e escolas profissionalizantes','Associações de moradores e lideranças de bairro','Empresas para visitas técnicas e palestras','Influenciadores e páginas locais (Instagram regional)'],
+    adm:  ['ACIC (associação comercial e industrial)','Indústrias de confecção','SEBRAE','Cooperativas','Sindicatos patronais','Comércio âncora e escritórios','Cooperativas de crédito','Franquias e redes de varejo','Distribuidoras e atacados','CRA-PR (Conselho de Administração)'],
+    ads:  ['Software houses','Setores de TI de indústrias','Agências de marketing digital','Provedores de internet','SENAI','Núcleos de inovação','Startups e incubadoras','Lojas de informática e assistência técnica','Setor de TI de prefeituras e órgãos públicos','Comunidades e meetups de tecnologia'],
+    bio:  ['Laboratórios de análises clínicas','Clínicas de imagem e diagnóstico','Hemonúcleo / banco de sangue','Vigilância sanitária','Indústrias de cosméticos e alimentos','Hospitais e laboratórios veterinários','Distribuidoras e indústrias farmacêuticas','Clínicas de reprodução humana e genética','Institutos de pesquisa (parcerias)'],
+    cont: ['Escritórios de contabilidade','CRC-PR','Departamentos fiscais de empresas','Controladoria da prefeitura','Cooperativas','Sindicato dos contadores (Sescap)','Bancos e cooperativas de crédito','Escritórios de advocacia tributária','MEIs e pequenos empreendedores (assessoria)'],
+    dir:  ['Fórum / tribunais','OAB Subseção Cianorte','Escritórios de advocacia','Cartórios','Ministério Público e Defensoria','Procon','Câmaras de mediação e arbitragem','Delegacias e segurança pública','Sindicatos e associações de classe','Conselho tutelar e Vara da Infância','Empresas com departamento jurídico'],
+    ef:   ['Academias','Secretaria municipal de esportes','Clubes e ginásios','Escolas (ed. física escolar)','Estúdios de pilates e personal','Clínicas de fisioterapia','Times e associações esportivas','Condomínios residenciais (aulas e parcerias)','Centros de reabilitação e clínicas de saúde','Escolinhas esportivas e projetos sociais','Hotéis, resorts e espaços de lazer'],
+    enf:  ['Hospitais e Santas Casas','UBS / postos de saúde','Secretaria municipal de saúde','Clínicas','ILPIs (casas de repouso)','Saúde ocupacional de indústrias','Planos de saúde e operadoras','Farmácias e drogarias','Home care e cuidadores','Cruz Vermelha, SAMU e bombeiros'],
+    psi:  ['Clínicas de psicologia','Escolas','CRAS / CREAS e assistência social','CAPS','RH de empresas (organizacional)','CRP','Hospitais e clínicas psiquiátricas','ONGs e projetos sociais','CAPS-AD (dependência química)','Gestão de pessoas de indústrias'],
+    ead:  ['RH de grandes empregadores','Prefeituras (capacitação de servidores)','Sindicatos','Polos e parcerias corporativas','Associações e entidades','Comércio e franquias (capacitação de equipes)','Igrejas e entidades comunitárias','ACIC e parcerias B2B','Profissionais autônomos e MEIs']
+  };
+
+  var paState = {};
+  var paOpen = {};       // curso -> aberto?
+  var paReady = false;
+
+  function paEsc(v){ return String(v==null?'':v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function paLoad(){ try{ paState = JSON.parse(localStorage.getItem(PA_KEY) || '{}') || {}; }catch(e){ paState = {}; } }
+  function paSave(){
+    try{ localStorage.setItem(PA_KEY, JSON.stringify(paState)); }catch(e){}
+    if (typeof window.syncSchedule === 'function') window.syncSchedule();
+  }
+  function paEnsureBase(){
+    PA_ORDER.forEach(function(c){
+      (PA_CATALOG[c]||[]).forEach(function(local, i){
+        var id = c + '-' + i;
+        if(!paState[id]) paState[id] = { course:c, local:local, status:'A fazer', data:'', resp:'', done:false, base:true, ord:i };
+      });
+    });
+  }
+  function paCourseItems(c){
+    var arr = [];
+    Object.keys(paState).forEach(function(id){
+      var it = paState[id];
+      if(it && it.course === c && !it.deleted){ it._id = id; arr.push(it); }
+    });
+    arr.sort(function(a,b){ return (a.ord||0) - (b.ord||0); });
+    return arr;
+  }
+  function paProgress(c){
+    var items = paCourseItems(c), done = 0;
+    items.forEach(function(it){ if(it.done) done++; });
+    return { done:done, total:items.length };
+  }
+
+  window.paRender = function(){
+    var host = document.getElementById('paCourses');
+    if(!host) return;
+    paEnsureBase();
+    var gDone=0, gTot=0, html='';
+    PA_ORDER.forEach(function(c){
+      var items = paCourseItems(c);
+      var p = paProgress(c); gDone+=p.done; gTot+=p.total;
+      var open = !!paOpen[c];
+      var nm = PA_CNAMES[c] || c;
+      var doneCls = (p.total>0 && p.done===p.total) ? ' done' : '';
+      html += '<div class="pa-course'+(open?' open':'')+doneCls+'" data-c="'+c+'">';
+      html += '<div class="pa-chead" onclick="paToggleCourse(\''+c+'\')">';
+      html += '<span class="pa-chev">▶</span><span class="pa-cname">'+paEsc(nm)+'</span>';
+      html += '<span class="pa-cprog">'+p.done+' / '+p.total+'</span></div>';
+      html += '<div class="pa-cbody">';
+      items.forEach(function(it){
+        var id = it._id;
+        var opts = PA_STATUS.map(function(s){ return '<option'+(s===it.status?' selected':'')+'>'+s+'</option>'; }).join('');
+        html += '<div class="pa-row'+(it.done?' checked':'')+'">';
+        html += '<input type="checkbox" class="pa-check"'+(it.done?' checked':'')+' onchange="paToggleDone(\''+id+'\',this.checked)" aria-label="Contatado">';
+        html += '<input class="pa-local" value="'+paEsc(it.local)+'" onchange="paSet(\''+id+'\',\'local\',this.value)">';
+        html += '<select class="pa-status" onchange="paSet(\''+id+'\',\'status\',this.value)">'+opts+'</select>';
+        html += '<input type="date" class="pa-date" value="'+paEsc(it.data)+'" onchange="paSet(\''+id+'\',\'data\',this.value)">';
+        html += '<input class="pa-resp" placeholder="responsável" value="'+paEsc(it.resp)+'" onchange="paSet(\''+id+'\',\'resp\',this.value)">';
+        html += it.base ? '' : '<button class="pa-del" title="Remover" onclick="paDelete(\''+id+'\')">×</button>';
+        html += '</div>';
+      });
+      html += '<button class="pa-add" onclick="paAdd(\''+c+'\')">+ adicionar outro local</button>';
+      html += '</div></div>';
+    });
+    host.innerHTML = html;
+    var g = document.getElementById('paGlobal');
+    if(g) g.textContent = gDone + ' / ' + gTot + ' contatados';
+  };
+
+  window.paToggleCourse = function(c){ paOpen[c] = !paOpen[c]; window.paRender(); };
+
+  window.paSet = function(id, field, value){
+    if(!paState[id]) return;
+    paState[id][field] = value;
+    paSave();
+  };
+  window.paToggleDone = function(id, checked){
+    if(!paState[id]) return;
+    paState[id].done = !!checked;
+    paSave();
+    window.paRender();
+  };
+  window.paAdd = function(c){
+    var id = c + '-c' + Date.now();
+    paState[id] = { course:c, local:'', status:'A fazer', data:'', resp:'', done:false, base:false, ord:1000 + Object.keys(paState).length };
+    paOpen[c] = true;
+    paSave();
+    window.paRender();
+    var rows = document.querySelectorAll('.pa-course[data-c="'+c+'"] .pa-local');
+    if(rows.length) rows[rows.length-1].focus();
+  };
+  window.paDelete = function(id){
+    if(!paState[id]) return;
+    if(!confirm('Remover este local da lista?')) return;
+    paState[id].deleted = true;   // tombstone (para a remoção sincronizar)
+    paSave();
+    window.paRender();
+  };
+
+  // Exposto para o sync da nuvem
+  window.paApplyFromStorage = function(){ paLoad(); window.paRender(); };
+
+  function paInit(){
+    if(paReady) return;
+    if(!document.getElementById('paCourses')) return;
+    paReady = true;
+    paLoad();
+    window.paRender();
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', paInit); }
+  else { paInit(); }
+  document.querySelectorAll('[data-tab="comercial"]').forEach(function(b){
+    b.addEventListener('click', function(){ setTimeout(paInit, 30); });
   });
 })();
 </script>
